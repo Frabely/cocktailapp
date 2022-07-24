@@ -1,4 +1,4 @@
-import {ImageBackground, StyleSheet, Text, View} from "react-native";
+import {ImageBackground, ScrollView, StyleSheet, Text, View} from "react-native";
 
 export default function Card(props: any) {
     let isHighlighted = props.item.idDrink === props.isImageClicked
@@ -10,6 +10,7 @@ export default function Card(props: any) {
         }
         props.setIsImageClicked(props.item.idDrink)
     }
+
     return (
         <View onTouchStart={onImageClickHandler}
               style={isHighlighted ? styles.cardHighlight : styles.cardOuter}>
@@ -21,33 +22,34 @@ export default function Card(props: any) {
                                              source={props.item.strDrinkThumb}></ImageBackground>
                         </View>
                         <View style={styles.cardHighlightBackground}>
-                            <View style={{flex: 4}}></View>
-                            <Text style={{fontSize: 40}}>
-                                {props.item.strDrink}
-                            </Text>
-                            <Text style={{fontWeight: 'bold'}}>
-                                {props.item.strInstructionsDE}
-                            </Text>
-                            <Text>
-                                - {props.item.strIngredient1} {props.item.strMeasure1}
-                            </Text>
-                            <Text>
-                                - {props.item.strIngredient2} {props.item.strMeasure2}
-                            </Text>
-                            <Text>
-                                - {props.item.strIngredient3} {props.item.strMeasure3}
-                            </Text>
+                            <View style={{flex: 3}}></View>
+                            <ScrollView style={{flex: 5}}>
+                                <Text style={{fontSize: 40}}>
+                                    {props.item.strDrink}
+                                </Text>
+                                <Text style={{fontWeight: 'bold'}}>
+                                    {props.item.strInstructions}
+                                </Text>
+                                <Text>
+                                    - {props.item.strIngredient1} {props.item.strMeasure1}
+                                </Text>
+                                <Text>
+                                    - {props.item.strIngredient2} {props.item.strMeasure2}
+                                </Text>
+                                <Text>
+                                    - {props.item.strIngredient3} {props.item.strMeasure3}
+                                </Text>
+                            </ScrollView>
                             <View style={{flex: 1}}></View>
                         </View>
-
                     </>
                 }
-                {!isHighlighted &&
-                    <>
-                        <Text style={styles.letter}>{props.item.strDrink}</Text>
-                        <Text style={styles.test}>{props.item.strCategory}</Text>
-                    </>
-                }
+                {/*{!isHighlighted &&*/}
+                {/*    <>*/}
+                {/*        <Text style={styles.letter}>{props.item.strDrink}</Text>*/}
+                {/*        <Text style={styles.test}>{props.item.strCategory}</Text>*/}
+                {/*    </>*/}
+                {/*}*/}
             </ImageBackground>
         </View>
     )
@@ -78,7 +80,7 @@ const styles = StyleSheet.create({
         height: '80%',
         width: '80%',
         padding: 10,
-        backgroundColor: 'rgba(255, 255, 255, 0.60)',
+        backgroundColor: 'rgba(197,197,197,0.6)',
         borderRadius: 25,
     },
     cardHighlight: {

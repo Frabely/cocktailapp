@@ -8,7 +8,8 @@ export default function Header() {
 
 const styles = StyleSheet.create({
     header: {
-        height: '10%',
+        height: '100vh',
+        // TODO head size
         backgroundColor: 'rgb(96,72,45)',
         display: "flex",
         padding: 5,

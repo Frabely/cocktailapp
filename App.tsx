@@ -3,7 +3,9 @@ import {ScrollView, StyleSheet, View} from 'react-native';
 import Card from "./component/Card";
 import {useState} from "react";
 import Header from "./component/Header";
-import dummyData from "./dummyData";
+// import dummyData from "./dummyData";
+import dummyData from "./dummyData3";
+
 
 // const data = [
 //     {key: 'A'},
@@ -15,6 +17,7 @@ import dummyData from "./dummyData";
 //     {key: 'G'},
 //     {key: 'H'}
 // ]
+// const data = dummyData.drinks;
 const data = dummyData.drinks;
 
 export default function App() {
