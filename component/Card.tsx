@@ -1,7 +1,9 @@
 import {ImageBackground, ScrollView, StyleSheet, Text, View} from "react-native";
+import {useEffect, useState} from "react";
 
 export default function Card(props: any) {
-    let isHighlighted = props.item.idDrink === props.isImageClicked
+    const isHighlighted = props.item.idDrink === props.isImageClicked
+    const [arrayIngredients, setArrayIngredients] = useState([])
 
     const onImageClickHandler = () => {
         if (isHighlighted) {
@@ -10,6 +12,28 @@ export default function Card(props: any) {
         }
         props.setIsImageClicked(props.item.idDrink)
     }
+
+    useEffect(() => {
+            const arrayIngredients: any = [];
+            const arrayMeasures: any = [];
+            for (const [key, value] of Object.entries(props.item)) {
+                if (value !== null) {
+                    if (key.startsWith('strIngredient')) {
+                        arrayIngredients.push(value)
+                    }
+                    if (key.startsWith('strMeasure')) {
+                        arrayMeasures.push(value)
+                    }
+                }
+            }
+            let arrayCombined: any = []
+            for (let i=0; i<arrayIngredients.length && i<arrayMeasures.length; i++) {
+                arrayCombined.push({[`${arrayIngredients[i]}`]: arrayMeasures[i]})
+            }
+            // console.log(arrayCombined)
+            setArrayIngredients(arrayCombined)
+        }
+        , [])
 
     return (
         <View onTouchStart={onImageClickHandler}
@@ -30,15 +54,14 @@ export default function Card(props: any) {
                                 <Text style={{fontWeight: 'bold'}}>
                                     {props.item.strInstructions}
                                 </Text>
-                                <Text>
-                                    - {props.item.strIngredient1} {props.item.strMeasure1}
-                                </Text>
-                                <Text>
-                                    - {props.item.strIngredient2} {props.item.strMeasure2}
-                                </Text>
-                                <Text>
-                                    - {props.item.strIngredient3} {props.item.strMeasure3}
-                                </Text>
+                                {/*TODO Make better*/}
+                                {arrayIngredients.map((item) => {
+                                    return (
+                                        <Text key={Object.keys(item)[0]}>
+                                            - {Object.keys(item)[0]} {item[Object.keys(item)[0]]}
+                                        </Text>
+                                    )
+                                })}
                             </ScrollView>
                             <View style={{flex: 1}}></View>
                         </View>

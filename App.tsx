@@ -56,7 +56,7 @@ export default function App() {
             <Header></Header>
             <ScrollView>
                 <View style={styles.container}>
-                    {data.map((item) => {
+                    {data.map((item ) => {
                         return (
                             <Card key={item.idDrink} item={item} isImageClicked={isImageClicked}
                                   setIsImageClicked={setIsImageClicked}></Card>
