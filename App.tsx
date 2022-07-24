@@ -1,7 +1,7 @@
 import {StatusBar} from 'expo-status-bar';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import Card from "./component/Card";
-import {Component} from "react";
+import {useState} from "react";
 import Header from "./component/Header";
 import dummyData from "./dummyData";
 
@@ -17,45 +17,59 @@ import dummyData from "./dummyData";
 // ]
 const data = dummyData.drinks;
 
+export default function App() {
 
-// useEffect(getRandomCocktail, []);
+    const [isImageClicked, setIsImageClicked] = useState('');
+    // state: any;
+    //
+    // constructor(props: {}) {
+    //     super(props);
+    //     this.state = {
+    //         isClicked: false
+    //     }
+    // }
+    //
+    // setIsClicked = () => {
+    //     this.state.isClicked = true
+    //     console.log(this.state.isClicked)
+    // }
 
-export default class App extends Component {
-    getRandomCocktail = async () => {
-        const response = await fetch('www.thecocktaildb.com/api/json/v1/1/random.php', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/html'
-            }
-        });
-        const body = await response.text()
 
-        console.log(body)
-    }
+    // getRandomCocktail = async () => {
+    //     const response = await fetch('www.thecocktaildb.com/api/json/v1/1/random.php', {
+    //         method: 'GET',
+    //         headers: {
+    //             'Content-Type': 'application/html'
+    //         }
+    //     });
+    //     const body = await response.text()
+    //
+    //     console.log(body)
+    // }
 
-    render() {
-        return (
-            <View style={styles.app}>
-                <ScrollView>
-                    <Header></Header>
-                    {/*<Button title={'Random Cocktail'} onPress={this.getRandomCocktail}></Button>*/}
-                    <View style={styles.container}>
-                        {data.map((item) => {
-                            return (
-                                <Card key={item.idDrink} item={item}></Card>
-                            )
-                        })}
-                    </View>
-                    <StatusBar style="auto"/>
-                </ScrollView>
-            </View>
-        );
-    }
+    // render() {
+    return (
+        <View style={styles.app}>
+            <Header></Header>
+            <ScrollView>
+                <View style={styles.container}>
+                    {data.map((item) => {
+                        return (
+                            <Card key={item.idDrink} item={item} isImageClicked={isImageClicked}
+                                  setIsImageClicked={setIsImageClicked}></Card>
+                        )
+                    })}
+                </View>
+                <StatusBar style="auto"/>
+            </ScrollView>
+        </View>
+    )
+    // }
 }
 
 const styles = StyleSheet.create({
     app: {
-        backgroundColor: 'rgba(52,42,17,0.76)',
+        backgroundColor: 'rgb(166,130,91)',
         height: '100vh',
         width: '100%',
         padding: 5

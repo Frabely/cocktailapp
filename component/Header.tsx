@@ -9,7 +9,7 @@ export default function Header() {
 const styles = StyleSheet.create({
     header: {
         height: '10%',
-        backgroundColor: 'rgba(180, 135, 92, 0.76)',
+        backgroundColor: 'rgb(96,72,45)',
         display: "flex",
         padding: 5,
         alignItems: 'center',
