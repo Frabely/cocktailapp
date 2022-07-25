@@ -1,5 +1,6 @@
-import {ImageBackground, ScrollView, StyleSheet, Text, View} from "react-native";
+import {ImageBackground, Pressable, ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {useEffect, useState} from "react";
+import {vh} from "../functions/dimentions";
 
 export default function Card(props: any) {
     const isHighlighted = props.item.idDrink === props.isImageClicked
@@ -14,67 +15,74 @@ export default function Card(props: any) {
     }
 
     useEffect(() => {
-            const arrayIngredients: any = [];
-            const arrayMeasures: any = [];
-            for (const [key, value] of Object.entries(props.item)) {
-                if (value !== null) {
-                    if (key.startsWith('strIngredient')) {
+        const arrayIngredients: any = [];
+        const arrayMeasures: any = [];
+        for (const [key, value] of Object.entries(props.item)) {
+            if (key !== null) {
+                if (key.startsWith('strIngredient'))
+                    if (value !== null)
                         arrayIngredients.push(value)
-                    }
-                    if (key.startsWith('strMeasure')) {
+
+                if (key.startsWith('strMeasure'))
+                    if (value !== null)
                         arrayMeasures.push(value)
-                    }
-                }
+                    else
+                        arrayMeasures.push('')
             }
-            let arrayCombined: any = []
-            for (let i=0; i<arrayIngredients.length && i<arrayMeasures.length; i++) {
-                arrayCombined.push({[`${arrayIngredients[i]}`]: arrayMeasures[i]})
-            }
-            // console.log(arrayCombined)
-            setArrayIngredients(arrayCombined)
         }
-        , [])
+        let arrayCombined: any = []
+        for (let i = 0; i < arrayIngredients.length && i < arrayMeasures.length; i++) {
+            arrayCombined.push({[`${arrayIngredients[i]}`]: arrayMeasures[i]})
+        }
+        setArrayIngredients(arrayCombined)
+    }, [])
 
     return (
-        <View onTouchStart={onImageClickHandler}
-              style={isHighlighted ? styles.cardHighlight : styles.cardOuter}>
-            <ImageBackground style={styles.cardInner} source={props.item.strDrinkThumb}>
+        <Pressable onPress={onImageClickHandler}
+                   style={isHighlighted ? styles.cardHighlight : styles.cardOuter}>
+            <ImageBackground style={styles.cardInner} source={{uri: props.item.strDrinkThumb}}>
                 {isHighlighted &&
                     <>
                         <View style={styles.innerImageCard}>
                             <ImageBackground style={styles.innerImage}
-                                             source={props.item.strDrinkThumb}></ImageBackground>
+                                             source={{uri: props.item.strDrinkThumb}}></ImageBackground>
                         </View>
                         <View style={styles.cardHighlightBackground}>
                             <View style={{flex: 3}}></View>
-                            <ScrollView style={{flex: 5}}>
-                                <Text style={{fontSize: 40}}>
-                                    {props.item.strDrink}
-                                </Text>
-                                <Text style={{fontWeight: 'bold'}}>
-                                    {props.item.strInstructions}
-                                </Text>
-                                {/*TODO Make better*/}
-                                {arrayIngredients.map((item) => {
-                                    return (
-                                        <Text key={Object.keys(item)[0]}>
-                                            - {Object.keys(item)[0]} {item[Object.keys(item)[0]]}
+                            <View style={{flex: 5}}>
+                                <ScrollView nestedScrollEnabled={true}>
+                                    <Text style={{fontSize: 40}}>
+                                        {props.item.strDrink}
+                                    </Text>
+                                    {props.item.strAlcoholic !== null &&
+                                        <Text style={{fontSize: 20}}>
+                                            {props.item.strAlcoholic}
                                         </Text>
-                                    )
-                                })}
-                            </ScrollView>
+                                    }
+                                    {props.item.strCategory !== null && props.item.strCategory !== "Other/Unknown" &&
+                                        <Text style={{fontSize: 20}}>
+                                            {props.item.strCategory}
+                                        </Text>
+                                    }
+                                    <Text style={{fontWeight: 'bold'}}>
+                                        {props.item.strInstructions}
+                                    </Text>
+                                    {/*TODO Make better*/}
+                                    {arrayIngredients.map((item) => {
+                                        return (
+                                            <Text key={Object.keys(item)[0]}>
+                                                - {Object.keys(item)[0]} {item[Object.keys(item)[0]]}
+                                            </Text>
+                                        )
+                                    })}
+                                </ScrollView>
+                            </View>
                             <View style={{flex: 1}}></View>
                         </View>
                     </>
                 }
-                {/*{!isHighlighted &&*/}
-                {/*    <>*/}
-                {/*        <Text style={styles.letter}>{props.item.strDrink}</Text>*/}
-                {/*        <Text style={styles.test}>{props.item.strCategory}</Text>*/}
-                {/*    </>*/}
-                {/*}*/}
             </ImageBackground>
-        </View>
+        </Pressable>
     )
 }
 
@@ -108,12 +116,14 @@ const styles = StyleSheet.create({
     },
     cardHighlight: {
         width: '100%',
-        height: '90vh',
+        // height: '90vh',
+        height: vh(0.90),
         padding: 10,
     },
     cardOuter: {
         width: '33.333333%',
-        height: '25vh',
+        // height: '25vh',
+        height: vh(0.25),
         padding: 10,
     },
     cardInner: {
@@ -122,19 +132,5 @@ const styles = StyleSheet.create({
         height: '100%',
         borderRadius: 25,
         overflow: 'hidden'
-    },
-    letter: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: 'center',
-        flex: 1,
-        fontSize: 10,
-    },
-    test: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: 'center',
-        flex: 1,
-        fontSize: 7
     }
 });
