@@ -35,18 +35,17 @@ export default function App() {
 
     return (
         <>
-            {/*<Header></Header>*/}
+            <Header></Header>
             <View style={styles.app}>
                 {currentItem && (
                     <HighlightedCard item={currentItem} onImageClickHandler={onImageClickHandler}/>
                 )}
                 <FlatList
-                    style={styles.flatList}
                     numColumns={3}
                     data={currentDataSet}
                     renderItem={renderItem}
                     keyExtractor={item => item.idDrink}/>
-                <StatusBar style="auto"/>
+                {/*<StatusBar style="auto"/>*/}
             </View>
         </>
     )
@@ -55,13 +54,9 @@ export default function App() {
 const styles = StyleSheet.create({
     app: {
         backgroundColor: 'rgb(166,130,91)',
-        // height: vh(0.85),
-        height: vh(1),
+        height: vh(0.9),
+        // height: vh(1),
         width: '100%',
         padding: 10,
-    },
-    flatList: {
-        borderRadius: 25,
-        overflow: 'hidden'
     }
 });
