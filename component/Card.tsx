@@ -8,10 +8,13 @@ export default function Card(props: any) {
 
     const onImageClickHandler = () => {
         if (isHighlighted) {
-            props.setIsImageClicked('')
+            props.setIsImageClicked(undefined)
             return
         }
         props.setIsImageClicked(props.item.idDrink)
+        props.setClickedImagePosition(props.position)
+        props.setClickedImageIndex(props.index)
+
     }
 
     useEffect(() => {
@@ -115,13 +118,15 @@ const styles = StyleSheet.create({
         borderRadius: 25,
     },
     cardHighlight: {
-        width: '100%',
+        flex: 3,
+        // width: '100%',
         // height: '90vh',
         height: vh(0.90),
         padding: 10,
     },
     cardOuter: {
-        width: '33.333333%',
+        flex: 1,
+        // width: '33.333333%',
         // height: '25vh',
         height: vh(0.25),
         padding: 10,
