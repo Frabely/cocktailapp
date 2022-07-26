@@ -1,104 +1,67 @@
 import {StatusBar} from 'expo-status-bar';
-import {Button, FlatList, ScrollView, StyleSheet, View} from 'react-native';
+import {FlatList, StyleSheet, View} from 'react-native';
 import Card from "./component/Card";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import Header from "./component/Header";
 import dummyData from "./dummyData3";
 import {vh} from "./functions/dimentions";
+import HighlightedCard from "./component/HighlightedCard";
 
 const data = dummyData.drinks;
 
 export default function App() {
-    const [isImageClicked, setIsImageClicked] = useState(undefined)
-    const [clickedImagePosition, setClickedImagePosition] = useState(-1)
-    const [clickedImageIndex, setClickedImageIndex] = useState(-1)
+    const [currentItem, setCurrentItem] = useState(undefined)
     const [currentDataSet, setCurrentDataSet] = useState(data)
 
-    // console.log(`${clickedImagePosition} , ${clickedImageIndex}`)
-
-    const repositionClickedImageToStart = (
-        array: any,
-        clickedImagePosition: number,
-        clickedImageIndex: number
-    ) => {
-        if (clickedImagePosition === 0)
-            return array
-
-        if (clickedImagePosition >= 0) {
-            let b = array[clickedImageIndex];
-            array[clickedImageIndex] = array[clickedImageIndex - clickedImagePosition];
-            array[clickedImageIndex - clickedImagePosition] = b;
+    const onImageClickHandler = (
+        currentlyClickedItem: any,
+        item: any) => {
+        if (currentlyClickedItem && currentlyClickedItem.idDrink === item.idDrink) {
+            setCurrentItem(undefined)
+            return
         }
-        setClickedImageIndex(-1)
-        setClickedImagePosition(-1)
-        return array
-
+        setCurrentItem(item)
     }
-    useEffect(() => {
-        const newDataSet = repositionClickedImageToStart(currentDataSet, clickedImagePosition, clickedImageIndex);
-        setCurrentDataSet(newDataSet)
-
-    }, [isImageClicked])
 
     const renderItem = ({item, index}: any) => {
         return (
             <Card key={item.idDrink}
-                  position={index % 3}
-                  setClickedImagePosition={setClickedImagePosition}
-                  index={index}
-                  setClickedImageIndex={setClickedImageIndex}
                   item={item}
-                  isImageClicked={isImageClicked}
-                  setIsImageClicked={setIsImageClicked}/>
+                  currentItem={currentItem}
+                  onImageClickHandler={onImageClickHandler}
+            />
         )
     }
 
     return (
-        <View style={styles.app}>
+        <>
             {/*<Header></Header>*/}
-            {/*<ScrollView>*/}
-            {/*<View style={styles.container}>*/}
-            {/*    {currentDataSet.map((item, index) => {*/}
-            {/*        return (*/}
-            {/*            <Card key={item.idDrink}*/}
-            {/*                  position={index % 3}*/}
-            {/*                  setClickedImagePosition={setClickedImagePosition}*/}
-            {/*                  index={index}*/}
-            {/*                  setClickedImageIndex={setClickedImageIndex}*/}
-            {/*                  item={item}*/}
-            {/*                  isImageClicked={isImageClicked}*/}
-            {/*                  setIsImageClicked={setIsImageClicked}>*/}
-
-            {/*            </Card>*/}
-            {/*        )*/}
-            {/*    })}*/}
-            {/*</View>*/}
-            {/*{isImageClicked && (*/}
-            {/*    <Card></Card>*/}
-            {/*)}*/}
-            <FlatList columnWrapperStyle={styles.row} numColumns={3} data={currentDataSet} renderItem={renderItem}
-                      keyExtractor={item => item.idDrink}>
-                {/* TODO   https://github.com/AppAndFlow/react-native-masonry-list    */}
-            </FlatList>
-            {/* TODO or show highlighted here */}
-            <StatusBar style="auto"/>
-            {/*</ScrollView>*/}
-        </View>
+            <View style={styles.app}>
+                {currentItem && (
+                    <HighlightedCard item={currentItem} onImageClickHandler={onImageClickHandler}/>
+                )}
+                <FlatList
+                    style={styles.flatList}
+                    numColumns={3}
+                    data={currentDataSet}
+                    renderItem={renderItem}
+                    keyExtractor={item => item.idDrink}/>
+                <StatusBar style="auto"/>
+            </View>
+        </>
     )
-    // }
 }
 
 const styles = StyleSheet.create({
     app: {
-        flexWrap: 'wrap',
         backgroundColor: 'rgb(166,130,91)',
-        // height: '100vh',
+        // height: vh(0.85),
         height: vh(1),
         width: '100%',
-        padding: 5
+        padding: 10,
     },
-    row: {
-        flex: 1,
-        justifyContent: "space-around"
+    flatList: {
+        borderRadius: 25,
+        overflow: 'hidden'
     }
 });

@@ -9,13 +9,9 @@ export default function Header() {
 
 const styles = StyleSheet.create({
     header: {
-        height: vh(0.1),
+        height: vh(0.15),
         backgroundColor: 'rgb(96,72,45)',
-        display: "flex",
-        padding: 5,
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 15,
-        // overflow: 'hidden'
     },
 });
