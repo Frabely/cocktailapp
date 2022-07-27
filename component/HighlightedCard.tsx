@@ -1,6 +1,7 @@
 import {ImageBackground, Pressable, ScrollView, StyleSheet, Text, View} from "react-native";
 import {vh} from "../functions/dimentions";
 import {useEffect, useState} from "react";
+import generateBoxShadowStyle from "../functions/generateBoxShadowStyle";
 
 export default function HighlightedCard(props: any) {
     const [arrayIngredients, setArrayIngredients] = useState([])
@@ -10,6 +11,18 @@ export default function HighlightedCard(props: any) {
             props.currentItem,
             undefined)
     }
+
+    generateBoxShadowStyle(
+        styles,
+        -2,
+        4,
+        '#171717',
+        0.2,
+        3,
+        4,
+        '#171717'
+    )
+
     useEffect(() => {
         const arrayIngredients: any = [];
         const arrayMeasures: any = [];
@@ -35,7 +48,7 @@ export default function HighlightedCard(props: any) {
 
     return (
         <View style={styles.highlightView}>
-            <ImageBackground style={styles.highlightViewBackgroundImage} source={{uri: props.item.strDrinkThumb}}>
+            <ImageBackground style={[styles.highlightViewBackgroundImage, styles.boxShadow]} source={{uri: props.item.strDrinkThumb}}>
                 <Pressable onPress={onCloseHighlightedImage} style={styles.innerImageCard}>
                     <ImageBackground style={styles.innerImage}
                                      source={{uri: props.item.strDrinkThumb}}></ImageBackground>
@@ -123,5 +136,6 @@ const styles = StyleSheet.create({
         height: '70%',
         width: '100%',
         padding: 10,
-    }
+    },
+    boxShadow: {}
 })

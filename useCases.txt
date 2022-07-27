@@ -1,0 +1,6 @@
+Bugs:
+- Wenn Cocktail highlighted und neue wird geöffnet Zuatat bleiben gleich
+- Wenn Cocktail offen -> lässt sich nicht mit Bild auf Listenclick des gleichen Schließen
+
+TODO': swerbung -> wie?
+Firebase Backend -> upload data auf firebase

@@ -6,12 +6,14 @@ import Header from "./component/Header";
 import dummyData from "./dummyData3";
 import {vh} from "./functions/dimentions";
 import HighlightedCard from "./component/HighlightedCard";
+import Filter from "./component/MenuItems/Filter";
 
 const data = dummyData.drinks;
 
 export default function App() {
     const [currentItem, setCurrentItem] = useState(undefined)
     const [currentDataSet, setCurrentDataSet] = useState(data)
+    const [isFilterIconPressed, setIsFilterIconPressed] = useState(false)
 
     const onImageClickHandler = (
         currentlyClickedItem: any,
@@ -35,8 +37,14 @@ export default function App() {
 
     return (
         <>
-            <Header></Header>
+            <Header setIsFilterIconPressed={setIsFilterIconPressed}
+                    isFilterIconPressed={isFilterIconPressed}>
+
+            </Header>
             <View style={styles.app}>
+                {isFilterIconPressed && (
+                    <Filter></Filter>
+                )}
                 {currentItem && (
                     <HighlightedCard item={currentItem} onImageClickHandler={onImageClickHandler}/>
                 )}
