@@ -1,13 +1,12 @@
-import {ImageBackground, Platform, Pressable, StyleSheet, View} from "react-native";
+import {ImageBackground, Pressable, StyleSheet} from "react-native";
 import {vh} from "../functions/dimentions";
 import generateBoxShadowStyle from '../functions/generateBoxShadowStyle';
-// import {BoxShadow} from 'react-native-shadow';
 
 
 export default function Card(props: any) {
     const onImageClickHandler = () => {
         props.onImageClickHandler(
-            props.isImageClicked,
+            props.currentItem,
             props.item)
     }
     generateBoxShadowStyle(

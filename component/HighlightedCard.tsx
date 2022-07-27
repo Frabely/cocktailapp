@@ -8,7 +8,7 @@ export default function HighlightedCard(props: any) {
 
     const onCloseHighlightedImage = () => {
         props.onImageClickHandler(
-            props.currentItem,
+            undefined,
             undefined)
     }
 
@@ -44,7 +44,7 @@ export default function HighlightedCard(props: any) {
             arrayCombined.push({[`${arrayIngredients[i]}`]: arrayMeasures[i]})
         }
         setArrayIngredients(arrayCombined)
-    }, [])
+    }, [props.item])
 
     return (
         <View style={styles.highlightView}>

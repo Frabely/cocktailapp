@@ -18,9 +18,11 @@ export default function App() {
     const onImageClickHandler = (
         currentlyClickedItem: any,
         item: any) => {
-        if (currentlyClickedItem && currentlyClickedItem.idDrink === item.idDrink) {
-            setCurrentItem(undefined)
-            return
+        if (currentlyClickedItem) {
+            if (currentlyClickedItem.idDrink === item.idDrink) {
+                setCurrentItem(undefined)
+                return
+            }
         }
         setCurrentItem(item)
     }
