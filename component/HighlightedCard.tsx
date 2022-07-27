@@ -4,6 +4,20 @@ import {useEffect, useState} from "react";
 import generateBoxShadowStyle from "../functions/generateBoxShadowStyle";
 import {BORDER_RADIUS, PADDING} from "../global_exports/border_margin_padding_defaults";
 import {COLOR_HEADER, COLOR_OPACITY_BACKGROUND} from "../global_exports/color_styles";
+import {
+    useFonts,
+    TitilliumWeb_200ExtraLight,
+    TitilliumWeb_200ExtraLight_Italic,
+    TitilliumWeb_300Light,
+    TitilliumWeb_300Light_Italic,
+    TitilliumWeb_400Regular,
+    TitilliumWeb_400Regular_Italic,
+    TitilliumWeb_600SemiBold,
+    TitilliumWeb_600SemiBold_Italic,
+    TitilliumWeb_700Bold,
+    TitilliumWeb_700Bold_Italic,
+    TitilliumWeb_900Black,
+} from '@expo-google-fonts/titillium-web';
 
 export default function HighlightedCard(props: any) {
     const [arrayIngredients, setArrayIngredients] = useState([])
@@ -59,7 +73,7 @@ export default function HighlightedCard(props: any) {
                     <View style={{flex: 3}}></View>
                     <View style={{flex: 5}}>
                         <ScrollView nestedScrollEnabled={true}>
-                            <Text style={{fontSize: 40}}>
+                            <Text style={[{fontSize: 40}, styles.fonts] }>
                                 {props.item.strDrink}
                             </Text>
                             {props.item.strAlcoholic !== null &&
@@ -139,5 +153,8 @@ const styles = StyleSheet.create({
         width: '100%',
         padding: PADDING,
     },
-    boxShadow: {}
+    boxShadow: {},
+    fonts: {
+        fontFamily: 'TitilliumWeb_900ExtraLight'
+    }
 })

@@ -1,4 +1,49 @@
 Bugs:
 
-TODOs: werbung -> wie?
-Firebase Backend -> upload data auf firebase
+TODOs:
+-style/refactor Anzeige wenn Cocktail angezeigt
+-Font auswählen und defaults sizes setzen
+-werbung -> wie?
+-Firebase Backend -> upload data auf firebase
+
+
+Cocktail App
+
+	•	Indirekte verstecke Werbung unterbringen, aller 15 - 20 Cocktails anzeigen —> 1 Cocktail Feld wird durch Werbefeld ersetzt
+
+	•	Menü Leiste:
+	⁃	Favoriten Liste
+	⁃	Notiz/Einkaufszettel
+	⁃	Eigene Bar:
+	•	Eigene Bilder
+	•	Eigene Zutaten
+
+
+	•	Filter FilterButton Einbauen ??
+	⁃	Anfangsbuchstabe
+	⁃	Alkoholfreies
+	⁃	Alkoholisches
+	⁃	Glas Varianten:
+	•	Cup
+	•	Glass
+	•	Cocktail glass
+	•	Large glass
+	•	Old Fashion glass
+	•	Highball glass
+	•	Shot glass
+	⁃	Typ:
+	•	Shot
+	•	Ordinary Drink
+	•	Cocktail
+	•	Beer
+	•	Shake
+	•	Homemade liqueur
+	•	Punch / Party Drink
+	•	Coffee / Tea
+	•	Cocoa
+	⁃	Clean all 🗑
+
+	•	Sterne Bewertung für Benutzer
+
+	•	App Name Idee:
+	⁃	Cocktaillicious
