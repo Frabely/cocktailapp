@@ -9,11 +9,11 @@ import {
 import {BORDER_RADIUS, PADDING} from "../../global_exports/border_margin_padding_defaults";
 import FilterButton from "./FilterButton";
 import Label from "./Label";
+import {useState} from "react";
 import Switch from "./Switch";
 
 export default function Filter(props: any) {
     const onClearAllFiltersClickHandler = () => {
-
     }
 
     return (
