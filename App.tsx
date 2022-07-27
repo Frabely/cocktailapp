@@ -6,7 +6,9 @@ import Header from "./component/Header";
 import dummyData from "./dummyData3";
 import {vh} from "./functions/dimentions";
 import HighlightedCard from "./component/HighlightedCard";
-import Filter from "./component/MenuItems/Filter";
+import Filter from "./component/Menu/Filter";
+import {COLOR_BACKGROUND} from "./global_exports/color_styles";
+import {PADDING} from "./global_exports/border_margin_padding_defaults";
 
 const data = dummyData.drinks;
 
@@ -63,10 +65,9 @@ export default function App() {
 
 const styles = StyleSheet.create({
     app: {
-        backgroundColor: 'rgb(166,130,91)',
+        backgroundColor: COLOR_BACKGROUND,
         height: vh(0.9),
-        // height: vh(1),
         width: '100%',
-        padding: 10,
+        padding: PADDING,
     }
 });

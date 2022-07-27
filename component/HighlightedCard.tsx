@@ -2,6 +2,8 @@ import {ImageBackground, Pressable, ScrollView, StyleSheet, Text, View} from "re
 import {vh} from "../functions/dimentions";
 import {useEffect, useState} from "react";
 import generateBoxShadowStyle from "../functions/generateBoxShadowStyle";
+import {BORDER_RADIUS, PADDING} from "../global_exports/border_margin_padding_defaults";
+import {COLOR_HEADER, COLOR_OPACITY_BACKGROUND} from "../global_exports/color_styles";
 
 export default function HighlightedCard(props: any) {
     const [arrayIngredients, setArrayIngredients] = useState([])
@@ -101,27 +103,27 @@ const styles = StyleSheet.create({
         border: 0,
         height: '30%',
         width: '50%',
-        backgroundColor: 'rgb(96,72,45)',
-        borderWidth: 1,
-        borderRadius: 30,
+        backgroundColor: COLOR_HEADER,
+        // borderWidth: 2,
+        borderRadius: 28,
     },
     innerImage: {
         height: '100%',
         width: '100%',
-        borderRadius: 25,
+        borderRadius: BORDER_RADIUS,
         overflow: 'hidden',
     },
     cardHighlightBackground: {
         height: '80%',
         width: '80%',
-        padding: 10,
-        backgroundColor: 'rgba(197,197,197,0.6)',
-        borderRadius: 25,
+        padding: PADDING,
+        backgroundColor: COLOR_OPACITY_BACKGROUND,
+        borderRadius: BORDER_RADIUS,
     },
     cardHighlight: {
         flex: 3,
         height: vh(0.90),
-        padding: 10,
+        padding: PADDING,
     },
     highlightViewBackgroundImage: {
         height: '100%',
@@ -129,13 +131,13 @@ const styles = StyleSheet.create({
         display: "flex",
         alignItems: "center",
         justifyContent: 'center',
-        borderRadius: 25,
+        borderRadius: BORDER_RADIUS,
         overflow: 'hidden',
     },
     highlightView: {
         height: '70%',
         width: '100%',
-        padding: 10,
+        padding: PADDING,
     },
     boxShadow: {}
 })

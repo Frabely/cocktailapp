@@ -1,6 +1,8 @@
 import {ImageBackground, Pressable, StyleSheet} from "react-native";
 import {vh} from "../functions/dimentions";
 import generateBoxShadowStyle from '../functions/generateBoxShadowStyle';
+import {BORDER_RADIUS, PADDING} from "../global_exports/border_margin_padding_defaults";
+import {SHADOW} from "../global_exports/color_styles";
 
 
 export default function Card(props: any) {
@@ -13,11 +15,11 @@ export default function Card(props: any) {
         styles,
         -6,
         6,
-        '#171717',
+        SHADOW,
         0.4,
         3,
         0,
-        '#171717'
+        SHADOW
     )
     // if (Platform.OS === 'android') {
     //     return (
@@ -42,14 +44,14 @@ export default function Card(props: any) {
 const styles = StyleSheet.create({
     cardOuter: {
         flex: 1,
-        height: vh(0.25),
-        padding: 10,
+        height: vh(0.20),
+        padding: PADDING,
     },
     cardInner: {
         flex: 1,
         alignItems: "center",
         justifyContent: 'center',
-        borderRadius: 25,
+        borderRadius: BORDER_RADIUS,
         overflow: 'hidden',
     },
     // androidCardInner: {

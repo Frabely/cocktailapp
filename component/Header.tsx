@@ -4,6 +4,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import {} from "@fortawesome/free-regular-svg-icons";
 import {} from "@fortawesome/free-brands-svg-icons";
+import {COLOR_HEADER} from "../global_exports/color_styles";
+import {PADDING} from "../global_exports/border_margin_padding_defaults";
 
 
 export default function Header(props: any) {
@@ -28,7 +30,7 @@ export default function Header(props: any) {
 const styles = StyleSheet.create({
     header: {
         height: vh(0.10),
-        backgroundColor: 'rgb(96,72,45)',
+        backgroundColor: COLOR_HEADER,
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: "row"
@@ -36,7 +38,7 @@ const styles = StyleSheet.create({
     filter: {
         height: '100%',
         flex: 1,
-        padding: 10,
+        padding: PADDING,
         // backgroundColor: 'rgb(68,50,32)',
         alignItems: 'center',
         justifyContent: 'center',

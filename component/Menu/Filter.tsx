@@ -1,5 +1,6 @@
 import {StyleSheet, View, Text} from "react-native";
 import {vh} from "../../functions/dimentions";
+import {COLOR_OPACITY_BACKGROUND} from "../../global_exports/color_styles";
 
 export default function Filter(props: any) {
     return (
@@ -11,7 +12,7 @@ export default function Filter(props: any) {
 
 const styles = StyleSheet.create({
     filter: {
-        backgroundColor: 'rgba(197,197,197,0.6)',
+        backgroundColor: COLOR_OPACITY_BACKGROUND,
         height: vh(0.5),
         width: '100%',
         position: "absolute",
