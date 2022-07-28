@@ -1,7 +1,7 @@
 import {StatusBar} from 'expo-status-bar';
-import {FlatList, StyleSheet, View} from 'react-native';
+import {Animated, FlatList, StyleSheet, View} from 'react-native';
 import Card from "./component/Card";
-import {useState} from "react";
+import {useRef, useState} from "react";
 import Header from "./component/Header";
 import dummyData from "./dummyData3";
 import {vh} from "./functions/dimentions";
@@ -16,6 +16,39 @@ export default function App() {
     const [currentItem, setCurrentItem] = useState(undefined)
     const [currentDataSet, setCurrentDataSet] = useState(data)
     const [isFilterIconPressed, setIsFilterIconPressed] = useState(false)
+    const openMenuAnimation = useRef(new Animated.Value(0)).current;
+
+    const setIsFilterIconPressedAnimation = () => {
+        if (!isFilterIconPressed){
+            open()
+        }
+        else {
+            close()
+        }
+
+    }
+
+    const open = () => {
+        // Will change fadeAnim value to 1 in 5 seconds
+        Animated.timing(openMenuAnimation, {
+            toValue: vh(0.5),
+            duration: 2000,
+            useNativeDriver: true
+        }).start(() => {
+            setIsFilterIconPressed(true)
+        });
+    };
+
+    const close = () => {
+        // Will change fadeAnim value to 0 in 3 seconds
+        setIsFilterIconPressed(false)
+        Animated.timing(openMenuAnimation, {
+            toValue: vh(0),
+            duration: 2000,
+            useNativeDriver: true
+        }).start()
+    };
+
 
     const onImageClickHandler = (
         currentlyClickedItem: any,
@@ -41,14 +74,13 @@ export default function App() {
 
     return (
         <>
-            <Header setIsFilterIconPressed={setIsFilterIconPressed}
-                    isFilterIconPressed={isFilterIconPressed}>
+            <Header setIsFilterIconPressedAnimation={setIsFilterIconPressedAnimation}
+                    isFilterIconPressed={isFilterIconPressed}
+            >
 
             </Header>
             <View style={styles.app}>
-                {isFilterIconPressed && (
-                    <Filter></Filter>
-                )}
+                    <Filter isFilterIconPressed={isFilterIconPressed} openMenuAnimation={openMenuAnimation}></Filter>
                 {currentItem && (
                     <HighlightedCard item={currentItem} onImageClickHandler={onImageClickHandler}/>
                 )}

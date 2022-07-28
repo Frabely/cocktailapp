@@ -1,4 +1,4 @@
-import {StyleSheet, View, Text, ColorValue} from "react-native";
+import {Animated, StyleSheet, View} from "react-native";
 import {vh} from "../../functions/dimentions";
 import {
     COLOR_BACKGROUND,
@@ -9,39 +9,52 @@ import {
 import {BORDER_RADIUS, PADDING} from "../../global_exports/border_margin_padding_defaults";
 import FilterButton from "./FilterButton";
 import Label from "./Label";
-import {useState} from "react";
 import Switch from "./Switch";
 
 export default function Filter(props: any) {
+
     const onClearAllFiltersClickHandler = () => {
     }
-
     return (
-        <View style={[styles.filter,]}>
-            <View style={{padding: PADDING,}}>
-                <FilterButton onClick={onClearAllFiltersClickHandler} color={COLOR_BACKGROUND} title={'Clean all filters'}/>
-            </View>
-            <View style={styles.rowStyle}>
-                <View style={{flex: 1}}>
-                    <Label lableName={'Alcoholic'}/>
-                </View>
-                <View style={{flex: 2.5}}>
-                    <Switch color={COLOR_BACKGROUND} colorSelected={COLOR_HEADER} leftTitle={'Alcoholic'}
-                            rightTitle={'Non alcoholic'}></Switch>
-                </View>
-            </View>
-            <View style={styles.rowStyle}>
-                <Label lableName={'Cocktail type'}/>
-            </View>
-            <View style={styles.rowStyle}>
-                <Label lableName={'Glass type'}/>
-            </View>
-        </View>
+        <Animated.View
+            style={[
+                styles.filter,
+                {
+                    // Bind opacity to animated value
+                    height: props.openMenuAnimation
+                }
+            ]}
+        >
+            {props.isFilterIconPressed && (
+                <>
+                    <View style={{padding: PADDING,}}>
+                        <FilterButton onClick={onClearAllFiltersClickHandler} color={COLOR_BACKGROUND}
+                                      title={'Clean all filters'}/>
+                    </View>
+                    <View style={styles.rowStyle}>
+                        <View style={{flex: 1}}>
+                            <Label lableName={'Alcoholic'}/>
+                        </View>
+                        <View style={{flex: 2.5}}>
+                            <Switch color={COLOR_BACKGROUND} colorSelected={COLOR_HEADER} leftTitle={'Alcoholic'}
+                                    rightTitle={'Non alcoholic'}></Switch>
+                        </View>
+                    </View>
+                    <View style={styles.rowStyle}>
+                        <Label lableName={'Cocktail type'}/>
+                    </View>
+                    <View style={styles.rowStyle}>
+                        <Label lableName={'Glass type'}/>
+                    </View>
+                </>
+            )}
+        </Animated.View>
     )
 }
 
 const styles = StyleSheet.create({
     filter: {
+        display: "flex",
         backgroundColor: COLOR_OPACITY_BACKGROUND,
         height: vh(0.5),
         width: '100%',
@@ -49,7 +62,7 @@ const styles = StyleSheet.create({
         left: 0,
         top: 0,
         zIndex: 1,
-        padding: PADDING,
+        // padding: PADDING,
         borderBottomLeftRadius: BORDER_RADIUS,
         borderBottomRightRadius: BORDER_RADIUS,
         justifyContent: "center"

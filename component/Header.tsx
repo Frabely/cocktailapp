@@ -10,7 +10,7 @@ import {PADDING} from "../global_exports/border_margin_padding_defaults";
 
 export default function Header(props: any) {
     const onFilterPressHandler = () => {
-        props.setIsFilterIconPressed(!props.isFilterIconPressed)
+        props.setIsFilterIconPressedAnimation(props.isFilterIconPressed)
     }
 
     return (
