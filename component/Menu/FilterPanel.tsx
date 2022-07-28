@@ -5,13 +5,13 @@ import {COLOR_BACKGROUND, COLOR_HEADER} from "../../global_exports/color_styles"
 import {useState} from "react";
 
 export default function FilterPanel(props: any) {
-    const [alcoholicFilter, setAlcoholicFilter] = useState(props.default)
+    const [currentFilter, setCurrentFilter] = useState(props.default)
 
-    const onFilterButtonClickHandler = () => {
+    const onFilterButtonClickHandler = (filterName: string) => {
+        setCurrentFilter(filterName)
     }
 
     const renderItem = ({item, index}: any) => {
-        console.log(item)
         return (
             <FilterButton
                 key={item}
@@ -19,21 +19,15 @@ export default function FilterPanel(props: any) {
                 colorActive={COLOR_HEADER}
                 colorInactive={COLOR_BACKGROUND}
                 onClick={onFilterButtonClickHandler}
+                currentFilter={currentFilter}
             />
         )
-    }
-
-    const onFilterChangeHandler = () => {
-
     }
 
     return(
         <>
             <Label lableName={'Alcoholic'}/>
             <FlatList data={props.options} renderItem={renderItem} numColumns={3} style={styles.flatList}/>
-            {/*<FilterButton title={'All'} colorActive={COLOR_HEADER} colorInactive={COLOR_BACKGROUND} onClick={onFilterChangeHandler}></FilterButton>*/}
-            {/*<FilterButton title={'Alcoholic'} colorActive={COLOR_HEADER} colorInactive={COLOR_BACKGROUND} onClick={onFilterChangeHandler}></FilterButton>*/}
-            {/*<FilterButton title={'Non alcoholic'} colorActive={COLOR_HEADER} colorInactive={COLOR_BACKGROUND} onClick={onFilterChangeHandler}></FilterButton>*/}
         </>
 
     )

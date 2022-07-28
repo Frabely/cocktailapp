@@ -1,21 +1,17 @@
 import {Pressable, StyleSheet, Text} from "react-native";
 import {BORDER_RADIUS, PADDING} from "../../global_exports/border_margin_padding_defaults";
-import {COLOR_BACKGROUND, COLOR_HEADER} from "../../global_exports/color_styles";
-import {useState} from "react";
+import {COLOR_BACKGROUND} from "../../global_exports/color_styles";
 
 export default function FilterButton(props: any) {
-    const [isActive, setIsActive] = useState(false)
-
     const onClickHandler = () => {
-        setIsActive(!isActive)
-        props.onClick
+        props.onClick(props.title)
     }
 
     return (
         <Pressable onPress={onClickHandler} style={
             [
                 styles.outerButton,
-                {backgroundColor: isActive ? props.colorActive : props.colorInactive},
+                {backgroundColor: (props.currentFilter===props.title) ? props.colorActive : props.colorInactive},
             ]}>
             <Text>{props.title}</Text>
         </Pressable>

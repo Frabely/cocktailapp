@@ -32,8 +32,8 @@ export default function App() {
         // Will change fadeAnim value to 1 in 5 seconds
         Animated.timing(openMenuAnimation, {
             toValue: vh(0.5),
-            duration: 200,
-            useNativeDriver: true
+            duration: 500,
+            useNativeDriver: false
         }).start(() => {
             setIsFilterIconPressed(true)
         });
@@ -44,8 +44,8 @@ export default function App() {
         setIsFilterIconPressed(false)
         Animated.timing(openMenuAnimation, {
             toValue: vh(0),
-            duration: 200,
-            useNativeDriver: true
+            duration: 500,
+            useNativeDriver: false
         }).start()
     };
 
@@ -75,12 +75,9 @@ export default function App() {
     return (
         <>
             <Header setIsFilterIconPressedAnimation={setIsFilterIconPressedAnimation}
-                    isFilterIconPressed={isFilterIconPressed}
-            >
-
-            </Header>
+                    isFilterIconPressed={isFilterIconPressed} />
             <View style={styles.app}>
-                    <Filter isFilterIconPressed={isFilterIconPressed} openMenuAnimation={openMenuAnimation}></Filter>
+                    <Filter isFilterIconPressed={isFilterIconPressed} openMenuAnimation={openMenuAnimation}/>
                 {currentItem && (
                     <HighlightedCard item={currentItem} onImageClickHandler={onImageClickHandler}/>
                 )}

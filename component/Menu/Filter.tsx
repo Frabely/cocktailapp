@@ -9,7 +9,6 @@ import {
 import {BORDER_RADIUS, PADDING} from "../../global_exports/border_margin_padding_defaults";
 import FilterButton from "./FilterButton";
 import Label from "./Label";
-import {useState} from "react";
 import FilterPanel from "./FilterPanel";
 
 export default function Filter(props: any) {
@@ -22,6 +21,7 @@ export default function Filter(props: any) {
                 {
                     // Bind height to animated value
                     height: props.openMenuAnimation
+                    // transform: [{ scaleX: props.openMenuAnimation }],
                 }
             ]}
         >
@@ -37,10 +37,6 @@ export default function Filter(props: any) {
                                      lableName={'Alcoholic'}
                                      default={'All'}>
                         </FilterPanel>
-                        {/*<Label lableName={'Alcoholic'}/>*/}
-                        {/*<FilterButton title={'All'} colorActive={COLOR_HEADER} colorInactive={COLOR_BACKGROUND} onClick={() => {}}></FilterButton>*/}
-                        {/*<FilterButton title={'Alcoholic'} colorActive={COLOR_HEADER} colorInactive={COLOR_BACKGROUND} onClick={() => {}}></FilterButton>*/}
-                        {/*<FilterButton title={'Non alcoholic'} colorActive={COLOR_HEADER} colorInactive={COLOR_BACKGROUND} onClick={() => {}}></FilterButton>*/}
                     </View>
                     <View style={styles.rowStyle}>
                         <Label lableName={'Cocktail type'}/>
