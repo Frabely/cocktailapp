@@ -20,6 +20,7 @@ Cocktail App
 
 
 	•	Filter FilterButton Einbauen ??
+	        design Filter: Und- oder OderFilter (Banane + Cola -> nur mit Banane und Cola) oder (Banane + Cola -> mit Banane oder Cola) anzeigen
 	⁃	Anfangsbuchstabe
 	⁃	Alkoholfreies
 	⁃	Alkoholisches

@@ -15,6 +15,7 @@ export default function Filter(props: any) {
 
     const onClearAllFiltersClickHandler = () => {
     }
+
     return (
         <Animated.View
             style={[
@@ -28,17 +29,14 @@ export default function Filter(props: any) {
             {props.isFilterIconPressed && (
                 <>
                     <View style={{padding: PADDING,}}>
-                        <FilterButton onClick={onClearAllFiltersClickHandler} color={COLOR_BACKGROUND}
+                        <FilterButton onClick={onClearAllFiltersClickHandler} colorActive={COLOR_HEADER} colorInactive={COLOR_BACKGROUND}
                                       title={'Clean all filters'}/>
                     </View>
                     <View style={styles.rowStyle}>
-                        <View style={{flex: 1}}>
                             <Label lableName={'Alcoholic'}/>
-                        </View>
-                        <View style={{flex: 2.5}}>
-                            <Switch color={COLOR_BACKGROUND} colorSelected={COLOR_HEADER} leftTitle={'Alcoholic'}
-                                    rightTitle={'Non alcoholic'}></Switch>
-                        </View>
+                            <FilterButton title={'All'} colorActive={COLOR_HEADER} colorInactive={COLOR_BACKGROUND} onClick={() => {}}></FilterButton>
+                            <FilterButton title={'Alcoholic'} colorActive={COLOR_HEADER} colorInactive={COLOR_BACKGROUND} onClick={() => {}}></FilterButton>
+                            <FilterButton title={'Non alcoholic'} colorActive={COLOR_HEADER} colorInactive={COLOR_BACKGROUND} onClick={() => {}}></FilterButton>
                     </View>
                     <View style={styles.rowStyle}>
                         <Label lableName={'Cocktail type'}/>
@@ -54,7 +52,6 @@ export default function Filter(props: any) {
 
 const styles = StyleSheet.create({
     filter: {
-        display: "flex",
         backgroundColor: COLOR_OPACITY_BACKGROUND,
         height: vh(0.5),
         width: '100%',

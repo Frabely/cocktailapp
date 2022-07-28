@@ -32,7 +32,7 @@ export default function App() {
         // Will change fadeAnim value to 1 in 5 seconds
         Animated.timing(openMenuAnimation, {
             toValue: vh(0.5),
-            duration: 2000,
+            duration: 200,
             useNativeDriver: true
         }).start(() => {
             setIsFilterIconPressed(true)
@@ -44,7 +44,7 @@ export default function App() {
         setIsFilterIconPressed(false)
         Animated.timing(openMenuAnimation, {
             toValue: vh(0),
-            duration: 2000,
+            duration: 200,
             useNativeDriver: true
         }).start()
     };

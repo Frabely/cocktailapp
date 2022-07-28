@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View} from "react-native";
 import {BORDER_RADIUS, PADDING} from "../../global_exports/border_margin_padding_defaults";
-import {LABEL_BACKGROUND} from "../../global_exports/color_styles";
+import {LABEL_BACKGROUND_FILTER_ACTIVE} from "../../global_exports/color_styles";
 
 export default function Label(props: any) {
     return (
