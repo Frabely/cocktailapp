@@ -24,8 +24,6 @@ export default function FilterButton(props: any) {
 
 const styles = StyleSheet.create({
     outerButton: {
-        flex: 1,
-        height: '50%',
         borderRadius: BORDER_RADIUS / 2,
         backgroundColor: COLOR_BACKGROUND,
         padding: PADDING,

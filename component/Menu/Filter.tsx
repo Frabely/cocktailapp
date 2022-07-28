@@ -10,9 +10,9 @@ import {BORDER_RADIUS, PADDING} from "../../global_exports/border_margin_padding
 import FilterButton from "./FilterButton";
 import Label from "./Label";
 import {useState} from "react";
+import FilterPanel from "./FilterPanel";
 
 export default function Filter(props: any) {
-    const [alcoholicFilter, setAlcoholicFilter] = useState('All')
     const onClearAllFiltersClickHandler = () => {
     }
     return (
@@ -28,14 +28,19 @@ export default function Filter(props: any) {
             {props.isFilterIconPressed && (
                 <>
                     <View style={{padding: PADDING,}}>
-                        <FilterButton onClick={onClearAllFiltersClickHandler} colorActive={COLOR_HEADER} colorInactive={COLOR_BACKGROUND}
+                        <FilterButton onClick={onClearAllFiltersClickHandler} colorActive={COLOR_HEADER}
+                                      colorInactive={COLOR_BACKGROUND}
                                       title={'Clean all filters'}/>
                     </View>
                     <View style={styles.rowStyle}>
-                            <Label lableName={'Alcoholic'}/>
-                            <FilterButton title={'All'} colorActive={COLOR_HEADER} colorInactive={COLOR_BACKGROUND} onClick={() => {}}></FilterButton>
-                            <FilterButton title={'Alcoholic'} colorActive={COLOR_HEADER} colorInactive={COLOR_BACKGROUND} onClick={() => {}}></FilterButton>
-                            <FilterButton title={'Non alcoholic'} colorActive={COLOR_HEADER} colorInactive={COLOR_BACKGROUND} onClick={() => {}}></FilterButton>
+                        <FilterPanel options={['All', 'Alcoholic', 'Non alcoholic']}
+                                     lableName={'Alcoholic'}
+                                     default={'All'}>
+                        </FilterPanel>
+                        {/*<Label lableName={'Alcoholic'}/>*/}
+                        {/*<FilterButton title={'All'} colorActive={COLOR_HEADER} colorInactive={COLOR_BACKGROUND} onClick={() => {}}></FilterButton>*/}
+                        {/*<FilterButton title={'Alcoholic'} colorActive={COLOR_HEADER} colorInactive={COLOR_BACKGROUND} onClick={() => {}}></FilterButton>*/}
+                        {/*<FilterButton title={'Non alcoholic'} colorActive={COLOR_HEADER} colorInactive={COLOR_BACKGROUND} onClick={() => {}}></FilterButton>*/}
                     </View>
                     <View style={styles.rowStyle}>
                         <Label lableName={'Cocktail type'}/>
