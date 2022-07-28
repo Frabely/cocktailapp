@@ -9,19 +9,18 @@ import {
 import {BORDER_RADIUS, PADDING} from "../../global_exports/border_margin_padding_defaults";
 import FilterButton from "./FilterButton";
 import Label from "./Label";
-import Switch from "./Switch";
+import {useState} from "react";
 
 export default function Filter(props: any) {
-
+    const [alcoholicFilter, setAlcoholicFilter] = useState('All')
     const onClearAllFiltersClickHandler = () => {
     }
-
     return (
         <Animated.View
             style={[
                 styles.filter,
                 {
-                    // Bind opacity to animated value
+                    // Bind height to animated value
                     height: props.openMenuAnimation
                 }
             ]}
