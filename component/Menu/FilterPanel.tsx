@@ -9,7 +9,6 @@ import removeItemFromIndex from "../../functions/remove_item_from_array";
 export default function FilterPanel(props: any) {
     const [currentFilter, setCurrentFilter] = useState(props.default)
 
-
     const onFilterButtonClickHandler = (filterName: string) => {
         if (!props.isMultiSelectable) {
             const array = [...currentFilter]
@@ -23,7 +22,6 @@ export default function FilterPanel(props: any) {
                 setCurrentFilter([ALL])
                 return
             }
-            console.log(filterName)
             if (!array.includes(filterName)) {
                 array.push(filterName)
                 setCurrentFilter(array)
