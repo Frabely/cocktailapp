@@ -31,7 +31,7 @@ export default function App() {
     const open = () => {
         // Will change fadeAnim value to 1 in 5 seconds
         Animated.timing(openMenuAnimation, {
-            toValue: vh(0.5),
+            toValue: vh(0.8),
             duration: 500,
             useNativeDriver: false
         }).start(() => {

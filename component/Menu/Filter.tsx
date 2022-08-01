@@ -1,4 +1,4 @@
-import {Animated, StyleSheet, View} from "react-native";
+import {Animated, ScrollView, StyleSheet, View} from "react-native";
 import {vh} from "../../functions/dimentions";
 import {
     COLOR_BACKGROUND,
@@ -10,6 +10,10 @@ import {BORDER_RADIUS, PADDING} from "../../global_exports/border_margin_padding
 import FilterButton from "./FilterButton";
 import Label from "./Label";
 import FilterPanel from "./FilterPanel";
+
+const alcFilterOptions = ['All', 'Alcoholic', 'Non alcoholic']
+const glassFilterOptions = ['All', 'Margarita / Coupette', 'Cocktail', 'Collins', 'Highball', 'Pousse cafe', 'Wine']
+const categoryFilterOptions = ['All', 'Cocktail', 'Homemade Liqueur', 'Ordinary Drink', 'Punch / Party Drink', 'Coffee / Tea', 'Shot']
 
 export default function Filter(props: any) {
     const onClearAllFiltersClickHandler = () => {
@@ -26,25 +30,53 @@ export default function Filter(props: any) {
             ]}
         >
             {props.isFilterIconPressed && (
-                <>
+                <ScrollView>
                     <View style={{padding: PADDING,}}>
                         <FilterButton onClick={onClearAllFiltersClickHandler} colorActive={COLOR_HEADER}
                                       colorInactive={COLOR_BACKGROUND}
                                       title={'Clean all filters'}/>
                     </View>
-                    <View style={styles.rowStyle}>
-                        <FilterPanel options={['All', 'Alcoholic', 'Non alcoholic']}
-                                     lableName={'Alcoholic'}
-                                     default={'All'}>
-                        </FilterPanel>
+                    <View>
+                        <View style={styles.rowStyle}>
+                            <FilterPanel options={alcFilterOptions}
+                                         labelName={'Alcoholic'}
+                                         default={'All'}
+                                         numColumns={3}>
+                            </FilterPanel>
+                        </View>
                     </View>
-                    <View style={styles.rowStyle}>
-                        <Label lableName={'Cocktail type'}/>
+
+                    {(glassFilterOptions.length > 3) && (
+                        <View>
+                            <View style={styles.rowStyle}>
+                                <FilterPanel options={glassFilterOptions}
+                                             labelName={'Glass type'}
+                                             default={'All'}
+                                             numColumns={3}>
+                                </FilterPanel>
+                            </View>
+                        </View>)}
+                    {(glassFilterOptions.length <= 3) && (
+                        <View style={styles.rowStyle}>
+                            <FilterPanel options={glassFilterOptions}
+                                         labelName={'Glass type'}
+                                         default={'All'}
+                                         numColumns={3}>
+                            </FilterPanel>
+                        </View>
+                    )}
+
+                    {/*<Label lableName={'Cocktail type'}/>*/}
+                    <View>
+                        <View style={styles.rowStyle}>
+                            <FilterPanel options={categoryFilterOptions}
+                                         labelName={'Category'}
+                                         default={'All'}
+                                         numColumns={3}>
+                            </FilterPanel>
+                        </View>
                     </View>
-                    <View style={styles.rowStyle}>
-                        <Label lableName={'Glass type'}/>
-                    </View>
-                </>
+                </ScrollView>
             )}
         </Animated.View>
     )
@@ -53,7 +85,7 @@ export default function Filter(props: any) {
 const styles = StyleSheet.create({
     filter: {
         backgroundColor: COLOR_OPACITY_BACKGROUND,
-        height: vh(0.5),
+        // height: vh(1),
         width: '100%',
         position: "absolute",
         left: 0,

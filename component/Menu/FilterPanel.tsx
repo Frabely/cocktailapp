@@ -1,4 +1,4 @@
-import {FlatList, StyleSheet} from "react-native";
+import {FlatList, StyleSheet, View} from "react-native";
 import Label from "./Label";
 import FilterButton from "./FilterButton";
 import {COLOR_BACKGROUND, COLOR_HEADER} from "../../global_exports/color_styles";
@@ -13,28 +13,33 @@ export default function FilterPanel(props: any) {
 
     const renderItem = ({item, index}: any) => {
         return (
-            <FilterButton
-                key={item}
-                title={item}
-                colorActive={COLOR_HEADER}
-                colorInactive={COLOR_BACKGROUND}
-                onClick={onFilterButtonClickHandler}
-                currentFilter={currentFilter}
-            />
+            <View style={styles.flatListItem}>
+                <FilterButton
+                    key={item}
+                    title={item}
+                    colorActive={COLOR_HEADER}
+                    colorInactive={COLOR_BACKGROUND}
+                    onClick={onFilterButtonClickHandler}
+                    currentFilter={currentFilter}
+                />
+            </View>
         )
     }
 
-    return(
-        <>
-            <Label lableName={'Alcoholic'}/>
-            <FlatList data={props.options} renderItem={renderItem} numColumns={3} style={styles.flatList}/>
-        </>
+    return (
+        <View style={styles.filterPanel}>
+            <Label labelName={props.labelName}/>
+            <FlatList data={props.options} renderItem={renderItem} numColumns={props.numColumns}/>
+        </View>
 
     )
 }
 
 const styles = StyleSheet.create({
-    flatList: {
-        flex: 1,
+    flatListItem: {
+        flex: 1
     },
+    filterPanel: {
+        width: '100%'
+    }
 })
