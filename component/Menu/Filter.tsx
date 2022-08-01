@@ -7,18 +7,16 @@ import {
 } from "react-native";
 import {vw} from "../../functions/dimentions";
 import {
-    COLOR_BACKGROUND,
-    COLOR_HEADER,
     COLOR_OPACITY_BACKGROUND,
     LABEL_BACKGROUND
 } from "../../global_exports/color_styles";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../global_exports/border_margin_padding_defaults";
-import FilterButton from "./FilterButton";
 import FilterPanel from "./FilterPanel";
+import {ALL} from "../../global_exports/const_vars";
 
-const alcFilterOptions = ['All', 'Alcoholic', 'Non alcoholic']
-const glassFilterOptions = ['All', 'Margarita / Coupette', 'Cocktail', 'Collins', 'Highball', 'Pousse cafe', 'Wine']
-const categoryFilterOptions = ['All', 'Cocktail', 'Homemade Liqueur', 'Ordinary Drink', 'Punch / Party Drink', 'Coffee / Tea', 'Shot']
+const alcFilterOptions = [ALL, 'Alcoholic', 'Non alcoholic']
+const glassFilterOptions = [ALL, 'Margarita / Coupette', 'Cocktail', 'Collins', 'Highball', 'Pousse cafe', 'Wine']
+const categoryFilterOptions = [ALL, 'Cocktail', 'Homemade Liqueur', 'Ordinary Drink', 'Punch / Party Drink', 'Coffee / Tea', 'Shot']
 
 export default function Filter(props: any) {
     const onClearAllFiltersClickHandler = () => {
@@ -42,47 +40,36 @@ export default function Filter(props: any) {
                     <View style={styles.rowStyle}>
                         <FilterPanel options={alcFilterOptions}
                                      labelName={'Alcoholic'}
-                                     default={'All'}
+                                     default={[ALL]}
+                                     isMultiSelectable={false}
                                      numColumns={3}>
 
                         </FilterPanel>
                     </View>
-
-                    {(glassFilterOptions.length > 3) && (
-                        <View>
-                            <View style={styles.rowStyle}>
-                                <FilterPanel options={glassFilterOptions}
-                                             labelName={'Glass type'}
-                                             default={'All'}
-                                             numColumns={3}>
-                                </FilterPanel>
-                            </View>
+                    <View>
+                        <View style={styles.rowStyle}>
+                            <FilterPanel options={glassFilterOptions}
+                                         labelName={'Glass type'}
+                                         default={[ALL]}
+                                         isMultiSelectable={true}
+                                         numColumns={3}>
+                            </FilterPanel>
                         </View>
-                    )}
-                    {(glassFilterOptions.length <= 3) && (
-                        <View>
-                            <View style={styles.rowStyle}>
-                                <FilterPanel options={glassFilterOptions}
-                                             labelName={'Glass type'}
-                                             default={'All'}
-                                             numColumns={3}>
-                                </FilterPanel>
-                            </View>
-                        </View>
-                    )}
+                    </View>
                     <View style={styles.rowStyle}>
                         <FilterPanel options={categoryFilterOptions}
                                      labelName={'Category'}
-                                     default={'All'}
+                                     default={[ALL]}
+                                     isMultiSelectable={true}
                                      numColumns={3}>
                         </FilterPanel>
                     </View>
-                    <View style={{padding: PADDING,}}>
-                        <FilterButton onClick={onClearAllFiltersClickHandler}
-                                      colorActive={COLOR_HEADER}
-                                      colorInactive={COLOR_BACKGROUND}
-                                      title={'Clean all filters'}/>
-                    </View>
+                    {/*<View style={{padding: PADDING,}}>*/}
+                    {/*    <FilterButton onClick={onClearAllFiltersClickHandler}*/}
+                    {/*                  colorActive={COLOR_HEADER}*/}
+                    {/*                  colorInactive={COLOR_BACKGROUND}*/}
+                    {/*                  title={'Clean all filters'}/>*/}
+                    {/*</View>*/}
                 </ScrollView>
             )}
         </Animated.View>

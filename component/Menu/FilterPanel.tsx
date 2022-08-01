@@ -3,13 +3,43 @@ import Label from "./Label";
 import FilterButton from "./FilterButton";
 import {COLOR_BACKGROUND, COLOR_HEADER} from "../../global_exports/color_styles";
 import {useState} from "react";
-import {vh} from "../../functions/dimentions";
+import {ALL} from "../../global_exports/const_vars";
+import removeItemFromIndex from "../../functions/remove_item_from_array";
 
 export default function FilterPanel(props: any) {
     const [currentFilter, setCurrentFilter] = useState(props.default)
 
+
     const onFilterButtonClickHandler = (filterName: string) => {
-        setCurrentFilter(filterName)
+        if (!props.isMultiSelectable) {
+            const array = [...currentFilter]
+            array[0] = filterName
+            setCurrentFilter(array)
+        }
+        if (props.isMultiSelectable) {
+            const array = [...currentFilter]
+
+            if (filterName === ALL) {
+                setCurrentFilter([ALL])
+                return
+            }
+            console.log(filterName)
+            if (!array.includes(filterName)) {
+                array.push(filterName)
+                setCurrentFilter(array)
+            } else if (array.includes(filterName)) {
+                setCurrentFilter(removeItemFromIndex(array, filterName))
+            }
+            if (array.length === 0 || array.length < 0) {
+                array.push(ALL)
+                setCurrentFilter(array)
+                return
+            }
+            if (array.includes(ALL) && array.length > 1) {
+                setCurrentFilter(removeItemFromIndex(array, ALL))
+                return
+            }
+        }
     }
 
     const renderItem = ({item, index}: any) => {

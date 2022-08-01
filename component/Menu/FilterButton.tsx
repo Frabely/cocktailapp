@@ -7,12 +7,13 @@ export default function FilterButton(props: any) {
     const onClickHandler = () => {
         props.onClick(props.title)
     }
+    const isClicked = props.currentFilter.includes(props.title)
 
     return (
         <Pressable onPress={onClickHandler} style={
             [
                 styles.outerButton,
-                {backgroundColor: (props.currentFilter===props.title) ? props.colorActive : props.colorInactive},
+                {backgroundColor: (isClicked) ? props.colorActive : props.colorInactive},
             ]}>
             <Text style={{textAlign: "center"}}>{props.title}</Text>
         </Pressable>
@@ -24,8 +25,8 @@ const styles = StyleSheet.create({
         height: vh(0.06),
         borderRadius: BORDER_RADIUS / 2,
         backgroundColor: COLOR_BACKGROUND,
-        padding: PADDING/8,
-        margin: MARGIN/2,
+        padding: PADDING / 8,
+        margin: MARGIN / 2,
         alignItems: "center",
         justifyContent: "center"
     }
