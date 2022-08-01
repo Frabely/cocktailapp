@@ -3,6 +3,7 @@ import Label from "./Label";
 import FilterButton from "./FilterButton";
 import {COLOR_BACKGROUND, COLOR_HEADER} from "../../global_exports/color_styles";
 import {useState} from "react";
+import {vh} from "../../functions/dimentions";
 
 export default function FilterPanel(props: any) {
     const [currentFilter, setCurrentFilter] = useState(props.default)
@@ -37,7 +38,7 @@ export default function FilterPanel(props: any) {
 
 const styles = StyleSheet.create({
     flatListItem: {
-        flex: 1
+        width: '33.33333%',
     },
     filterPanel: {
         width: '100%'
