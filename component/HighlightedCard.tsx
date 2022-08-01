@@ -2,7 +2,7 @@ import {ImageBackground, Pressable, ScrollView, StyleSheet, Text, View} from "re
 import {vh} from "../functions/dimentions";
 import {useEffect, useState} from "react";
 import generateBoxShadowStyle from "../functions/generateBoxShadowStyle";
-import {BORDER_RADIUS, PADDING} from "../global_exports/border_margin_padding_defaults";
+import {BORDER_RADIUS, MARGIN, PADDING} from "../global_exports/border_margin_padding_defaults";
 import {COLOR_HEADER, COLOR_OPACITY_BACKGROUND} from "../global_exports/color_styles";
 import {
     useFonts,
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
         start: 0,
         top: 0,
         padding: 4,
-        margin: 10,
+        margin: MARGIN,
         border: 0,
         height: '30%',
         width: '50%',

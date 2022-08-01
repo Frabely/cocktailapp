@@ -1,4 +1,4 @@
-import {Animated, ScrollView, StyleSheet, View} from "react-native";
+import {Animated, ScrollView, StyleSheet, Text, TextInput, View} from "react-native";
 import {vh} from "../../functions/dimentions";
 import {
     COLOR_BACKGROUND,
@@ -6,7 +6,7 @@ import {
     COLOR_OPACITY_BACKGROUND,
     LABEL_BACKGROUND
 } from "../../global_exports/color_styles";
-import {BORDER_RADIUS, PADDING} from "../../global_exports/border_margin_padding_defaults";
+import {BORDER_RADIUS, MARGIN, PADDING} from "../../global_exports/border_margin_padding_defaults";
 import FilterButton from "./FilterButton";
 import Label from "./Label";
 import FilterPanel from "./FilterPanel";
@@ -31,10 +31,8 @@ export default function Filter(props: any) {
         >
             {props.isFilterIconPressed && (
                 <ScrollView>
-                    <View style={{padding: PADDING,}}>
-                        <FilterButton onClick={onClearAllFiltersClickHandler} colorActive={COLOR_HEADER}
-                                      colorInactive={COLOR_BACKGROUND}
-                                      title={'Clean all filters'}/>
+                    <View>
+                        <TextInput style={styles.testInput} placeholder={'Enter search term'}></TextInput>
                     </View>
                     <View>
                         <View style={styles.rowStyle}>
@@ -42,6 +40,7 @@ export default function Filter(props: any) {
                                          labelName={'Alcoholic'}
                                          default={'All'}
                                          numColumns={3}>
+
                             </FilterPanel>
                         </View>
                     </View>
@@ -65,8 +64,6 @@ export default function Filter(props: any) {
                             </FilterPanel>
                         </View>
                     )}
-
-                    {/*<Label lableName={'Cocktail type'}/>*/}
                     <View>
                         <View style={styles.rowStyle}>
                             <FilterPanel options={categoryFilterOptions}
@@ -75,6 +72,12 @@ export default function Filter(props: any) {
                                          numColumns={3}>
                             </FilterPanel>
                         </View>
+                    </View>
+                    <View style={{padding: PADDING,}}>
+                        <FilterButton onClick={onClearAllFiltersClickHandler}
+                                      colorActive={COLOR_HEADER}
+                                      colorInactive={COLOR_BACKGROUND}
+                                      title={'Clean all filters'}/>
                     </View>
                 </ScrollView>
             )}
@@ -103,6 +106,12 @@ const styles = StyleSheet.create({
         alignItems: "center",
         backgroundColor: LABEL_BACKGROUND,
         borderRadius: BORDER_RADIUS / 2,
-        margin: 10
+        margin: MARGIN
+    },
+    testInput: {
+        padding: PADDING,
+        backgroundColor: LABEL_BACKGROUND,
+        margin: MARGIN,
+        borderRadius: BORDER_RADIUS
     }
 })
