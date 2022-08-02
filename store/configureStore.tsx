@@ -3,11 +3,13 @@ import {configureStore} from "@reduxjs/toolkit";
 import alcoholicFilterSlice from "../reducers/Filter/alcoholicFilterReducer";
 import glassTypeFilterSlice from "../reducers/Filter/glassTypeFilterReducer";
 import categoryFilterSlice from "../reducers/Filter/categoryFilterReducer";
+import applyFilterSlice from "../reducers/Filter/applyFiltersReducer";
 
 const rootReducer = combineReducers({
     alcoholicFilter: alcoholicFilterSlice,
     glassTypeFilter: glassTypeFilterSlice,
-    category: categoryFilterSlice
+    category: categoryFilterSlice,
+    applyFilters: applyFilterSlice
 })
 
 const store = configureStore({

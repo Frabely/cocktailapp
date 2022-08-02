@@ -17,6 +17,7 @@ import {useAppDispatch, useAppSelector} from "../../constants/hooks";
 import {changeGlassType} from "../../reducers/Filter/glassTypeFilterReducer";
 import {changeAlcoholic} from "../../reducers/Filter/alcoholicFilterReducer";
 import {changeCategory} from "../../reducers/Filter/categoryFilterReducer";
+import {invertApplyFiltersState} from "../../reducers/Filter/applyFiltersReducer";
 
 const alcFilterOptions = [ALL, 'Alcoholic', 'Non alcoholic']
 const glassFilterOptions = [ALL, 'Margarita / Coupette', 'Cocktail', 'Collins', 'Highball', 'Pousse cafe', 'Wine']
@@ -31,6 +32,10 @@ export default function Filter(props: any) {
         dispatch(changeAlcoholic([ALL]))
         dispatch(changeCategory([ALL]))
         dispatch(changeGlassType([ALL]))
+    }
+
+    const onApplyFiltersClickHandler = () => {
+        dispatch(invertApplyFiltersState())
     }
 
     return (
@@ -90,6 +95,7 @@ export default function Filter(props: any) {
                     {/*                  colorInactive={COLOR_BACKGROUND}*/}
                     {/*                  title={'Clean all filters'}/>*/}
                     {/*</View>*/}
+                    <Button onPress={onApplyFiltersClickHandler} title={'Apply filters'}/>
                 </ScrollView>
             )}
         </Animated.View>
