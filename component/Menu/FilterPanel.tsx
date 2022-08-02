@@ -2,51 +2,43 @@ import {FlatList, StyleSheet, View} from "react-native";
 import Label from "./Label";
 import FilterButton from "./FilterButton";
 import {COLOR_BACKGROUND, COLOR_HEADER} from "../../constants/color_styles";
-import {useState} from "react";
 import {ALL} from "../../constants/const_vars";
-import removeItemFromIndex from "../../functions/remove_item_from_array";
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
-import {changeAlcoholic} from "../../reducers/Filter/alcoholicFilterReducer";
 
 export default function FilterPanel(props: any) {
-    const [currentFilter, setCurrentFilter] = useState(props.default)
-    const alcoholic = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
 
-
-
     const onFilterButtonClickHandler = (filterName: string) => {
+        const array = [...props.filterState]
+        if (filterName === ALL) {
+            dispatch(props.setFilterState([ALL]))
+            return
+        }
+        let resultArray = []
         if (!props.isMultiSelectable) {
-            // const array = [...currentFilter]
-            const array = [...alcoholic.alcoholicFilter]
-            array[0] = filterName
-            dispatch(changeAlcoholic(array))
-            // setCurrentFilter(array)
+            resultArray.push(filterName)
+            dispatch(props.setFilterState(resultArray))
 
         }
         if (props.isMultiSelectable) {
-            const array = [...currentFilter]
 
-            if (filterName === ALL) {
-                setCurrentFilter([ALL])
-                return
-            }
             if (!array.includes(filterName)) {
                 array.push(filterName)
-                setCurrentFilter(array)
-            } else if (array.includes(filterName)) {
-                setCurrentFilter(removeItemFromIndex(array, filterName))
-            }
-            if (array.length === 0 || array.length < 0) {
-                array.push(ALL)
-                setCurrentFilter(array)
-                return
-            }
-            if (array.includes(ALL) && array.length > 1) {
-                setCurrentFilter(removeItemFromIndex(array, ALL))
-                return
+                resultArray = array
+            } else
+                {
+                    console.log(resultArray)
+                    resultArray = array.filter(itemOnIndex => itemOnIndex !== filterName)
+                    console.log(resultArray.length === 0)
+                    if (resultArray.length === 0)
+                        resultArray.push(ALL)
             }
         }
+        if (array.includes(ALL) && array.length > 1) {
+            resultArray = array.filter(itemOnIndex => itemOnIndex !== ALL)
+        }
+        dispatch(props.setFilterState(resultArray))
+
     }
 
     const renderItem = ({item, index}: any) => {
@@ -58,7 +50,7 @@ export default function FilterPanel(props: any) {
                     colorActive={COLOR_HEADER}
                     colorInactive={COLOR_BACKGROUND}
                     onClick={onFilterButtonClickHandler}
-                    currentFilter={currentFilter}
+                    state={props.filterState}
                 />
             </View>
         )

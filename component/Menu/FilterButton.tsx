@@ -7,12 +7,12 @@ import {useAppSelector} from "../../app/hooks";
 
 export default function FilterButton(props: any) {
 
-    const alcoholicState = useAppSelector((state: RootState) => state.alcoholicFilter)
+    // const alcoholicState = useAppSelector((state: RootState) => state.alcoholicFilter)
 
     const onClickHandler = () => {
         props.onClick(props.title)
     }
-    const isClicked = alcoholicState.includes(props.title)
+    const isClicked = props.state.includes(props.title)
 
     return (
         <Pressable onPress={onClickHandler} style={

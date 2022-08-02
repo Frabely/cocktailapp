@@ -13,12 +13,19 @@ import {
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/border_margin_padding_defaults";
 import FilterPanel from "./FilterPanel";
 import {ALL} from "../../constants/const_vars";
+import {useAppDispatch, useAppSelector} from "../../app/hooks";
+import {changeGlassType} from "../../reducers/Filter/glassTypeFilterReducer";
+import {changeAlcoholic} from "../../reducers/Filter/alcoholicFilterReducer";
+import {changeCategory} from "../../reducers/Filter/categoryFilterReducer";
 
 const alcFilterOptions = [ALL, 'Alcoholic', 'Non alcoholic']
 const glassFilterOptions = [ALL, 'Margarita / Coupette', 'Cocktail', 'Collins', 'Highball', 'Pousse cafe', 'Wine']
 const categoryFilterOptions = [ALL, 'Cocktail', 'Homemade Liqueur', 'Ordinary Drink', 'Punch / Party Drink', 'Coffee / Tea', 'Shot']
 
 export default function Filter(props: any) {
+
+    const state = useAppSelector((state) => state)
+
     const onClearAllFiltersClickHandler = () => {
     }
     return (
@@ -42,6 +49,8 @@ export default function Filter(props: any) {
                                      labelName={'Alcoholic'}
                                      default={[ALL]}
                                      isMultiSelectable={false}
+                                     filterState={state.alcoholicFilter}
+                                     setFilterState={changeAlcoholic}
                                      numColumns={3}>
 
                         </FilterPanel>
@@ -52,6 +61,8 @@ export default function Filter(props: any) {
                                          labelName={'Glass type'}
                                          default={[ALL]}
                                          isMultiSelectable={true}
+                                         filterState={state.glassTypeFilter}
+                                         setFilterState={changeGlassType}
                                          numColumns={3}>
                             </FilterPanel>
                         </View>
@@ -61,6 +72,8 @@ export default function Filter(props: any) {
                                      labelName={'Category'}
                                      default={[ALL]}
                                      isMultiSelectable={true}
+                                     filterState={state.category}
+                                     setFilterState={changeCategory}
                                      numColumns={3}>
                         </FilterPanel>
                     </View>
