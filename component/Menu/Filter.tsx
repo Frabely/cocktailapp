@@ -9,10 +9,10 @@ import {vw} from "../../functions/dimentions";
 import {
     COLOR_OPACITY_BACKGROUND,
     LABEL_BACKGROUND
-} from "../../global_exports/color_styles";
-import {BORDER_RADIUS, MARGIN, PADDING} from "../../global_exports/border_margin_padding_defaults";
+} from "../../constants/color_styles";
+import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/border_margin_padding_defaults";
 import FilterPanel from "./FilterPanel";
-import {ALL} from "../../global_exports/const_vars";
+import {ALL} from "../../constants/const_vars";
 
 const alcFilterOptions = [ALL, 'Alcoholic', 'Non alcoholic']
 const glassFilterOptions = [ALL, 'Margarita / Coupette', 'Cocktail', 'Collins', 'Highball', 'Pousse cafe', 'Wine']

@@ -1,19 +1,28 @@
 import {FlatList, StyleSheet, View} from "react-native";
 import Label from "./Label";
 import FilterButton from "./FilterButton";
-import {COLOR_BACKGROUND, COLOR_HEADER} from "../../global_exports/color_styles";
+import {COLOR_BACKGROUND, COLOR_HEADER} from "../../constants/color_styles";
 import {useState} from "react";
-import {ALL} from "../../global_exports/const_vars";
+import {ALL} from "../../constants/const_vars";
 import removeItemFromIndex from "../../functions/remove_item_from_array";
+import {useAppDispatch, useAppSelector} from "../../app/hooks";
+import {changeAlcoholic} from "../../reducers/Filter/alcoholicFilterReducer";
 
 export default function FilterPanel(props: any) {
     const [currentFilter, setCurrentFilter] = useState(props.default)
+    const alcoholic = useAppSelector((state) => state)
+    const dispatch = useAppDispatch()
+
+
 
     const onFilterButtonClickHandler = (filterName: string) => {
         if (!props.isMultiSelectable) {
-            const array = [...currentFilter]
+            // const array = [...currentFilter]
+            const array = [...alcoholic.alcoholicFilter]
             array[0] = filterName
-            setCurrentFilter(array)
+            dispatch(changeAlcoholic(array))
+            // setCurrentFilter(array)
+
         }
         if (props.isMultiSelectable) {
             const array = [...currentFilter]

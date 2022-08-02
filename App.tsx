@@ -7,8 +7,10 @@ import dummyData from "./dummyData3";
 import {vh} from "./functions/dimentions";
 import HighlightedCard from "./component/HighlightedCard";
 import Filter from "./component/Menu/Filter";
-import {COLOR_BACKGROUND} from "./global_exports/color_styles";
-import {PADDING} from "./global_exports/border_margin_padding_defaults";
+import {COLOR_BACKGROUND} from "./constants/color_styles";
+import {PADDING} from "./constants/border_margin_padding_defaults";
+import {Provider as ReduxProvider} from "react-redux";
+import store from "./store/configureStore"
 
 const data = dummyData.drinks;
 
@@ -17,6 +19,7 @@ export default function App() {
     const [currentDataSet, setCurrentDataSet] = useState(data)
     const [isFilterIconPressed, setIsFilterIconPressed] = useState(false)
     const openMenuAnimation = useRef(new Animated.Value(0)).current;
+
 
     const setIsFilterIconPressedAnimation = () => {
         if (!isFilterIconPressed){
@@ -73,7 +76,7 @@ export default function App() {
     }
 
     return (
-        <>
+        <ReduxProvider store={store}>
             <Header setIsFilterIconPressedAnimation={setIsFilterIconPressedAnimation}
                     isFilterIconPressed={isFilterIconPressed} />
             <View style={styles.app}>
@@ -88,7 +91,7 @@ export default function App() {
                     keyExtractor={item => item.idDrink}/>
                 {/*<StatusBar style="auto"/>*/}
             </View>
-        </>
+        </ReduxProvider>
     )
 }
 

@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View} from "react-native";
-import {PADDING} from "../../global_exports/border_margin_padding_defaults";
+import {PADDING} from "../../constants/border_margin_padding_defaults";
 
 export default function Label(props: any) {
     return (

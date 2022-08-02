@@ -1,13 +1,18 @@
 import {Pressable, StyleSheet, Text} from "react-native";
-import {BORDER_RADIUS, MARGIN, PADDING} from "../../global_exports/border_margin_padding_defaults";
-import {COLOR_BACKGROUND} from "../../global_exports/color_styles";
+import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/border_margin_padding_defaults";
+import {COLOR_BACKGROUND} from "../../constants/color_styles";
 import {vh} from "../../functions/dimentions";
+import {RootState} from "../../store/configureStore";
+import {useAppSelector} from "../../app/hooks";
 
 export default function FilterButton(props: any) {
+
+    const alcoholicState = useAppSelector((state: RootState) => state.alcoholicFilter)
+
     const onClickHandler = () => {
         props.onClick(props.title)
     }
-    const isClicked = props.currentFilter.includes(props.title)
+    const isClicked = alcoholicState.includes(props.title)
 
     return (
         <Pressable onPress={onClickHandler} style={
