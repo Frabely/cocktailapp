@@ -3,7 +3,7 @@ import Label from "./Label";
 import FilterButton from "./FilterButton";
 import {COLOR_BACKGROUND, COLOR_HEADER} from "../../constants/color_styles";
 import {ALL} from "../../constants/const_vars";
-import {useAppDispatch} from "../../app/hooks";
+import {useAppDispatch} from "../../constants/hooks";
 
 export default function FilterPanel(props: any) {
     const dispatch = useAppDispatch()

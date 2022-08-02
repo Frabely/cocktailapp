@@ -1,7 +1,7 @@
 import {StatusBar} from 'expo-status-bar';
 import {Animated, FlatList, StyleSheet, View} from 'react-native';
 import Card from "./component/Card";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import Header from "./component/Header";
 import dummyData from "./dummyData3";
 import {vh} from "./functions/dimentions";
@@ -11,6 +11,7 @@ import {COLOR_BACKGROUND} from "./constants/color_styles";
 import {PADDING} from "./constants/border_margin_padding_defaults";
 import {Provider as ReduxProvider} from "react-redux";
 import store from "./store/configureStore"
+import {useAppSelector} from "./constants/hooks";
 
 const data = dummyData.drinks;
 
@@ -19,7 +20,11 @@ export default function App() {
     const [currentDataSet, setCurrentDataSet] = useState(data)
     const [isFilterIconPressed, setIsFilterIconPressed] = useState(false)
     const openMenuAnimation = useRef(new Animated.Value(0)).current;
+    const state = useAppSelector((state) => state)
 
+    useEffect(() => {
+
+    }, [state])
 
     const setIsFilterIconPressedAnimation = () => {
         if (!isFilterIconPressed){

@@ -1,5 +1,5 @@
 import {
-    Animated,
+    Animated, Button,
     ScrollView,
     StyleSheet,
     TextInput,
@@ -13,7 +13,7 @@ import {
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/border_margin_padding_defaults";
 import FilterPanel from "./FilterPanel";
 import {ALL} from "../../constants/const_vars";
-import {useAppDispatch, useAppSelector} from "../../app/hooks";
+import {useAppDispatch, useAppSelector} from "../../constants/hooks";
 import {changeGlassType} from "../../reducers/Filter/glassTypeFilterReducer";
 import {changeAlcoholic} from "../../reducers/Filter/alcoholicFilterReducer";
 import {changeCategory} from "../../reducers/Filter/categoryFilterReducer";
@@ -25,9 +25,14 @@ const categoryFilterOptions = [ALL, 'Cocktail', 'Homemade Liqueur', 'Ordinary Dr
 export default function Filter(props: any) {
 
     const state = useAppSelector((state) => state)
+    const dispatch = useAppDispatch()
 
     const onClearAllFiltersClickHandler = () => {
+        dispatch(changeAlcoholic([ALL]))
+        dispatch(changeCategory([ALL]))
+        dispatch(changeGlassType([ALL]))
     }
+
     return (
         <Animated.View
             style={[
@@ -77,6 +82,8 @@ export default function Filter(props: any) {
                                      numColumns={3}>
                         </FilterPanel>
                     </View>
+                    {/*TODO create own Button*/}
+                    <Button onPress={onClearAllFiltersClickHandler} title={'Clear all filters'}/>
                     {/*<View style={{padding: PADDING,}}>*/}
                     {/*    <FilterButton onClick={onClearAllFiltersClickHandler}*/}
                     {/*                  colorActive={COLOR_HEADER}*/}
