@@ -1,6 +1,6 @@
 import {ImageBackground, Pressable, StyleSheet} from "react-native";
 import {vh} from "../functions/dimentions";
-import generateBoxShadowStyle from '../functions/generateBoxShadowStyle';
+import generate_box_shadow_style from '../functions/generate_box_shadow_style';
 import {BORDER_RADIUS, PADDING} from "../global_exports/border_margin_padding_defaults";
 import {SHADOW} from "../global_exports/color_styles";
 
@@ -11,7 +11,7 @@ export default function Card(props: any) {
             props.currentItem,
             props.item)
     }
-    generateBoxShadowStyle(
+    generate_box_shadow_style(
         styles,
         -6,
         6,

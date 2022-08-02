@@ -86,8 +86,8 @@ const styles = StyleSheet.create({
         top: 0,
         zIndex: 1,
         // padding: PADDING,
-        borderBottomLeftRadius: BORDER_RADIUS,
-        borderBottomRightRadius: BORDER_RADIUS,
+        // borderBottomLeftRadius: BORDER_RADIUS,
+        // borderBottomRightRadius: BORDER_RADIUS,
         justifyContent: "center"
     },
     rowStyle: {

@@ -1,6 +1,6 @@
 import {ColorValue, Platform} from "react-native";
 
-export const generateBoxShadowStyle = (
+export const generate_box_shadow_style = (
     styles: any,
     xOffset: number,
     yOffset: number,
@@ -25,4 +25,4 @@ export const generateBoxShadowStyle = (
         };
     }
 };
-export default generateBoxShadowStyle
+export default generate_box_shadow_style
