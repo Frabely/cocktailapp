@@ -1,4 +1,4 @@
-import dummyData from "./dummyData3";
+import dummyData, {Cocktail} from "./dummyData3";
 import {useEffect, useRef, useState} from "react";
 import {Animated, FlatList, StyleSheet, View} from "react-native";
 import {useAppDispatch, useAppSelector} from "./constants/hooks";
@@ -12,7 +12,7 @@ import {PADDING} from "./constants/border_margin_padding_defaults";
 import {invertApplyFiltersState} from "./reducers/Filter/applyFiltersReducer";
 import {ALL} from "./constants/const_vars";
 
-const data = dummyData.drinks;
+const data: any[] = dummyData.drinks;
 export default function AppEntry() {
     const [currentItem, setCurrentItem] = useState(undefined)
     const [currentDataSet, setCurrentDataSet] = useState(data)
@@ -20,17 +20,20 @@ export default function AppEntry() {
     const openMenuAnimation = useRef(new Animated.Value(0)).current;
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
-    console.log('render')
 
     useEffect(() => {
         {
-            let filterData = []
-            filterData = data.filter((item) => {
+            const alcoholFilteredData: any[] = data.filter((item) => {
                 if (state.alcoholicFilter[0] === ALL || item.strAlcoholic === state.alcoholicFilter[0])
                     return item
             })
-            console.log(filterData)
-            setCurrentDataSet(filterData)
+            const categoryFilteredData: any[] = alcoholFilteredData.filter((item) => {
+
+            })
+
+
+            console.log(alcoholFilteredData)
+            setCurrentDataSet(alcoholFilteredData)
         }
     }, [state.applyFilters])
 

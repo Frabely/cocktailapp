@@ -10,6 +10,9 @@ export default function FilterPanel(props: any) {
 
     const onFilterButtonClickHandler = (filterName: string) => {
         const array = [...props.filterState]
+        console.log(array.length)
+        console.log(props.options.length - 1)
+        console.log(array.length === props.options - 1)
         if (filterName === ALL) {
             dispatch(props.setFilterState([ALL]))
             return
@@ -21,17 +24,16 @@ export default function FilterPanel(props: any) {
 
         }
         if (props.isMultiSelectable) {
-
             if (!array.includes(filterName)) {
                 array.push(filterName)
-                resultArray = array
-            } else
-                {
-                    console.log(resultArray)
-                    resultArray = array.filter(itemOnIndex => itemOnIndex !== filterName)
-                    console.log(resultArray.length === 0)
-                    if (resultArray.length === 0)
-                        resultArray.push(ALL)
+                if (array.length === props.options.length - 1)
+                    resultArray = [ALL]
+                else
+                    resultArray = array
+            } else {
+                resultArray = array.filter(itemOnIndex => itemOnIndex !== filterName)
+                if (resultArray.length === 0)
+                    resultArray.push(ALL)
             }
         }
         if (array.includes(ALL) && array.length > 1) {
