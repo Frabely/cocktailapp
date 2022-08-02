@@ -10,9 +10,6 @@ export default function FilterPanel(props: any) {
 
     const onFilterButtonClickHandler = (filterName: string) => {
         const array = [...props.filterState]
-        console.log(array.length)
-        console.log(props.options.length - 1)
-        console.log(array.length === props.options - 1)
         if (filterName === ALL) {
             dispatch(props.setFilterState([ALL]))
             return

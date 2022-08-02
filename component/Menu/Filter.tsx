@@ -17,7 +17,6 @@ import {useAppDispatch, useAppSelector} from "../../constants/hooks";
 import {changeGlassType} from "../../reducers/Filter/glassTypeFilterReducer";
 import {changeAlcoholic} from "../../reducers/Filter/alcoholicFilterReducer";
 import {changeCategory} from "../../reducers/Filter/categoryFilterReducer";
-import {invertApplyFiltersState} from "../../reducers/Filter/applyFiltersReducer";
 
 const alcFilterOptions = [ALL, 'Alcoholic', 'Non alcoholic']
 const glassFilterOptions = [ALL, 'Margarita / Coupette', 'Cocktail', 'Collins', 'Highball', 'Pousse cafe', 'Wine']
@@ -35,7 +34,7 @@ export default function Filter(props: any) {
     }
 
     const onApplyFiltersClickHandler = () => {
-        dispatch(invertApplyFiltersState())
+        props.closeFilterHandler()
     }
 
     return (

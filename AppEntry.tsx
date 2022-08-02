@@ -22,20 +22,34 @@ export default function AppEntry() {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        {
-            const alcoholFilteredData: any[] = data.filter((item) => {
-                if (state.alcoholicFilter[0] === ALL || item.strAlcoholic === state.alcoholicFilter[0])
-                    return item
-            })
-            const categoryFilteredData: any[] = alcoholFilteredData.filter((item) => {
-
-            })
-
-
-            console.log(alcoholFilteredData)
-            setCurrentDataSet(alcoholFilteredData)
+            {
+                const alcoholFilteredData: any[] = data.filter((item) => {
+                    if (state.alcoholicFilter[0] === ALL || item.strAlcoholic === state.alcoholicFilter[0])
+                        return item
+                })
+                const categoryFilteredData: any[] = alcoholFilteredData.filter((item) => {
+                    if (state.category.includes(ALL))
+                        return item
+                    else {
+                        let isFiltered = false
+                        state.category.forEach((itemFilter) => {
+                                if (itemFilter === item.strCategory) {
+                                    isFiltered = true
+                                }
+                        })
+                        if (isFiltered) {
+                            isFiltered = false
+                            return item
+                        }
+                    }
+                })
+                console.log(categoryFilteredData)
+                setCurrentDataSet(categoryFilteredData)
+            }
         }
-    }, [state.applyFilters])
+        ,
+        [state.applyFilters]
+    )
 
     const setIsFilterIconPressedAnimation = () => {
         if (!isFilterIconPressed) {
@@ -96,7 +110,9 @@ export default function AppEntry() {
             <Header setIsFilterIconPressedAnimation={setIsFilterIconPressedAnimation}
                     isFilterIconPressed={isFilterIconPressed}/>
             <View style={styles.app}>
-                <Filter isFilterIconPressed={isFilterIconPressed} openMenuAnimation={openMenuAnimation}/>
+                <Filter isFilterIconPressed={isFilterIconPressed}
+                        openMenuAnimation={openMenuAnimation}
+                        closeFilterHandler={close}/>
                 {currentItem && (
                     <HighlightedCard item={currentItem} onImageClickHandler={onImageClickHandler}/>
                 )}
