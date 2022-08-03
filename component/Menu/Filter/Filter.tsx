@@ -19,7 +19,6 @@ const alcFilterOptions = [ALL, 'Alcoholic', 'Non alcoholic']
 const categoryFilterOptions = [ALL, 'Cocktail', 'Homemade Liqueur', 'Ordinary Drink', 'Punch / Party Drink', 'Coffee / Tea', 'Shot']
 
 export default function Filter(props: any) {
-
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
 
@@ -27,6 +26,10 @@ export default function Filter(props: any) {
         dispatch(changeAlcoholic([ALL]))
         dispatch(changeCategory([ALL]))
         props.setCurrentSearchFieldInput('')
+    }
+
+    const onHitsClickHandler = () => {
+        props.setActiveFilter('')
     }
 
     return (
@@ -67,6 +70,9 @@ export default function Filter(props: any) {
             </View>
             <View style={styles.buttonBackgroundStyle}>
                 <StyledButton onPress={onClearAllFiltersClickHandler} title={'Clear all filters'}/>
+            </View>
+            <View style={styles.buttonBackgroundStyle}>
+                <StyledButton onPress={onHitsClickHandler} title={`Hits: ${props.currentDataSetLength}`}/>
             </View>
         </View>
     )

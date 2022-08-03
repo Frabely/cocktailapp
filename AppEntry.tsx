@@ -92,6 +92,8 @@ export default function AppEntry() {
             <View style={styles.app}>
                 {(activeFilter === FILTER) && (
                     <Filter setCurrentSearchFieldInput={setCurrentSearchFieldInput}
+                            setActiveFilter={setActiveFilter}
+                            currentDataSetLength={currentDataSet.length}
                     />
                 )}
                 {(activeFilter === SEARCH_FIELD) && (
