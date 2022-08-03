@@ -1,18 +1,15 @@
 import {
-    Animated,
     StyleSheet,
     View
 } from "react-native";
-import {vw} from "../../../functions/dimentions";
+import {vh, vw} from "../../../functions/dimentions";
 import {
-    COLOR_OPACITY_BACKGROUND,
     LABEL_BACKGROUND
 } from "../../../constants/color_styles";
 import {BORDER_RADIUS, MARGIN} from "../../../constants/style_constants";
 import FilterPanel from "./FilterPanel";
 import {ALL} from "../../../constants/const_vars";
 import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
-import {changeGlassType} from "../../../reducers/Filter/glassTypeFilterReducer";
 import {changeAlcoholic} from "../../../reducers/Filter/alcoholicFilterReducer";
 import {changeCategory} from "../../../reducers/Filter/categoryFilterReducer";
 import StyledButton from "../../StyledButton";
@@ -29,91 +26,64 @@ export default function Filter(props: any) {
     const onClearAllFiltersClickHandler = () => {
         dispatch(changeAlcoholic([ALL]))
         dispatch(changeCategory([ALL]))
-        dispatch(changeGlassType([ALL]))
         props.setCurrentSearchFieldInput('')
     }
 
     return (
-        <Animated.View
-            style={[
-                styles.filter,
-                {
-                    // Bind height to animated value
-                    height: props.openMenuAnimation
-                    // transform: [{ scaleX: props.openMenuAnimation }],
-                }
-            ]}
-        >
-            {props.isFilterIconPressed && (
-                <>
-                    <View style={styles.rowStyle}>
-                        <FilterPanel options={alcFilterOptions}
-                                     labelName={'Alcoholic'}
-                                     default={[ALL]}
-                                     isMultiSelectable={false}
-                                     filterState={state.alcoholicFilter}
-                                     setFilterState={changeAlcoholic}
-                                     numColumns={3}>
 
-                        </FilterPanel>
-                    </View>
-                    {/*<View>*/}
-                    {/*    <View style={styles.rowStyle}>*/}
-                    {/*        <FilterPanel options={glassFilterOptions}*/}
-                    {/*                     labelName={'Glass type'}*/}
-                    {/*                     default={[ALL]}*/}
-                    {/*                     isMultiSelectable={true}*/}
-                    {/*                     filterState={state.glassTypeFilter}*/}
-                    {/*                     setFilterState={changeGlassType}*/}
-                    {/*                     numColumns={3}>*/}
-                    {/*        </FilterPanel>*/}
-                    {/*    </View>*/}
-                    {/*</View>*/}
-                    <View style={styles.rowStyle}>
-                        <FilterPanel options={categoryFilterOptions}
-                                     labelName={'Category'}
-                                     default={[ALL]}
-                                     isMultiSelectable={true}
-                                     filterState={state.category}
-                                     setFilterState={changeCategory}
-                                     numColumns={3}>
-                        </FilterPanel>
-                    </View>
-                    {/*TODO create own Button*/}
-                    {/*<Button onPress={onClearAllFiltersClickHandler} title={'Clear all filters'}/>*/}
-                    {/*<View style={{padding: PADDING,}}>*/}
-                    {/*    <FilterButton onClick={onClearAllFiltersClickHandler}*/}
-                    {/*                  colorActive={COLOR_HEADER}*/}
-                    {/*                  colorInactive={COLOR_BACKGROUND}*/}
-                    {/*                  title={'Clean all filters'}/>*/}
-                    {/*</View>*/}
-                    <StyledButton onPress={onClearAllFiltersClickHandler} title={'Clear all filters'}/>
-                </>
-            )}
-        </Animated.View>
+        <View
+            style={styles.filter}>
+            <View style={styles.rowStyle}>
+                <FilterPanel options={alcFilterOptions}
+                             labelName={'Alcoholic'}
+                             default={[ALL]}
+                             isMultiSelectable={false}
+                             filterState={state.alcoholicFilter}
+                             setFilterState={changeAlcoholic}
+                             numColumns={3}>
+
+                </FilterPanel>
+            </View>
+            {/*<View>*/}
+            {/*    <View style={styles.rowStyle}>*/}
+            {/*        <FilterPanel options={glassFilterOptions}*/}
+            {/*                     labelName={'Glass type'}*/}
+            {/*                     default={[ALL]}*/}
+            {/*                     isMultiSelectable={true}*/}
+            {/*                     filterState={state.glassTypeFilter}*/}
+            {/*                     setFilterState={changeGlassType}*/}
+            {/*                     numColumns={3}>*/}
+            {/*        </FilterPanel>*/}
+            {/*    </View>*/}
+            {/*</View>*/}
+            <View style={styles.rowStyle}>
+                <FilterPanel options={categoryFilterOptions}
+                             labelName={'Category'}
+                             default={[ALL]}
+                             isMultiSelectable={true}
+                             filterState={state.category}
+                             setFilterState={changeCategory}
+                             numColumns={3}>
+                </FilterPanel>
+            </View>
+            <StyledButton onPress={onClearAllFiltersClickHandler} title={'Clear all filters'}/>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
     filter: {
         display: "flex",
-        // height: vh(0.3),
-        backgroundColor: COLOR_OPACITY_BACKGROUND,
+        height: vh(0.6),
         width: vw(1),
         position: "absolute",
         left: 0,
         top: 0,
         zIndex: 1,
-        // padding: PADDING,
-        // borderBottomLeftRadius: BORDER_RADIUS,
-        // borderBottomRightRadius: BORDER_RADIUS,
-        // justifyContent: "center"
+        justifyContent: "center"
     },
     rowStyle: {
         flexDirection: 'row',
-        // flex: 1,
-        // justifyContent: 'space-between',
-        // alignItems: "center",
         backgroundColor: LABEL_BACKGROUND,
         borderRadius: BORDER_RADIUS / 2,
         margin: MARGIN

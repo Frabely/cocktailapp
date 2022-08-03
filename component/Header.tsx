@@ -1,28 +1,37 @@
 import {Pressable, StyleSheet, Text, View} from "react-native";
 import {vh} from "../functions/dimentions";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
-import { faFilter, faSearch } from "@fortawesome/free-solid-svg-icons";
+import {faFilter, faSearch} from "@fortawesome/free-solid-svg-icons";
 import {} from "@fortawesome/free-regular-svg-icons";
 import {} from "@fortawesome/free-brands-svg-icons";
 import {COLOR_HEADER} from "../constants/color_styles";
 import {PADDING} from "../constants/style_constants";
+import {FILTER, SEARCH_FIELD} from "../constants/const_vars";
 
 
 export default function Header(props: any) {
     const onFilterPressHandler = () => {
-        props.setIsHeaderIconPressedAnimation('filter')
+        if (props.activeFilter === FILTER) {
+            props.setActiveFilter('')
+            return
+        }
+        props.setActiveFilter(FILTER)
     }
     const onSearchFieldPressHandler = () => {
-        props.setIsHeaderIconPressedAnimation('searchField')
+        if (props.activeFilter === SEARCH_FIELD) {
+            props.setActiveFilter('')
+            return
+        }
+        props.setActiveFilter(SEARCH_FIELD)
     }
 
     return (
         <View style={styles.header}>
             <Pressable onPress={onFilterPressHandler} style={styles.filter}>
-                <FontAwesomeIcon icon={faFilter} />
+                <FontAwesomeIcon icon={faFilter}/>
             </Pressable>
             <Pressable onPress={onSearchFieldPressHandler} style={styles.filter}>
-                <FontAwesomeIcon icon={faSearch} />
+                <FontAwesomeIcon icon={faSearch}/>
             </Pressable>
             <View style={{flex: 5, alignItems: 'center', justifyContent: 'center',}}>
                 <Text>Header Component</Text>
@@ -43,7 +52,6 @@ const styles = StyleSheet.create({
         height: '100%',
         flex: 1,
         padding: PADDING,
-        // backgroundColor: 'rgb(68,50,32)',
         alignItems: 'center',
         justifyContent: 'center',
     }

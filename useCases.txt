@@ -1,7 +1,6 @@
 Bugs:
 
 TODOs:
--eigener onClick Button
 -entfernen des Filter Hintergrundes und der Animation dazu
 -make selection of filter better => possible make a reusable component for header elements
 -Font auswählen und defaults sizes setzen

@@ -1,7 +1,7 @@
 import dummyData from "./dummyData3";
-import {useEffect, useRef, useState} from "react";
-import {Animated, FlatList, StyleSheet, View} from "react-native";
-import {useAppDispatch, useAppSelector} from "./constants/hooks";
+import {useEffect, useState} from "react";
+import {FlatList, StyleSheet, View} from "react-native";
+import {useAppSelector} from "./constants/hooks";
 import {vh} from "./functions/dimentions";
 import Card from "./component/Card";
 import Header from "./component/Header";
@@ -10,21 +10,17 @@ import SearchField from "./component/Menu/SearchField/SearchField";
 import HighlightedCard from "./component/HighlightedCard";
 import {COLOR_BACKGROUND} from "./constants/color_styles";
 import {PADDING} from "./constants/style_constants";
-import {invertApplyFiltersState} from "./reducers/Filter/applyFiltersReducer";
-import {ALL} from "./constants/const_vars";
+import {ALL, FILTER, SEARCH_FIELD} from "./constants/const_vars";
+import {StatusBar} from "expo-status-bar";
 
 const data: any[] = dummyData.drinks;
 export default function AppEntry() {
     const [currentItem, setCurrentItem] = useState(undefined)
     const [currentDataSet, setCurrentDataSet] = useState(data)
-    // const [isHeaderIconPressed, setIsHeaderIconPressed] = useState(false)
-    const [isFilterIconPressed, setIsFilterIconPressed] = useState(false)
-    const [isSearchFieldIconPressed, setIsSearchFieldIconPressed] = useState(false)
     const [currentSearchFieldInput, setCurrentSearchFieldInput] = useState('')
-
-    const openMenuAnimation = useRef(new Animated.Value(0)).current;
+    const [activeFilter, setActiveFilter] = useState('')
     const state = useAppSelector((state) => state)
-    const dispatch = useAppDispatch()
+
     useEffect(() => {
             {
                 const alcoholFilteredData: any[] = data.filter((item) => {
@@ -62,64 +58,6 @@ export default function AppEntry() {
         [state.alcoholicFilter, state.category, currentSearchFieldInput]
     )
 
-    const setIsHeaderIconPressedAnimation = (headerIconPressed: string) => {
-        // TODO make selection of filter better => possible make a reusable component for header elements
-        let vhValue: number = 0
-        if (headerIconPressed === 'filter') {
-            if (isFilterIconPressed) {
-                close()
-                return
-            }
-            vhValue = 0.6
-        }
-
-        if (headerIconPressed === 'searchField') {
-            if (isSearchFieldIconPressed) {
-                close()
-                return
-            }
-            vhValue = 0.1
-        }
-        if (!isFilterIconPressed && !isSearchFieldIconPressed) {
-            open(vhValue, headerIconPressed)
-        }
-        if (!isFilterIconPressed && isSearchFieldIconPressed || isFilterIconPressed && !isSearchFieldIconPressed) {
-            close()
-            open(vhValue, headerIconPressed)
-        }
-    }
-
-    const open = (vhValue: number, iconPressed: string) => {
-        // Will change fadeAnim value to 1 in 5 seconds
-        Animated.timing(openMenuAnimation, {
-            toValue: vh(vhValue),
-            duration: 500,
-            useNativeDriver: false
-        }).start(() => {
-            if (iconPressed === 'filter')
-                setIsFilterIconPressed(true)
-            if (iconPressed === 'searchField')
-                setIsSearchFieldIconPressed(true)
-        });
-    };
-
-    const close = (callback?: any, callbackParams?: any[]) => {
-        // Will change fadeAnim value to 0 in 5 seconds
-        setIsFilterIconPressed(false)
-        setIsSearchFieldIconPressed(false)
-        Animated.timing(openMenuAnimation, {
-            toValue: vh(0),
-            duration: 500,
-            useNativeDriver: false
-        }).start(() => {
-                if (callback && callbackParams)
-                    callback(callbackParams[0], callbackParams[1])
-            }
-        )
-        dispatch(invertApplyFiltersState())
-    };
-
-
     const onImageClickHandler = (
         currentlyClickedItem: any,
         item: any) => {
@@ -144,26 +82,16 @@ export default function AppEntry() {
 
     return (
         <>
-            <Header setIsHeaderIconPressedAnimation={setIsHeaderIconPressedAnimation}
-                    setIsSearchFieldIconPressed={setIsSearchFieldIconPressed}
-                    setIsFilterIconPressed={setIsFilterIconPressed}
-                    isFilterIconPressed={isFilterIconPressed}
-                    isSearchFieldIconPressed={isSearchFieldIconPressed}
+            <Header setActiveFilter={setActiveFilter}
+                    activeFilter={activeFilter}
             />
             <View style={styles.app}>
-                {/*{isFilterIconPressed && (*/}
-                    <Filter setIsFilterIconPressed={setIsFilterIconPressed}
-                            isFilterIconPressed={isFilterIconPressed}
-                            openMenuAnimation={openMenuAnimation}
-                            closeFilterHandler={close}
-                            setCurrentSearchFieldInput={setCurrentSearchFieldInput}
+                {(activeFilter === FILTER) && (
+                    <Filter setCurrentSearchFieldInput={setCurrentSearchFieldInput}
                     />
-                {/*)}*/}
-                {isSearchFieldIconPressed && (
-                    <SearchField setIsSearchFieldIconPressed={setIsSearchFieldIconPressed}
-                                 openMenuAnimation={openMenuAnimation}
-                                 isSearchFieldIconPressed={isSearchFieldIconPressed}
-                                 setCurrentSearchFieldInput={setCurrentSearchFieldInput}
+                )}
+                {(activeFilter === SEARCH_FIELD) && (
+                    <SearchField setCurrentSearchFieldInput={setCurrentSearchFieldInput}
                                  currentSearchFieldInput={currentSearchFieldInput}/>
                 )}
                 {currentItem && (
@@ -174,7 +102,7 @@ export default function AppEntry() {
                     data={currentDataSet}
                     renderItem={renderItem}
                     keyExtractor={item => item.idDrink}/>
-                {/*<StatusBar style="auto"/>*/}
+                <StatusBar style="auto"/>
             </View>
         </>
     )
