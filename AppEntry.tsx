@@ -21,9 +21,6 @@ export default function AppEntry() {
     const [activeFilter, setActiveFilter] = useState('')
     const state = useAppSelector((state) => state)
 
-    console.log('render')
-    console.log(currentDataSet)
-
     useEffect(() => {
             {
                 const alcoholFilteredData: any[] = data.filter((item) => {
