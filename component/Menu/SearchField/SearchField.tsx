@@ -1,7 +1,7 @@
 import {Animated, NativeSyntheticEvent, StyleSheet, TextInput, TextInputChangeEventData, View} from "react-native";
 import {COLOR_OPACITY_BACKGROUND, LABEL_BACKGROUND} from "../../../constants/color_styles";
 import {vw} from "../../../functions/dimentions";
-import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/border_margin_padding_defaults";
+import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
 
 export default function searchField(props: any) {
     const onChangeHandler = (e:  NativeSyntheticEvent<TextInputChangeEventData>) => {

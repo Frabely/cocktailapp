@@ -9,7 +9,7 @@ import Filter from "./component/Menu/Filter/Filter";
 import SearchField from "./component/Menu/SearchField/SearchField";
 import HighlightedCard from "./component/HighlightedCard";
 import {COLOR_BACKGROUND} from "./constants/color_styles";
-import {PADDING} from "./constants/border_margin_padding_defaults";
+import {PADDING} from "./constants/style_constants";
 import {invertApplyFiltersState} from "./reducers/Filter/applyFiltersReducer";
 import {ALL} from "./constants/const_vars";
 
@@ -70,7 +70,7 @@ export default function AppEntry() {
                 close()
                 return
             }
-            vhValue = 0.8
+            vhValue = 0.6
         }
 
         if (headerIconPressed === 'searchField') {

@@ -2,8 +2,9 @@ import {ImageBackground, Pressable, ScrollView, StyleSheet, Text, View} from "re
 import {vh} from "../functions/dimentions";
 import {useEffect, useState} from "react";
 import generate_box_shadow_style from "../functions/generate_box_shadow_style";
-import {BORDER_RADIUS, MARGIN, PADDING} from "../constants/border_margin_padding_defaults";
+import {BORDER_RADIUS, MARGIN, PADDING} from "../constants/style_constants";
 import {COLOR_HEADER, COLOR_OPACITY_BACKGROUND} from "../constants/color_styles";
+// TODO remove or use?
 import {
     useFonts,
     TitilliumWeb_200ExtraLight,

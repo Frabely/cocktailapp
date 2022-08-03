@@ -5,7 +5,7 @@ import { faFilter, faSearch } from "@fortawesome/free-solid-svg-icons";
 import {} from "@fortawesome/free-regular-svg-icons";
 import {} from "@fortawesome/free-brands-svg-icons";
 import {COLOR_HEADER} from "../constants/color_styles";
-import {PADDING} from "../constants/border_margin_padding_defaults";
+import {PADDING} from "../constants/style_constants";
 
 
 export default function Header(props: any) {

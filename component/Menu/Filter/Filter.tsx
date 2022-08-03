@@ -1,6 +1,5 @@
 import {
-    Animated, Button,
-    ScrollView,
+    Animated,
     StyleSheet,
     View
 } from "react-native";
@@ -9,13 +8,14 @@ import {
     COLOR_OPACITY_BACKGROUND,
     LABEL_BACKGROUND
 } from "../../../constants/color_styles";
-import {BORDER_RADIUS, MARGIN} from "../../../constants/border_margin_padding_defaults";
+import {BORDER_RADIUS, MARGIN} from "../../../constants/style_constants";
 import FilterPanel from "./FilterPanel";
 import {ALL} from "../../../constants/const_vars";
 import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
 import {changeGlassType} from "../../../reducers/Filter/glassTypeFilterReducer";
 import {changeAlcoholic} from "../../../reducers/Filter/alcoholicFilterReducer";
 import {changeCategory} from "../../../reducers/Filter/categoryFilterReducer";
+import StyledButton from "../../StyledButton";
 
 const alcFilterOptions = [ALL, 'Alcoholic', 'Non alcoholic']
 // const glassFilterOptions = [ALL, 'Margarita / Coupette', 'Cocktail', 'Collins', 'Highball', 'Pousse cafe', 'Wine']
@@ -45,7 +45,7 @@ export default function Filter(props: any) {
             ]}
         >
             {props.isFilterIconPressed && (
-                <ScrollView>
+                <>
                     <View style={styles.rowStyle}>
                         <FilterPanel options={alcFilterOptions}
                                      labelName={'Alcoholic'}
@@ -80,14 +80,15 @@ export default function Filter(props: any) {
                         </FilterPanel>
                     </View>
                     {/*TODO create own Button*/}
-                    <Button onPress={onClearAllFiltersClickHandler} title={'Clear all filters'}/>
+                    {/*<Button onPress={onClearAllFiltersClickHandler} title={'Clear all filters'}/>*/}
                     {/*<View style={{padding: PADDING,}}>*/}
                     {/*    <FilterButton onClick={onClearAllFiltersClickHandler}*/}
                     {/*                  colorActive={COLOR_HEADER}*/}
                     {/*                  colorInactive={COLOR_BACKGROUND}*/}
                     {/*                  title={'Clean all filters'}/>*/}
                     {/*</View>*/}
-                </ScrollView>
+                    <StyledButton onPress={onClearAllFiltersClickHandler} title={'Clear all filters'}/>
+                </>
             )}
         </Animated.View>
     )
@@ -95,9 +96,10 @@ export default function Filter(props: any) {
 
 const styles = StyleSheet.create({
     filter: {
+        display: "flex",
+        // height: vh(0.3),
         backgroundColor: COLOR_OPACITY_BACKGROUND,
         width: vw(1),
-        // width: '100%',
         position: "absolute",
         left: 0,
         top: 0,
@@ -105,7 +107,7 @@ const styles = StyleSheet.create({
         // padding: PADDING,
         // borderBottomLeftRadius: BORDER_RADIUS,
         // borderBottomRightRadius: BORDER_RADIUS,
-        justifyContent: "center"
+        // justifyContent: "center"
     },
     rowStyle: {
         flexDirection: 'row',
