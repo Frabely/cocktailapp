@@ -4,7 +4,6 @@ import generate_box_shadow_style from '../functions/generate_box_shadow_style';
 import {BORDER_RADIUS, PADDING} from "../constants/style_constants";
 import {SHADOW} from "../constants/color_styles";
 
-
 export default function Card(props: any) {
     const onImageClickHandler = () => {
         props.onImageClickHandler(
@@ -37,8 +36,6 @@ export default function Card(props: any) {
             </Pressable>
         )
     // }
-
-
 }
 
 const styles = StyleSheet.create({
@@ -49,8 +46,6 @@ const styles = StyleSheet.create({
     },
     cardInner: {
         flex: 1,
-        alignItems: "center",
-        justifyContent: 'center',
         borderRadius: BORDER_RADIUS,
         overflow: 'hidden',
     },

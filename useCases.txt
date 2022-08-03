@@ -3,6 +3,7 @@ Bugs:
 TODOs:
 -zahnrad icon in header für zB font und font size
 -Font auswählen und defaults sizes setzen
+-refactor app states in store
 -refactor and optimize highlight card
 -make selection of filter better => possible make a reusable component for header elements
 -werbung -> wie?

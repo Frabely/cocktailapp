@@ -1,9 +1,9 @@
-import {ImageBackground, Pressable, ScrollView, StyleSheet, Text, View} from "react-native";
-import {vh} from "../functions/dimentions";
+import {ImageBackground, ScrollView, StyleSheet, Text, View} from "react-native";
+import {vh} from "../../functions/dimentions";
 import {useEffect, useState} from "react";
-import generate_box_shadow_style from "../functions/generate_box_shadow_style";
-import {BORDER_RADIUS, MARGIN, PADDING} from "../constants/style_constants";
-import {COLOR_HEADER, COLOR_OPACITY_BACKGROUND} from "../constants/color_styles";
+import generate_box_shadow_style from "../../functions/generate_box_shadow_style";
+import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
+import {COLOR_HEADER, COLOR_OPACITY_BACKGROUND} from "../../constants/color_styles";
 // TODO remove or use?
 import {
     useFonts,
@@ -19,15 +19,11 @@ import {
     TitilliumWeb_700Bold_Italic,
     TitilliumWeb_900Black,
 } from '@expo-google-fonts/titillium-web';
+import HighlightedCardInnerImage from "./HighlightedCardInnerImage";
 
 export default function HighlightedCard(props: any) {
     const [arrayIngredients, setArrayIngredients] = useState([])
 
-    const onCloseHighlightedImage = () => {
-        props.onImageClickHandler(
-            undefined,
-            undefined)
-    }
 
     generate_box_shadow_style(
         styles,
@@ -67,15 +63,14 @@ export default function HighlightedCard(props: any) {
         <View style={styles.highlightView}>
             <ImageBackground style={[styles.highlightViewBackgroundImage, styles.boxShadow]}
                              source={{uri: props.item.strDrinkThumb}}>
-                <Pressable onPress={onCloseHighlightedImage} style={styles.innerImageCard}>
-                    <ImageBackground style={styles.innerImage}
-                                     source={{uri: props.item.strDrinkThumb}}></ImageBackground>
-                </Pressable>
+                <HighlightedCardInnerImage
+                    imageSource={props.item.strDrinkThumb}
+                    onImageClickHandler={props.onImageClickHandler}/>
                 <View style={styles.cardHighlightBackground}>
                     <View style={{flex: 3}}></View>
                     <View style={{flex: 5}}>
                         <ScrollView nestedScrollEnabled={true}>
-                            <Text style={[{fontSize: 40}, styles.fonts]}>
+                            <Text style={{fontSize: 40}}>
                                 {props.item.strDrink}
                             </Text>
                             {props.item.strAlcoholic !== null &&
@@ -117,26 +112,6 @@ export default function HighlightedCard(props: any) {
 }
 
 const styles = StyleSheet.create({
-    innerImageCard: {
-        position: 'absolute',
-        zIndex: 1,
-        start: 0,
-        top: 0,
-        padding: 4,
-        margin: MARGIN,
-        border: 0,
-        height: '30%',
-        width: '50%',
-        backgroundColor: COLOR_HEADER,
-        // borderWidth: 2,
-        borderRadius: 28,
-    },
-    innerImage: {
-        height: '100%',
-        width: '100%',
-        borderRadius: BORDER_RADIUS,
-        overflow: 'hidden',
-    },
     cardHighlightBackground: {
         height: '80%',
         width: '80%',
@@ -144,27 +119,18 @@ const styles = StyleSheet.create({
         backgroundColor: COLOR_OPACITY_BACKGROUND,
         borderRadius: BORDER_RADIUS,
     },
-    cardHighlight: {
-        flex: 3,
-        height: vh(0.90),
-        padding: PADDING,
-    },
     highlightViewBackgroundImage: {
         height: '100%',
         width: '100%',
-        display: "flex",
         alignItems: "center",
         justifyContent: 'center',
         borderRadius: BORDER_RADIUS,
         overflow: 'hidden',
     },
     highlightView: {
-        height: '70%',
+        height: vh(0.6),
         width: '100%',
         padding: PADDING,
     },
     boxShadow: {},
-    fonts: {
-        fontFamily: 'TitilliumWeb_900ExtraLight'
-    },
 })

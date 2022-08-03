@@ -1,7 +1,7 @@
 import {Pressable, StyleSheet, Text, View} from "react-native";
 import {vh} from "../functions/dimentions";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
-import {faFilter, faSearch} from "@fortawesome/free-solid-svg-icons";
+import {faFilter, faSearch, faGear} from "@fortawesome/free-solid-svg-icons";
 import {} from "@fortawesome/free-regular-svg-icons";
 import {} from "@fortawesome/free-brands-svg-icons";
 import {COLOR_HEADER} from "../constants/color_styles";
@@ -25,6 +25,10 @@ export default function Header(props: any) {
         props.setActiveFilter(SEARCH_FIELD)
     }
 
+    const onSettingsPressHandler = () => {
+        alert("open settings - in development")
+    }
+
     return (
         <View style={styles.header}>
             <Pressable onPress={onFilterPressHandler} style={styles.filter}>
@@ -33,9 +37,12 @@ export default function Header(props: any) {
             <Pressable onPress={onSearchFieldPressHandler} style={styles.filter}>
                 <FontAwesomeIcon icon={faSearch}/>
             </Pressable>
-            {/*<View style={{flex: 5, alignItems: 'center', justifyContent: 'center',}}>*/}
-            {/*    <Text>Header Component</Text>*/}
-            {/*</View>*/}
+            <View style={{flex: 2, alignItems: 'center', justifyContent: 'center',}}>
+                {/*<Text>Header Component</Text>*/}
+            </View>
+            <Pressable onPress={onSettingsPressHandler} style={styles.filter}>
+                <FontAwesomeIcon icon={faGear}/>
+            </Pressable>
         </View>
     )
 }

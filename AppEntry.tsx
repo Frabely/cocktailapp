@@ -7,7 +7,7 @@ import Card from "./component/Card";
 import Header from "./component/Header";
 import Filter from "./component/Menu/Filter/Filter";
 import SearchField from "./component/Menu/SearchField/SearchField";
-import HighlightedCard from "./component/HighlightedCard";
+import HighlightedCard from "./component/HighlightedCard/HighlightedCard";
 import NoHits from "./component/NoHits"
 import {COLOR_BACKGROUND} from "./constants/color_styles";
 import {PADDING} from "./constants/style_constants";
@@ -80,29 +80,25 @@ export default function AppEntry() {
             <Card key={item.idDrink}
                   item={item}
                   currentItem={currentItem}
-                  onImageClickHandler={onImageClickHandler}
-            />
+                  onImageClickHandler={onImageClickHandler}/>
         )
     }
 
     return (
         <>
             <Header setActiveFilter={setActiveFilter}
-                    activeFilter={activeFilter}
-            />
+                    activeFilter={activeFilter}/>
             <View style={styles.app}>
                 {(activeFilter === FILTER) && (
                     <Filter setCurrentSearchFieldInput={setCurrentSearchFieldInput}
                             setActiveFilter={setActiveFilter}
-                            currentDataSetLength={currentDataSet.length}
-                    />
+                            currentDataSetLength={currentDataSet.length}/>
                 )}
                 {(activeFilter === SEARCH_FIELD) && (
                     <SearchField setCurrentSearchFieldInput={setCurrentSearchFieldInput}
                                  setActiveFilter={setActiveFilter}
                                  currentSearchFieldInput={currentSearchFieldInput}
-                                 currentDataSetLength={currentDataSet.length}
-                    />
+                                 currentDataSetLength={currentDataSet.length}/>
                 )}
                 {currentItem && (
                     <HighlightedCard item={currentItem} onImageClickHandler={onImageClickHandler}/>
