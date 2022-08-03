@@ -1,11 +1,12 @@
 Bugs:
 
 TODOs:
+-Suchfeld mit on key press filter
+-eigener onClick Button
+-make selection of filter better => possible make a reusable component for header elements
 -Font auswählen und defaults sizes setzen
 -werbung -> wie?
 -Firebase Backend -> upload data auf firebase
--eigener onClick Button
--Suchfeld mit on key press filter
 
 
 Cocktail App

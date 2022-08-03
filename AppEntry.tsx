@@ -1,11 +1,12 @@
-import dummyData, {Cocktail} from "./dummyData3";
+import dummyData from "./dummyData3";
 import {useEffect, useRef, useState} from "react";
 import {Animated, FlatList, StyleSheet, View} from "react-native";
 import {useAppDispatch, useAppSelector} from "./constants/hooks";
 import {vh} from "./functions/dimentions";
 import Card from "./component/Card";
 import Header from "./component/Header";
-import Filter from "./component/Menu/Filter";
+import Filter from "./component/Menu/Filter/Filter";
+import SearchField from "./component/Menu/SearchField/SearchField";
 import HighlightedCard from "./component/HighlightedCard";
 import {COLOR_BACKGROUND} from "./constants/color_styles";
 import {PADDING} from "./constants/border_margin_padding_defaults";
@@ -16,11 +17,14 @@ const data: any[] = dummyData.drinks;
 export default function AppEntry() {
     const [currentItem, setCurrentItem] = useState(undefined)
     const [currentDataSet, setCurrentDataSet] = useState(data)
+    // const [isHeaderIconPressed, setIsHeaderIconPressed] = useState(false)
     const [isFilterIconPressed, setIsFilterIconPressed] = useState(false)
+    const [isSearchFieldIconPressed, setIsSearchFieldIconPressed] = useState(false)
+    const [currentSearchFieldInput, setCurrentSearchFieldInput] = useState('')
+
     const openMenuAnimation = useRef(new Animated.Value(0)).current;
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
-
     useEffect(() => {
             {
                 const alcoholFilteredData: any[] = data.filter((item) => {
@@ -33,9 +37,9 @@ export default function AppEntry() {
                     else {
                         let isFiltered = false
                         state.category.forEach((itemFilter) => {
-                                if (itemFilter === item.strCategory) {
-                                    isFiltered = true
-                                }
+                            if (itemFilter === item.strCategory) {
+                                isFiltered = true
+                            }
                         })
                         if (isFiltered) {
                             isFiltered = false
@@ -43,42 +47,75 @@ export default function AppEntry() {
                         }
                     }
                 })
-                console.log(categoryFilteredData)
-                setCurrentDataSet(categoryFilteredData)
+                const searchFieldFilteredData: any[] = categoryFilteredData.filter((item) => {
+                    const inputLowerNoSpace = currentSearchFieldInput.toLowerCase().replace(" ", "")
+                    const itemNameLowerNoSpace = item.strDrink.toLowerCase().replace(" ", "")
+                    if (itemNameLowerNoSpace.includes(inputLowerNoSpace)) {
+                        return item
+                    }
+                })
+                console.log(searchFieldFilteredData)
+                setCurrentDataSet(searchFieldFilteredData)
             }
         }
         ,
-        [state.applyFilters]
+        [state.alcoholicFilter, state.category, currentSearchFieldInput]
     )
 
-    const setIsFilterIconPressedAnimation = () => {
-        if (!isFilterIconPressed) {
-            open()
-        } else {
-            close()
+    const setIsHeaderIconPressedAnimation = (headerIconPressed: string) => {
+        // TODO make selection of filter better => possible make a reusable component for header elements
+        let vhValue: number = 0
+        if (headerIconPressed === 'filter') {
+            if (isFilterIconPressed) {
+                close()
+                return
+            }
+            vhValue = 0.8
         }
 
+        if (headerIconPressed === 'searchField') {
+            if (isSearchFieldIconPressed) {
+                close()
+                return
+            }
+            vhValue = 0.1
+        }
+        if (!isFilterIconPressed && !isSearchFieldIconPressed) {
+            open(vhValue, headerIconPressed)
+        }
+        if (!isFilterIconPressed && isSearchFieldIconPressed || isFilterIconPressed && !isSearchFieldIconPressed) {
+            close()
+            open(vhValue, headerIconPressed)
+        }
     }
 
-    const open = () => {
+    const open = (vhValue: number, iconPressed: string) => {
         // Will change fadeAnim value to 1 in 5 seconds
         Animated.timing(openMenuAnimation, {
-            toValue: vh(0.8),
+            toValue: vh(vhValue),
             duration: 500,
             useNativeDriver: false
         }).start(() => {
-            setIsFilterIconPressed(true)
+            if (iconPressed === 'filter')
+                setIsFilterIconPressed(true)
+            if (iconPressed === 'searchField')
+                setIsSearchFieldIconPressed(true)
         });
     };
 
-    const close = () => {
-        // Will change fadeAnim value to 0 in 3 seconds
+    const close = (callback?: any, callbackParams?: any[]) => {
+        // Will change fadeAnim value to 0 in 5 seconds
         setIsFilterIconPressed(false)
+        setIsSearchFieldIconPressed(false)
         Animated.timing(openMenuAnimation, {
             toValue: vh(0),
             duration: 500,
             useNativeDriver: false
-        }).start()
+        }).start(() => {
+                if (callback && callbackParams)
+                    callback(callbackParams[0], callbackParams[1])
+            }
+        )
         dispatch(invertApplyFiltersState())
     };
 
@@ -107,12 +144,28 @@ export default function AppEntry() {
 
     return (
         <>
-            <Header setIsFilterIconPressedAnimation={setIsFilterIconPressedAnimation}
-                    isFilterIconPressed={isFilterIconPressed}/>
+            <Header setIsHeaderIconPressedAnimation={setIsHeaderIconPressedAnimation}
+                    setIsSearchFieldIconPressed={setIsSearchFieldIconPressed}
+                    setIsFilterIconPressed={setIsFilterIconPressed}
+                    isFilterIconPressed={isFilterIconPressed}
+                    isSearchFieldIconPressed={isSearchFieldIconPressed}
+            />
             <View style={styles.app}>
-                <Filter isFilterIconPressed={isFilterIconPressed}
-                        openMenuAnimation={openMenuAnimation}
-                        closeFilterHandler={close}/>
+                {/*{isFilterIconPressed && (*/}
+                    <Filter setIsFilterIconPressed={setIsFilterIconPressed}
+                            isFilterIconPressed={isFilterIconPressed}
+                            openMenuAnimation={openMenuAnimation}
+                            closeFilterHandler={close}
+                            setCurrentSearchFieldInput={setCurrentSearchFieldInput}
+                    />
+                {/*)}*/}
+                {isSearchFieldIconPressed && (
+                    <SearchField setIsSearchFieldIconPressed={setIsSearchFieldIconPressed}
+                                 openMenuAnimation={openMenuAnimation}
+                                 isSearchFieldIconPressed={isSearchFieldIconPressed}
+                                 setCurrentSearchFieldInput={setCurrentSearchFieldInput}
+                                 currentSearchFieldInput={currentSearchFieldInput}/>
+                )}
                 {currentItem && (
                     <HighlightedCard item={currentItem} onImageClickHandler={onImageClickHandler}/>
                 )}

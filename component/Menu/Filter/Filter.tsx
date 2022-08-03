@@ -2,21 +2,20 @@ import {
     Animated, Button,
     ScrollView,
     StyleSheet,
-    TextInput,
     View
 } from "react-native";
-import {vw} from "../../functions/dimentions";
+import {vw} from "../../../functions/dimentions";
 import {
     COLOR_OPACITY_BACKGROUND,
     LABEL_BACKGROUND
-} from "../../constants/color_styles";
-import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/border_margin_padding_defaults";
+} from "../../../constants/color_styles";
+import {BORDER_RADIUS, MARGIN} from "../../../constants/border_margin_padding_defaults";
 import FilterPanel from "./FilterPanel";
-import {ALL} from "../../constants/const_vars";
-import {useAppDispatch, useAppSelector} from "../../constants/hooks";
-import {changeGlassType} from "../../reducers/Filter/glassTypeFilterReducer";
-import {changeAlcoholic} from "../../reducers/Filter/alcoholicFilterReducer";
-import {changeCategory} from "../../reducers/Filter/categoryFilterReducer";
+import {ALL} from "../../../constants/const_vars";
+import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
+import {changeGlassType} from "../../../reducers/Filter/glassTypeFilterReducer";
+import {changeAlcoholic} from "../../../reducers/Filter/alcoholicFilterReducer";
+import {changeCategory} from "../../../reducers/Filter/categoryFilterReducer";
 
 const alcFilterOptions = [ALL, 'Alcoholic', 'Non alcoholic']
 // const glassFilterOptions = [ALL, 'Margarita / Coupette', 'Cocktail', 'Collins', 'Highball', 'Pousse cafe', 'Wine']
@@ -31,10 +30,7 @@ export default function Filter(props: any) {
         dispatch(changeAlcoholic([ALL]))
         dispatch(changeCategory([ALL]))
         dispatch(changeGlassType([ALL]))
-    }
-
-    const onApplyFiltersClickHandler = () => {
-        props.closeFilterHandler()
+        props.setCurrentSearchFieldInput('')
     }
 
     return (
@@ -50,9 +46,6 @@ export default function Filter(props: any) {
         >
             {props.isFilterIconPressed && (
                 <ScrollView>
-                    <View>
-                        <TextInput style={styles.testInput} placeholder={'Enter search term'}></TextInput>
-                    </View>
                     <View style={styles.rowStyle}>
                         <FilterPanel options={alcFilterOptions}
                                      labelName={'Alcoholic'}
@@ -94,7 +87,6 @@ export default function Filter(props: any) {
                     {/*                  colorInactive={COLOR_BACKGROUND}*/}
                     {/*                  title={'Clean all filters'}/>*/}
                     {/*</View>*/}
-                    <Button onPress={onApplyFiltersClickHandler} title={'Apply filters'}/>
                 </ScrollView>
             )}
         </Animated.View>
@@ -124,10 +116,4 @@ const styles = StyleSheet.create({
         borderRadius: BORDER_RADIUS / 2,
         margin: MARGIN
     },
-    testInput: {
-        padding: PADDING,
-        backgroundColor: LABEL_BACKGROUND,
-        margin: MARGIN,
-        borderRadius: BORDER_RADIUS
-    }
 })
