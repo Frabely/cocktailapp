@@ -6418,7 +6418,7 @@ const data =
                 "strIngredient1": "Grape juice",
                 "strIngredient2": "Carbonated soft drink",
                 "strIngredient3": "Sherbet",
-                "strIngredient4": "Sherbet",
+                "strIngredient4": null,
                 "strIngredient5": null,
                 "strIngredient6": null,
                 "strIngredient7": null,
