@@ -2,7 +2,7 @@ import {ImageBackground, ScrollView, StyleSheet, Text, View} from "react-native"
 import {vh} from "../../functions/dimentions";
 import {useEffect, useState} from "react";
 import generate_box_shadow_style from "../../functions/generate_box_shadow_style";
-import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
+import {BORDER_RADIUS, PADDING} from "../../constants/style_constants";
 import {COLOR_HEADER, COLOR_OPACITY_BACKGROUND} from "../../constants/color_styles";
 // TODO remove or use?
 import {
@@ -21,6 +21,7 @@ import {
 } from '@expo-google-fonts/titillium-web';
 import HighlightedCardInnerImage from "./HighlightedCardInnerImage";
 import {
+    FONT_JENGKOL_JE3D0,
     FONT_MONOSPACE,
     FONT_NORMAL,
     FONT_NOTOSERIF,
