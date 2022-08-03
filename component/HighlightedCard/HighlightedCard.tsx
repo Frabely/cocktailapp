@@ -20,6 +20,15 @@ import {
     TitilliumWeb_900Black,
 } from '@expo-google-fonts/titillium-web';
 import HighlightedCardInnerImage from "./HighlightedCardInnerImage";
+import {
+    FONT_MONOSPACE,
+    FONT_NORMAL,
+    FONT_NOTOSERIF,
+    FONT_ROBOTO,
+    FONT_SANS_SERIF,
+    FONT_SANS_SERIF_CONDENSED, FONT_SANS_SERIF_THIN,
+    FONT_SERIF
+} from "../../constants/font_style";
 
 export default function HighlightedCard(props: any) {
     const [arrayIngredients, setArrayIngredients] = useState([])
