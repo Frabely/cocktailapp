@@ -1,9 +1,11 @@
 Bugs:
-
+-zutaten sind keys bei der Zutatenauswahl -> bessere keys setzen index von 0-n zutaten
 TODOs:
--entfernen des Filter Hintergrundes und der Animation dazu
--make selection of filter better => possible make a reusable component for header elements
+-treffer in filter anzeigen (als button um filter zu schließen)
+-wenn keine treffer statt leeren feld nachricht mit keine treffer und reset filter button
+-zahnrad icon in header für zB font und font size
 -Font auswählen und defaults sizes setzen
+-make selection of filter better => possible make a reusable component for header elements
 -werbung -> wie?
 -Firebase Backend -> upload data auf firebase
 

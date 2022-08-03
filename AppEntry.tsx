@@ -51,7 +51,7 @@ export default function AppEntry() {
                         return item
                     }
                 })
-                if (searchFieldFilteredData.length === 0) {
+                if (searchFieldFilteredData.length === 0 || !searchFieldFilteredData.includes(currentItem)) {
                     setCurrentItem(undefined)
                 }
                 console.log(searchFieldFilteredData)
