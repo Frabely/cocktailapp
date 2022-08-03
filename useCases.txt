@@ -1,9 +1,9 @@
 Bugs:
 
 TODOs:
--wenn keine treffer statt leeren feld nachricht mit keine treffer und reset filter button
 -zahnrad icon in header für zB font und font size
 -Font auswählen und defaults sizes setzen
+-refactor and optimize highlight card
 -make selection of filter better => possible make a reusable component for header elements
 -werbung -> wie?
 -Firebase Backend -> upload data auf firebase

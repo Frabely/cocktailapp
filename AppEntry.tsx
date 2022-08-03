@@ -8,6 +8,7 @@ import Header from "./component/Header";
 import Filter from "./component/Menu/Filter/Filter";
 import SearchField from "./component/Menu/SearchField/SearchField";
 import HighlightedCard from "./component/HighlightedCard";
+import NoHits from "./component/NoHits"
 import {COLOR_BACKGROUND} from "./constants/color_styles";
 import {PADDING} from "./constants/style_constants";
 import {ALL, FILTER, SEARCH_FIELD} from "./constants/const_vars";
@@ -106,6 +107,9 @@ export default function AppEntry() {
                 {currentItem && (
                     <HighlightedCard item={currentItem} onImageClickHandler={onImageClickHandler}/>
                 )}
+                {(currentDataSet.length === 0) && (
+                    <NoHits setCurrentSearchFieldInput={setCurrentSearchFieldInput}/>
+                )}
                 <FlatList
                     numColumns={3}
                     data={currentDataSet}
@@ -122,5 +126,5 @@ const styles = StyleSheet.create({
         height: vh(0.9),
         width: '100%',
         padding: PADDING,
-    }
+    },
 });
