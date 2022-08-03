@@ -1,3 +1,5 @@
+import {ALL} from "./const_vars";
+
 const data =
     {
         "drinks": [
@@ -8279,3 +8281,5 @@ export type Cocktail = {
     "strCreativeCommonsConfirmed": string,
     "dateModified": string
 }
+
+

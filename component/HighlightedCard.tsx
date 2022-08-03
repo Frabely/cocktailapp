@@ -65,7 +65,8 @@ export default function HighlightedCard(props: any) {
 
     return (
         <View style={styles.highlightView}>
-            <ImageBackground style={[styles.highlightViewBackgroundImage, styles.boxShadow]} source={{uri: props.item.strDrinkThumb}}>
+            <ImageBackground style={[styles.highlightViewBackgroundImage, styles.boxShadow]}
+                             source={{uri: props.item.strDrinkThumb}}>
                 <Pressable onPress={onCloseHighlightedImage} style={styles.innerImageCard}>
                     <ImageBackground style={styles.innerImage}
                                      source={{uri: props.item.strDrinkThumb}}></ImageBackground>
@@ -74,7 +75,7 @@ export default function HighlightedCard(props: any) {
                     <View style={{flex: 3}}></View>
                     <View style={{flex: 5}}>
                         <ScrollView nestedScrollEnabled={true}>
-                            <Text style={[{fontSize: 40}, styles.fonts] }>
+                            <Text style={[{fontSize: 40}, styles.fonts]}>
                                 {props.item.strDrink}
                             </Text>
                             {props.item.strAlcoholic !== null &&
@@ -90,8 +91,16 @@ export default function HighlightedCard(props: any) {
                             <Text style={{fontWeight: 'bold'}}>
                                 {props.item.strInstructions}
                             </Text>
+                            {props.item.strGlass !== null && props.item.strGlass !== "Other/Unknown" &&
+                                <Text style={{
+                                    fontStyle: 'italic',
+                                    fontSize: 15
+                                }}>
+                                    {`Recommended glass type:\n${props.item.strGlass}`}
+                                </Text>
+                            }
                             {/*TODO Make better*/}
-                            {arrayIngredients.map(( item, index ) => {
+                            {arrayIngredients.map((item, index) => {
                                 return (
                                     <Text key={index}>
                                         - {Object.keys(item)[0]} {item[Object.keys(item)[0]]}
@@ -157,5 +166,5 @@ const styles = StyleSheet.create({
     boxShadow: {},
     fonts: {
         fontFamily: 'TitilliumWeb_900ExtraLight'
-    }
+    },
 })

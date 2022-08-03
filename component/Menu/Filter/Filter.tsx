@@ -13,10 +13,11 @@ import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
 import {changeAlcoholic} from "../../../reducers/Filter/alcoholicFilterReducer";
 import {changeCategory} from "../../../reducers/Filter/categoryFilterReducer";
 import StyledButton from "../../StyledButton";
+import {alcoholicList, categoryList} from "../../../constants/filter_lists";
 
-const alcFilterOptions = [ALL, 'Alcoholic', 'Non alcoholic']
-// const glassFilterOptions = [ALL, 'Margarita / Coupette', 'Cocktail', 'Collins', 'Highball', 'Pousse cafe', 'Wine']
-const categoryFilterOptions = [ALL, 'Cocktail', 'Homemade Liqueur', 'Ordinary Drink', 'Punch / Party Drink', 'Coffee / Tea', 'Shot']
+const alcFilterOptions = alcoholicList
+const categoryFilterOptions = categoryList
+
 
 export default function Filter(props: any) {
     const state = useAppSelector((state) => state)
@@ -98,6 +99,6 @@ const styles = StyleSheet.create({
         backgroundColor: LABEL_BACKGROUND,
         borderRadius: BORDER_RADIUS / 2,
         margin: MARGIN,
-        marginBottom: MARGIN/10
+        marginBottom: MARGIN / 10
     }
 })

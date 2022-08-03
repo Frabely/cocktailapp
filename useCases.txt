@@ -1,7 +1,6 @@
 Bugs:
--zutaten sind keys bei der Zutatenauswahl -> bessere keys setzen index von 0-n zutaten zum repdroduzieren: filter Alcoholic: ALL Category: Homemade Liqueur
+
 TODOs:
--treffer in filter anzeigen (als button um filter zu schließen)
 -wenn keine treffer statt leeren feld nachricht mit keine treffer und reset filter button
 -zahnrad icon in header für zB font und font size
 -Font auswählen und defaults sizes setzen

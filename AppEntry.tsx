@@ -1,4 +1,4 @@
-import dummyData from "./dummyData3";
+import dummyData from "./constants/dummyData3";
 import {useEffect, useState} from "react";
 import {FlatList, StyleSheet, View} from "react-native";
 import {useAppSelector} from "./constants/hooks";

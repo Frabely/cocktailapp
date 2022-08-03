@@ -33,9 +33,9 @@ export default function Header(props: any) {
             <Pressable onPress={onSearchFieldPressHandler} style={styles.filter}>
                 <FontAwesomeIcon icon={faSearch}/>
             </Pressable>
-            <View style={{flex: 5, alignItems: 'center', justifyContent: 'center',}}>
-                <Text>Header Component</Text>
-            </View>
+            {/*<View style={{flex: 5, alignItems: 'center', justifyContent: 'center',}}>*/}
+            {/*    <Text>Header Component</Text>*/}
+            {/*</View>*/}
         </View>
     )
 }
