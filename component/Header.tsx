@@ -25,9 +25,9 @@ export default function Header(props: any) {
         props.setActiveFilter(SEARCH_FIELD)
     }
 
-    const onSettingsPressHandler = () => {
-        alert("open settings - in development")
-    }
+    // const onSettingsPressHandler = () => {
+    //     alert("open settings - in development")
+    // }
 
     return (
         <View style={styles.header}>
@@ -37,12 +37,12 @@ export default function Header(props: any) {
             <Pressable onPress={onSearchFieldPressHandler} style={styles.filter}>
                 <FontAwesomeIcon icon={faSearch}/>
             </Pressable>
-            <View style={{flex: 2, alignItems: 'center', justifyContent: 'center',}}>
-                {/*<Text>Header Component</Text>*/}
-            </View>
-            <Pressable onPress={onSettingsPressHandler} style={styles.filter}>
-                <FontAwesomeIcon icon={faGear}/>
-            </Pressable>
+            {/*<View style={{flex: 2, alignItems: 'center', justifyContent: 'center',}}>*/}
+            {/*    <Text>Header Component</Text>*/}
+            {/*</View>*/}
+            {/*<Pressable onPress={onSettingsPressHandler} style={styles.filter}>*/}
+            {/*    <FontAwesomeIcon icon={faGear}/>*/}
+            {/*</Pressable>*/}
         </View>
     )
 }
