@@ -19,7 +19,7 @@ import {changeAlcoholic} from "../../reducers/Filter/alcoholicFilterReducer";
 import {changeCategory} from "../../reducers/Filter/categoryFilterReducer";
 
 const alcFilterOptions = [ALL, 'Alcoholic', 'Non alcoholic']
-const glassFilterOptions = [ALL, 'Margarita / Coupette', 'Cocktail', 'Collins', 'Highball', 'Pousse cafe', 'Wine']
+// const glassFilterOptions = [ALL, 'Margarita / Coupette', 'Cocktail', 'Collins', 'Highball', 'Pousse cafe', 'Wine']
 const categoryFilterOptions = [ALL, 'Cocktail', 'Homemade Liqueur', 'Ordinary Drink', 'Punch / Party Drink', 'Coffee / Tea', 'Shot']
 
 export default function Filter(props: any) {
@@ -64,18 +64,18 @@ export default function Filter(props: any) {
 
                         </FilterPanel>
                     </View>
-                    <View>
-                        <View style={styles.rowStyle}>
-                            <FilterPanel options={glassFilterOptions}
-                                         labelName={'Glass type'}
-                                         default={[ALL]}
-                                         isMultiSelectable={true}
-                                         filterState={state.glassTypeFilter}
-                                         setFilterState={changeGlassType}
-                                         numColumns={3}>
-                            </FilterPanel>
-                        </View>
-                    </View>
+                    {/*<View>*/}
+                    {/*    <View style={styles.rowStyle}>*/}
+                    {/*        <FilterPanel options={glassFilterOptions}*/}
+                    {/*                     labelName={'Glass type'}*/}
+                    {/*                     default={[ALL]}*/}
+                    {/*                     isMultiSelectable={true}*/}
+                    {/*                     filterState={state.glassTypeFilter}*/}
+                    {/*                     setFilterState={changeGlassType}*/}
+                    {/*                     numColumns={3}>*/}
+                    {/*        </FilterPanel>*/}
+                    {/*    </View>*/}
+                    {/*</View>*/}
                     <View style={styles.rowStyle}>
                         <FilterPanel options={categoryFilterOptions}
                                      labelName={'Category'}
