@@ -44,5 +44,6 @@ const styles = StyleSheet.create({
         backgroundColor: LABEL_BACKGROUND,
         borderRadius: BORDER_RADIUS / 2,
         margin: MARGIN,
+        marginTop: MARGIN/10
     }
 })
