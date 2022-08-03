@@ -22,7 +22,6 @@ export default function searchField(props: any) {
 
 const styles = StyleSheet.create({
     searchField: {
-        height: vh(0.1),
         width: vw(1),
         position: "absolute",
         left: 0,

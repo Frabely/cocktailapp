@@ -31,8 +31,7 @@ export default function Filter(props: any) {
 
     return (
 
-        <View
-            style={styles.filter}>
+        <View style={styles.filter}>
             <View style={styles.rowStyle}>
                 <FilterPanel options={alcFilterOptions}
                              labelName={'Alcoholic'}
@@ -66,26 +65,32 @@ export default function Filter(props: any) {
                              numColumns={3}>
                 </FilterPanel>
             </View>
-            <StyledButton onPress={onClearAllFiltersClickHandler} title={'Clear all filters'}/>
+            <View style={styles.buttonBackgroundStyle}>
+                <StyledButton onPress={onClearAllFiltersClickHandler} title={'Clear all filters'}/>
+            </View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     filter: {
-        display: "flex",
-        height: vh(0.6),
         width: vw(1),
         position: "absolute",
         left: 0,
         top: 0,
         zIndex: 1,
-        justifyContent: "center"
     },
     rowStyle: {
         flexDirection: 'row',
         backgroundColor: LABEL_BACKGROUND,
         borderRadius: BORDER_RADIUS / 2,
-        margin: MARGIN
+        marginLeft: MARGIN,
+        marginRight: MARGIN,
+        marginTop: MARGIN
     },
+    buttonBackgroundStyle: {
+        backgroundColor: LABEL_BACKGROUND,
+        borderRadius: BORDER_RADIUS / 2,
+        margin: MARGIN,
+    }
 })

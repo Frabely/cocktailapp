@@ -29,8 +29,8 @@ const styles = StyleSheet.create({
         height: vh(BUTTON_HEIGHT),
         borderRadius: BORDER_RADIUS / 2,
         backgroundColor: COLOR_BACKGROUND,
-        padding: PADDING,
-        margin: MARGIN,
+        padding: PADDING/2,
+        margin: MARGIN/2,
         alignItems: "center",
         justifyContent: "center"
     }
