@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         padding: PADDING,
         backgroundColor: LABEL_BACKGROUND,
         margin: MARGIN,
-        borderRadius: BORDER_RADIUS
+        borderRadius: BORDER_RADIUS / 2
     },
     buttonBackgroundStyle: {
         backgroundColor: LABEL_BACKGROUND,
