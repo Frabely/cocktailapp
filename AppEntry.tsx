@@ -13,6 +13,7 @@ import {COLOR_BACKGROUND} from "./constants/color_styles";
 import {PADDING} from "./constants/style_constants";
 import {ALL, FILTER, SEARCH_FIELD} from "./constants/const_vars";
 import {StatusBar} from "expo-status-bar";
+import BannerAd from "./component/BannerAd";
 
 const data: any[] = dummyData.drinks;
 export default function AppEntry() {
@@ -76,12 +77,19 @@ export default function AppEntry() {
     }
 
     const renderItem = ({item, index}: any) => {
-        return (
-            <Card key={item.idDrink}
-                  item={item}
-                  currentItem={currentItem}
-                  onImageClickHandler={onImageClickHandler}/>
-        )
+        if (index % 4 === 0) {
+            return (
+                <BannerAd/>
+            )
+        } else {
+            return (
+
+                <Card key={item.idDrink}
+                      item={item}
+                      currentItem={currentItem}
+                      onImageClickHandler={onImageClickHandler}/>
+            )
+        }
     }
 
     return (
