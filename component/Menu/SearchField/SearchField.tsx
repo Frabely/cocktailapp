@@ -3,18 +3,13 @@ import {COLOR_OPACITY_BACKGROUND, LABEL_BACKGROUND} from "../../../constants/col
 import {vh, vw} from "../../../functions/dimentions";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
 import {useState} from "react";
+import StyledButton from "../../StyledButton";
 
 export default function searchField(props: any) {
-    // const [value, onChangeText] = useState('')
-    // let test: string = '';
-    // const onChangeHandler = () => {
-    //     // @ts-ignore
-    //     // console.log(e.target.valueOf())
-    //     // @ts-ignore
-    //     // props.setCurrentSearchFieldInput(e.currentTarget.value)
-    //
-    //
-    // }
+    const onHitsClickHandler = () => {
+        props.setActiveFilter('')
+    }
+
     return (
         <View style={styles.searchField}>
             <View>
@@ -22,6 +17,9 @@ export default function searchField(props: any) {
                     props.setCurrentSearchFieldInput(input)
                 }}
                            style={styles.testInput} placeholder={'Enter search term'}/>
+            </View>
+            <View style={styles.buttonBackgroundStyle}>
+                <StyledButton onPress={onHitsClickHandler} title={`Hits: ${props.currentDataSetLength}`}/>
             </View>
         </View>
     )
@@ -41,5 +39,10 @@ const styles = StyleSheet.create({
         backgroundColor: LABEL_BACKGROUND,
         margin: MARGIN,
         borderRadius: BORDER_RADIUS
+    },
+    buttonBackgroundStyle: {
+        backgroundColor: LABEL_BACKGROUND,
+        borderRadius: BORDER_RADIUS / 2,
+        margin: MARGIN,
     }
 })

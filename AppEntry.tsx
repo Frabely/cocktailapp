@@ -98,7 +98,10 @@ export default function AppEntry() {
                 )}
                 {(activeFilter === SEARCH_FIELD) && (
                     <SearchField setCurrentSearchFieldInput={setCurrentSearchFieldInput}
-                                 currentSearchFieldInput={currentSearchFieldInput}/>
+                                 setActiveFilter={setActiveFilter}
+                                 currentSearchFieldInput={currentSearchFieldInput}
+                                 currentDataSetLength={currentDataSet.length}
+                    />
                 )}
                 {currentItem && (
                     <HighlightedCard item={currentItem} onImageClickHandler={onImageClickHandler}/>
