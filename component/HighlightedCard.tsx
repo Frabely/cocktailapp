@@ -91,9 +91,9 @@ export default function HighlightedCard(props: any) {
                                 {props.item.strInstructions}
                             </Text>
                             {/*TODO Make better*/}
-                            {arrayIngredients.map(( item ) => {
+                            {arrayIngredients.map(( item, index ) => {
                                 return (
-                                    <Text key={Object.keys(item)[0]}>
+                                    <Text key={index}>
                                         - {Object.keys(item)[0]} {item[Object.keys(item)[0]]}
                                     </Text>
                                 )

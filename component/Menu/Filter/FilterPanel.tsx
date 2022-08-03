@@ -42,7 +42,7 @@ export default function FilterPanel(props: any) {
 
     const renderItem = ({item, index}: any) => {
         return (
-            <View style={styles.flatListItem}>
+            <View style={styles.flatListItem} key={index}>
                 <FilterButton
                     key={item}
                     title={item}
