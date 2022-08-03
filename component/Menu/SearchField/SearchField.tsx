@@ -2,17 +2,25 @@ import {Animated, NativeSyntheticEvent, StyleSheet, TextInput, TextInputChangeEv
 import {COLOR_OPACITY_BACKGROUND, LABEL_BACKGROUND} from "../../../constants/color_styles";
 import {vh, vw} from "../../../functions/dimentions";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
+import {useState} from "react";
 
 export default function searchField(props: any) {
-    const onChangeHandler = (e: NativeSyntheticEvent<TextInputChangeEventData>) => {
-        // @ts-ignore
-        props.setCurrentSearchFieldInput(e.currentTarget.value)
-
-    }
+    // const [value, onChangeText] = useState('')
+    // let test: string = '';
+    // const onChangeHandler = () => {
+    //     // @ts-ignore
+    //     // console.log(e.target.valueOf())
+    //     // @ts-ignore
+    //     // props.setCurrentSearchFieldInput(e.currentTarget.value)
+    //
+    //
+    // }
     return (
         <View style={styles.searchField}>
             <View>
-                <TextInput value={props.currentSearchFieldInput} onChange={onChangeHandler}
+                <TextInput value={props.currentSearchFieldInput} onChangeText={input => {
+                    props.setCurrentSearchFieldInput(input)
+                }}
                            style={styles.testInput} placeholder={'Enter search term'}/>
             </View>
         </View>

@@ -21,6 +21,9 @@ export default function AppEntry() {
     const [activeFilter, setActiveFilter] = useState('')
     const state = useAppSelector((state) => state)
 
+    console.log('render')
+    console.log(currentDataSet)
+
     useEffect(() => {
             {
                 const alcoholFilteredData: any[] = data.filter((item) => {
@@ -44,12 +47,16 @@ export default function AppEntry() {
                     }
                 })
                 const searchFieldFilteredData: any[] = categoryFilteredData.filter((item) => {
+                    // console.log(currentSearchFieldInput)
                     const inputLowerNoSpace = currentSearchFieldInput.toLowerCase().replace(" ", "")
                     const itemNameLowerNoSpace = item.strDrink.toLowerCase().replace(" ", "")
                     if (itemNameLowerNoSpace.includes(inputLowerNoSpace)) {
                         return item
                     }
                 })
+                if (searchFieldFilteredData.length === 0) {
+                    setCurrentItem(undefined)
+                }
                 console.log(searchFieldFilteredData)
                 setCurrentDataSet(searchFieldFilteredData)
             }
