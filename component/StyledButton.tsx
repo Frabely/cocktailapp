@@ -13,9 +13,16 @@ export default function StyledButton(props: any) {
     const onTouchEndHandler = () => {
         setIsTouched(false)
     }
+    console.log(props)
 
     return (
-        <Pressable style={[styles.styledButton, {backgroundColor: isTouched ? COLOR_HEADER : COLOR_BACKGROUND}]}
+        <Pressable style={[styles.styledButton, {
+            backgroundColor: isTouched ? COLOR_HEADER : COLOR_BACKGROUND,
+            padding: (props.padding !== undefined) ? props.padding : PADDING / 2,
+            margin: (props.margin !== undefined) ? props.margin : MARGIN / 2,
+            height: (props.height !== undefined) ? props.height : vh(BUTTON_HEIGHT),
+            width: (props.width !== undefined) && props.width,
+        }]}
                    onTouchStart={onTouchStartHandler}
                    onTouchEnd={onTouchEndHandler}
                    onPress={props.onPress}>
@@ -26,11 +33,8 @@ export default function StyledButton(props: any) {
 
 const styles = StyleSheet.create({
     styledButton: {
-        height: vh(BUTTON_HEIGHT),
         borderRadius: BORDER_RADIUS / 2,
         backgroundColor: COLOR_BACKGROUND,
-        padding: PADDING/2,
-        margin: MARGIN/2,
         alignItems: "center",
         justifyContent: "center"
     }
