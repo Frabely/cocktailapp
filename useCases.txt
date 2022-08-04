@@ -1,7 +1,6 @@
 Bugs:
 
 TODOs:
--suchfeld und treffer und nicht überlappen der karten
 -Zutatenfilter hinzufügen
 -Font auswählen und defaults sizes setzen
 -refactor app states in store
