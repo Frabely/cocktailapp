@@ -4,17 +4,17 @@ import DropDownPicker from "react-native-dropdown-picker";
 import {useEffect, useState} from "react";
 import {INGREDIENT_LIST} from "../../../constants/filter_lists";
 import {vh, vw} from "../../../functions/dimentions";
-import {Text} from "react-native";
 
-export default function DropDownPickerWrapper(props: any) {
+export default function DropDownPickerWrapper() {
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState([]);
     const [items, setItems] = useState(INGREDIENT_LIST);
-    const [placeholderText, setPlaceholderText] = useState(`Ingredients`)
 
     useEffect(() => {
         console.log(value)
     }, [value])
+
+    DropDownPicker.setMode("BADGE");
 
 
     return (
@@ -33,11 +33,9 @@ export default function DropDownPickerWrapper(props: any) {
             flatListProps={{
                 initialNumToRender: 10
             }}
-            placeholder={placeholderText}
+            placeholder={''}
             placeholderStyle={{
-                fontWeight: "bold",
-                padding: PADDING,
-                flexDirection: 'row'
+                height: 0
             }}
             searchable={true}
             searchPlaceholder="Search Ingredients"
@@ -64,11 +62,11 @@ export default function DropDownPickerWrapper(props: any) {
                 width: '100%',
                 backgroundColor: COLOR_HEADER,
                 padding: PADDING,
-                borderWidth: 5,
-                borderColor: COLOR_HEADER,
+                borderWidth: 0,
+                // borderColor: COLOR_BACKGROUND,
                 borderRadius: BORDER_RADIUS / 2,
                 overflow: 'hidden',
-                marginBottom: MARGIN,
+                marginBottom: MARGIN * 5,
             }}
             // itemSeparator={true}
             listItemContainerStyle={{
@@ -108,15 +106,12 @@ export default function DropDownPickerWrapper(props: any) {
             autoScroll={true}
             containerStyle={{
                 backgroundColor: LABEL_BACKGROUND,
-                // TODO fix 95% to 100% if possible (maintainable)
-                width: '95%',
-                borderRadius: BORDER_RADIUS / 2,
+                // TODO fix vw(0.947) to vw(1) if possible (maintainable)
+                width: vw(0.947),
+                borderBottomRightRadius: BORDER_RADIUS / 2,
+                borderBottomLeftRadius: BORDER_RADIUS / 2,
                 marginLeft: MARGIN,
                 marginRight: MARGIN,
-                marginTop: MARGIN,
-                flex: 1,
-                flexDirection: 'row',
-                // alignSelf: 'center'
             }}
             // textStyle={{
             //     fontSize: 15
@@ -135,26 +130,26 @@ export default function DropDownPickerWrapper(props: any) {
                 padding: PADDING,
                 margin: MARGIN,
                 //TODO fix very bad hard coded position
-                position: 'absolute',
-                top: -vh(0.055),
-                left: vw(0.83),
-                width: vw(0.03),
-                height: vh(0.03)
+                // position: 'absolute',
+                // top: -vh(0.055),
+                // left: vw(0.85),
+                width: vw(0.1),
+                height: vh(0.03),
+                alignSelf: 'center'
             }}
-            listMessageContainerStyle={{
-                margin: MARGIN,
-                backgroundColor: COLOR_HEADER
+            badgeStyle={{
+                width: '100%',
+                padding: PADDING / 2,
+                marginLeft: MARGIN / 2,
+                marginRight: MARGIN / 2,
+                borderRadius: BORDER_RADIUS / 2,
             }}
-            listMessageTextStyle={{
-                color: 'red'
+            badgeColors={COLOR_HEADER}
+            badgeTextStyle={{
+                textAlign: 'center'
             }}
-            listChildContainerStyle={{
-                margin: MARGIN
-            }}
-            listChildLabelStyle={{
-                fontWeight: 'bold',
-                margin: MARGIN
-            }}
+            extendableBadgeContainer={true}
+
         />
     )
 }

@@ -12,6 +12,7 @@ export default function Label(props: any) {
 const styles = StyleSheet.create({
     labelStyle: {
         padding: PADDING,
+        paddingBottom: 0,
         justifyContent: "center",
 
     }
