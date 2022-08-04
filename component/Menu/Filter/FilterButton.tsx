@@ -1,5 +1,5 @@
 import {Pressable, StyleSheet, Text} from "react-native";
-import {BORDER_RADIUS, BUTTON_HEIGHT, MARGIN, PADDING} from "../../../constants/style_constants";
+import {BORDER_RADIUS, DEFAULT_BUTTON_HEIGHT, MARGIN, PADDING} from "../../../constants/style_constants";
 import {COLOR_BACKGROUND} from "../../../constants/color_styles";
 import {vh} from "../../../functions/dimentions";
 
@@ -23,7 +23,7 @@ export default function FilterButton(props: any) {
 
 const styles = StyleSheet.create({
     outerButton: {
-        height: vh(BUTTON_HEIGHT),
+        height: vh(DEFAULT_BUTTON_HEIGHT),
         borderRadius: BORDER_RADIUS / 2,
         backgroundColor: COLOR_BACKGROUND,
         padding: PADDING / 8,

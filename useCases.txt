@@ -10,7 +10,6 @@ TODOs:
 -werbung -> wie?
 -Firebase Backend -> upload data auf firebase
 
-
 Cocktail App
 
 	•	Indirekte verstecke Werbung unterbringen, aller 15 - 20 Cocktails anzeigen —> 1 Cocktail Feld wird durch Werbefeld ersetzt
