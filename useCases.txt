@@ -2,6 +2,8 @@ Bugs:
 
 TODOs:
 -Zutatenfilter hinzufügen
+    -Dropdown für Zutaten (alle die es in der liste gibt) und filtermöglichkeit um in liste zu suchen
+    -wenn listen item geklickt wird es zu auswahl hinzugefügt
 -Font auswählen und defaults sizes setzen
 -refactor app states in store
 -refactor and optimize highlight card
