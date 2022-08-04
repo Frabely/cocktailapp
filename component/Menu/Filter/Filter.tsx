@@ -1,4 +1,5 @@
 import {
+    Pressable,
     StyleSheet,
     View
 } from "react-native";
@@ -36,7 +37,6 @@ export default function Filter(props: any) {
         props.setActiveFilter('')
     }
 
-    // @ts-ignore
     return (
 
         <View style={styles.filter}>
@@ -79,8 +79,6 @@ export default function Filter(props: any) {
                 <DropDownPickerWrapper/>
             <View style={styles.buttonBackgroundStyle}>
                 <StyledButton onPress={onClearAllFiltersClickHandler} title={'Clear all filters'}/>
-            </View>
-            <View style={styles.buttonBackgroundStyle}>
                 <StyledButton onPress={onHitsClickHandler} title={`Hits: ${props.currentDataSetLength}`}/>
             </View>
         </View>
@@ -108,6 +106,7 @@ const styles = StyleSheet.create({
         backgroundColor: LABEL_BACKGROUND,
         borderRadius: BORDER_RADIUS / 2,
         margin: MARGIN,
-        marginBottom: MARGIN / 10
+        marginBottom: MARGIN / 10,
+        flexDirection: 'row',
     }
 })

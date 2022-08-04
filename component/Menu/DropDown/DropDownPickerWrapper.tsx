@@ -1,7 +1,7 @@
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
 import {COLOR_BACKGROUND, COLOR_HEADER, LABEL_BACKGROUND} from "../../../constants/color_styles";
 import DropDownPicker from "react-native-dropdown-picker";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {INGREDIENT_LIST} from "../../../constants/filter_lists";
 import {vh, vw} from "../../../functions/dimentions";
 
@@ -10,12 +10,7 @@ export default function DropDownPickerWrapper() {
     const [value, setValue] = useState([]);
     const [items, setItems] = useState(INGREDIENT_LIST);
 
-    useEffect(() => {
-        console.log(value)
-    }, [value])
-
     DropDownPicker.setMode("BADGE");
-
 
     return (
         <DropDownPicker
@@ -29,7 +24,7 @@ export default function DropDownPickerWrapper() {
             setItems={setItems}
             multiple={true}
             min={0}
-            max={4}
+            max={3}
             flatListProps={{
                 initialNumToRender: 10
             }}
@@ -43,11 +38,6 @@ export default function DropDownPickerWrapper() {
                 backgroundColor: COLOR_BACKGROUND,
                 borderRadius: BORDER_RADIUS / 2,
                 margin: MARGIN / 2,
-                // borderBottomLeftRadius: 0,
-                // borderBottomRightRadius: 0,
-                // padding: PADDING,
-                // borderWidth: 3,
-                // borderColor: COLOR_HEADER
             }}
             searchTextInputStyle={{
                 backgroundColor: LABEL_BACKGROUND,
@@ -63,21 +53,17 @@ export default function DropDownPickerWrapper() {
                 backgroundColor: COLOR_HEADER,
                 padding: PADDING,
                 borderWidth: 0,
-                // borderColor: COLOR_BACKGROUND,
                 borderRadius: BORDER_RADIUS / 2,
                 overflow: 'hidden',
                 marginBottom: MARGIN * 5,
             }}
             // itemSeparator={true}
             listItemContainerStyle={{
-                // flex: 1,
                 alignItems: 'center',
-                // alignSelf: 'center',
                 backgroundColor: COLOR_BACKGROUND,
                 padding: PADDING / 2,
                 margin: MARGIN / 2,
                 borderRadius: BORDER_RADIUS / 2
-
             }}
             listItemLabelStyle={{
                 alignItems: 'center',
@@ -96,9 +82,6 @@ export default function DropDownPickerWrapper() {
             showArrowIcon={true}
             showTickIcon={false}
             dropDownDirection="TOP"
-            // mode={"BADGE"}
-            // showBadgeDot={true}
-            // renderBadgeItem={() => <Text>Test</Text>}
             // badgeStyle={{
             //     padding: 5
             // }}
@@ -113,26 +96,20 @@ export default function DropDownPickerWrapper() {
                 marginLeft: MARGIN,
                 marginRight: MARGIN,
             }}
-            // textStyle={{
-            //     fontSize: 15
-            // }}
             labelStyle={{
                 fontWeight: "bold"
             }}
             onSelectItem={(itemArray) => {
-                console.log(itemArray);
+                // console.log(itemArray);
             }}
-            // onChangeValue={(value) => {
-            //     console.log(value);
-            // }}
+            onChangeValue={(value) => {
+                // console.log(value);
+            }}
             maxHeight={300}
             arrowIconStyle={{
                 padding: PADDING,
                 margin: MARGIN,
                 //TODO fix very bad hard coded position
-                // position: 'absolute',
-                // top: -vh(0.055),
-                // left: vw(0.85),
                 width: vw(0.1),
                 height: vh(0.03),
                 alignSelf: 'center'
@@ -149,7 +126,6 @@ export default function DropDownPickerWrapper() {
                 textAlign: 'center'
             }}
             extendableBadgeContainer={true}
-
         />
     )
 }
