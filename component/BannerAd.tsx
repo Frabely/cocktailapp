@@ -6,8 +6,8 @@ import {BORDER_RADIUS, PADDING} from "../constants/style_constants";
 
 export default function BannerAd() {
     const unitID = Platform.select({
-        ios: "ca-app-pub-2825578775814315~7665719836",
-        android: "ca-app-pub-2825578775814315~7665719836",
+        ios: "ca-app-pub-2825578775814315/3283072956",
+        android: "ca-app-pub-2825578775814315/3283072956",
     })
 
     return (
