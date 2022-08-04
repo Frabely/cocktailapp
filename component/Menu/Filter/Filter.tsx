@@ -1,23 +1,27 @@
 import {
-    StyleSheet,
+    StyleSheet, Text,
     View
 } from "react-native";
 import {vh, vw} from "../../../functions/dimentions";
 import {
+    COLOR_BACKGROUND,
+    COLOR_HEADER, COLOR_OPACITY_BACKGROUND,
     LABEL_BACKGROUND
 } from "../../../constants/color_styles";
-import {BORDER_RADIUS, MARGIN} from "../../../constants/style_constants";
+import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
 import FilterPanel from "./FilterPanel";
 import {ALL} from "../../../constants/const_vars";
 import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
 import {changeAlcoholic} from "../../../reducers/Filter/alcoholicFilterReducer";
 import {changeCategory} from "../../../reducers/Filter/categoryFilterReducer";
 import StyledButton from "../../StyledButton";
-import {alcoholicList, categoryList} from "../../../constants/filter_lists";
+import {ALCOHOLIC_LIST, CATEGORY_LIST, INGREDIENT_LIST} from "../../../constants/filter_lists";
+import React from "react";
+import DropDownPickerWrapper from "./DropDownPickerWrapper";
 
-const alcFilterOptions = alcoholicList
-const categoryFilterOptions = categoryList
 
+const alcFilterOptions = ALCOHOLIC_LIST
+const categoryFilterOptions = CATEGORY_LIST
 
 export default function Filter(props: any) {
     const state = useAppSelector((state) => state)
@@ -33,6 +37,7 @@ export default function Filter(props: any) {
         props.setActiveFilter('')
     }
 
+    // @ts-ignore
     return (
 
         <View style={styles.filter}>
@@ -69,6 +74,10 @@ export default function Filter(props: any) {
                              numColumns={3}>
                 </FilterPanel>
             </View>
+            {/*<View style={[styles.rowStyle, {flexDirection: 'row'}]}>*/}
+                {/*<Label labelName={'Ingredients'}></Label>*/}
+                <DropDownPickerWrapper/>
+            {/*</View>*/}
             <View style={styles.buttonBackgroundStyle}>
                 <StyledButton onPress={onClearAllFiltersClickHandler} title={'Clear all filters'}/>
             </View>
