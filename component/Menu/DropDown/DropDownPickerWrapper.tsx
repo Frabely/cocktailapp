@@ -95,14 +95,11 @@ export default function DropDownPickerWrapper(props: any) {
             showArrowIcon={true}
             showTickIcon={false}
             dropDownDirection="TOP"
-            // badgeStyle={{
-            //     padding: 5
-            // }}
             disableBorderRadius={false}
             autoScroll={true}
             containerStyle={{
                 backgroundColor: LABEL_BACKGROUND,
-                width: vw(1)-2*PADDING,
+                width: vw(1) - 2 * PADDING,
                 borderBottomRightRadius: BORDER_RADIUS / 2,
                 borderBottomLeftRadius: BORDER_RADIUS / 2,
                 marginLeft: MARGIN,
@@ -123,17 +120,14 @@ export default function DropDownPickerWrapper(props: any) {
             // }}
             maxHeight={300}
             arrowIconStyle={{
-                padding: PADDING,
+                // padding: PADDING,
                 margin: MARGIN,
                 width: vw(0.1),
                 height: vh(0.03),
             }}
             badgeStyle={{
                 height: vh(DEFAULT_BUTTON_HEIGHT),
-                width: vw(0.75),
-                padding: PADDING / 2,
-                marginLeft: MARGIN / 2,
-                marginRight: MARGIN / 2,
+                width: vw(0.9) - 4 * PADDING - 2 * MARGIN,
                 borderRadius: BORDER_RADIUS / 2,
                 justifyContent: 'center'
             }}
@@ -147,11 +141,12 @@ export default function DropDownPickerWrapper(props: any) {
             /*Results container*/
             style={{
                 backgroundColor: 'rgba(255,255,255,0)',
+                padding: PADDING / 2,
                 borderWidth: 0,
                 borderRadius: BORDER_RADIUS / 2,
                 flexDirection: 'row',
                 alignItems: 'center',
-                justifyContent: 'space-evenly'
+                justifyContent: 'space-between',
             }}
         />
     )
