@@ -1,7 +1,7 @@
 import dummyData from "./constants/dummyData3";
 import {useEffect, useState} from "react";
 import {FlatList, StyleSheet, View} from "react-native";
-import {useAppSelector} from "./constants/hooks";
+import {useAppDispatch, useAppSelector} from "./constants/hooks";
 import {vh} from "./functions/dimentions";
 import Card from "./component/Card";
 import Header from "./component/Header";
@@ -13,14 +13,19 @@ import {COLOR_BACKGROUND} from "./constants/color_styles";
 import {PADDING} from "./constants/style_constants";
 import {ALL, FILTER, SEARCH_FIELD} from "./constants/const_vars";
 import {StatusBar} from "expo-status-bar";
+import {changeAlcoholic} from "./reducers/Filter/alcoholicFilterReducer";
+import {changeCategory} from "./reducers/Filter/categoryFilterReducer";
 
 const data: any[] = dummyData.drinks;
 export default function AppEntry() {
+    const state = useAppSelector((state) => state)
+    const dispatch = useAppDispatch()
+
     const [currentItem, setCurrentItem] = useState(undefined)
     const [currentDataSet, setCurrentDataSet] = useState(data)
     const [currentSearchFieldInput, setCurrentSearchFieldInput] = useState('')
     const [activeFilter, setActiveFilter] = useState('')
-    const state = useAppSelector((state) => state)
+    const [ingredientsValue, setIngredientsValue] = useState(state.ingredientsFilter)
 
     useEffect(() => {
             {
@@ -100,6 +105,13 @@ export default function AppEntry() {
         setCurrentItem(item)
     }
 
+    const onClearAllFiltersClickHandler = () => {
+        dispatch(changeAlcoholic([ALL]))
+        dispatch(changeCategory([ALL]))
+        setCurrentSearchFieldInput('')
+        setIngredientsValue([])
+    }
+
     const renderItem = ({item, index}: any) => {
         return (
             <Card key={item.idDrink}
@@ -117,7 +129,10 @@ export default function AppEntry() {
                 {(activeFilter === FILTER) && (
                     <Filter setCurrentSearchFieldInput={setCurrentSearchFieldInput}
                             setActiveFilter={setActiveFilter}
-                            currentDataSetLength={currentDataSet.length}/>
+                            currentDataSetLength={currentDataSet.length}
+                            onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}
+                            ingredientsValue={ingredientsValue}
+                            setIngredientsValue={setIngredientsValue} />
                 )}
                 {(activeFilter === SEARCH_FIELD) && (
                     <SearchField setCurrentSearchFieldInput={setCurrentSearchFieldInput}
@@ -129,7 +144,7 @@ export default function AppEntry() {
                     <HighlightedCard item={currentItem} onImageClickHandler={onImageClickHandler}/>
                 )}
                 {(currentDataSet.length === 0) && (
-                    <NoHits setCurrentSearchFieldInput={setCurrentSearchFieldInput}/>
+                    <NoHits onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>
                 )}
                 <FlatList
                     numColumns={3}

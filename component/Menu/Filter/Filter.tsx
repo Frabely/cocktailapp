@@ -9,12 +9,11 @@ import {
 import {BORDER_RADIUS, MARGIN} from "../../../constants/style_constants";
 import FilterPanel from "./FilterPanel";
 import {ALL} from "../../../constants/const_vars";
-import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
+import {useAppSelector} from "../../../constants/hooks";
 import {changeAlcoholic} from "../../../reducers/Filter/alcoholicFilterReducer";
 import {changeCategory} from "../../../reducers/Filter/categoryFilterReducer";
 import StyledButton from "../../StyledButton";
 import {ALCOHOLIC_LIST, CATEGORY_LIST} from "../../../constants/filter_lists";
-import React, {useState} from "react";
 import DropDownPickerWrapper from "../DropDown/DropDownPickerWrapper";
 import Label from "./Label";
 
@@ -24,16 +23,6 @@ const categoryFilterOptions = CATEGORY_LIST
 
 export default function Filter(props: any) {
     const state = useAppSelector((state) => state)
-    const dispatch = useAppDispatch()
-
-    const [ingredientsValue, setIngredientsValue] = useState(state.ingredientsFilter)
-
-    const onClearAllFiltersClickHandler = () => {
-        dispatch(changeAlcoholic([ALL]))
-        dispatch(changeCategory([ALL]))
-        props.setCurrentSearchFieldInput('')
-        setIngredientsValue([])
-    }
 
     const onHitsClickHandler = () => {
         props.setActiveFilter('')
@@ -79,10 +68,10 @@ export default function Filter(props: any) {
                 <Label labelName={'Ingredients'}/>
             </View>
                 <DropDownPickerWrapper
-                    setIngredientsValue={setIngredientsValue}
-                    ingredientsValue={ingredientsValue}/>
+                    setIngredientsValue={props.setIngredientsValue}
+                    ingredientsValue={props.ingredientsValue}/>
             <View style={styles.buttonBackgroundStyle}>
-                <StyledButton onPress={onClearAllFiltersClickHandler} title={'Clear all filters'}/>
+                <StyledButton onPress={props.onClearAllFiltersClickHandler} title={'Clear all filters'}/>
                 <StyledButton onPress={onHitsClickHandler} title={`Hits: ${props.currentDataSetLength}`}/>
             </View>
         </View>
