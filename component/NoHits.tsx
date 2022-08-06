@@ -2,7 +2,7 @@ import {StyleSheet, Text, View} from "react-native";
 import StyledButton from "./StyledButton";
 import {vh, vw} from "../functions/dimentions";
 import {LABEL_BACKGROUND} from "../constants/color_styles";
-import {BORDER_RADIUS, MARGIN} from "../constants/style_constants";
+import {BORDER_RADIUS, MARGIN, PADDING} from "../constants/style_constants";
 
 export default function NoHits(props: any) {
     return (
@@ -16,16 +16,16 @@ export default function NoHits(props: any) {
 }
 const styles = StyleSheet.create({
     noHits: {
-        height: vh(0.9),
+        height: '50%',
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "flex-end",
     }, noHitsInner: {
         width: vw(0.5),
         height: vh(0.15),
         backgroundColor: LABEL_BACKGROUND,
         borderRadius: BORDER_RADIUS / 2,
-        margin: MARGIN,
-        marginTop: MARGIN / 10,
+        padding: PADDING,
+        paddingTop: PADDING / 10,
         alignItems: "center",
         justifyContent: "center",
     }
