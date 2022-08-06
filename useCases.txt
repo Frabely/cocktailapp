@@ -8,6 +8,8 @@ TODOs:
 -zahnrad icon in header für zB font und font size
 -werbung -> wie?
 -Firebase Backend -> upload data auf firebase
+-add app to stores
+    -create logo and splash -> already done? https://www.figma.com/file/4TD0sMutRjxBI6zKySFV2n/Expo-App-Icon-%26-Splash-(Community)?node-id=1%3A1357
 
 Cocktail App
 
