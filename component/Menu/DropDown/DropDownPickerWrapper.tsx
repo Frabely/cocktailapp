@@ -4,6 +4,8 @@ import DropDownPicker from "react-native-dropdown-picker";
 import {useState} from "react";
 import {INGREDIENT_LIST} from "../../../constants/filter_lists";
 import {vh, vw} from "../../../functions/dimentions";
+import {Platform} from "react-native";
+import * as OS from "os";
 
 export default function DropDownPickerWrapper() {
     const [open, setOpen] = useState(false);
@@ -11,6 +13,7 @@ export default function DropDownPickerWrapper() {
     const [items, setItems] = useState(INGREDIENT_LIST);
 
     DropDownPicker.setMode("BADGE");
+    DropDownPicker.setListMode("SCROLLVIEW");
 
     return (
         <DropDownPicker
@@ -55,7 +58,7 @@ export default function DropDownPickerWrapper() {
                 borderWidth: 0,
                 borderRadius: BORDER_RADIUS / 2,
                 overflow: 'hidden',
-                marginBottom: MARGIN * 5,
+                marginBottom: MARGIN * 4,
             }}
             // itemSeparator={true}
             listItemContainerStyle={{
@@ -87,15 +90,25 @@ export default function DropDownPickerWrapper() {
             // }}
             disableBorderRadius={false}
             autoScroll={true}
-            containerStyle={{
+            containerStyle={[{
                 backgroundColor: LABEL_BACKGROUND,
                 // TODO fix vw(0.947) to vw(1) if possible (maintainable)
-                width: vw(0.947),
+
+                // width: '100%',
                 borderBottomRightRadius: BORDER_RADIUS / 2,
                 borderBottomLeftRadius: BORDER_RADIUS / 2,
                 marginLeft: MARGIN,
                 marginRight: MARGIN,
-            }}
+                //TODO find outer container prop
+            },
+                (Platform.OS === 'android') ?
+                    {width: vw(0.9449), padding: PADDING} :
+                    {width: vw(0.947), padding: 0}
+            ]}
+            modalContentContainerStyle={{
+                backgroundColor: COLOR_HEADER
+            }
+            }
             labelStyle={{
                 fontWeight: "bold"
             }}
@@ -112,7 +125,7 @@ export default function DropDownPickerWrapper() {
                 //TODO fix very bad hard coded position
                 width: vw(0.1),
                 height: vh(0.03),
-                alignSelf: 'center'
+                alignSelf: 'center',
             }}
             badgeStyle={{
                 width: '100%',
@@ -120,12 +133,24 @@ export default function DropDownPickerWrapper() {
                 marginLeft: MARGIN / 2,
                 marginRight: MARGIN / 2,
                 borderRadius: BORDER_RADIUS / 2,
+
             }}
             badgeColors={COLOR_HEADER}
             badgeTextStyle={{
                 textAlign: 'center'
             }}
             extendableBadgeContainer={true}
+            showBadgeDot={false}
+            listMessageTextStyle={{
+                color: 'red'
+            }}
+            listMode={(Platform.OS === 'web' ? 'FLATLIST' : 'MODAL')}
+            modalProps={{
+                animationType: "fade"
+            }}
+            scrollViewProps={{
+                decelerationRate: "fast"
+            }}
         />
     )
 }
