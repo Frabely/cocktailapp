@@ -1,16 +1,26 @@
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
 import {COLOR_BACKGROUND, COLOR_HEADER, LABEL_BACKGROUND} from "../../../constants/color_styles";
 import DropDownPicker from "react-native-dropdown-picker";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {INGREDIENT_LIST} from "../../../constants/filter_lists";
 import {vh, vw} from "../../../functions/dimentions";
 import {Platform} from "react-native";
-import * as OS from "os";
+import {useAppDispatch} from "../../../constants/hooks";
+import {changeIngredients} from "../../../reducers/Filter/ingredientsFilterReducer";
+import {
+    INGREDIENTS_FILTER_SELECTION_NUMBER_MAX,
+    INGREDIENTS_FILTER_SELECTION_NUMBER_MIN
+} from "../../../constants/const_vars";
 
-export default function DropDownPickerWrapper() {
+export default function DropDownPickerWrapper(props: any) {
     const [open, setOpen] = useState(false);
-    const [value, setValue] = useState([]);
     const [items, setItems] = useState(INGREDIENT_LIST);
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        dispatch(changeIngredients(props.ingredientsValue))
+    }, [props.ingredientsValue])
+
 
     DropDownPicker.setMode("BADGE");
     DropDownPicker.setListMode("SCROLLVIEW");
@@ -20,14 +30,14 @@ export default function DropDownPickerWrapper() {
             // TODO add category to list (parent key) see docs
             // TODO https://hossein-zare.github.io/react-native-dropdown-picker-website/docs/advanced/category
             open={open}
-            value={value}
+            value={props.ingredientsValue}
             items={items}
             setOpen={setOpen}
-            setValue={setValue}
+            setValue={props.setIngredientsValue}
             setItems={setItems}
             multiple={true}
-            min={0}
-            max={3}
+            min={INGREDIENTS_FILTER_SELECTION_NUMBER_MIN}
+            max={INGREDIENTS_FILTER_SELECTION_NUMBER_MAX}
             flatListProps={{
                 initialNumToRender: 10
             }}
@@ -112,12 +122,12 @@ export default function DropDownPickerWrapper() {
             labelStyle={{
                 fontWeight: "bold"
             }}
-            onSelectItem={(itemArray) => {
-                // console.log(itemArray);
-            }}
-            onChangeValue={(value) => {
-                // console.log(value);
-            }}
+            // onSelectItem={(itemArray) => {
+            //     console.log(itemArray);
+            // }}
+            // onChangeValue={(value) => {
+            //     console.log(value);
+            // }}
             maxHeight={300}
             arrowIconStyle={{
                 padding: PADDING,

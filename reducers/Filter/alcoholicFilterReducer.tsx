@@ -1,7 +1,5 @@
 import {ALL} from "../../constants/const_vars";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {RootState} from "../../store/configureStore";
-
 
 const initialState: any[] = [ALL];
 

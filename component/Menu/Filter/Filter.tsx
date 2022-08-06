@@ -1,5 +1,4 @@
 import {
-    Pressable,
     StyleSheet,
     View
 } from "react-native";
@@ -15,7 +14,7 @@ import {changeAlcoholic} from "../../../reducers/Filter/alcoholicFilterReducer";
 import {changeCategory} from "../../../reducers/Filter/categoryFilterReducer";
 import StyledButton from "../../StyledButton";
 import {ALCOHOLIC_LIST, CATEGORY_LIST} from "../../../constants/filter_lists";
-import React from "react";
+import React, {useState} from "react";
 import DropDownPickerWrapper from "../DropDown/DropDownPickerWrapper";
 import Label from "./Label";
 
@@ -27,10 +26,13 @@ export default function Filter(props: any) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
 
+    const [ingredientsValue, setIngredientsValue] = useState(state.ingredientsFilter)
+
     const onClearAllFiltersClickHandler = () => {
         dispatch(changeAlcoholic([ALL]))
         dispatch(changeCategory([ALL]))
         props.setCurrentSearchFieldInput('')
+        setIngredientsValue([])
     }
 
     const onHitsClickHandler = () => {
@@ -68,15 +70,17 @@ export default function Filter(props: any) {
                              labelName={'Category'}
                              default={[ALL]}
                              isMultiSelectable={true}
-                             filterState={state.category}
+                             filterState={state.categoryFilter}
                              setFilterState={changeCategory}
                              numColumns={3}>
                 </FilterPanel>
             </View>
             <View style={[styles.rowStyle, {flexDirection: 'row', borderBottomLeftRadius: 0, borderBottomRightRadius: 0}]}>
-                <Label labelName={'Ingredients'}></Label>
+                <Label labelName={'Ingredients'}/>
             </View>
-                <DropDownPickerWrapper/>
+                <DropDownPickerWrapper
+                    setIngredientsValue={setIngredientsValue}
+                    ingredientsValue={ingredientsValue}/>
             <View style={styles.buttonBackgroundStyle}>
                 <StyledButton onPress={onClearAllFiltersClickHandler} title={'Clear all filters'}/>
                 <StyledButton onPress={onHitsClickHandler} title={`Hits: ${props.currentDataSetLength}`}/>

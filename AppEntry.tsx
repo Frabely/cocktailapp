@@ -29,11 +29,11 @@ export default function AppEntry() {
                         return item
                 })
                 const categoryFilteredData: any[] = alcoholFilteredData.filter((item) => {
-                    if (state.category.includes(ALL))
+                    if (state.categoryFilter.includes(ALL))
                         return item
                     else {
                         let isFiltered = false
-                        state.category.forEach((itemFilter) => {
+                        state.categoryFilter.forEach((itemFilter) => {
                             if (itemFilter === item.strCategory) {
                                 isFiltered = true
                             }
@@ -52,15 +52,40 @@ export default function AppEntry() {
                         return item
                     }
                 })
+
                 if (searchFieldFilteredData.length === 0 || !searchFieldFilteredData.includes(currentItem)) {
                     setCurrentItem(undefined)
                 }
-                // console.log(searchFieldFilteredData)
-                setCurrentDataSet(searchFieldFilteredData)
+                if (state.ingredientsFilter.length !== 0) {
+                    const ingredientsFilteredData: any[] = searchFieldFilteredData.filter((item) => {
+                        let isFiltered = false
+                        state.ingredientsFilter.forEach((itemFilter) => {
+                            for (let index: number = 1; index < 16; index++) {
+                                if (item[`strIngredient${index}`] !== null) {
+                                    const itemFilterLowerNoSpace = itemFilter.toLowerCase().replace(" ", "")
+                                    const itemNameLowerNoSpace = item[`strIngredient${index}`].toLowerCase().replace(" ", "")
+                                    if (itemFilterLowerNoSpace === itemNameLowerNoSpace) {
+                                        isFiltered = true
+                                    }
+                                }
+                            }
+                        })
+                        if (isFiltered) {
+                            isFiltered = false
+                            return item
+                        }
+                    })
+                    setCurrentDataSet(ingredientsFilteredData)
+                } else {
+                    // console.log(searchFieldFilteredData)
+                    setCurrentDataSet(searchFieldFilteredData)
+                }
+
+
             }
         }
         ,
-        [state.alcoholicFilter, state.category, currentSearchFieldInput]
+        [state.alcoholicFilter, state.categoryFilter, state.ingredientsFilter, currentSearchFieldInput]
     )
 
     const onImageClickHandler = (

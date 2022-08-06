@@ -4,12 +4,14 @@ import alcoholicFilterSlice from "../reducers/Filter/alcoholicFilterReducer";
 import glassTypeFilterSlice from "../reducers/Filter/glassTypeFilterReducer";
 import categoryFilterSlice from "../reducers/Filter/categoryFilterReducer";
 import applyFilterSlice from "../reducers/Filter/applyFiltersReducer";
+import ingredientsFilterSlice from "../reducers/Filter/ingredientsFilterReducer";
 
 const rootReducer = combineReducers({
     alcoholicFilter: alcoholicFilterSlice,
     glassTypeFilter: glassTypeFilterSlice,
-    category: categoryFilterSlice,
-    applyFilters: applyFilterSlice
+    categoryFilter: categoryFilterSlice,
+    applyFilters: applyFilterSlice,
+    ingredientsFilter: ingredientsFilterSlice
 })
 
 const store = configureStore({
