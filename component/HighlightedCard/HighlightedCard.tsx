@@ -3,38 +3,11 @@ import {vh} from "../../functions/dimentions";
 import {useEffect, useState} from "react";
 import generate_box_shadow_style from "../../functions/generate_box_shadow_style";
 import {BORDER_RADIUS, PADDING} from "../../constants/style_constants";
-import {COLOR_HEADER, COLOR_OPACITY_BACKGROUND} from "../../constants/color_styles";
-// TODO remove or use?
-import {
-    useFonts,
-    TitilliumWeb_200ExtraLight,
-    TitilliumWeb_200ExtraLight_Italic,
-    TitilliumWeb_300Light,
-    TitilliumWeb_300Light_Italic,
-    TitilliumWeb_400Regular,
-    TitilliumWeb_400Regular_Italic,
-    TitilliumWeb_600SemiBold,
-    TitilliumWeb_600SemiBold_Italic,
-    TitilliumWeb_700Bold,
-    TitilliumWeb_700Bold_Italic,
-    TitilliumWeb_900Black,
-} from '@expo-google-fonts/titillium-web';
+import {COLOR_OPACITY_BACKGROUND} from "../../constants/color_styles";
 import HighlightedCardInnerImage from "./HighlightedCardInnerImage";
-import {
-    FONT_JENGKOL_JE3D0,
-    FONT_MONOSPACE,
-    FONT_NORMAL,
-    FONT_NOTOSERIF,
-    FONT_ROBOTO,
-    FONT_SANS_SERIF,
-    FONT_SANS_SERIF_CONDENSED, FONT_SANS_SERIF_THIN,
-    FONT_SERIF
-} from "../../constants/font_style";
 
 export default function HighlightedCard(props: any) {
     const [arrayIngredients, setArrayIngredients] = useState([])
-
-
     generate_box_shadow_style(
         styles,
         -2,

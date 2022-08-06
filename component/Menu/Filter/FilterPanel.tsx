@@ -37,7 +37,6 @@ export default function FilterPanel(props: any) {
             resultArray = array.filter(itemOnIndex => itemOnIndex !== ALL)
         }
         dispatch(props.setFilterState(resultArray))
-
     }
 
     const renderItem = ({item, index}: any) => {

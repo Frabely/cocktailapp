@@ -50,7 +50,6 @@ export default function AppEntry() {
                     }
                 })
                 const searchFieldFilteredData: any[] = categoryFilteredData.filter((item) => {
-                    // console.log(currentSearchFieldInput)
                     const inputLowerNoSpace = currentSearchFieldInput.toLowerCase().replace(" ", "")
                     const itemNameLowerNoSpace = item.strDrink.toLowerCase().replace(" ", "")
                     if (itemNameLowerNoSpace.includes(inputLowerNoSpace)) {
@@ -82,11 +81,8 @@ export default function AppEntry() {
                     })
                     setCurrentDataSet(ingredientsFilteredData)
                 } else {
-                    // console.log(searchFieldFilteredData)
                     setCurrentDataSet(searchFieldFilteredData)
                 }
-
-
             }
         }
         ,
@@ -112,7 +108,7 @@ export default function AppEntry() {
         setIngredientsValue([])
     }
 
-    const renderItem = ({item, index}: any) => {
+    const renderItem = ({item}: any) => {
         return (
             <Card key={item.idDrink}
                   item={item}

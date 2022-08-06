@@ -14,6 +14,5 @@ const styles = StyleSheet.create({
         padding: PADDING,
         paddingBottom: 0,
         justifyContent: "center",
-
     }
 })

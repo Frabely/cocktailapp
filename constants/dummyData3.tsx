@@ -1,5 +1,3 @@
-import {ALL} from "./const_vars";
-
 const data =
     {
         "drinks": [
@@ -8046,7 +8044,7 @@ const data =
                 "strIngredient15": null,
                 "strMeasure1": "black",
                 "strMeasure2": null,
-                "strMeasure3": " pods\n",
+                "strMeasure3": "pods",
                 "strMeasure4": null,
                 "strMeasure5": null,
                 "strMeasure6": null,

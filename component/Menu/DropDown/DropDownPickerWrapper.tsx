@@ -21,7 +21,6 @@ export default function DropDownPickerWrapper(props: any) {
         dispatch(changeIngredients(props.ingredientsValue))
     }, [props.ingredientsValue])
 
-
     DropDownPicker.setMode("BADGE");
     DropDownPicker.setListMode("SCROLLVIEW");
 
@@ -70,7 +69,6 @@ export default function DropDownPickerWrapper(props: any) {
                 overflow: 'hidden',
                 marginBottom: MARGIN * 4,
             }}
-            // itemSeparator={true}
             listItemContainerStyle={{
                 alignItems: 'center',
                 backgroundColor: COLOR_BACKGROUND,
@@ -120,7 +118,6 @@ export default function DropDownPickerWrapper(props: any) {
             // }}
             maxHeight={300}
             arrowIconStyle={{
-                // padding: PADDING,
                 margin: MARGIN,
                 width: vw(0.1),
                 height: vh(0.03),

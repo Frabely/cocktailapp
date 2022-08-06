@@ -1,12 +1,7 @@
-import {
-    StyleSheet,
-    View
-} from "react-native";
-import {vh, vw} from "../../../functions/dimentions";
-import {
-    LABEL_BACKGROUND
-} from "../../../constants/color_styles";
-import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
+import {StyleSheet, View} from "react-native";
+import {vw} from "../../../functions/dimentions";
+import {LABEL_BACKGROUND} from "../../../constants/color_styles";
+import {BORDER_RADIUS, MARGIN} from "../../../constants/style_constants";
 import FilterPanel from "./FilterPanel";
 import {ALL} from "../../../constants/const_vars";
 import {useAppSelector} from "../../../constants/hooks";
@@ -29,7 +24,6 @@ export default function Filter(props: any) {
     }
 
     return (
-
         <View style={styles.filter}>
             <View style={styles.rowStyle}>
                 <FilterPanel options={alcFilterOptions}
@@ -64,12 +58,16 @@ export default function Filter(props: any) {
                              numColumns={3}>
                 </FilterPanel>
             </View>
-            <View style={[styles.rowStyle, {flexDirection: 'row', borderBottomLeftRadius: 0, borderBottomRightRadius: 0}]}>
+            <View style={[styles.rowStyle, {
+                flexDirection: 'row',
+                borderBottomLeftRadius: 0,
+                borderBottomRightRadius: 0
+            }]}>
                 <Label labelName={'Ingredients'}/>
             </View>
-                <DropDownPickerWrapper
-                    setIngredientsValue={props.setIngredientsValue}
-                    ingredientsValue={props.ingredientsValue}/>
+            <DropDownPickerWrapper
+                setIngredientsValue={props.setIngredientsValue}
+                ingredientsValue={props.ingredientsValue}/>
             <View style={styles.buttonBackgroundStyle}>
                 <StyledButton onPress={props.onClearAllFiltersClickHandler} title={'Clear all filters'}/>
                 <StyledButton onPress={onHitsClickHandler} title={`Hits: ${props.currentDataSetLength}`}/>
@@ -80,18 +78,16 @@ export default function Filter(props: any) {
 
 const styles = StyleSheet.create({
     filter: {
-        // height: vh(0.9),
         width: vw(1),
         position: "absolute",
         left: 0,
         top: 0,
         zIndex: 1,
-        // padding: PADDING
     },
     rowStyle: {
         flexDirection: 'row',
         backgroundColor: LABEL_BACKGROUND,
-        borderRadius: BORDER_RADIUS/2,
+        borderRadius: BORDER_RADIUS / 2,
         marginLeft: MARGIN,
         marginRight: MARGIN,
         marginTop: MARGIN
