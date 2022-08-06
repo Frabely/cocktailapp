@@ -109,11 +109,8 @@ export default function DropDownPickerWrapper(props: any) {
                 borderBottomLeftRadius: BORDER_RADIUS / 2,
                 marginLeft: MARGIN,
                 marginRight: MARGIN,
-                //TODO find outer container prop
             },
-                (Platform.OS === 'android') ?
-                    {width: vw(0.9449), padding: PADDING} :
-                    {width: vw(0.947), padding: 0}
+                (Platform.OS === 'android') ? {width: vw(0.9449)} : {width: vw(0.947)}
             ]}
             modalContentContainerStyle={{
                 backgroundColor: COLOR_HEADER
@@ -147,7 +144,8 @@ export default function DropDownPickerWrapper(props: any) {
             }}
             badgeColors={COLOR_HEADER}
             badgeTextStyle={{
-                textAlign: 'center'
+                textAlign: 'center',
+                width: '100%'
             }}
             extendableBadgeContainer={true}
             showBadgeDot={false}
@@ -160,6 +158,12 @@ export default function DropDownPickerWrapper(props: any) {
             }}
             scrollViewProps={{
                 decelerationRate: "fast"
+            }}
+            /*Results container*/
+            style={{
+                backgroundColor: 'rgba(255,255,255,0)',
+                borderWidth: 0,
+                borderRadius: BORDER_RADIUS / 2
             }}
         />
     )
