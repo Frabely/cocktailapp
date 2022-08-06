@@ -1,4 +1,4 @@
-import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
+import {BORDER_RADIUS, DEFAULT_BUTTON_HEIGHT, MARGIN, PADDING} from "../../../constants/style_constants";
 import {COLOR_BACKGROUND, COLOR_HEADER, LABEL_BACKGROUND} from "../../../constants/color_styles";
 import DropDownPicker from "react-native-dropdown-picker";
 import {useEffect, useState} from "react";
@@ -100,18 +100,14 @@ export default function DropDownPickerWrapper(props: any) {
             // }}
             disableBorderRadius={false}
             autoScroll={true}
-            containerStyle={[{
+            containerStyle={{
                 backgroundColor: LABEL_BACKGROUND,
-                // TODO fix vw(0.947) to vw(1) if possible (maintainable)
-
-                // width: '100%',
+                width: vw(1)-2*PADDING,
                 borderBottomRightRadius: BORDER_RADIUS / 2,
                 borderBottomLeftRadius: BORDER_RADIUS / 2,
                 marginLeft: MARGIN,
                 marginRight: MARGIN,
-            },
-                (Platform.OS === 'android') ? {width: vw(0.9449)} : {width: vw(0.947)}
-            ]}
+            }}
             modalContentContainerStyle={{
                 backgroundColor: COLOR_HEADER
             }
@@ -129,41 +125,33 @@ export default function DropDownPickerWrapper(props: any) {
             arrowIconStyle={{
                 padding: PADDING,
                 margin: MARGIN,
-                //TODO fix very bad hard coded position
                 width: vw(0.1),
                 height: vh(0.03),
-                alignSelf: 'center',
             }}
             badgeStyle={{
-                width: '100%',
+                height: vh(DEFAULT_BUTTON_HEIGHT),
+                width: vw(0.75),
                 padding: PADDING / 2,
                 marginLeft: MARGIN / 2,
                 marginRight: MARGIN / 2,
                 borderRadius: BORDER_RADIUS / 2,
-
+                justifyContent: 'center'
             }}
             badgeColors={COLOR_HEADER}
             badgeTextStyle={{
                 textAlign: 'center',
-                width: '100%'
             }}
             extendableBadgeContainer={true}
             showBadgeDot={false}
-            listMessageTextStyle={{
-                color: 'red'
-            }}
             listMode={(Platform.OS === 'web' ? 'FLATLIST' : 'MODAL')}
-            modalProps={{
-                animationType: "fade"
-            }}
-            scrollViewProps={{
-                decelerationRate: "fast"
-            }}
             /*Results container*/
             style={{
                 backgroundColor: 'rgba(255,255,255,0)',
                 borderWidth: 0,
-                borderRadius: BORDER_RADIUS / 2
+                borderRadius: BORDER_RADIUS / 2,
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-evenly'
             }}
         />
     )

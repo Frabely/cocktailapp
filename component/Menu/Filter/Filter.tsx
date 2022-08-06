@@ -6,7 +6,7 @@ import {vh, vw} from "../../../functions/dimentions";
 import {
     LABEL_BACKGROUND
 } from "../../../constants/color_styles";
-import {BORDER_RADIUS, MARGIN} from "../../../constants/style_constants";
+import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
 import FilterPanel from "./FilterPanel";
 import {ALL} from "../../../constants/const_vars";
 import {useAppSelector} from "../../../constants/hooks";
@@ -80,12 +80,13 @@ export default function Filter(props: any) {
 
 const styles = StyleSheet.create({
     filter: {
-        height: vh(0.9),
+        // height: vh(0.9),
         width: vw(1),
         position: "absolute",
         left: 0,
         top: 0,
         zIndex: 1,
+        // padding: PADDING
     },
     rowStyle: {
         flexDirection: 'row',
@@ -99,7 +100,6 @@ const styles = StyleSheet.create({
         backgroundColor: LABEL_BACKGROUND,
         borderRadius: BORDER_RADIUS / 2,
         margin: MARGIN,
-        marginBottom: MARGIN / 10,
         flexDirection: 'row',
     }
 })
