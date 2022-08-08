@@ -1,8 +1,6 @@
 Bugs:
 
 TODOs:
--loading screen component - use while fetching data
-    -
 -Font auswählen und defaults sizes setzen
 -refactor app states in store
 -refactor and optimize highlight card
