@@ -1,5 +1,6 @@
-import {Animated, ImageBackground, StyleSheet} from "react-native";
+import {Animated, ImageBackground, StyleSheet, View} from "react-native";
 import {useRef} from "react";
+import {vh} from "../functions/dimentions";
 
 export default function LoadingScreen(props: any) {
 
@@ -15,26 +16,26 @@ export default function LoadingScreen(props: any) {
     };
 
     return (
-        <Animated.View
+        <View
             style={[
                 styles.loadingScreen,
                 {
                     // Bind height to animated value
-                    height: props.openMenuAnimation
+                    // height: props.openMenuAnimation
                     // transform: [{ scaleX: props.openMenuAnimation }],
                 }
             ]}
         >
-            <ImageBackground source={}/>
+            {/*<ImageBackground style={{height: '100%', width: '100%'}} source={{uri: "./assets/images/adaptive-icon.png"}}/>*/}
 
-        </Animated.View>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
     loadingScreen: {
-        height: '50%',
+        height: vh(0.9),
         alignItems: "center",
-        justifyContent: "flex-end",
+        justifyContent: "center",
     },
 })

@@ -15,6 +15,7 @@ import {ALL, FILTER, SEARCH_FIELD} from "./constants/const_vars";
 import {StatusBar} from "expo-status-bar";
 import {changeAlcoholic} from "./reducers/Filter/alcoholicFilterReducer";
 import {changeCategory} from "./reducers/Filter/categoryFilterReducer";
+import LoadingScreen from "./component/LoadingScreen";
 
 const data: any[] = dummyData.drinks;
 export default function AppEntry() {
@@ -121,6 +122,7 @@ export default function AppEntry() {
         <>
             <Header setActiveFilter={setActiveFilter}
                     activeFilter={activeFilter}/>
+            {/*<LoadingScreen/>*/}
             <View style={styles.app}>
                 {(activeFilter === FILTER) && (
                     <Filter setCurrentSearchFieldInput={setCurrentSearchFieldInput}
