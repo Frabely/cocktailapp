@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
         padding: PADDING,
         borderRadius: BORDER_RADIUS/2,
         alignItems: "center",
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     input: {
         backgroundColor: LABEL_BACKGROUND,
@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
     },
     inputCard: {
         width: '100%',
+        marginBottom: MARGIN/2,
         backgroundColor: COLOR_BACKGROUND,
         borderRadius: BORDER_RADIUS/2,
     }
