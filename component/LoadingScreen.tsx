@@ -1,41 +1,57 @@
-import {Animated, ImageBackground, StyleSheet, View} from "react-native";
-import {useRef} from "react";
-import {vh} from "../functions/dimentions";
+import {Animated, Easing, Image, StyleSheet, View} from "react-native";
+import {LABEL_BACKGROUND} from "../constants/color_styles";
+import {BORDER_RADIUS} from "../constants/style_constants";
 
 export default function LoadingScreen(props: any) {
-
-    const rotateIconAnimation = useRef(new Animated.Value(0)).current;
+    let spinValue  = new Animated.Value(0)
 
     const rotate = () => {
-        // Will change fadeAnim value to 1 in 5 seconds
-        Animated.timing(rotateIconAnimation, {
-            toValue: 359,
-            duration: 500,
+        // Turning while this screen is active
+        Animated.timing(spinValue, {
+            toValue: 1,
+            duration: 1500,
+            easing: Easing.linear,
             useNativeDriver: false
-        }).start();
+        }).start(() => {
+            spinValue.setValue(0)
+            rotate()
+        });
     };
 
-    return (
-        <View
-            style={[
-                styles.loadingScreen,
-                {
-                    // Bind height to animated value
-                    // height: props.openMenuAnimation
-                    // transform: [{ scaleX: props.openMenuAnimation }],
-                }
-            ]}
-        >
-            {/*<ImageBackground style={{height: '100%', width: '100%'}} source={{uri: "./assets/images/adaptive-icon.png"}}/>*/}
+    const spin = spinValue.interpolate({
+        inputRange: [0, 1],
+        outputRange: ['0deg', '360deg']
+    })
 
+    rotate()
+
+    return (
+        <View style={styles.loadingScreenOuter}>
+            <Animated.View style={[
+                styles.loadingScreenInner,
+            {
+                transform: [{rotate: spin}]
+            }
+                ]}>
+                <Image style={{height: '100%', width: '100%'}}
+                       source={require('./../assets/images/adaptive-icon.png')}/>
+            </Animated.View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    loadingScreen: {
-        height: vh(0.9),
+    loadingScreenOuter: {
+        height: '100%',
+        width: '100%',
+        position: "absolute",
         alignItems: "center",
         justifyContent: "center",
     },
+    loadingScreenInner: {
+        height: '10%',
+        width: '20%',
+        backgroundColor: LABEL_BACKGROUND,
+        borderRadius: BORDER_RADIUS,
+    }
 })

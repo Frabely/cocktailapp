@@ -27,9 +27,12 @@ export default function AppEntry() {
     const [currentSearchFieldInput, setCurrentSearchFieldInput] = useState('')
     const [activeFilter, setActiveFilter] = useState('')
     const [ingredientsValue, setIngredientsValue] = useState(state.ingredientsFilter)
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
-            {
+            setIsLoading(true)
+            //TODO set timeout so see Loading spinner
+            setTimeout(() => {
                 const alcoholFilteredData: any[] = data.filter((item) => {
                     if (state.alcoholicFilter[0] === ALL || item.strAlcoholic === state.alcoholicFilter[0])
                         return item
@@ -84,7 +87,10 @@ export default function AppEntry() {
                 } else {
                     setCurrentDataSet(searchFieldFilteredData)
                 }
-            }
+
+                setIsLoading(false)
+            }, 2000);
+
         }
         ,
         [state.alcoholicFilter, state.categoryFilter, state.ingredientsFilter, currentSearchFieldInput]
@@ -122,7 +128,6 @@ export default function AppEntry() {
         <>
             <Header setActiveFilter={setActiveFilter}
                     activeFilter={activeFilter}/>
-            {/*<LoadingScreen/>*/}
             <View style={styles.app}>
                 {(activeFilter === FILTER) && (
                     <Filter setCurrentSearchFieldInput={setCurrentSearchFieldInput}
@@ -130,7 +135,7 @@ export default function AppEntry() {
                             currentDataSetLength={currentDataSet.length}
                             onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}
                             ingredientsValue={ingredientsValue}
-                            setIngredientsValue={setIngredientsValue} />
+                            setIngredientsValue={setIngredientsValue}/>
                 )}
                 {(activeFilter === SEARCH_FIELD) && (
                     <SearchField setCurrentSearchFieldInput={setCurrentSearchFieldInput}
@@ -151,6 +156,9 @@ export default function AppEntry() {
                     keyExtractor={item => item.idDrink}/>
                 <StatusBar style="auto"/>
             </View>
+            {isLoading && (
+                <LoadingScreen/>
+            )}
         </>
     )
 }
