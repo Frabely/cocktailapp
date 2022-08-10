@@ -54,8 +54,8 @@ export default function LoginScreen() {
                         placeholder={'Password'}
                         secureTextEntry={true}/>
                 </View>
-                <StyledButton width={vw(0.3)} onPress={onLoginHandler} title={'Login'} />
-                <StyledButton width={vw(0.3)} onPress={onCreateAccountHandler} title={'Create Account'} />
+                <StyledButton width={'100%'} onPress={onLoginHandler} title={'Login'} />
+                <StyledButton width={'100%'} onPress={onCreateAccountHandler} title={'Create Account'} />
             </View>
         </View>
     )
@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     loginCard: {
+        width: vw(0.7),
         backgroundColor: LABEL_BACKGROUND,
         padding: PADDING,
         borderRadius: BORDER_RADIUS/2,
@@ -82,6 +83,7 @@ const styles = StyleSheet.create({
         margin: MARGIN
     },
     inputCard: {
+        width: '100%',
         backgroundColor: COLOR_BACKGROUND,
         borderRadius: BORDER_RADIUS/2,
     }
