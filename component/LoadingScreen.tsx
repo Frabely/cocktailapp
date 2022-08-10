@@ -35,7 +35,7 @@ export default function LoadingScreen(props: any) {
             }
                 ]}>
                 <Image style={{height: '100%', width: '100%'}}
-                       source={require('./../assets/images/adaptive-icon.png')}/>
+                       source={require('../assets/images/adaptive-icon.png')}/>
             </Animated.View>
         </View>
     )

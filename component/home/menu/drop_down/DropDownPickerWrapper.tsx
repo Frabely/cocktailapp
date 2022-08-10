@@ -1,16 +1,16 @@
-import {BORDER_RADIUS, DEFAULT_BUTTON_HEIGHT, MARGIN, PADDING} from "../../../constants/style_constants";
-import {COLOR_BACKGROUND, COLOR_HEADER, LABEL_BACKGROUND} from "../../../constants/color_styles";
+import {BORDER_RADIUS, DEFAULT_BUTTON_HEIGHT, MARGIN, PADDING} from "../../../../constants/style_constants";
+import {COLOR_BACKGROUND, COLOR_HEADER, LABEL_BACKGROUND} from "../../../../constants/color_styles";
 import DropDownPicker from "react-native-dropdown-picker";
 import {useEffect, useState} from "react";
-import {INGREDIENT_LIST} from "../../../constants/filter_lists";
-import {vh, vw} from "../../../functions/dimentions";
+import {INGREDIENT_LIST} from "../../../../constants/filter_lists";
+import {vh, vw} from "../../../../functions/dimentions";
 import {Platform} from "react-native";
-import {useAppDispatch} from "../../../constants/hooks";
-import {changeIngredients} from "../../../reducers/Filter/ingredientsFilterReducer";
+import {useAppDispatch} from "../../../../constants/hooks";
+import {changeIngredients} from "../../../../reducers/filter/ingredientsFilterReducer";
 import {
     INGREDIENTS_FILTER_SELECTION_NUMBER_MAX,
     INGREDIENTS_FILTER_SELECTION_NUMBER_MIN
-} from "../../../constants/const_vars";
+} from "../../../../constants/const_vars";
 
 export default function DropDownPickerWrapper(props: any) {
     const [open, setOpen] = useState(false);

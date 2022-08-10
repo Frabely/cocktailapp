@@ -1,10 +1,10 @@
 import {combineReducers} from "redux";
 import {configureStore} from "@reduxjs/toolkit";
-import alcoholicFilterSlice from "../reducers/Filter/alcoholicFilterReducer";
-import glassTypeFilterSlice from "../reducers/Filter/glassTypeFilterReducer";
-import categoryFilterSlice from "../reducers/Filter/categoryFilterReducer";
-import applyFilterSlice from "../reducers/Filter/applyFiltersReducer";
-import ingredientsFilterSlice from "../reducers/Filter/ingredientsFilterReducer";
+import alcoholicFilterSlice from "../reducers/filter/alcoholicFilterReducer";
+import glassTypeFilterSlice from "../reducers/filter/glassTypeFilterReducer";
+import categoryFilterSlice from "../reducers/filter/categoryFilterReducer";
+import applyFilterSlice from "../reducers/filter/applyFiltersReducer";
+import ingredientsFilterSlice from "../reducers/filter/ingredientsFilterReducer";
 
 const rootReducer = combineReducers({
     alcoholicFilter: alcoholicFilterSlice,

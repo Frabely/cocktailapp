@@ -1,21 +1,21 @@
-import dummyData from "./constants/dummyData3";
+import dummyData from "../../constants/dummyData3";
 import {useEffect, useState} from "react";
 import {FlatList, StyleSheet, View} from "react-native";
-import {useAppDispatch, useAppSelector} from "./constants/hooks";
-import {vh} from "./functions/dimentions";
-import Card from "./component/Card";
-import Header from "./component/Header";
-import Filter from "./component/Menu/Filter/Filter";
-import SearchField from "./component/Menu/SearchField/SearchField";
-import HighlightedCard from "./component/HighlightedCard/HighlightedCard";
-import NoHits from "./component/NoHits"
-import {COLOR_BACKGROUND} from "./constants/color_styles";
-import {PADDING} from "./constants/style_constants";
-import {ALL, FILTER, SEARCH_FIELD} from "./constants/const_vars";
+import {useAppDispatch, useAppSelector} from "../../constants/hooks";
+import {vh} from "../../functions/dimentions";
+import Card from "../Card";
+import Header from "../Header";
+import Filter from "./menu/filter/Filter";
+import SearchField from "./menu/search_field/SearchField";
+import HighlightedCard from "./highlighted_card/HighlightedCard";
+import NoHits from "./NoHits"
+import {COLOR_BACKGROUND} from "../../constants/color_styles";
+import {PADDING} from "../../constants/style_constants";
+import {ALL, FILTER, SEARCH_FIELD} from "../../constants/const_vars";
 import {StatusBar} from "expo-status-bar";
-import {changeAlcoholic} from "./reducers/Filter/alcoholicFilterReducer";
-import {changeCategory} from "./reducers/Filter/categoryFilterReducer";
-import LoadingScreen from "./component/LoadingScreen";
+import {changeAlcoholic} from "../../reducers/filter/alcoholicFilterReducer";
+import {changeCategory} from "../../reducers/filter/categoryFilterReducer";
+import LoadingScreen from "../LoadingScreen";
 
 const data: any[] = dummyData.drinks;
 export default function AppEntry() {
@@ -32,7 +32,7 @@ export default function AppEntry() {
     useEffect(() => {
             setIsLoading(true)
             //TODO set timeout so see Loading spinner
-            setTimeout(() => {
+            // setTimeout(() => {
                 const alcoholFilteredData: any[] = data.filter((item) => {
                     if (state.alcoholicFilter[0] === ALL || item.strAlcoholic === state.alcoholicFilter[0])
                         return item
@@ -89,7 +89,7 @@ export default function AppEntry() {
                 }
 
                 setIsLoading(false)
-            }, 2000);
+            // }, 2000);
 
         }
         ,

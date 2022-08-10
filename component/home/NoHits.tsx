@@ -1,8 +1,8 @@
 import {StyleSheet, Text, View} from "react-native";
-import StyledButton from "./StyledButton";
-import {vh, vw} from "../functions/dimentions";
-import {LABEL_BACKGROUND} from "../constants/color_styles";
-import {BORDER_RADIUS, MARGIN, PADDING} from "../constants/style_constants";
+import StyledButton from "../StyledButton";
+import {vh, vw} from "../../functions/dimentions";
+import {LABEL_BACKGROUND} from "../../constants/color_styles";
+import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
 
 export default function NoHits(props: any) {
     return (

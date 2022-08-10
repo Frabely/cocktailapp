@@ -1,6 +1,6 @@
 import {ImageBackground, Pressable, StyleSheet} from "react-native";
-import {BORDER_RADIUS, MARGIN} from "../../constants/style_constants";
-import {COLOR_HEADER} from "../../constants/color_styles";
+import {BORDER_RADIUS, MARGIN} from "../../../constants/style_constants";
+import {COLOR_HEADER} from "../../../constants/color_styles";
 
 export default function HighlightedCardInnerImage(props: any) {
     const onCloseHighlightedImage = () => {

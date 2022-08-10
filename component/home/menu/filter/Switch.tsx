@@ -1,5 +1,5 @@
 import {Pressable, StyleSheet, Text, View} from "react-native";
-import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
+import {BORDER_RADIUS, MARGIN, PADDING} from "../../../../constants/style_constants";
 import {useState} from "react";
 
 export default function Switch(props: any) {

@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View} from "react-native";
-import {PADDING} from "../../../constants/style_constants";
+import {PADDING} from "../../../../constants/style_constants";
 
 export default function Label(props: any) {
     return (

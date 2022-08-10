@@ -1,7 +1,7 @@
 import {Pressable, StyleSheet, Text} from "react-native";
-import {BORDER_RADIUS, DEFAULT_BUTTON_HEIGHT, MARGIN, PADDING} from "../../../constants/style_constants";
-import {COLOR_BACKGROUND} from "../../../constants/color_styles";
-import {vh} from "../../../functions/dimentions";
+import {BORDER_RADIUS, DEFAULT_BUTTON_HEIGHT, MARGIN, PADDING} from "../../../../constants/style_constants";
+import {COLOR_BACKGROUND} from "../../../../constants/color_styles";
+import {vh} from "../../../../functions/dimentions";
 
 export default function FilterButton(props: any) {
 

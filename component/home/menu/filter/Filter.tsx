@@ -1,15 +1,15 @@
 import {StyleSheet, View} from "react-native";
-import {vw} from "../../../functions/dimentions";
-import {LABEL_BACKGROUND} from "../../../constants/color_styles";
-import {BORDER_RADIUS, MARGIN} from "../../../constants/style_constants";
+import {vw} from "../../../../functions/dimentions";
+import {LABEL_BACKGROUND} from "../../../../constants/color_styles";
+import {BORDER_RADIUS, MARGIN} from "../../../../constants/style_constants";
 import FilterPanel from "./FilterPanel";
-import {ALL} from "../../../constants/const_vars";
-import {useAppSelector} from "../../../constants/hooks";
-import {changeAlcoholic} from "../../../reducers/Filter/alcoholicFilterReducer";
-import {changeCategory} from "../../../reducers/Filter/categoryFilterReducer";
-import StyledButton from "../../StyledButton";
-import {ALCOHOLIC_LIST, CATEGORY_LIST} from "../../../constants/filter_lists";
-import DropDownPickerWrapper from "../DropDown/DropDownPickerWrapper";
+import {ALL} from "../../../../constants/const_vars";
+import {useAppSelector} from "../../../../constants/hooks";
+import {changeAlcoholic} from "../../../../reducers/filter/alcoholicFilterReducer";
+import {changeCategory} from "../../../../reducers/filter/categoryFilterReducer";
+import StyledButton from "../../../StyledButton";
+import {ALCOHOLIC_LIST, CATEGORY_LIST} from "../../../../constants/filter_lists";
+import DropDownPickerWrapper from "../drop_down/DropDownPickerWrapper";
 import Label from "./Label";
 
 

@@ -1,9 +1,9 @@
 import {ImageBackground, ScrollView, StyleSheet, Text, View} from "react-native";
-import {vh} from "../../functions/dimentions";
+import {vh} from "../../../functions/dimentions";
 import {useEffect, useState} from "react";
-import generate_box_shadow_style from "../../functions/generate_box_shadow_style";
-import {BORDER_RADIUS, PADDING} from "../../constants/style_constants";
-import {COLOR_OPACITY_BACKGROUND} from "../../constants/color_styles";
+import generate_box_shadow_style from "../../../functions/generate_box_shadow_style";
+import {BORDER_RADIUS, PADDING} from "../../../constants/style_constants";
+import {COLOR_OPACITY_BACKGROUND} from "../../../constants/color_styles";
 import HighlightedCardInnerImage from "./HighlightedCardInnerImage";
 
 export default function HighlightedCard(props: any) {
