@@ -16,6 +16,7 @@ import {StatusBar} from "expo-status-bar";
 import {changeAlcoholic} from "../../reducers/filter/alcoholicFilterReducer";
 import {changeCategory} from "../../reducers/filter/categoryFilterReducer";
 import LoadingScreen from "../LoadingScreen";
+import LoginScreen from "../login/LoginScreen";
 
 const data: any[] = dummyData.drinks;
 export default function AppEntry() {
@@ -126,39 +127,40 @@ export default function AppEntry() {
 
     return (
         <>
-            <Header setActiveFilter={setActiveFilter}
-                    activeFilter={activeFilter}/>
-            <View style={styles.app}>
-                {(activeFilter === FILTER) && (
-                    <Filter setCurrentSearchFieldInput={setCurrentSearchFieldInput}
-                            setActiveFilter={setActiveFilter}
-                            currentDataSetLength={currentDataSet.length}
-                            onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}
-                            ingredientsValue={ingredientsValue}
-                            setIngredientsValue={setIngredientsValue}/>
-                )}
-                {(activeFilter === SEARCH_FIELD) && (
-                    <SearchField setCurrentSearchFieldInput={setCurrentSearchFieldInput}
-                                 setActiveFilter={setActiveFilter}
-                                 currentSearchFieldInput={currentSearchFieldInput}
-                                 currentDataSetLength={currentDataSet.length}/>
-                )}
-                {currentItem && (
-                    <HighlightedCard item={currentItem} onImageClickHandler={onImageClickHandler}/>
-                )}
-                {(currentDataSet.length === 0) && (
-                    <NoHits onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>
-                )}
-                <FlatList
-                    numColumns={3}
-                    data={currentDataSet}
-                    renderItem={renderItem}
-                    keyExtractor={item => item.idDrink}/>
-                <StatusBar style="auto"/>
-            </View>
-            {isLoading && (
-                <LoadingScreen/>
-            )}
+            {/*<Header setActiveFilter={setActiveFilter}*/}
+            {/*        activeFilter={activeFilter}/>*/}
+            {/*<View style={styles.app}>*/}
+            {/*    {(activeFilter === FILTER) && (*/}
+            {/*        <Filter setCurrentSearchFieldInput={setCurrentSearchFieldInput}*/}
+            {/*                setActiveFilter={setActiveFilter}*/}
+            {/*                currentDataSetLength={currentDataSet.length}*/}
+            {/*                onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}*/}
+            {/*                ingredientsValue={ingredientsValue}*/}
+            {/*                setIngredientsValue={setIngredientsValue}/>*/}
+            {/*    )}*/}
+            {/*    {(activeFilter === SEARCH_FIELD) && (*/}
+            {/*        <SearchField setCurrentSearchFieldInput={setCurrentSearchFieldInput}*/}
+            {/*                     setActiveFilter={setActiveFilter}*/}
+            {/*                     currentSearchFieldInput={currentSearchFieldInput}*/}
+            {/*                     currentDataSetLength={currentDataSet.length}/>*/}
+            {/*    )}*/}
+            {/*    {currentItem && (*/}
+            {/*        <HighlightedCard item={currentItem} onImageClickHandler={onImageClickHandler}/>*/}
+            {/*    )}*/}
+            {/*    {(currentDataSet.length === 0) && (*/}
+            {/*        <NoHits onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>*/}
+            {/*    )}*/}
+            {/*    <FlatList*/}
+            {/*        numColumns={3}*/}
+            {/*        data={currentDataSet}*/}
+            {/*        renderItem={renderItem}*/}
+            {/*        keyExtractor={item => item.idDrink}/>*/}
+            {/*    <StatusBar style="auto"/>*/}
+            {/*</View>*/}
+            {/*{isLoading && (*/}
+            {/*    <LoadingScreen/>*/}
+            {/*)}*/}
+            <LoginScreen/>
         </>
     )
 }
