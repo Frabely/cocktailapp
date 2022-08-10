@@ -17,20 +17,27 @@ export default function LoginScreen() {
     const auth = getAuth(app)
 
     const onLoginHandler = () => {
-        // signInWithEmailAndPassword(auth, email, password).then(user => {
-        //     dispatch(activeUser(user))
-        // }).catch(error => {
-        //     alert(error.message)
-        // })
+        signInWithEmailAndPassword(auth, email, password).then(user => {
+            alert('logged in')
+            dispatch(activeUser({
+                name: user.user.displayName,
+                email: user.user.email,
+            }))
+        }).catch(error => {
+            alert(error.message)
+        })
     }
 
     const onCreateAccountHandler = () => {
 
-        // createUserWithEmailAndPassword(auth, email, password).then(user => {
-        //     dispatch(activeUser(user))
-        // }).catch(error => {
-        //     alert(error.message)
-        // })
+        createUserWithEmailAndPassword(auth, email, password).then(user => {
+            dispatch(activeUser({
+                name: user.user.displayName,
+                email: user.user.email,
+            }))
+        }).catch(error => {
+            alert(error.message)
+        })
     }
 
     return (

@@ -34,62 +34,63 @@ export default function AppEntry() {
             setIsLoading(true)
             //TODO set timeout so see Loading spinner
             // setTimeout(() => {
-                const alcoholFilteredData: any[] = data.filter((item) => {
-                    if (state.alcoholicFilter[0] === ALL || item.strAlcoholic === state.alcoholicFilter[0])
-                        return item
-                })
-                const categoryFilteredData: any[] = alcoholFilteredData.filter((item) => {
-                    if (state.categoryFilter.includes(ALL))
-                        return item
-                    else {
-                        let isFiltered = false
-                        state.categoryFilter.forEach((itemFilter) => {
-                            if (itemFilter === item.strCategory) {
-                                isFiltered = true
-                            }
-                        })
-                        if (isFiltered) {
-                            isFiltered = false
-                            return item
-                        }
-                    }
-                })
-                const searchFieldFilteredData: any[] = categoryFilteredData.filter((item) => {
-                    const inputLowerNoSpace = currentSearchFieldInput.toLowerCase().replace(" ", "")
-                    const itemNameLowerNoSpace = item.strDrink.toLowerCase().replace(" ", "")
-                    if (itemNameLowerNoSpace.includes(inputLowerNoSpace)) {
-                        return item
-                    }
-                })
-
-                if (searchFieldFilteredData.length === 0 || !searchFieldFilteredData.includes(currentItem)) {
-                    setCurrentItem(undefined)
-                }
-                if (state.ingredientsFilter.length !== 0) {
-                    const ingredientsFilteredData: any[] = searchFieldFilteredData.filter((item) => {
-                        let isFiltered = false
-                        state.ingredientsFilter.forEach((itemFilter) => {
-                            for (let index: number = 1; index < 16; index++) {
-                                if (item[`strIngredient${index}`] !== null) {
-                                    const itemFilterLowerNoSpace = itemFilter.toLowerCase().replace(" ", "")
-                                    const itemNameLowerNoSpace = item[`strIngredient${index}`].toLowerCase().replace(" ", "")
-                                    if (itemFilterLowerNoSpace === itemNameLowerNoSpace) {
-                                        isFiltered = true
-                                    }
-                                }
-                            }
-                        })
-                        if (isFiltered) {
-                            isFiltered = false
-                            return item
+            const alcoholFilteredData: any[] = data.filter((item) => {
+                if (state.alcoholicFilter[0] === ALL || item.strAlcoholic === state.alcoholicFilter[0])
+                    return item
+            })
+            const categoryFilteredData: any[] = alcoholFilteredData.filter((item) => {
+                if (state.categoryFilter.includes(ALL))
+                    return item
+                else {
+                    let isFiltered = false
+                    state.categoryFilter.forEach((itemFilter) => {
+                        if (itemFilter === item.strCategory) {
+                            isFiltered = true
                         }
                     })
-                    setCurrentDataSet(ingredientsFilteredData)
-                } else {
-                    setCurrentDataSet(searchFieldFilteredData)
+                    if (isFiltered) {
+                        isFiltered = false
+                        return item
+                    }
                 }
+            })
+            const searchFieldFilteredData: any[] = categoryFilteredData.filter((item) => {
+                const inputLowerNoSpace = currentSearchFieldInput.toLowerCase().replace(" ", "")
+                const itemNameLowerNoSpace = item.strDrink.toLowerCase().replace(" ", "")
+                if (itemNameLowerNoSpace.includes(inputLowerNoSpace)) {
+                    return item
+                }
+            })
 
-                setIsLoading(false)
+            if (searchFieldFilteredData.length === 0 || !searchFieldFilteredData.includes(currentItem)) {
+                setCurrentItem(undefined)
+            }
+            if (state.ingredientsFilter.length !== 0) {
+                const ingredientsFilteredData: any[] = searchFieldFilteredData.filter((item) => {
+                    let isFiltered = false
+                    state.ingredientsFilter.forEach((itemFilter) => {
+                        for (let index: number = 1; index < 16; index++) {
+                            if (item[`strIngredient${index}`] !== null) {
+                                const itemFilterLowerNoSpace = itemFilter.toLowerCase().replace(" ", "")
+                                const itemNameLowerNoSpace = item[`strIngredient${index}`].toLowerCase().replace(" ", "")
+                                if (itemFilterLowerNoSpace === itemNameLowerNoSpace) {
+                                    isFiltered = true
+                                }
+                            }
+                        }
+                    })
+                    if (isFiltered) {
+                        isFiltered = false
+                        return item
+                    }
+                })
+                setCurrentDataSet(ingredientsFilteredData)
+            } else {
+                setCurrentDataSet(searchFieldFilteredData)
+            }
+
+            setIsLoading(false)
+            //TODO set timeout so see Loading spinner
             // }, 2000);
 
         }
@@ -125,42 +126,49 @@ export default function AppEntry() {
         )
     }
 
+    console.log(state.user)
+
     return (
         <>
-            {/*<Header setActiveFilter={setActiveFilter}*/}
-            {/*        activeFilter={activeFilter}/>*/}
-            {/*<View style={styles.app}>*/}
-            {/*    {(activeFilter === FILTER) && (*/}
-            {/*        <Filter setCurrentSearchFieldInput={setCurrentSearchFieldInput}*/}
-            {/*                setActiveFilter={setActiveFilter}*/}
-            {/*                currentDataSetLength={currentDataSet.length}*/}
-            {/*                onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}*/}
-            {/*                ingredientsValue={ingredientsValue}*/}
-            {/*                setIngredientsValue={setIngredientsValue}/>*/}
-            {/*    )}*/}
-            {/*    {(activeFilter === SEARCH_FIELD) && (*/}
-            {/*        <SearchField setCurrentSearchFieldInput={setCurrentSearchFieldInput}*/}
-            {/*                     setActiveFilter={setActiveFilter}*/}
-            {/*                     currentSearchFieldInput={currentSearchFieldInput}*/}
-            {/*                     currentDataSetLength={currentDataSet.length}/>*/}
-            {/*    )}*/}
-            {/*    {currentItem && (*/}
-            {/*        <HighlightedCard item={currentItem} onImageClickHandler={onImageClickHandler}/>*/}
-            {/*    )}*/}
-            {/*    {(currentDataSet.length === 0) && (*/}
-            {/*        <NoHits onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>*/}
-            {/*    )}*/}
-            {/*    <FlatList*/}
-            {/*        numColumns={3}*/}
-            {/*        data={currentDataSet}*/}
-            {/*        renderItem={renderItem}*/}
-            {/*        keyExtractor={item => item.idDrink}/>*/}
-            {/*    <StatusBar style="auto"/>*/}
-            {/*</View>*/}
-            {/*{isLoading && (*/}
-            {/*    <LoadingScreen/>*/}
-            {/*)}*/}
-            <LoginScreen/>
+            {(state.user !== null) && (<>
+                    <Header setActiveFilter={setActiveFilter}
+                            activeFilter={activeFilter}/>
+                    <View style={styles.app}>
+                        {(activeFilter === FILTER) && (
+                            <Filter setCurrentSearchFieldInput={setCurrentSearchFieldInput}
+                                    setActiveFilter={setActiveFilter}
+                                    currentDataSetLength={currentDataSet.length}
+                                    onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}
+                                    ingredientsValue={ingredientsValue}
+                                    setIngredientsValue={setIngredientsValue}/>
+                        )}
+                        {(activeFilter === SEARCH_FIELD) && (
+                            <SearchField setCurrentSearchFieldInput={setCurrentSearchFieldInput}
+                                         setActiveFilter={setActiveFilter}
+                                         currentSearchFieldInput={currentSearchFieldInput}
+                                         currentDataSetLength={currentDataSet.length}/>
+                        )}
+                        {currentItem && (
+                            <HighlightedCard item={currentItem} onImageClickHandler={onImageClickHandler}/>
+                        )}
+                        {(currentDataSet.length === 0) && (
+                            <NoHits onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>
+                        )}
+                        <FlatList
+                            numColumns={3}
+                            data={currentDataSet}
+                            renderItem={renderItem}
+                            keyExtractor={item => item.idDrink}/>
+                        <StatusBar style="auto"/>
+                    </View>
+                    {isLoading && (
+                        <LoadingScreen/>
+                    )}
+                </>
+            )}
+            {(state.user === null) && (
+                <LoginScreen/>
+            )}
         </>
     )
 }
