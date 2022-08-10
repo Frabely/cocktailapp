@@ -1,6 +1,7 @@
 Bugs:
 
 TODOs:
+-change padding and margin const's to rem
 -user login:
     -login-screen
     -user profile

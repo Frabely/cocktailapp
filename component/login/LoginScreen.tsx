@@ -3,23 +3,49 @@ import {vh, vw} from "../../functions/dimentions";
 import {COLOR_BACKGROUND, LABEL_BACKGROUND} from "../../constants/color_styles";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
 import StyledButton from "../StyledButton";
+import {app} from "./../../functions/firebase";
+import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
+import {useState} from "react";
+import {useAppDispatch, useAppSelector} from "../../constants/hooks";
+import {activeUser} from "../../reducers/user/userReducer";
 
 export default function LoginScreen() {
+    const state = useAppSelector((state) => state)
+    const dispatch = useAppDispatch()
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const auth = getAuth(app)
 
     const onLoginHandler = () => {
-
+        // signInWithEmailAndPassword(auth, email, password).then(user => {
+        //     dispatch(activeUser(user))
+        // }).catch(error => {
+        //     alert(error.message)
+        // })
     }
 
     const onCreateAccountHandler = () => {
 
+        // createUserWithEmailAndPassword(auth, email, password).then(user => {
+        //     dispatch(activeUser(user))
+        // }).catch(error => {
+        //     alert(error.message)
+        // })
     }
 
     return (
         <View style={styles.loginScreen}>
             <View style={styles.loginCard}>
                 <View style={styles.inputCard}>
-                    <TextInput style={styles.input} placeholder={'Email'}></TextInput>
-                    <TextInput style={styles.input} placeholder={'Password'} secureTextEntry={true}></TextInput>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={input => {setEmail(input)}}
+                        placeholder={'Email'}/>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={input => {setPassword(input)}}
+                        placeholder={'Password'}
+                        secureTextEntry={true}/>
                 </View>
                 <StyledButton width={vw(0.3)} onPress={onLoginHandler} title={'Login'} />
                 <StyledButton width={vw(0.3)} onPress={onCreateAccountHandler} title={'Create Account'} />
