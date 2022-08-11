@@ -4,8 +4,14 @@ TODOs:
 -change padding and margin const's to rem
 -user login:
     -login-screen
-    -user profile
-    -(settings)
+-user profile
+-(settings)
+-testing:
+    -cover as much as possible with error codes and matching messages
+-modal for errors/UI messages:
+    -successfully logged in/logged out
+    -created account
+-add error messages in english (for now)
 -zahnrad icon in header für zB font und font size
 -Firebase Backend -> upload data auf firebase
 -Font auswählen und defaults sizes setzen

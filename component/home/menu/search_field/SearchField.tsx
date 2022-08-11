@@ -1,5 +1,5 @@
 import {StyleSheet, TextInput, View} from "react-native";
-import {LABEL_BACKGROUND} from "../../../../constants/color_styles";
+import {COLOR_LABEL_BACKGROUND} from "../../../../constants/color_styles";
 import {BORDER_RADIUS, PADDING} from "../../../../constants/style_constants";
 
 export default function searchField(props: any) {
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     },
     testInput: {
         padding: PADDING,
-        backgroundColor: LABEL_BACKGROUND,
+        backgroundColor: COLOR_LABEL_BACKGROUND,
         borderRadius: BORDER_RADIUS / 2
     },
 })

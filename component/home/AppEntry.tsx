@@ -125,6 +125,9 @@ export default function AppEntry() {
                   onImageClickHandler={onImageClickHandler}/>
         )
     }
+
+    console.log(currentItem)
+
     return (
         <>
             {(state.user !== null) && (

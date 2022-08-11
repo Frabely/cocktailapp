@@ -1,5 +1,5 @@
 import {Animated, Easing, Image, StyleSheet, View} from "react-native";
-import {LABEL_BACKGROUND} from "../constants/color_styles";
+import {COLOR_LABEL_BACKGROUND} from "../constants/color_styles";
 import {BORDER_RADIUS} from "../constants/style_constants";
 import {vh} from "../functions/dimentions";
 
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     loadingScreenInner: {
         height: vh(0.1),
         width: '20%',
-        backgroundColor: LABEL_BACKGROUND,
+        backgroundColor: COLOR_LABEL_BACKGROUND,
         borderRadius: BORDER_RADIUS,
     }
 })

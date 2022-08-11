@@ -1,5 +1,5 @@
 import {BORDER_RADIUS, DEFAULT_BUTTON_HEIGHT, MARGIN, PADDING} from "../../../../constants/style_constants";
-import {COLOR_BACKGROUND, COLOR_HEADER, LABEL_BACKGROUND} from "../../../../constants/color_styles";
+import {COLOR_BACKGROUND, COLOR_HEADER, COLOR_LABEL_BACKGROUND} from "../../../../constants/color_styles";
 import DropDownPicker from "react-native-dropdown-picker";
 import {useEffect, useState} from "react";
 import {INGREDIENT_LIST} from "../../../../constants/filter_lists";
@@ -52,7 +52,7 @@ export default function DropDownPickerWrapper(props: any) {
                 margin: MARGIN / 2,
             }}
             searchTextInputStyle={{
-                backgroundColor: LABEL_BACKGROUND,
+                backgroundColor: COLOR_LABEL_BACKGROUND,
                 borderWidth: 0,
                 borderRadius: BORDER_RADIUS / 2,
                 padding: PADDING / 2
@@ -82,7 +82,7 @@ export default function DropDownPickerWrapper(props: any) {
                 textAlignVertical: 'center'
             }}
             selectedItemContainerStyle={{
-                backgroundColor: LABEL_BACKGROUND,
+                backgroundColor: COLOR_LABEL_BACKGROUND,
             }}
             selectedItemLabelStyle={{
                 fontWeight: "bold"
@@ -96,7 +96,7 @@ export default function DropDownPickerWrapper(props: any) {
             disableBorderRadius={false}
             autoScroll={true}
             containerStyle={{
-                backgroundColor: LABEL_BACKGROUND,
+                backgroundColor: COLOR_LABEL_BACKGROUND,
                 width: vw(1) - 2 * PADDING,
                 borderBottomRightRadius: BORDER_RADIUS / 2,
                 borderBottomLeftRadius: BORDER_RADIUS / 2,
