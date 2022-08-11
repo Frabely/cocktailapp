@@ -14,7 +14,12 @@ export default function FilterButton(props: any) {
         <Pressable onPress={onClickHandler} style={
             [
                 styles.outerButton,
-                {backgroundColor: (isClicked) ? props.colorActive : props.colorInactive},
+                {
+                    backgroundColor: (isClicked) ? props.colorActive : props.colorInactive,
+                    padding: props?.padding ? props.padding :  PADDING / 8,
+                    margin: props?.margin ? props.margin : MARGIN / 2,
+                    width: props?.width && props.width,
+                },
             ]}>
             <Text style={{textAlign: "center"}}>{props.title}</Text>
         </Pressable>
@@ -26,8 +31,6 @@ const styles = StyleSheet.create({
         height: vh(DEFAULT_BUTTON_HEIGHT),
         borderRadius: BORDER_RADIUS / 2,
         backgroundColor: COLOR_BACKGROUND,
-        padding: PADDING / 8,
-        margin: MARGIN / 2,
         alignItems: "center",
         justifyContent: "center"
     }

@@ -17,11 +17,11 @@ export default function StyledButton(props: any) {
     return (
         <Pressable style={[styles.styledButton, {
             backgroundColor: isTouched ? COLOR_HEADER : COLOR_BACKGROUND,
-            padding: (props.padding !== undefined) ? props.padding : PADDING / 2,
-            margin: (props.margin !== undefined) ? props.margin : MARGIN / 2,
-            height: (props.height !== undefined) ? props.height : vh(DEFAULT_BUTTON_HEIGHT),
-            width: (props.width !== undefined) ? props.width : '100%',
-            flex: (props.flex !== undefined) ? props.flex : 1
+            padding: props?.padding  ? props.padding : PADDING / 2,
+            margin: props?.margin  ? props.margin : MARGIN / 2,
+            height: props?.height ? props.height : vh(DEFAULT_BUTTON_HEIGHT),
+            width: props?.width && props.width,
+            flex: props?.flex && props.flex
         }]}
                    onTouchStart={onTouchStartHandler}
                    onTouchEnd={onTouchEndHandler}

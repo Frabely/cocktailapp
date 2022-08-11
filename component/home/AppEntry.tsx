@@ -16,7 +16,7 @@ import {StatusBar} from "expo-status-bar";
 import {changeAlcoholic} from "../../reducers/filter/alcoholicFilterReducer";
 import {changeCategory} from "../../reducers/filter/categoryFilterReducer";
 import LoadingScreen from "../LoadingScreen";
-import LoginScreen from "../login/LoginScreen";
+import LoginScreen from "../login_screen/LoginScreen";
 
 const data: any[] = dummyData.drinks;
 export default function AppEntry() {
@@ -125,12 +125,10 @@ export default function AppEntry() {
                   onImageClickHandler={onImageClickHandler}/>
         )
     }
-
-    console.log(state.user)
-
     return (
         <>
-            {(state.user !== null) && (<>
+            {(state.user !== null) && (
+                <>
                     <Header setActiveFilter={setActiveFilter}
                             activeFilter={activeFilter}/>
                     <View style={styles.app}>

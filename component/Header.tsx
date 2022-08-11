@@ -41,8 +41,6 @@ export default function Header(props: any) {
         }).catch(error => {
             alert(error.message)
         })
-
-        alert('logout')
     }
 
     return (

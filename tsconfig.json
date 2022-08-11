@@ -4,6 +4,7 @@
     "strict": true,
     "lib": [
       "dom"
-    ]
+    ],
+    "tsx": "react native"
   }
 }
