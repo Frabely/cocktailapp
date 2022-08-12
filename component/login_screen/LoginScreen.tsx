@@ -35,6 +35,8 @@ import {
     USERNAME_MISSING
 } from "../../constants/error_codes";
 import data from "../../constants/dummyData3";
+import {setHomeScreen} from "../../reducers/currentAppScreenReducer";
+import {setActiveFilter} from "../../reducers/filter/activeFilterReducer";
 
 export default function LoginScreen() {
     const state = useAppSelector((state) => state)
@@ -73,6 +75,7 @@ export default function LoginScreen() {
                 name: user.user.displayName,
                 email: user.user.email,
             }))
+            dispatch(setHomeScreen())
         }).catch(error => {
             if (error.code === WRONG_PASSWORD.code)
                 errorArrayPassword.push(WRONG_PASSWORD.code)
@@ -134,6 +137,7 @@ export default function LoginScreen() {
                 alert(error.message)
                 return
             })
+            dispatch(setHomeScreen())
         }).catch(error => {
             if (error.code === WEAK_PASSWORD.code) {
                 errorArrayPassword.push(WEAK_PASSWORD.code)
@@ -205,7 +209,7 @@ export default function LoginScreen() {
 
     return (
         <View style={styles.loginScreen}>
-            <ImageBackground style={{position: 'absolute', height: '100%', width: '100%', opacity: 0.2}}
+            <ImageBackground style={{position: 'absolute', height: '100%', width: '100%', opacity: 0.1}}
                              source={{uri: require('../../assets/images/Layout -1.png')}}/>
             <View style={styles.loginCard}>
                 <View style={[styles.inputCard,

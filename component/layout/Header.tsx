@@ -6,12 +6,13 @@ import {} from "@fortawesome/free-regular-svg-icons";
 import {} from "@fortawesome/free-brands-svg-icons";
 import {COLOR_HEADER} from "../../constants/color_styles";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
-import {FILTER, SEARCH_FIELD} from "../../constants/const_vars";
+import {FILTER, HOME, SEARCH_FIELD} from "../../constants/const_vars";
 import {app} from "../../functions/firebase";
 import {getAuth} from "firebase/auth";
 import {useAppDispatch, useAppSelector} from "../../constants/hooks";
 import {activeUser} from "../../reducers/user/userReducer";
 import {setActiveFilter} from "../../reducers/filter/activeFilterReducer";
+import {setHomeScreen, setProfileScreen} from "../../reducers/currentAppScreenReducer";
 
 export default function Header() {
     const auth = getAuth(app)
@@ -33,17 +34,12 @@ export default function Header() {
         dispatch(setActiveFilter(SEARCH_FIELD))
     }
 
-    const onSettingsPressHandler = () => {
-        alert("open settings - in development")
+    const onProfilePressHandler = () => {
+        dispatch(setProfileScreen())
     }
 
-    const onLogoutPressHandler = () => {
-
-        auth.signOut().then(() => {
-            dispatch(activeUser(null))
-        }).catch(error => {
-            alert(error.message)
-        })
+    const onHomePressHandler = () => {
+        dispatch(setHomeScreen())
     }
 
     return (
@@ -57,10 +53,10 @@ export default function Header() {
             {/*<View style={{flex: 2, alignItems: 'center', justifyContent: 'center',}}>*/}
             {/*    /!*<Text>Header Component</Text>*!/*/}
             {/*</View>*/}
-            <Pressable onPress={() => {}} style={styles.filter}>
+            <Pressable onPress={onProfilePressHandler} style={styles.filter}>
                 <FontAwesomeIcon icon={faUser}/>
             </Pressable>
-            <Pressable onPress={() => {}} style={styles.filter}>
+            <Pressable onPress={onHomePressHandler} style={styles.filter}>
                 <FontAwesomeIcon icon={faHouse}/>
             </Pressable>
             {/*<Pressable onPress={onSettingsPressHandler} style={styles.filter}>*/}

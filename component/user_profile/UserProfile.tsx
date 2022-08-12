@@ -10,6 +10,7 @@ import {activeUser} from "../../reducers/user/userReducer";
 import {app} from "../../functions/firebase";
 import {getAuth} from "firebase/auth";
 import {useAppDispatch} from "../../constants/hooks";
+import {setHomeScreen, setLoginScreen} from "../../reducers/currentAppScreenReducer";
 
 
 export default function UserProfile() {
@@ -26,6 +27,7 @@ export default function UserProfile() {
 
     const onLogoutPressHandler = () => {
         auth.signOut().then(() => {
+            dispatch(setLoginScreen())
             dispatch(activeUser(null))
         }).catch(error => {
             alert(error.message)

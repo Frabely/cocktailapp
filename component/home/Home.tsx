@@ -11,7 +11,7 @@ import HighlightedCard from "./highlighted_card/HighlightedCard";
 import NoHits from "./NoHits"
 import {COLOR_BACKGROUND} from "../../constants/color_styles";
 import {PADDING} from "../../constants/style_constants";
-import {ALL, FILTER, SEARCH_FIELD} from "../../constants/const_vars";
+import {ALL, FILTER, HOME, LOGIN, PROFILE, SEARCH_FIELD} from "../../constants/const_vars";
 import {StatusBar} from "expo-status-bar";
 import {changeAlcoholic} from "../../reducers/filter/alcoholicFilterReducer";
 import {changeCategory} from "../../reducers/filter/categoryFilterReducer";
@@ -19,6 +19,8 @@ import LoadingScreen from "../layout/LoadingScreen";
 import LoginScreen from "../login_screen/LoginScreen";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../reducers/booleans/isLoadingReducer";
 import UserProfile from "../user_profile/UserProfile";
+import {setActiveFilter} from "../../reducers/filter/activeFilterReducer";
+import {changeIngredients} from "../../reducers/filter/ingredientsFilterReducer";
 
 const data: any[] = dummyData.drinks;
 export default function Home() {
@@ -117,6 +119,11 @@ export default function Home() {
         setIngredientsValue([])
     }
 
+    useEffect(() => {
+        onClearAllFiltersClickHandler()
+        dispatch(setActiveFilter(''))
+    },[state.currentAppScreen])
+
     const renderItem = ({item}: any) => {
         return (
             <Card key={item.idDrink}
@@ -126,49 +133,53 @@ export default function Home() {
         )
     }
 
-    console.log(currentItem)
-
     return (
-        <>
-            {(state.user !== null) && (
-                <View style={{backgroundColor: COLOR_BACKGROUND}}>
+        <View style={{backgroundColor: COLOR_BACKGROUND}}>
+
+            {(state.currentAppScreen === PROFILE) && (
+                <>
                     <Header/>
                     <UserProfile/>
-                    {/*<View style={styles.app}>*/}
-                    {/*    {(state.activeFilter === FILTER) && (*/}
-                    {/*        <Filter setCurrentSearchFieldInput={setCurrentSearchFieldInput}*/}
-                    {/*                currentDataSetLength={currentDataSet.length}*/}
-                    {/*                onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}*/}
-                    {/*                ingredientsValue={ingredientsValue}*/}
-                    {/*                setIngredientsValue={setIngredientsValue}/>*/}
-                    {/*    )}*/}
-                    {/*    {(state.activeFilter === SEARCH_FIELD) && (*/}
-                    {/*        <SearchField setCurrentSearchFieldInput={setCurrentSearchFieldInput}*/}
-                    {/*                     currentSearchFieldInput={currentSearchFieldInput}*/}
-                    {/*                     currentDataSetLength={currentDataSet.length}/>*/}
-                    {/*    )}*/}
-                    {/*    {currentItem && (*/}
-                    {/*        <HighlightedCard item={currentItem} onImageClickHandler={onImageClickHandler}/>*/}
-                    {/*    )}*/}
-                    {/*    {(currentDataSet.length === 0) && (*/}
-                    {/*        <NoHits onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>*/}
-                    {/*    )}*/}
-                    {/*    <FlatList*/}
-                    {/*        numColumns={3}*/}
-                    {/*        data={currentDataSet}*/}
-                    {/*        renderItem={renderItem}*/}
-                    {/*        keyExtractor={item => item.idDrink}/>*/}
-                    {/*    <StatusBar style="auto"/>*/}
-                    {/*</View>*/}
-                    {/*{state.isLoading && (*/}
-                    {/*    <LoadingScreen/>*/}
-                    {/*)}*/}
-                </View>
+                </>
             )}
-            {(state.user === null) && (
+            {(state.user !== null && state.currentAppScreen === HOME) && (
+                <>
+                    <Header/>
+                    <View style={styles.app}>
+                        {(state.activeFilter === FILTER) && (
+                            <Filter setCurrentSearchFieldInput={setCurrentSearchFieldInput}
+                                    currentDataSetLength={currentDataSet.length}
+                                    onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}
+                                    ingredientsValue={ingredientsValue}
+                                    setIngredientsValue={setIngredientsValue}/>
+                        )}
+                        {(state.activeFilter === SEARCH_FIELD) && (
+                            <SearchField setCurrentSearchFieldInput={setCurrentSearchFieldInput}
+                                         currentSearchFieldInput={currentSearchFieldInput}
+                                         currentDataSetLength={currentDataSet.length}/>
+                        )}
+                        {currentItem && (
+                            <HighlightedCard item={currentItem} onImageClickHandler={onImageClickHandler}/>
+                        )}
+                        {(currentDataSet.length === 0) && (
+                            <NoHits onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>
+                        )}
+                        <FlatList
+                            numColumns={3}
+                            data={currentDataSet}
+                            renderItem={renderItem}
+                            keyExtractor={item => item.idDrink}/>
+                        <StatusBar style="auto"/>
+                    </View>
+                </>
+            )}
+            {/*{state.isLoading && (*/}
+            {/*    <LoadingScreen/>*/}
+            {/*)}*/}
+            {(state.user === null && state.currentAppScreen === LOGIN) && (
                 <LoginScreen/>
             )}
-        </>
+        </View>
     )
 }
 const styles = StyleSheet.create({

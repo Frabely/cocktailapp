@@ -1,19 +1,18 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-
-const initialState: string = '';
+import {createSlice} from "@reduxjs/toolkit";
+import {HOME, LOGIN, PROFILE} from "../constants/const_vars";
 
 const currentAppScreenSlice = createSlice({
     name: 'currentAppScreen',
-    initialState: initialState,
+    initialState: LOGIN,
     reducers: {
-        setHomeScreen: (state, action: PayloadAction<string>) => {
-            return action.payload
+        setHomeScreen: () => {
+            return HOME
         },
-        setLoginScreen: (state, action: PayloadAction<string>) => {
-            return action.payload
+        setLoginScreen: () => {
+            return LOGIN
         },
-        setProfileScreen: (state, action: PayloadAction<string>) => {
-            return action.payload
+        setProfileScreen: () => {
+            return PROFILE
         }
     },
 })
