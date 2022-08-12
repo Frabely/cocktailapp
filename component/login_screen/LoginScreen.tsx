@@ -122,6 +122,7 @@ export default function LoginScreen() {
     }
 
     const onCreateAccountButtonClickHandler = () => {
+        setErrorState('')
         if (isCreatingAccount.includes('Create Account')) {
             setIsCreatingAccount([''])
             return

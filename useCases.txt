@@ -1,19 +1,20 @@
 Bugs:
 
 TODOs:
--change padding and margin const's to rem
+-add errors to errorArray and show all occuring
 -user login:
     -login-screen
+    -modal for errors/UI messages:
+        -successfully logged in/logged out
+        -created account
+-add error messages in english (for now)
 -user profile
--(settings)
+-settings page
+-Firebase Backend -> upload data auf firebase
 -testing:
     -cover as much as possible with error codes and matching messages
--modal for errors/UI messages:
-    -successfully logged in/logged out
-    -created account
--add error messages in english (for now)
 -zahnrad icon in header für zB font und font size
--Firebase Backend -> upload data auf firebase
+-change padding and margin const's to rem
 -Font auswählen und defaults sizes setzen
 -refactor app states in store
 -refactor and optimize highlight card
