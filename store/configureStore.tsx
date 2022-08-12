@@ -1,13 +1,13 @@
-import {applyMiddleware, combineReducers} from "redux";
+import {combineReducers} from "redux";
 import {configureStore} from "@reduxjs/toolkit";
 import alcoholicFilterSlice from "../reducers/filter/alcoholicFilterReducer";
 import glassTypeFilterSlice from "../reducers/filter/glassTypeFilterReducer";
 import categoryFilterSlice from "../reducers/filter/categoryFilterReducer";
-import applyFilterSlice from "../reducers/filter/applyFiltersReducer";
+import applyFilterSlice from "../reducers/booleans/isApplyFiltersReducer";
 import ingredientsFilterSlice from "../reducers/filter/ingredientsFilterReducer";
 import UserSlice from "../reducers/user/userReducer"
-
-const middlewareEnhancer = applyMiddleware()
+import isLoadingSlice from "../reducers/booleans/isLoadingReducer"
+import activeFilterSlice from "../reducers/filter/activeFilterReducer"
 
 const rootReducer = combineReducers({
     alcoholicFilter: alcoholicFilterSlice,
@@ -16,6 +16,8 @@ const rootReducer = combineReducers({
     applyFilters: applyFilterSlice,
     ingredientsFilter: ingredientsFilterSlice,
     user: UserSlice,
+    isLoading: isLoadingSlice,
+    activeFilter: activeFilterSlice
 })
 
 const store = configureStore({

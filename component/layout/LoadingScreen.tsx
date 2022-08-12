@@ -1,9 +1,9 @@
 import {Animated, Easing, Image, StyleSheet, View} from "react-native";
-import {COLOR_LABEL_BACKGROUND} from "../constants/color_styles";
-import {BORDER_RADIUS} from "../constants/style_constants";
-import {vh} from "../functions/dimentions";
+import {COLOR_LABEL_BACKGROUND} from "../../constants/color_styles";
+import {BORDER_RADIUS} from "../../constants/style_constants";
+import {vh} from "../../functions/dimentions";
 
-export default function LoadingScreen(props: any) {
+export default function LoadingScreen() {
     let spinValue  = new Animated.Value(0)
 
     const rotate = () => {
@@ -35,7 +35,7 @@ export default function LoadingScreen(props: any) {
             }
                 ]}>
                 <Image style={{height: '100%', width: '100%'}}
-                       source={require('../assets/images/adaptive-icon.png')}/>
+                       source={require('../../assets/images/adaptive-icon.png')}/>
             </Animated.View>
         </View>
     )

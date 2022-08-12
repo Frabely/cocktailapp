@@ -1,8 +1,8 @@
 import {ImageBackground, Pressable, StyleSheet} from "react-native";
-import {vh} from "../functions/dimentions";
-import generate_box_shadow_style from '../functions/generate_box_shadow_style';
-import {BORDER_RADIUS, PADDING} from "../constants/style_constants";
-import {COLOR_SHADOW} from "../constants/color_styles";
+import {vh} from "../../functions/dimentions";
+import generate_box_shadow_style from '../../functions/generate_box_shadow_style';
+import {BORDER_RADIUS, PADDING} from "../../constants/style_constants";
+import {COLOR_SHADOW} from "../../constants/color_styles";
 
 export default function Card(props: any) {
     const onImageClickHandler = () => {

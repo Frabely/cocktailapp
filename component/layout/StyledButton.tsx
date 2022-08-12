@@ -1,8 +1,8 @@
 import {Pressable, StyleSheet, Text} from "react-native";
-import {COLOR_BACKGROUND, COLOR_HEADER} from "../constants/color_styles";
+import {COLOR_BACKGROUND, COLOR_HEADER} from "../../constants/color_styles";
 import {useState} from "react";
-import {vh} from "../functions/dimentions";
-import {BORDER_RADIUS, DEFAULT_BUTTON_HEIGHT, MARGIN, PADDING} from "../constants/style_constants";
+import {vh} from "../../functions/dimentions";
+import {BORDER_RADIUS, DEFAULT_BUTTON_HEIGHT, MARGIN, PADDING} from "../../constants/style_constants";
 
 export default function StyledButton(props: any) {
     const [isTouched, setIsTouched] = useState(false)

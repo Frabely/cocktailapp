@@ -1,5 +1,5 @@
 Bugs:
-
+after logout set Home to default (no filters/buttons pressed)
 TODOs:
 -user profile:
     -pages:
@@ -7,7 +7,6 @@ TODOs:
         -bar/favorites ----> later create own recipes
         -settings
 -user login:
-    -login-screen
     -modal for errors/UI messages:
         -successfully logged in/logged out
         -created account

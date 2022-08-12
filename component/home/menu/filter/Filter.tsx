@@ -4,13 +4,14 @@ import {COLOR_LABEL_BACKGROUND} from "../../../../constants/color_styles";
 import {BORDER_RADIUS, MARGIN} from "../../../../constants/style_constants";
 import FilterPanel from "./FilterPanel";
 import {ALL} from "../../../../constants/const_vars";
-import {useAppSelector} from "../../../../constants/hooks";
+import {useAppDispatch, useAppSelector} from "../../../../constants/hooks";
 import {changeAlcoholic} from "../../../../reducers/filter/alcoholicFilterReducer";
 import {changeCategory} from "../../../../reducers/filter/categoryFilterReducer";
-import StyledButton from "../../../StyledButton";
+import StyledButton from "../../../layout/StyledButton";
 import {ALCOHOLIC_LIST, CATEGORY_LIST} from "../../../../constants/filter_lists";
 import DropDownPickerWrapper from "../drop_down/DropDownPickerWrapper";
 import Label from "./Label";
+import {setActiveFilter} from "../../../../reducers/filter/activeFilterReducer";
 
 
 const alcFilterOptions = ALCOHOLIC_LIST
@@ -18,9 +19,10 @@ const categoryFilterOptions = CATEGORY_LIST
 
 export default function Filter(props: any) {
     const state = useAppSelector((state) => state)
+    const dispatch = useAppDispatch()
 
     const onHitsClickHandler = () => {
-        props.setActiveFilter('')
+        dispatch(setActiveFilter(''))
     }
 
     return (

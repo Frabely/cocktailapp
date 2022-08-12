@@ -7,7 +7,7 @@ import {
     COLOR_LABEL_BACKGROUND
 } from "../../constants/color_styles";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
-import StyledButton from "../StyledButton";
+import StyledButton from "../layout/StyledButton";
 import {app} from "../../functions/firebase";
 import {
     getAuth,

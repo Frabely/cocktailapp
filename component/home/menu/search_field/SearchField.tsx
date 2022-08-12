@@ -3,7 +3,6 @@ import {COLOR_LABEL_BACKGROUND} from "../../../../constants/color_styles";
 import {BORDER_RADIUS, PADDING} from "../../../../constants/style_constants";
 
 export default function searchField(props: any) {
-
     return (
         <View style={styles.searchField}>
             <TextInput value={props.currentSearchFieldInput}

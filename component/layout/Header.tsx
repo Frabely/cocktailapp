@@ -1,34 +1,36 @@
 import {Pressable, StyleSheet, Text, View} from "react-native";
-import {vh} from "../functions/dimentions";
+import {vh} from "../../functions/dimentions";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 import {faFilter, faSearch, faGear, faPowerOff, faUser} from "@fortawesome/free-solid-svg-icons";
 import {} from "@fortawesome/free-regular-svg-icons";
 import {} from "@fortawesome/free-brands-svg-icons";
-import {COLOR_HEADER} from "../constants/color_styles";
-import {PADDING} from "../constants/style_constants";
-import {FILTER, SEARCH_FIELD} from "../constants/const_vars";
-import {app} from "../functions/firebase";
+import {COLOR_HEADER} from "../../constants/color_styles";
+import {PADDING} from "../../constants/style_constants";
+import {FILTER, SEARCH_FIELD} from "../../constants/const_vars";
+import {app} from "../../functions/firebase";
 import {getAuth} from "firebase/auth";
-import {useAppDispatch} from "../constants/hooks";
-import {activeUser} from "../reducers/user/userReducer";
+import {useAppDispatch, useAppSelector} from "../../constants/hooks";
+import {activeUser} from "../../reducers/user/userReducer";
+import {setActiveFilter} from "../../reducers/filter/activeFilterReducer";
 
-export default function Header(props: any) {
+export default function Header() {
     const auth = getAuth(app)
+    const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
 
     const onFilterPressHandler = () => {
-        if (props.activeFilter === FILTER) {
-            props.setActiveFilter('')
+        if (state.activeFilter === FILTER) {
+            dispatch(setActiveFilter(''))
             return
         }
-        props.setActiveFilter(FILTER)
+        dispatch(setActiveFilter(FILTER))
     }
     const onSearchFieldPressHandler = () => {
-        if (props.activeFilter === SEARCH_FIELD) {
-            props.setActiveFilter('')
+        if (state.activeFilter === SEARCH_FIELD) {
+            dispatch(setActiveFilter(''))
             return
         }
-        props.setActiveFilter(SEARCH_FIELD)
+        dispatch(setActiveFilter(SEARCH_FIELD))
     }
 
     // const onSettingsPressHandler = () => {
@@ -36,6 +38,7 @@ export default function Header(props: any) {
     // }
 
     const onLogoutPressHandler = () => {
+
         auth.signOut().then(() => {
             dispatch(activeUser(null))
         }).catch(error => {
