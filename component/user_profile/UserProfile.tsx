@@ -1,4 +1,4 @@
-import {StyleSheet, View, Text, Pressable} from "react-native";
+import {StyleSheet, View, Text, Pressable, ImageBackground} from "react-native";
 import {COLOR_BACKGROUND, COLOR_LABEL_BACKGROUND} from "../../constants/color_styles";
 import {vh} from "../../functions/dimentions";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
@@ -10,7 +10,7 @@ import {activeUser} from "../../reducers/user/userReducer";
 import {app} from "../../functions/firebase";
 import {getAuth} from "firebase/auth";
 import {useAppDispatch} from "../../constants/hooks";
-import {setHomeScreen, setLoginScreen} from "../../reducers/currentAppScreenReducer";
+import {setLoginScreen} from "../../reducers/currentAppScreenReducer";
 
 
 export default function UserProfile() {
@@ -34,7 +34,9 @@ export default function UserProfile() {
         })
     }
     return (
-        <View style={styles.userData}>
+        <View style={styles.userProfile}>
+            <ImageBackground style={{position: 'absolute', height: '100%', width: '100%', opacity: 0.1}}
+                             source={{uri: require('../../assets/images/Layout -1.png')}}/>
             <View style={styles.cardOuter}>
                 <Pressable onPress={onSettingsPressHandler} style={styles.cardInner}>
                     <View style={{justifyContent: 'center', alignItems: 'center'}}>
@@ -60,7 +62,7 @@ export default function UserProfile() {
 };
 
 const styles = StyleSheet.create({
-    userData: {
+    userProfile: {
         backgroundColor: COLOR_BACKGROUND,
         height: vh(0.9),
         width: '100%'
