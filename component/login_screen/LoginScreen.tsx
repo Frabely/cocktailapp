@@ -152,6 +152,10 @@ export default function LoginScreen() {
     }
 
     const onCreateAccountButtonClickHandler = () => {
+        setErrorStateUsername([])
+        setErrorStateEmail([])
+        setErrorStatePassword([])
+        setErrorStateRepeatPassword([])
         if (isCreatingAccount.includes('Create Account')) {
             setIsCreatingAccount([''])
             return
@@ -203,7 +207,10 @@ export default function LoginScreen() {
         <View style={styles.loginScreen}>
             {/*<ImageBackground style={{position: 'absolute', height: '100%', width: '100%'}} source={{uri: data.drinks[0].strDrinkThumb}}/>*/}
             <View style={styles.loginCard}>
-                <View style={[styles.inputCard]}>
+                <View style={[styles.inputCard,
+                    (isCreatingAccount.includes('Create Account') && !!getRepeatPasswordError() ||
+                        !isCreatingAccount.includes('Create Account') && !!getPasswordError())
+                    && {paddingBottom: PADDING}]}>
                     {(isCreatingAccount.includes('Create Account')) && (
                         <>
                             <TextInput
