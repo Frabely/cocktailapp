@@ -1,14 +1,16 @@
 Bugs:
 
 TODOs:
--add errors to errorArray and show all occuring
+-user profile:
+    -pages:
+        -profile
+        -bar/favorites ----> later create own recipes
+        -settings
 -user login:
     -login-screen
     -modal for errors/UI messages:
         -successfully logged in/logged out
         -created account
--add error messages in english (for now)
--user profile
 -settings page
 -Firebase Backend -> upload data auf firebase
 -testing:
