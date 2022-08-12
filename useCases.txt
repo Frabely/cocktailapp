@@ -11,6 +11,7 @@ TODOs:
         -successfully logged in/logged out
         -created account
 -settings page
+-Header at Bottom? if yes Filter and Search field coming from bottom?
 -Firebase Backend -> upload data auf firebase
 -testing:
     -cover as much as possible with error codes and matching messages

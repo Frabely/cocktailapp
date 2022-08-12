@@ -1,11 +1,11 @@
 import {Pressable, StyleSheet, Text, View} from "react-native";
-import {vh} from "../../functions/dimentions";
+import {vh, vw} from "../../functions/dimentions";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
-import {faFilter, faSearch, faGear, faPowerOff, faUser} from "@fortawesome/free-solid-svg-icons";
+import {faFilter, faSearch, faGear, faPowerOff, faUser, faHouse} from "@fortawesome/free-solid-svg-icons";
 import {} from "@fortawesome/free-regular-svg-icons";
 import {} from "@fortawesome/free-brands-svg-icons";
 import {COLOR_HEADER} from "../../constants/color_styles";
-import {PADDING} from "../../constants/style_constants";
+import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
 import {FILTER, SEARCH_FIELD} from "../../constants/const_vars";
 import {app} from "../../functions/firebase";
 import {getAuth} from "firebase/auth";
@@ -33,9 +33,9 @@ export default function Header() {
         dispatch(setActiveFilter(SEARCH_FIELD))
     }
 
-    // const onSettingsPressHandler = () => {
-    //     alert("open settings - in development")
-    // }
+    const onSettingsPressHandler = () => {
+        alert("open settings - in development")
+    }
 
     const onLogoutPressHandler = () => {
 
@@ -57,26 +57,36 @@ export default function Header() {
             {/*<View style={{flex: 2, alignItems: 'center', justifyContent: 'center',}}>*/}
             {/*    /!*<Text>Header Component</Text>*!/*/}
             {/*</View>*/}
-            {/*<Pressable onPress={onSettingsPressHandler} style={styles.filter}>*/}
-            {/*    <FontAwesomeIcon icon={faGear}/>*/}
-            {/*</Pressable>*/}
             <Pressable onPress={() => {}} style={styles.filter}>
                 <FontAwesomeIcon icon={faUser}/>
             </Pressable>
-            <Pressable onPress={onLogoutPressHandler} style={styles.filter}>
-                <FontAwesomeIcon icon={faPowerOff}/>
+            <Pressable onPress={() => {}} style={styles.filter}>
+                <FontAwesomeIcon icon={faHouse}/>
             </Pressable>
+            {/*<Pressable onPress={onSettingsPressHandler} style={styles.filter}>*/}
+            {/*    <FontAwesomeIcon icon={faGear}/>*/}
+            {/*</Pressable>*/}
+            {/*<Pressable onPress={onLogoutPressHandler} style={styles.filter}>*/}
+            {/*    <FontAwesomeIcon icon={faPowerOff}/>*/}
+            {/*</Pressable>*/}
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     header: {
-        height: vh(0.10),
+        height: vh(0.10)-MARGIN,
         backgroundColor: COLOR_HEADER,
         alignItems: 'center',
         justifyContent: 'center',
-        flexDirection: "row"
+        flexDirection: "row",
+        margin: MARGIN,
+        // TODO change margin top if swapping it to the bottom
+        marginBottom: 0,
+
+        //marginTop: 0,
+        borderRadius: BORDER_RADIUS/2,
+        width: vw(1)-MARGIN*2,
     },
     filter: {
         height: '100%',

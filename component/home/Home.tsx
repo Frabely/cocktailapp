@@ -18,6 +18,7 @@ import {changeCategory} from "../../reducers/filter/categoryFilterReducer";
 import LoadingScreen from "../layout/LoadingScreen";
 import LoginScreen from "../login_screen/LoginScreen";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../reducers/booleans/isLoadingReducer";
+import UserProfile from "../user_profile/UserProfile";
 
 const data: any[] = dummyData.drinks;
 export default function Home() {
@@ -129,43 +130,44 @@ export default function Home() {
 
     return (
         <>
-            {(state.user !== null) && (
-                <>
+            {/*{(state.user !== null) && (*/}
+                <View style={{backgroundColor: COLOR_BACKGROUND}}>
                     <Header/>
-                    <View style={styles.app}>
-                        {(state.activeFilter === FILTER) && (
-                            <Filter setCurrentSearchFieldInput={setCurrentSearchFieldInput}
-                                    currentDataSetLength={currentDataSet.length}
-                                    onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}
-                                    ingredientsValue={ingredientsValue}
-                                    setIngredientsValue={setIngredientsValue}/>
-                        )}
-                        {(state.activeFilter === SEARCH_FIELD) && (
-                            <SearchField setCurrentSearchFieldInput={setCurrentSearchFieldInput}
-                                         currentSearchFieldInput={currentSearchFieldInput}
-                                         currentDataSetLength={currentDataSet.length}/>
-                        )}
-                        {currentItem && (
-                            <HighlightedCard item={currentItem} onImageClickHandler={onImageClickHandler}/>
-                        )}
-                        {(currentDataSet.length === 0) && (
-                            <NoHits onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>
-                        )}
-                        <FlatList
-                            numColumns={3}
-                            data={currentDataSet}
-                            renderItem={renderItem}
-                            keyExtractor={item => item.idDrink}/>
-                        <StatusBar style="auto"/>
-                    </View>
-                    {state.isLoading && (
-                        <LoadingScreen/>
-                    )}
-                </>
-            )}
-            {(state.user === null) && (
-                <LoginScreen/>
-            )}
+                    <UserProfile/>
+                    {/*<View style={styles.app}>*/}
+                    {/*    {(state.activeFilter === FILTER) && (*/}
+                    {/*        <Filter setCurrentSearchFieldInput={setCurrentSearchFieldInput}*/}
+                    {/*                currentDataSetLength={currentDataSet.length}*/}
+                    {/*                onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}*/}
+                    {/*                ingredientsValue={ingredientsValue}*/}
+                    {/*                setIngredientsValue={setIngredientsValue}/>*/}
+                    {/*    )}*/}
+                    {/*    {(state.activeFilter === SEARCH_FIELD) && (*/}
+                    {/*        <SearchField setCurrentSearchFieldInput={setCurrentSearchFieldInput}*/}
+                    {/*                     currentSearchFieldInput={currentSearchFieldInput}*/}
+                    {/*                     currentDataSetLength={currentDataSet.length}/>*/}
+                    {/*    )}*/}
+                    {/*    {currentItem && (*/}
+                    {/*        <HighlightedCard item={currentItem} onImageClickHandler={onImageClickHandler}/>*/}
+                    {/*    )}*/}
+                    {/*    {(currentDataSet.length === 0) && (*/}
+                    {/*        <NoHits onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>*/}
+                    {/*    )}*/}
+                    {/*    <FlatList*/}
+                    {/*        numColumns={3}*/}
+                    {/*        data={currentDataSet}*/}
+                    {/*        renderItem={renderItem}*/}
+                    {/*        keyExtractor={item => item.idDrink}/>*/}
+                    {/*    <StatusBar style="auto"/>*/}
+                    {/*</View>*/}
+                    {/*{state.isLoading && (*/}
+                    {/*    <LoadingScreen/>*/}
+                    {/*)}*/}
+                </View>
+            {/*)}*/}
+            {/*{(state.user === null) && (*/}
+            {/*    <LoginScreen/>*/}
+            {/*)}*/}
         </>
     )
 }
