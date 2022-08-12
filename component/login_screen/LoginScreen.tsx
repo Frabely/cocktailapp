@@ -20,6 +20,7 @@ import {useAppDispatch, useAppSelector} from "../../constants/hooks";
 import {activeUser} from "../../reducers/user/userReducer";
 import FilterButton from "../home/menu/filter/FilterButton";
 import {
+    EMAIL_ALREADY_IN_USE,
     INVALID_EMAIL,
     TOO_MANY_REQUESTS,
     USER_NOT_FOUND,
@@ -45,18 +46,21 @@ export default function LoginScreen() {
     const auth = getAuth(app)
     const [isCreatingAccount, setIsCreatingAccount] = useState(['']);
 
-    const [errorState, setErrorState] = useState('');
+    const [errorState, setErrorState] = useState(['']);
 
     const onLoginHandler = () => {
-        if (email === '') {
-            setErrorState(EMAIL_MISSING.code)
-            return
+        let errorArray: string[] = []
+        if (email.trim() === '') {
+            setEmail('')
+            errorArray.push(EMAIL_MISSING.code)
         }
         if (password === '') {
-            setErrorState(PASSWORD_MISSING.code)
+            errorArray.push(PASSWORD_MISSING.code)
+        }
+        if (errorArray.length !== 0) {
+            setErrorState(errorArray)
             return
         }
-
         signInWithEmailAndPassword(auth, email, password).then(user => {
             dispatch(activeUser({
                 name: user.user.displayName,
@@ -65,41 +69,43 @@ export default function LoginScreen() {
         }).catch(error => {
             console.log(error.code)
             if (error.code === WRONG_PASSWORD.code)
-                setErrorState(WRONG_PASSWORD.code)
+                errorArray.push(WRONG_PASSWORD.code)
             else if (error.code === USER_NOT_FOUND.code)
-                setErrorState(USER_NOT_FOUND.code)
+                errorArray.push(USER_NOT_FOUND.code)
             else if (error.code === TOO_MANY_REQUESTS.code)
-                setErrorState(TOO_MANY_REQUESTS.code)
+                errorArray.push(TOO_MANY_REQUESTS.code)
             else if (error.code === INVALID_EMAIL.code)
-                setErrorState(INVALID_EMAIL.code)
+                errorArray.push(INVALID_EMAIL.code)
             else {
                 alert(error.code)
             }
+            setErrorState(errorArray)
         })
     }
 
     const onCreatAccountHandler = () => {
-        if (username === '') {
-            setErrorState(USERNAME_MISSING.code)
-            return
+        let errorArray: string[] = []
+        if (username.trim() === '') {
+            setUsername('')
+            errorArray.push(USERNAME_MISSING.code)
         }
-        if (email === '') {
-            setErrorState(EMAIL_MISSING.code)
-            return
+        if (email.trim() === '') {
+            setEmail('')
+            errorArray.push(EMAIL_MISSING.code)
         }
         if (password === '') {
-            setErrorState(PASSWORD_MISSING.code)
-            return
+            errorArray.push(PASSWORD_MISSING.code)
         }
         if (repeatPassword === '') {
-            setErrorState(REPEAT_PASSWORD_MISSING.code)
-            return
+            errorArray.push(REPEAT_PASSWORD_MISSING.code)
         }
         if (repeatPassword !== password) {
-            setErrorState(PASSWORDS_NOT_MATCHING.code)
+            errorArray.push(PASSWORDS_NOT_MATCHING.code)
+        }
+        if (errorArray.length !== 0) {
+            setErrorState(errorArray)
             return
         }
-
 
         createUserWithEmailAndPassword(auth, email, password).then(user => {
             updateProfile(user.user, {displayName: username}).then(() => {
@@ -113,22 +119,27 @@ export default function LoginScreen() {
             })
         }).catch(error => {
             if (error.code === WEAK_PASSWORD.code)
-                setErrorState(WEAK_PASSWORD.code)
+                errorArray.push(WEAK_PASSWORD.code)
             else if (error.code === INVALID_EMAIL.code)
-                setErrorState(INVALID_EMAIL.code)
+                errorArray.push(INVALID_EMAIL.code)
+            else if (error.code === EMAIL_ALREADY_IN_USE.code)
+                errorArray.push(EMAIL_ALREADY_IN_USE.code)
             else
                 alert(error.message)
+            setErrorState(errorArray)
         })
     }
 
     const onCreateAccountButtonClickHandler = () => {
-        setErrorState('')
+        setErrorState([''])
         if (isCreatingAccount.includes('Create Account')) {
             setIsCreatingAccount([''])
             return
         }
         setIsCreatingAccount(['Create Account'])
     }
+
+    console.log(errorState)
 
     return (
         <View style={styles.loginScreen}>
@@ -137,28 +148,31 @@ export default function LoginScreen() {
                 <View style={[styles.inputCard]}>
                     {(isCreatingAccount.includes('Create Account')) && (
                         <TextInput
-                            style={[styles.input, (errorState === USERNAME_MISSING.code) && {backgroundColor: COLOR_INCORRECT_FIELD_INPUT}]}
+                            style={[styles.input, (errorState.includes(USERNAME_MISSING.code)) && {backgroundColor: COLOR_INCORRECT_FIELD_INPUT}]}
                             onChangeText={input => {
                                 setUsername(input)
                             }}
-                            placeholder={'Username'}/>
+                            placeholder={'Username'}
+                            value={username}/>
                     )}
                     <TextInput
                         style={[styles.input, (
-                            errorState === USER_NOT_FOUND.code ||
-                            errorState === EMAIL_MISSING.code ||
-                            errorState == INVALID_EMAIL.code)
+                            errorState.includes(USER_NOT_FOUND.code)||
+                            errorState.includes(EMAIL_MISSING.code) ||
+                            errorState.includes(INVALID_EMAIL.code) ||
+                            errorState.includes(EMAIL_ALREADY_IN_USE.code))
                         && {backgroundColor: COLOR_INCORRECT_FIELD_INPUT}]}
                         onChangeText={input => {
                             setEmail(input)
                         }}
-                        placeholder={'Email'}/>
+                        placeholder={'Email'}
+                        value={email}/>
                     <TextInput
                         style={[styles.input, (
-                            errorState === WRONG_PASSWORD.code ||
-                            errorState === PASSWORD_MISSING.code ||
-                            errorState === PASSWORDS_NOT_MATCHING.code ||
-                            errorState === WEAK_PASSWORD.code)
+                            errorState.includes(WRONG_PASSWORD.code) ||
+                            errorState.includes(PASSWORD_MISSING.code) ||
+                            errorState.includes(PASSWORDS_NOT_MATCHING.code) ||
+                            errorState.includes(WEAK_PASSWORD.code))
                         && {backgroundColor: COLOR_INCORRECT_FIELD_INPUT}]}
                         onChangeText={input => {
                             setPassword(input)
@@ -168,9 +182,9 @@ export default function LoginScreen() {
                     {(isCreatingAccount.includes('Create Account')) && (
                         <TextInput
                             style={[styles.input, (
-                                errorState === REPEAT_PASSWORD_MISSING.code ||
-                                errorState === PASSWORDS_NOT_MATCHING.code ||
-                                errorState === WEAK_PASSWORD.code)
+                                errorState.includes(REPEAT_PASSWORD_MISSING.code) ||
+                                errorState.includes(PASSWORDS_NOT_MATCHING.code) ||
+                                errorState.includes(WEAK_PASSWORD.code))
                             && {backgroundColor: COLOR_INCORRECT_FIELD_INPUT}]}
                             onChangeText={input => {
                                 setRepeatPassword(input)
