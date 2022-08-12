@@ -10,7 +10,7 @@ const isLoadingSlice = createSlice({
         invertIsLoading: (state) => {
             return !state
         },
-        setIsLoadingTrue: (state) => {
+        setIsLoadingTrue: () => {
             return true
         },
         setIsLoadingFalse: () => {
