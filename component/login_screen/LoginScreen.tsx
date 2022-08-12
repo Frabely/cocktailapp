@@ -205,7 +205,8 @@ export default function LoginScreen() {
 
     return (
         <View style={styles.loginScreen}>
-            {/*<ImageBackground style={{position: 'absolute', height: '100%', width: '100%'}} source={{uri: data.drinks[0].strDrinkThumb}}/>*/}
+            <ImageBackground style={{position: 'absolute', height: '100%', width: '100%', opacity: 0.2}}
+                             source={{uri: require('../../assets/images/Layout -1.png')}}/>
             <View style={styles.loginCard}>
                 <View style={[styles.inputCard,
                     (isCreatingAccount.includes('Create Account') && !!getRepeatPasswordError() ||

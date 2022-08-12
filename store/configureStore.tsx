@@ -8,6 +8,7 @@ import ingredientsFilterSlice from "../reducers/filter/ingredientsFilterReducer"
 import UserSlice from "../reducers/user/userReducer"
 import isLoadingSlice from "../reducers/booleans/isLoadingReducer"
 import activeFilterSlice from "../reducers/filter/activeFilterReducer"
+import currentAppScreenSlice from "../reducers/currentAppScreenReducer"
 
 const rootReducer = combineReducers({
     alcoholicFilter: alcoholicFilterSlice,
@@ -17,7 +18,9 @@ const rootReducer = combineReducers({
     ingredientsFilter: ingredientsFilterSlice,
     user: UserSlice,
     isLoading: isLoadingSlice,
-    activeFilter: activeFilterSlice
+    activeFilter: activeFilterSlice,
+    currentAppScreen: currentAppScreenSlice
+
 })
 
 const store = configureStore({
