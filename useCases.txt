@@ -3,7 +3,9 @@ after logout set Home to default (no filters/buttons pressed)
 TODOs:
 -user profile:
     -pages:
-        -profile
+        -profile:
+            -user name unique -> set username as id in firebase?
+                ->throw error when register user with already used username
         -bar/favorites ----> later create own recipes
         -settings
 -user login:

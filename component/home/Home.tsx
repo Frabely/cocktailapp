@@ -130,7 +130,7 @@ export default function Home() {
 
     return (
         <>
-            {/*{(state.user !== null) && (*/}
+            {(state.user !== null) && (
                 <View style={{backgroundColor: COLOR_BACKGROUND}}>
                     <Header/>
                     <UserProfile/>
@@ -164,10 +164,10 @@ export default function Home() {
                     {/*    <LoadingScreen/>*/}
                     {/*)}*/}
                 </View>
-            {/*)}*/}
-            {/*{(state.user === null) && (*/}
-            {/*    <LoginScreen/>*/}
-            {/*)}*/}
+            )}
+            {(state.user === null) && (
+                <LoginScreen/>
+            )}
         </>
     )
 }
