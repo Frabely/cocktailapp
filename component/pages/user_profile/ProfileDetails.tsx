@@ -26,13 +26,13 @@ export default function ProfileDetails() {
                 <StyledButton flex={1}
                               padding={PADDING}
                               width={'100%'}
-                              onPress={onChangePasswordPressHandler}
-                              title={CHANGE_PASSWORD.ENG}/>
+                              onPress={onChangeUsernamePressHandler}
+                              title={CHANGE_USERNAME.ENG}/>
                 <StyledButton flex={1}
                               padding={PADDING}
                               width={'100%'}
-                              onPress={onChangeUsernamePressHandler}
-                              title={CHANGE_USERNAME.ENG}/>
+                              onPress={onChangePasswordPressHandler}
+                              title={CHANGE_PASSWORD.ENG}/>
             </CardLayout>
         </View>
     )

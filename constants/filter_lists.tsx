@@ -1,11 +1,18 @@
-import {ALL} from "./const_vars";
+import {ALL} from "./labels";
 
-export const CATEGORY_LIST: string[] = [ALL, 'Shot', 'Beer', 'Shake', 'Cocktail', 'Ordinary Drink',
-    'Homemade Liqueur', 'Punch / Party Drink', 'Coffee / Tea', 'Cocoa', 'Soft Drink', 'Other/Unknown']
+export const CATEGORY_LIST: any = {
+    ENG: [ALL.ENG, 'Shot', 'Beer', 'Shake', 'Cocktail', 'Ordinary Drink', 'Homemade Liqueur',
+        'Punch / Party Drink', 'Coffee / Tea', 'Cocoa', 'Soft Drink', 'Other / Unknown'],
+    GER: [ALL.GER, 'Shot', 'Bier', 'Shake', 'Cocktail', 'Gewöhnliches Getränk', 'Hausgemachter Likör',
+        'Punsch / Partygetränk', 'Kaffee / Tee', 'Kakao', 'Erfrischungs-Getränk', 'Andere / Unbekannt']
+}
 
-export const ALCOHOLIC_LIST: string[] = [ALL, 'Alcoholic', 'Non alcoholic']
+export const ALCOHOLIC_LIST: any = {
+    ENG: [ALL.ENG, 'Alcoholic', 'Non alcoholic'],
+    GER: [ALL.GER, 'Alkoholisch', 'Nicht Alkoholisch']
+}
 
-export const GLASS_TYPE_LIST: string[] = [ALL, 'Old-fashioned glass', 'Beer Glass', 'Beer mug', 'White wine glass',
+export const GLASS_TYPE_LIST: string[] = [ALL.ENG, 'Old-fashioned glass', 'Beer Glass', 'Beer mug', 'White wine glass',
     'Shot glass', 'Collins glass', 'Collins Glass', 'Highball glass', 'Cocktail glass', 'Irish coffee cup', 'Jar',
     'Champagne flute', 'Martini Glass', 'Margarita/Coupette glass', 'Coffee mug', 'Pousse cafe glass', 'Wine Glass',
     'Punch Bowl', 'Punch bowl', 'Beer pilsner', 'Highball Glass', 'Cocktail Glass', 'Coffee Mug']

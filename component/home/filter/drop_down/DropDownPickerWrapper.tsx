@@ -1,4 +1,4 @@
-import {BORDER_RADIUS, DEFAULT_BUTTON_HEIGHT, MARGIN, PADDING} from "../../../../constants/style_constants";
+import {BORDER_RADIUS, MARGIN, PADDING} from "../../../../constants/style_constants";
 import {
     COLOR_BACKGROUND,
     COLOR_HEADER,
@@ -15,6 +15,7 @@ import {
     INGREDIENTS_FILTER_SELECTION_NUMBER_MAX,
     INGREDIENTS_FILTER_SELECTION_NUMBER_MIN
 } from "../../../../constants/const_vars";
+import {SEARCH_INGREDIENTS} from "../../../../constants/labels";
 
 export default function DropDownPickerWrapper(props: any) {
     const [open, setOpen] = useState(false);
@@ -49,7 +50,7 @@ export default function DropDownPickerWrapper(props: any) {
                 height: 0
             }}
             searchable={true}
-            searchPlaceholder="Search Ingredients"
+            searchPlaceholder={SEARCH_INGREDIENTS.ENG}
             searchContainerStyle={{
                 backgroundColor: COLOR_BACKGROUND,
                 borderRadius: BORDER_RADIUS / 2,

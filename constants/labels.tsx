@@ -2,4 +2,13 @@ export const USERNAME = {ENG: 'Username', GER: 'Nutzername',}
 export const EMAIL = {ENG: 'Email', GER: 'Email',}
 export const CHANGE_PASSWORD = {ENG: 'Change Password', GER: 'Passwort ändern'}
 export const CHANGE_USERNAME = {ENG: 'Change Username', GER: 'Nutzername ändern'}
-
+export const SEARCH_INGREDIENTS = {ENG: 'Search Ingredient', GER: 'Zutat suchen'}
+export const ALL = {ENG: 'All', GER: 'Alle'}
+export const ALCOHOLIC = {ENG: 'Alcoholic', GER: 'Alkoholisch'}
+export const CATEGORY = {ENG: 'Category', GER: 'Kategorie'}
+export const INGREDIENTS = {ENG: 'Ingredients', GER: 'Zutaten'}
+export const CLEAR_ALL_FILTERS = {ENG: 'Clear all filters', GER: 'Filter zurücksetzen'}
+export const HITS = {ENG: 'Hits', GER: 'Treffer'}
+export const ENTER_SEARCH_TERM = {ENG: 'Enter search term', GER: 'Suchbegriff eintragen'}
+export const RESET_FILTER = {ENG: 'Reset Filters', GER: 'Filter zurücksetzen'}
+export const NO_HITS = {ENG: 'No Hits', GER: 'Keine Treffer'}

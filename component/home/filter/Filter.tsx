@@ -4,6 +4,7 @@ import {COLOR_CARD_BACKGROUND} from "../../../constants/color_styles";
 import {BORDER_RADIUS, MARGIN} from "../../../constants/style_constants";
 import FilterPanel from "./FilterPanel";
 import {ALL} from "../../../constants/const_vars";
+import {CATEGORY, CLEAR_ALL_FILTERS, HITS, INGREDIENTS} from "../../../constants/labels";
 import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
 import {changeAlcoholic} from "../../../reducers/filter/alcoholicFilterReducer";
 import {changeCategory} from "../../../reducers/filter/categoryFilterReducer";
@@ -12,10 +13,11 @@ import {ALCOHOLIC_LIST, CATEGORY_LIST} from "../../../constants/filter_lists";
 import DropDownPickerWrapper from "./drop_down/DropDownPickerWrapper";
 import Label from "./Label";
 import {setActiveFilter} from "../../../reducers/filter/activeFilterReducer";
+import {ALCOHOLIC} from "../../../constants/labels";
 
 
-const alcFilterOptions = ALCOHOLIC_LIST
-const categoryFilterOptions = CATEGORY_LIST
+const alcFilterOptions = ALCOHOLIC_LIST.ENG
+const categoryFilterOptions = CATEGORY_LIST.ENG
 
 export default function Filter(props: any) {
     const state = useAppSelector((state) => state)
@@ -29,7 +31,7 @@ export default function Filter(props: any) {
         <View style={styles.filter}>
             <View style={styles.rowStyle}>
                 <FilterPanel options={alcFilterOptions}
-                             labelName={'Alcoholic'}
+                             labelName={ALCOHOLIC.ENG}
                              default={[ALL]}
                              isMultiSelectable={false}
                              filterState={state.alcoholicFilter}
@@ -52,7 +54,7 @@ export default function Filter(props: any) {
             {/*</View>*/}
             <View style={styles.rowStyle}>
                 <FilterPanel options={categoryFilterOptions}
-                             labelName={'Category'}
+                             labelName={CATEGORY.ENG}
                              default={[ALL]}
                              isMultiSelectable={true}
                              filterState={state.categoryFilter}
@@ -65,14 +67,14 @@ export default function Filter(props: any) {
                 borderBottomLeftRadius: 0,
                 borderBottomRightRadius: 0
             }]}>
-                <Label labelName={'Ingredients'}/>
+                <Label labelName={INGREDIENTS.ENG}/>
             </View>
             <DropDownPickerWrapper
                 setIngredientsValue={props.setIngredientsValue}
                 ingredientsValue={props.ingredientsValue}/>
             <View style={styles.buttonBackgroundStyle}>
-                <StyledButton flex={1} onPress={props.onClearAllFiltersClickHandler} title={'Clear all filters'}/>
-                <StyledButton flex={1} onPress={onHitsClickHandler} title={`Hits: ${props.currentDataSetLength}`}/>
+                <StyledButton flex={1} onPress={props.onClearAllFiltersClickHandler} title={CLEAR_ALL_FILTERS.ENG}/>
+                <StyledButton flex={1} onPress={onHitsClickHandler} title={`${HITS.ENG}: ${props.currentDataSetLength}`}/>
             </View>
         </View>
     )
