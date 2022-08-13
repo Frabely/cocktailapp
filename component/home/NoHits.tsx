@@ -8,10 +8,10 @@ import {COLOR_CARD_BACKGROUND} from "../../constants/color_styles";
 export default function NoHits(props: any) {
     return (
         <View style={styles.noHits}>
-            <CardLayout>
+            <CardLayout width={vw(0.5)}>
                 {/*<View style={styles.noHitsInner}>*/}
                     <Text style={{fontWeight: '900'}}>No Hits 😕</Text>
-                    <StyledButton flex={1} title={'Reset Filter'}
+                    <StyledButton width={'100%'} title={'Reset Filter'}
                                   onPress={props.onClearAllFiltersClickHandler}/>
                 {/*</View>*/}
             </CardLayout>
