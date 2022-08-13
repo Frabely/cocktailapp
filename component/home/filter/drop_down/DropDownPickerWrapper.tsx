@@ -127,7 +127,7 @@ export default function DropDownPickerWrapper(props: any) {
                 height: vh(0.03),
             }}
             badgeStyle={{
-                height: vh(DEFAULT_BUTTON_HEIGHT),
+                height: vh(0.04),
                 width: vw(0.9) - 4 * PADDING - 2 * MARGIN,
                 borderRadius: BORDER_RADIUS / 2,
                 justifyContent: 'center'

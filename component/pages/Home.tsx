@@ -20,6 +20,7 @@ import {setIsLoadingFalse, setIsLoadingTrue} from "../../reducers/booleans/isLoa
 import UserProfile from "./UserProfile";
 import {setActiveFilter} from "../../reducers/filter/activeFilterReducer";
 import ProfileDetails from "./user_profile/ProfileDetails";
+import HeaderHome from "../home/HeaderHome";
 
 const data: any[] = dummyData.drinks;
 export default function Home() {
@@ -151,6 +152,7 @@ export default function Home() {
             ) : null}
             {(state.currentAppScreen === HOME) ? (
                 <>
+                    <HeaderHome/>
                     <View style={styles.app}>
                         {(state.activeFilter === FILTER) ? (
                             <Filter setCurrentSearchFieldInput={setCurrentSearchFieldInput}
@@ -190,7 +192,7 @@ export default function Home() {
 }
 const styles = StyleSheet.create({
     app: {
-        height: vh(0.9),
+        height: vh(0.8),
         width: '100%',
         padding: PADDING,
     },
