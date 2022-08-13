@@ -1,6 +1,7 @@
 Bugs:
 -after logout set Home to default (no filters/buttons pressed) -> still ingredients selected (else fixed)
 -ingredients state is still in Home and not in redux
+-input: on click current value is selected
 TODOs:
 -Decide fixed Header Icons (reachable from every page)
 -How should Filter and SearchField be displayed in Home -> not in Header (not usable elsewhere)

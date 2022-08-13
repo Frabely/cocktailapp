@@ -12,7 +12,6 @@ import NoHits from "../home/NoHits"
 import {COLOR_BACKGROUND} from "../../constants/color_styles";
 import {PADDING} from "../../constants/style_constants";
 import {ALL, FILTER, HOME, LOGIN, PROFILE, SEARCH_FIELD, PROFILE_DETAILS} from "../../constants/const_vars";
-import {StatusBar} from "expo-status-bar";
 import {changeAlcoholic} from "../../reducers/filter/alcoholicFilterReducer";
 import {changeCategory} from "../../reducers/filter/categoryFilterReducer";
 import LoadingScreen from "../layout/LoadingScreen";
@@ -140,19 +139,18 @@ export default function Home() {
                              source={require('../../assets/images/adaptive_background.png')}/>
             {(state.currentAppScreen === PROFILE) ? (
                 <>
-                    <Header/>
                     <UserProfile/>
+                    <Header/>
                 </>
             ) : null}
             {(state.currentAppScreen === PROFILE_DETAILS) ? (
                 <>
-                    <Header/>
                     <ProfileDetails/>
+                    <Header/>
                 </>
             ) : null}
             {(state.currentAppScreen === HOME) ? (
                 <>
-                    <Header/>
                     <View style={styles.app}>
                         {(state.activeFilter === FILTER) ? (
                             <Filter setCurrentSearchFieldInput={setCurrentSearchFieldInput}
@@ -177,8 +175,8 @@ export default function Home() {
                             data={currentDataSet}
                             renderItem={renderItem}
                             keyExtractor={item => item.idDrink}/>
-                        <StatusBar style="auto"/>
                     </View>
+                    <Header/>
                 </>
             ) : null}
             {(state.currentAppScreen === LOGIN) ? (
