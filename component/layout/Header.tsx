@@ -13,6 +13,7 @@ import {useAppDispatch, useAppSelector} from "../../constants/hooks";
 import {activeUser} from "../../reducers/user/userReducer";
 import {setActiveFilter} from "../../reducers/filter/activeFilterReducer";
 import {setHomeScreen, setProfileScreen} from "../../reducers/currentAppScreenReducer";
+import {setIsLoadingFalse, setIsLoadingTrue} from "../../reducers/booleans/isLoadingReducer";
 
 export default function Header() {
     const auth = getAuth(app)

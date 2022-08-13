@@ -8,7 +8,7 @@ import {activeUser} from "../../reducers/user/userReducer";
 import {app} from "../../functions/firebase";
 import {getAuth} from "firebase/auth";
 import {useAppDispatch} from "../../constants/hooks";
-import {setLoginScreen, setUserProfileSettingsScreen} from "../../reducers/currentAppScreenReducer";
+import {setLoginScreen, setProfileDetailsScreen} from "../../reducers/currentAppScreenReducer";
 import CardLayout from "../layout/CardLayout";
 import UserProfileItem from "../user_profile/UserProfileItem";
 
@@ -17,8 +17,8 @@ export default function UserProfile() {
     const auth = getAuth(app)
     const dispatch = useAppDispatch()
 
-    const onUserSettingsPressHandler = () => {
-        dispatch(setUserProfileSettingsScreen())
+    const onProfileDetailsPressHandler = () => {
+        dispatch(setProfileDetailsScreen())
     }
 
     const onSettingsPressHandler = () => {
@@ -32,7 +32,7 @@ export default function UserProfile() {
     const onLogoutPressHandler = () => {
         auth.signOut().then(() => {
             dispatch(setLoginScreen())
-            dispatch(activeUser(null))
+            dispatch(activeUser({username: null, email: null}))
         }).catch(error => {
             alert(error.message)
         })
@@ -42,7 +42,7 @@ export default function UserProfile() {
             <Image style={{position: 'absolute', height: '100%', width: '100%'}}
                              source={require('../../assets/images/adaptive_background.png')}/>
             <CardLayout>
-                <UserProfileItem onPress={onUserSettingsPressHandler} icon={faUserGear} label={'Profile Details'}/>
+                <UserProfileItem onPress={onProfileDetailsPressHandler} icon={faUserGear} label={'Profile Details'}/>
                 <UserProfileItem onPress={onSettingsPressHandler} icon={faGear} label={'Settings'}/>
                 <UserProfileItem onPress={onFavoritesPressHandler} icon={faStar} label={'Favorites'}/>
                 <UserProfileItem onPress={onLogoutPressHandler} icon={faPowerOff} label={'Logout'}/>

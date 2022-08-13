@@ -11,7 +11,7 @@ import HighlightedCard from "../home/highlighted_card/HighlightedCard";
 import NoHits from "../home/NoHits"
 import {COLOR_BACKGROUND} from "../../constants/color_styles";
 import {PADDING} from "../../constants/style_constants";
-import {ALL, FILTER, HOME, LOGIN, PROFILE, SEARCH_FIELD, USER_PROFILE_SETTINGS} from "../../constants/const_vars";
+import {ALL, FILTER, HOME, LOGIN, PROFILE, SEARCH_FIELD, PROFILE_DETAILS} from "../../constants/const_vars";
 import {StatusBar} from "expo-status-bar";
 import {changeAlcoholic} from "../../reducers/filter/alcoholicFilterReducer";
 import {changeCategory} from "../../reducers/filter/categoryFilterReducer";
@@ -20,7 +20,7 @@ import LoginScreen from "./LoginScreen";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../reducers/booleans/isLoadingReducer";
 import UserProfile from "./UserProfile";
 import {setActiveFilter} from "../../reducers/filter/activeFilterReducer";
-import UserProfileSettings from "./UserProfileSettings";
+import ProfileDetails from "./user_profile/ProfileDetails";
 
 const data: any[] = dummyData.drinks;
 export default function Home() {
@@ -144,13 +144,13 @@ export default function Home() {
                     <UserProfile/>
                 </>
             ) : null}
-            {(state.currentAppScreen === USER_PROFILE_SETTINGS) ? (
+            {(state.currentAppScreen === PROFILE_DETAILS) ? (
                 <>
                     <Header/>
-                    <UserProfileSettings/>
+                    <ProfileDetails/>
                 </>
             ) : null}
-            {(state.user !== null && state.currentAppScreen === HOME) ? (
+            {(state.currentAppScreen === HOME) ? (
                 <>
                     <Header/>
                     <View style={styles.app}>
@@ -181,7 +181,7 @@ export default function Home() {
                     </View>
                 </>
             ) : null}
-            {(state.user === null && state.currentAppScreen === LOGIN) ? (
+            {(state.currentAppScreen === LOGIN) ? (
                 <LoginScreen/>
             ) : null}
             {state.isLoading ? (
@@ -192,7 +192,6 @@ export default function Home() {
 }
 const styles = StyleSheet.create({
     app: {
-        // backgroundColor: COLOR_BACKGROUND,
         height: vh(0.9),
         width: '100%',
         padding: PADDING,

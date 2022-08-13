@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {HOME, LOGIN, PROFILE, USER_PROFILE_SETTINGS} from "../constants/const_vars";
+import {HOME, LOGIN, PROFILE, PROFILE_DETAILS} from "../constants/const_vars";
 
 const currentAppScreenSlice = createSlice({
     name: 'currentAppScreen',
@@ -14,11 +14,11 @@ const currentAppScreenSlice = createSlice({
         setProfileScreen: () => {
             return PROFILE
         },
-        setUserProfileSettingsScreen: () => {
-            return USER_PROFILE_SETTINGS
+        setProfileDetailsScreen: () => {
+            return PROFILE_DETAILS
         },
     },
 })
-export const { setHomeScreen, setLoginScreen, setProfileScreen, setUserProfileSettingsScreen } = currentAppScreenSlice.actions
+export const { setHomeScreen, setLoginScreen, setProfileScreen, setProfileDetailsScreen } = currentAppScreenSlice.actions
 
 export default currentAppScreenSlice.reducer;

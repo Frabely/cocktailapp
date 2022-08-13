@@ -15,7 +15,7 @@ import {
     updateProfile
 } from "firebase/auth";
 import {useState} from "react";
-import {useAppDispatch, useAppSelector} from "../../constants/hooks";
+import {useAppDispatch} from "../../constants/hooks";
 import {activeUser} from "../../reducers/user/userReducer";
 import FilterButton from "../home/filter/FilterButton";
 import {
@@ -68,7 +68,7 @@ export default function LoginScreen() {
         }
         signInWithEmailAndPassword(auth, email, password).then(user => {
             dispatch(activeUser({
-                name: user.user.displayName,
+                username: user.user.displayName,
                 email: user.user.email,
             }))
             dispatch(setHomeScreen())
@@ -126,7 +126,7 @@ export default function LoginScreen() {
         createUserWithEmailAndPassword(auth, email, password).then(user => {
             updateProfile(user.user, {displayName: username}).then(() => {
                 dispatch(activeUser({
-                    name: user.user.displayName,
+                    username: user.user.displayName,
                     email: user.user.email,
                 }))
             }).catch(error => {
