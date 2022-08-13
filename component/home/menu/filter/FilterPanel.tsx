@@ -39,11 +39,10 @@ export default function FilterPanel(props: any) {
         dispatch(props.setFilterState(resultArray))
     }
 
-    const renderItem = ({item, index}: any) => {
+    const renderItem = ({item}: any) => {
         return (
-            <View style={styles.flatListItem} key={index}>
+            <View style={styles.flatListItem}>
                 <FilterButton
-                    key={item}
                     title={item}
                     colorActive={COLOR_HEADER}
                     colorInactive={COLOR_BACKGROUND}
@@ -92,7 +91,7 @@ export default function FilterPanel(props: any) {
             {/*                </View> )*/}
             {/*})}*/}
             {/*</View>*/}
-            <FlatList data={props.options} renderItem={renderItem} numColumns={props.numColumns}/>
+            <FlatList keyExtractor={(item) => item} data={props.options} renderItem={renderItem} numColumns={props.numColumns}/>
         </View>
 
     )
