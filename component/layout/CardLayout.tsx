@@ -7,10 +7,10 @@ export default function CardLayout(props: any) {
         <View style={[
             styles.cardOuter,
             props?.width ? {width: props.width} : null,
-            props?.height ? {height: props.height} : null
+            props?.height ? {height: props.height} : null,
+            props?.alignItems ? {alignItems: props.alignItems} : null,
         ]}>{props.children}</View>
     )
-
 }
 
 const styles = StyleSheet.create({
