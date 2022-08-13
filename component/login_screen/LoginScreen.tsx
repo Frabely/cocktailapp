@@ -33,13 +33,10 @@ import {
     REPEAT_PASSWORD_MISSING,
     USERNAME_MISSING
 } from "../../constants/error_codes";
-import data from "../../constants/dummyData3";
 import {setHomeScreen} from "../../reducers/currentAppScreenReducer";
-import {setActiveFilter} from "../../reducers/filter/activeFilterReducer";
 import CardLayout from "../layout/CardLayout";
 
 export default function LoginScreen() {
-    const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -52,7 +49,6 @@ export default function LoginScreen() {
     const [errorStateRepeatPassword, setErrorStateRepeatPassword] = useState(['']);
 
     const auth = getAuth(app)
-
 
     const onLoginHandler = () => {
         let errorArrayEmail: string[] = []
