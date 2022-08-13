@@ -1,21 +1,26 @@
 import {StyleSheet, View, Text, Pressable, ImageBackground} from "react-native";
-import {COLOR_BACKGROUND, COLOR_LABEL_BACKGROUND} from "../../constants/color_styles";
+import {COLOR_BACKGROUND, COLOR_FILTER_BACKGROUND} from "../../constants/color_styles";
 import {vh} from "../../functions/dimentions";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
-import {faGear, faPowerOff} from "@fortawesome/free-solid-svg-icons";
+import {faGear, faPowerOff, faUserGear} from "@fortawesome/free-solid-svg-icons";
 import {faStar} from "@fortawesome/free-regular-svg-icons";
 import {} from "@fortawesome/free-brands-svg-icons";
 import {activeUser} from "../../reducers/user/userReducer";
 import {app} from "../../functions/firebase";
 import {getAuth} from "firebase/auth";
 import {useAppDispatch} from "../../constants/hooks";
-import {setLoginScreen} from "../../reducers/currentAppScreenReducer";
+import {setLoginScreen, setUserProfileSettingsScreen} from "../../reducers/currentAppScreenReducer";
+import CardLayout from "../layout/CardLayout";
 
 
 export default function UserProfile() {
     const auth = getAuth(app)
     const dispatch = useAppDispatch()
+
+    const onUserSettingsPressHandler = () => {
+        dispatch(setUserProfileSettingsScreen())
+    }
 
     const onSettingsPressHandler = () => {
         alert('in development')
@@ -35,9 +40,16 @@ export default function UserProfile() {
     }
     return (
         <View style={styles.userProfile}>
-            <ImageBackground style={{position: 'absolute', height: '100%', width: '100%', opacity: 0.1}}
-                             source={{uri: require('../../assets/images/Layout -1.png')}}/>
-            <View style={styles.cardOuter}>
+            {/*<ImageBackground style={{position: 'absolute', height: '100%', width: '100%', opacity: 0.1}}*/}
+            <ImageBackground style={{position: 'absolute', height: '100%', width: '100%'}}
+                             source={{uri: require('../../assets/images/adaptive_background.png')}}/>
+            <CardLayout>
+                <Pressable onPress={onUserSettingsPressHandler} style={styles.cardInner}>
+                    <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                        <FontAwesomeIcon icon={faUserGear}/>
+                    </View>
+                    <Text style={{paddingLeft: PADDING / 2}}>Profile Details</Text>
+                </Pressable>
                 <Pressable onPress={onSettingsPressHandler} style={styles.cardInner}>
                     <View style={{justifyContent: 'center', alignItems: 'center'}}>
                         <FontAwesomeIcon icon={faGear}/>
@@ -56,7 +68,7 @@ export default function UserProfile() {
                     </View>
                     <Text style={{paddingLeft: PADDING / 2}}>Logout</Text>
                 </Pressable>
-            </View>
+            </CardLayout>
         </View>
     )
 };
@@ -69,7 +81,7 @@ const styles = StyleSheet.create({
     },
     cardOuter: {
         flexDirection: 'column',
-        backgroundColor: COLOR_LABEL_BACKGROUND,
+        backgroundColor: COLOR_FILTER_BACKGROUND,
         borderRadius: BORDER_RADIUS / 2,
         margin: MARGIN,
         alignItems: 'center',

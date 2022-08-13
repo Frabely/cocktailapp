@@ -1,6 +1,6 @@
 import {StyleSheet, View} from "react-native";
 import {vw} from "../../../../functions/dimentions";
-import {COLOR_LABEL_BACKGROUND} from "../../../../constants/color_styles";
+import {COLOR_FILTER_BACKGROUND} from "../../../../constants/color_styles";
 import {BORDER_RADIUS, MARGIN} from "../../../../constants/style_constants";
 import FilterPanel from "./FilterPanel";
 import {ALL} from "../../../../constants/const_vars";
@@ -88,14 +88,14 @@ const styles = StyleSheet.create({
     },
     rowStyle: {
         flexDirection: 'row',
-        backgroundColor: COLOR_LABEL_BACKGROUND,
+        backgroundColor: COLOR_FILTER_BACKGROUND,
         borderRadius: BORDER_RADIUS / 2,
         marginLeft: MARGIN,
         marginRight: MARGIN,
         marginTop: MARGIN
     },
     buttonBackgroundStyle: {
-        backgroundColor: COLOR_LABEL_BACKGROUND,
+        backgroundColor: COLOR_FILTER_BACKGROUND,
         borderRadius: BORDER_RADIUS / 2,
         margin: MARGIN,
         flexDirection: 'row',

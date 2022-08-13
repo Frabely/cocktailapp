@@ -4,7 +4,7 @@ import {
     COLOR_BACKGROUND,
     COLOR_HEADER,
     COLOR_INCORRECT_FIELD_INPUT,
-    COLOR_LABEL_BACKGROUND
+    COLOR_FILTER_BACKGROUND
 } from "../../constants/color_styles";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
 import StyledButton from "../layout/StyledButton";
@@ -37,6 +37,7 @@ import {
 import data from "../../constants/dummyData3";
 import {setHomeScreen} from "../../reducers/currentAppScreenReducer";
 import {setActiveFilter} from "../../reducers/filter/activeFilterReducer";
+import CardLayout from "../layout/CardLayout";
 
 export default function LoginScreen() {
     const state = useAppSelector((state) => state)
@@ -209,9 +210,9 @@ export default function LoginScreen() {
 
     return (
         <View style={styles.loginScreen}>
-            <ImageBackground style={{position: 'absolute', height: '100%', width: '100%', opacity: 0.1}}
-                             source={{uri: require('../../assets/images/Layout -1.png')}}/>
-            <View style={styles.loginCard}>
+            <ImageBackground style={{position: 'absolute', height: '100%', width: '100%'}}
+                             source={{uri: require('../../assets/images/adaptive_background.png')}}/>
+            <CardLayout style={styles.loginCard}>
                 <View style={[styles.inputCard,
                     (isCreatingAccount.includes('Create Account') && !!getRepeatPasswordError() ||
                         !isCreatingAccount.includes('Create Account') && !!getPasswordError())
@@ -281,7 +282,7 @@ export default function LoginScreen() {
                     padding={PADDING / 2}
                     margin={MARGIN / 2}
                     width={'100%'}/>
-            </View>
+            </CardLayout>
         </View>
     )
 }
@@ -295,14 +296,14 @@ const styles = StyleSheet.create({
     },
     loginCard: {
         width: vw(0.7),
-        backgroundColor: COLOR_LABEL_BACKGROUND,
+        backgroundColor: COLOR_FILTER_BACKGROUND,
         padding: PADDING,
         borderRadius: BORDER_RADIUS / 2,
         alignItems: "center",
         justifyContent: 'center',
     },
     input: {
-        backgroundColor: COLOR_LABEL_BACKGROUND,
+        backgroundColor: COLOR_FILTER_BACKGROUND,
         borderRadius: BORDER_RADIUS / 2,
         padding: PADDING,
         margin: MARGIN

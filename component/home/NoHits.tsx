@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View} from "react-native";
 import StyledButton from "../layout/StyledButton";
 import {vh, vw} from "../../functions/dimentions";
-import {COLOR_LABEL_BACKGROUND} from "../../constants/color_styles";
+import {COLOR_FILTER_BACKGROUND} from "../../constants/color_styles";
 import {BORDER_RADIUS, PADDING} from "../../constants/style_constants";
 
 export default function NoHits(props: any) {
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     }, noHitsInner: {
         width: vw(0.5),
         height: vh(0.15),
-        backgroundColor: COLOR_LABEL_BACKGROUND,
+        backgroundColor: COLOR_FILTER_BACKGROUND,
         borderRadius: BORDER_RADIUS / 2,
         padding: PADDING,
         paddingTop: PADDING / 10,

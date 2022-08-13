@@ -6,3 +6,4 @@ export const INGREDIENTS_FILTER_SELECTION_NUMBER_MIN = 0
 export const HOME = 'home'
 export const LOGIN = 'login'
 export const PROFILE = 'profile'
+export const USER_PROFILE_SETTINGS = 'userProfileSettings'

@@ -11,7 +11,7 @@ import HighlightedCard from "./highlighted_card/HighlightedCard";
 import NoHits from "./NoHits"
 import {COLOR_BACKGROUND} from "../../constants/color_styles";
 import {PADDING} from "../../constants/style_constants";
-import {ALL, FILTER, HOME, LOGIN, PROFILE, SEARCH_FIELD} from "../../constants/const_vars";
+import {ALL, FILTER, HOME, LOGIN, PROFILE, SEARCH_FIELD, USER_PROFILE_SETTINGS} from "../../constants/const_vars";
 import {StatusBar} from "expo-status-bar";
 import {changeAlcoholic} from "../../reducers/filter/alcoholicFilterReducer";
 import {changeCategory} from "../../reducers/filter/categoryFilterReducer";
@@ -20,6 +20,7 @@ import LoginScreen from "../login_screen/LoginScreen";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../reducers/booleans/isLoadingReducer";
 import UserProfile from "../user_profile/UserProfile";
 import {setActiveFilter} from "../../reducers/filter/activeFilterReducer";
+import UserProfileSettings from "../user_profile/UserProfileSettings";
 
 const data: any[] = dummyData.drinks;
 export default function Home() {
@@ -135,12 +136,18 @@ export default function Home() {
 
     return (
         <View style={{backgroundColor: COLOR_BACKGROUND}}>
-            <ImageBackground style={{position: 'absolute', height: '100%', width: '100%', opacity: 0.1}}
-                             source={{uri: require('../../assets/images/Layout -1.png')}}/>
+            <ImageBackground style={{position: 'absolute', height: '100%', width: '100%'}}
+                             source={{uri: require('../../assets/images/adaptive_background.png')}}/>
             {(state.currentAppScreen === PROFILE) && (
                 <>
                     <Header/>
                     <UserProfile/>
+                </>
+            )}
+            {(state.currentAppScreen === USER_PROFILE_SETTINGS) && (
+                <>
+                    <Header/>
+                    <UserProfileSettings/>
                 </>
             )}
             {(state.user !== null && state.currentAppScreen === HOME) && (

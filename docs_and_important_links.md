@@ -8,3 +8,5 @@ https://www.fontspace.com/category/cool?p=4
 https://www.crowdbotics.com/blog/how-to-implement-admob-in-react-native
 ### docs DropDownMenu (react-native-dropdown-picker)
 https://hossein-zare.github.io/react-native-dropdown-picker-website/
+### Remove Image Backgrounds from images (subscription needed for it?)
+https://clippingmagic.com
