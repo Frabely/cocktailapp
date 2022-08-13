@@ -1,10 +1,10 @@
 import {StyleSheet, View} from "react-native";
-import {COLOR_BACKGROUND, COLOR_CARD_BACKGROUND, COLOR_FILTER_BACKGROUND} from "../../constants/color_styles";
+import {COLOR_CARD_BACKGROUND} from "../../constants/color_styles";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
 
 export default function CardLayout(props: any) {
     return (
-        <View style={styles.cardOuter}>{props.children}</View>
+        <View style={[styles.cardOuter, props?.width && {width: props.width}]}>{props.children}</View>
     )
 
 }

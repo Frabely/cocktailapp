@@ -1,5 +1,5 @@
 import {StyleSheet, View, Text, Pressable, ImageBackground} from "react-native";
-import {COLOR_BACKGROUND, COLOR_FILTER_BACKGROUND} from "../../constants/color_styles";
+import {COLOR_BACKGROUND, COLOR_CARD_BACKGROUND} from "../../constants/color_styles";
 import {vh} from "../../functions/dimentions";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     },
     cardOuter: {
         flexDirection: 'column',
-        backgroundColor: COLOR_FILTER_BACKGROUND,
+        backgroundColor: COLOR_CARD_BACKGROUND,
         borderRadius: BORDER_RADIUS / 2,
         margin: MARGIN,
         alignItems: 'center',

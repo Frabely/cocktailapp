@@ -1,10 +1,9 @@
 import {ImageBackground, StyleSheet, TextInput, View, Text} from "react-native";
 import {vh, vw} from "../../functions/dimentions";
 import {
-    COLOR_BACKGROUND,
+    COLOR_BACKGROUND, COLOR_CARD_BACKGROUND,
     COLOR_HEADER,
     COLOR_INCORRECT_FIELD_INPUT,
-    COLOR_FILTER_BACKGROUND
 } from "../../constants/color_styles";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
 import StyledButton from "../layout/StyledButton";
@@ -212,7 +211,7 @@ export default function LoginScreen() {
         <View style={styles.loginScreen}>
             <ImageBackground style={{position: 'absolute', height: '100%', width: '100%'}}
                              source={{uri: require('../../assets/images/adaptive_background.png')}}/>
-            <CardLayout style={styles.loginCard}>
+            <CardLayout width={vw(0.7)}>
                 <View style={[styles.inputCard,
                     (isCreatingAccount.includes('Create Account') && !!getRepeatPasswordError() ||
                         !isCreatingAccount.includes('Create Account') && !!getPasswordError())
@@ -296,14 +295,14 @@ const styles = StyleSheet.create({
     },
     loginCard: {
         width: vw(0.7),
-        backgroundColor: COLOR_FILTER_BACKGROUND,
+        backgroundColor: COLOR_CARD_BACKGROUND,
         padding: PADDING,
         borderRadius: BORDER_RADIUS / 2,
         alignItems: "center",
         justifyContent: 'center',
     },
     input: {
-        backgroundColor: COLOR_FILTER_BACKGROUND,
+        backgroundColor: COLOR_CARD_BACKGROUND,
         borderRadius: BORDER_RADIUS / 2,
         padding: PADDING,
         margin: MARGIN
@@ -319,8 +318,11 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     wrongInputMessage: {
+        maxWidth: vw(0.7)-MARGIN-PADDING,
         color: COLOR_INCORRECT_FIELD_INPUT,
         marginLeft: MARGIN,
-        paddingLeft: PADDING
+        paddingLeft: PADDING,
+        marginRight: MARGIN,
+        paddingRight: PADDING
     }
 });
