@@ -17,7 +17,7 @@ import {
 import {useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../constants/hooks";
 import {activeUser} from "../../reducers/user/userReducer";
-import FilterButton from "../home/menu/filter/FilterButton";
+import FilterButton from "../home/filter/FilterButton";
 import {
     EMAIL_ALREADY_IN_USE,
     INVALID_EMAIL,

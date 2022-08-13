@@ -5,10 +5,10 @@ import {useAppDispatch, useAppSelector} from "../../constants/hooks";
 import {vh} from "../../functions/dimentions";
 import Card from "../layout/Card";
 import Header from "../layout/Header";
-import Filter from "./menu/filter/Filter";
-import SearchField from "./menu/search_field/SearchField";
-import HighlightedCard from "./highlighted_card/HighlightedCard";
-import NoHits from "./NoHits"
+import Filter from "../home/filter/Filter";
+import SearchField from "../home/search_field/SearchField";
+import HighlightedCard from "../home/highlighted_card/HighlightedCard";
+import NoHits from "../home/NoHits"
 import {COLOR_BACKGROUND} from "../../constants/color_styles";
 import {PADDING} from "../../constants/style_constants";
 import {ALL, FILTER, HOME, LOGIN, PROFILE, SEARCH_FIELD, USER_PROFILE_SETTINGS} from "../../constants/const_vars";
@@ -16,11 +16,11 @@ import {StatusBar} from "expo-status-bar";
 import {changeAlcoholic} from "../../reducers/filter/alcoholicFilterReducer";
 import {changeCategory} from "../../reducers/filter/categoryFilterReducer";
 import LoadingScreen from "../layout/LoadingScreen";
-import LoginScreen from "../login_screen/LoginScreen";
+import LoginScreen from "./LoginScreen";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../reducers/booleans/isLoadingReducer";
-import UserProfile from "../user_profile/UserProfile";
+import UserProfile from "./UserProfile";
 import {setActiveFilter} from "../../reducers/filter/activeFilterReducer";
-import UserProfileSettings from "../user_profile/UserProfileSettings";
+import UserProfileSettings from "./UserProfileSettings";
 
 const data: any[] = dummyData.drinks;
 export default function Home() {

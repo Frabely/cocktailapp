@@ -1,6 +1,6 @@
 import {StyleSheet, TextInput, View} from "react-native";
-import {COLOR_CARD_BACKGROUND} from "../../../../constants/color_styles";
-import {BORDER_RADIUS, MARGIN, PADDING} from "../../../../constants/style_constants";
+import {COLOR_CARD_BACKGROUND} from "../../../constants/color_styles";
+import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
 
 export default function searchField(props: any) {
     return (

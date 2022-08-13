@@ -1,6 +1,6 @@
 import {StyleSheet, View, ImageBackground} from "react-native";
 import {COLOR_BACKGROUND, COLOR_CARD_BACKGROUND} from "../../constants/color_styles";
-import {vh} from "../../functions/dimentions";
+import {vh, vw} from "../../functions/dimentions";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
 import {faGear, faPowerOff, faUserGear} from "@fortawesome/free-solid-svg-icons";
 import {faStar} from "@fortawesome/free-regular-svg-icons";
@@ -10,7 +10,7 @@ import {getAuth} from "firebase/auth";
 import {useAppDispatch} from "../../constants/hooks";
 import {setLoginScreen, setUserProfileSettingsScreen} from "../../reducers/currentAppScreenReducer";
 import CardLayout from "../layout/CardLayout";
-import UserProfileItem from "./UserProfileItem";
+import UserProfileItem from "../user_profile/UserProfileItem";
 
 
 export default function UserProfile() {
@@ -72,5 +72,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderRadius: BORDER_RADIUS / 2,
         width: '80%'
+        // width: vw(1)-MARGIN-PADDING
     }
 })
