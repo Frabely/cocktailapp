@@ -6,8 +6,8 @@ export default function CardLayout(props: any) {
     return (
         <View style={[
             styles.cardOuter,
-            props?.width && {width: props.width},
-            props?.height && {height: props.height}
+            props?.width ? {width: props.width} : null,
+            props?.height ? {height: props.height} : null
         ]}>{props.children}</View>
     )
 

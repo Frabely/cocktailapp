@@ -20,8 +20,8 @@ export default function StyledButton(props: any) {
             padding: props?.padding  ? props.padding : PADDING / 2,
             margin: props?.margin  ? props.margin : MARGIN / 2,
             height: props?.height ? props.height : vh(DEFAULT_BUTTON_HEIGHT),
-            width: props?.width && props.width,
-            flex: props?.flex && props.flex
+            width: props?.width ? props.width : null,
+            flex: props?.flex ? props.flex : null
         }]}
                    onTouchStart={onTouchStartHandler}
                    onTouchEnd={onTouchEndHandler}

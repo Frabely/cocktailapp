@@ -1,5 +1,4 @@
 import {StyleSheet, View, Text} from "react-native";
-import {COLOR_BACKGROUND} from "../../constants/color_styles";
 import {vh} from "../../functions/dimentions";
 import CardLayout from "../layout/CardLayout";
 

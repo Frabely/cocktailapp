@@ -56,26 +56,29 @@ export default function HighlightedCard(props: any) {
                             <Text style={{fontSize: 40}}>
                                 {props.item.strDrink}
                             </Text>
-                            {props.item.strAlcoholic !== null &&
+                            {props.item.strAlcoholic !== null ? (
                                 <Text style={{fontSize: 20}}>
                                     {props.item.strAlcoholic}
                                 </Text>
+                            ) : null
                             }
-                            {props.item.strCategory !== null && props.item.strCategory !== "Other/Unknown" &&
+                            {props.item.strCategory !== null && props.item.strCategory !== "Other/Unknown" ? (
                                 <Text style={{fontSize: 20}}>
                                     {props.item.strCategory}
                                 </Text>
+                            ) : null
                             }
                             <Text style={{fontWeight: 'bold'}}>
                                 {props.item.strInstructions}
                             </Text>
-                            {props.item.strGlass !== null && props.item.strGlass !== "Other/Unknown" &&
+                            {props.item.strGlass !== null && props.item.strGlass !== "Other/Unknown" ? (
                                 <Text style={{
                                     fontStyle: 'italic',
                                     fontSize: 15
                                 }}>
                                     {`Recommended glass type:\n${props.item.strGlass}`}
                                 </Text>
+                                ) : null
                             }
                             {/*TODO Make better*/}
                             {arrayIngredients.map((item, index) => {

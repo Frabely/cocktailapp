@@ -1,6 +1,6 @@
-import {StyleSheet, View, ImageBackground} from "react-native";
+import {StyleSheet, View, Image} from "react-native";
 import {COLOR_BACKGROUND, COLOR_CARD_BACKGROUND} from "../../constants/color_styles";
-import {vh, vw} from "../../functions/dimentions";
+import {vh} from "../../functions/dimentions";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
 import {faGear, faPowerOff, faUserGear} from "@fortawesome/free-solid-svg-icons";
 import {faStar} from "@fortawesome/free-regular-svg-icons";
@@ -39,8 +39,8 @@ export default function UserProfile() {
     }
     return (
         <View style={styles.userProfile}>
-            <ImageBackground style={{position: 'absolute', height: '100%', width: '100%'}}
-                             source={{uri: require('../../assets/images/adaptive_background.png')}}/>
+            <Image style={{position: 'absolute', height: '100%', width: '100%'}}
+                             source={require('../../assets/images/adaptive_background.png')}/>
             <CardLayout>
                 <UserProfileItem onPress={onUserSettingsPressHandler} icon={faUserGear} label={'Profile Details'}/>
                 <UserProfileItem onPress={onSettingsPressHandler} icon={faGear} label={'Settings'}/>

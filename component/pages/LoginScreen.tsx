@@ -1,4 +1,4 @@
-import {ImageBackground, StyleSheet, TextInput, View, Text} from "react-native";
+import {StyleSheet, TextInput, View, Text, Image} from "react-native";
 import {vh, vw} from "../../functions/dimentions";
 import {
     COLOR_BACKGROUND, COLOR_CARD_BACKGROUND,
@@ -205,65 +205,65 @@ export default function LoginScreen() {
 
     return (
         <View style={styles.loginScreen}>
-            <ImageBackground style={{position: 'absolute', height: '100%', width: '100%'}}
-                             source={{uri: require('../../assets/images/adaptive_background.png')}}/>
+            <Image style={{position: 'absolute', height: '100%', width: '100%'}}
+                             source={require('../../assets/images/adaptive_background.png')}/>
             <CardLayout width={vw(0.7)}>
                 <View style={[styles.inputCard,
                     (isCreatingAccount.includes('Create Account') && !!getRepeatPasswordError() ||
                         !isCreatingAccount.includes('Create Account') && !!getPasswordError())
-                    && {paddingBottom: PADDING}]}>
-                    {(isCreatingAccount.includes('Create Account')) && (
+                    ? {paddingBottom: PADDING} : null]}>
+                    {(isCreatingAccount.includes('Create Account')) ? (
                         <>
                             <TextInput
                                 style={[styles.input,
-                                    (getUsernameError()) && {backgroundColor: COLOR_INCORRECT_FIELD_INPUT}]}
+                                    (getUsernameError()) ? {backgroundColor: COLOR_INCORRECT_FIELD_INPUT} : {backgroundColor:COLOR_CARD_BACKGROUND}]}
                                 onChangeText={input => {
                                     setUsername(input)
                                 }}
                                 placeholder={'Username'}
                                 value={username}/>
-                            {getUsernameError() && (
+                            {getUsernameError() ? (
                                 <Text style={styles.wrongInputMessage}>{getUsernameError()?.message}</Text>
-                            )}
+                            ): null}
                         </>
-                    )}
+                    ): null}
                     <TextInput
                         style={[styles.input,
-                            (getEmailError()) && {backgroundColor: COLOR_INCORRECT_FIELD_INPUT}]}
+                            (getEmailError()) ? {backgroundColor: COLOR_INCORRECT_FIELD_INPUT} : {backgroundColor:COLOR_CARD_BACKGROUND}]}
                         onChangeText={input => {
                             setEmail(input)
                         }}
                         placeholder={'Email'}
                         value={email}/>
-                    {getEmailError() && (
+                    {getEmailError() ? (
                         <Text style={styles.wrongInputMessage}>{getEmailError()?.message}</Text>
-                    )}
+                    ): null}
                     <TextInput
                         style={[styles.input,
-                            (getPasswordError()) && {backgroundColor: COLOR_INCORRECT_FIELD_INPUT}]}
+                            (getPasswordError()) ? {backgroundColor: COLOR_INCORRECT_FIELD_INPUT} : {backgroundColor:COLOR_CARD_BACKGROUND}]}
                         onChangeText={input => {
                             setPassword(input)
                         }}
                         placeholder={'Password'}
                         secureTextEntry={true}/>
-                    {getPasswordError() && (
+                    {getPasswordError() ? (
                         <Text style={styles.wrongInputMessage}>{getPasswordError()?.message}</Text>
-                    )}
-                    {(isCreatingAccount.includes('Create Account')) && (
+                    ) : null}
+                    {(isCreatingAccount.includes('Create Account')) ? (
                         <>
                             <TextInput
                                 style={[styles.input, (getRepeatPasswordError())
-                                && {backgroundColor: COLOR_INCORRECT_FIELD_INPUT}]}
+                                ? {backgroundColor: COLOR_INCORRECT_FIELD_INPUT} : {backgroundColor:COLOR_CARD_BACKGROUND}]}
                                 onChangeText={input => {
                                     setRepeatPassword(input)
                                 }}
                                 placeholder={'Repeat Password'}
                                 secureTextEntry={true}/>
-                            {getRepeatPasswordError() && (
+                            {getRepeatPasswordError() ? (
                                 <Text style={styles.wrongInputMessage}>{getRepeatPasswordError()?.message}</Text>
-                            )}
+                            ) : null}
                         </>
-                    )}
+                    ) : null}
                 </View>
                 <StyledButton width={'100%'}
                               onPress={(isCreatingAccount.includes('Create Account')) ? onCreatAccountHandler : onLoginHandler}
@@ -298,7 +298,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     input: {
-        backgroundColor: COLOR_CARD_BACKGROUND,
+        // backgroundColor: COLOR_CARD_BACKGROUND,
         borderRadius: BORDER_RADIUS / 2,
         padding: PADDING,
         margin: MARGIN

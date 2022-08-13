@@ -1,6 +1,6 @@
 import dummyData from "../../constants/dummyData3";
 import {useEffect, useState} from "react";
-import {FlatList, ImageBackground, StyleSheet, View} from "react-native";
+import {FlatList, Image, StyleSheet, View} from "react-native";
 import {useAppDispatch, useAppSelector} from "../../constants/hooks";
 import {vh} from "../../functions/dimentions";
 import Card from "../layout/Card";
@@ -136,42 +136,42 @@ export default function Home() {
 
     return (
         <View style={{backgroundColor: COLOR_BACKGROUND}}>
-            <ImageBackground style={{position: 'absolute', height: '100%', width: '100%'}}
-                             source={{uri: require('../../assets/images/adaptive_background.png')}}/>
-            {(state.currentAppScreen === PROFILE) && (
+            <Image style={{position: 'absolute', height: '100%', width: '100%'}}
+                             source={require('../../assets/images/adaptive_background.png')}/>
+            {(state.currentAppScreen === PROFILE) ? (
                 <>
                     <Header/>
                     <UserProfile/>
                 </>
-            )}
-            {(state.currentAppScreen === USER_PROFILE_SETTINGS) && (
+            ) : null}
+            {(state.currentAppScreen === USER_PROFILE_SETTINGS) ? (
                 <>
                     <Header/>
                     <UserProfileSettings/>
                 </>
-            )}
-            {(state.user !== null && state.currentAppScreen === HOME) && (
+            ) : null}
+            {(state.user !== null && state.currentAppScreen === HOME) ? (
                 <>
                     <Header/>
                     <View style={styles.app}>
-                        {(state.activeFilter === FILTER) && (
+                        {(state.activeFilter === FILTER) ? (
                             <Filter setCurrentSearchFieldInput={setCurrentSearchFieldInput}
                                     currentDataSetLength={currentDataSet.length}
                                     onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}
                                     ingredientsValue={ingredientsValue}
                                     setIngredientsValue={setIngredientsValue}/>
-                        )}
-                        {(state.activeFilter === SEARCH_FIELD) && (
+                        ) : null}
+                        {(state.activeFilter === SEARCH_FIELD) ? (
                             <SearchField setCurrentSearchFieldInput={setCurrentSearchFieldInput}
                                          currentSearchFieldInput={currentSearchFieldInput}
                                          currentDataSetLength={currentDataSet.length}/>
-                        )}
-                        {currentItem && (
+                        ) : null}
+                        {currentItem ? (
                             <HighlightedCard item={currentItem} onImageClickHandler={onImageClickHandler}/>
-                        )}
-                        {(currentDataSet.length === 0) && (
+                        ) : null}
+                        {(currentDataSet.length === 0) ? (
                             <NoHits onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>
-                        )}
+                        ) : null}
                         <FlatList
                             numColumns={3}
                             data={currentDataSet}
@@ -180,13 +180,13 @@ export default function Home() {
                         <StatusBar style="auto"/>
                     </View>
                 </>
-            )}
-            {(state.user === null && state.currentAppScreen === LOGIN) && (
+            ) : null}
+            {(state.user === null && state.currentAppScreen === LOGIN) ? (
                 <LoginScreen/>
-            )}
-            {state.isLoading && (
+            ) : null}
+            {state.isLoading ? (
                 <LoadingScreen/>
-            )}
+            ) : null}
         </View>
     )
 }

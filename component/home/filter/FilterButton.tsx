@@ -18,7 +18,7 @@ export default function FilterButton(props: any) {
                     backgroundColor: (isClicked) ? props.colorActive : props.colorInactive,
                     padding: props?.padding ? props.padding :  PADDING / 8,
                     margin: props?.margin ? props.margin : MARGIN / 2,
-                    width: props?.width && props.width,
+                    width: props?.width ? props.width : null,
                 },
             ]}>
             <Text style={{textAlign: "center"}}>{props.title}</Text>
