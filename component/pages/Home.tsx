@@ -1,6 +1,6 @@
 import dummyData from "../../constants/dummyData3";
 import {useEffect, useState} from "react";
-import {FlatList, Image, StyleSheet, View} from "react-native";
+import {FlatList, StyleSheet, View} from "react-native";
 import {useAppDispatch, useAppSelector} from "../../constants/hooks";
 import {vh} from "../../functions/dimentions";
 import Card from "../layout/Card";
@@ -9,21 +9,17 @@ import Filter from "../home/filter/Filter";
 import SearchField from "../home/search_field/SearchField";
 import HighlightedCard from "../home/highlighted_card/HighlightedCard";
 import NoHits from "../home/NoHits"
-import {COLOR_BACKGROUND} from "../../constants/color_styles";
 import {PADDING} from "../../constants/style_constants";
-import {ALL, FILTER, HOME, LOGIN, PROFILE, SEARCH_FIELD, PROFILE_DETAILS} from "../../constants/const_vars";
+import {ALL, FILTER, SEARCH_FIELD} from "../../constants/const_vars";
 import {changeAlcoholic} from "../../reducers/filter/alcoholicFilterReducer";
 import {changeCategory} from "../../reducers/filter/categoryFilterReducer";
-import LoadingScreen from "../layout/LoadingScreen";
-import LoginScreen from "./LoginScreen";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../reducers/booleans/isLoadingReducer";
-import UserProfile from "./UserProfile";
 import {setActiveFilter} from "../../reducers/filter/activeFilterReducer";
-import ProfileDetails from "./user_profile/ProfileDetails";
 import HeaderHome from "../home/HeaderHome";
+import AppBackground from "../layout/AppBackground";
 
 const data: any[] = dummyData.drinks;
-export default function Home() {
+export default function Home({navigation}: any) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
 
@@ -135,23 +131,7 @@ export default function Home() {
     }
 
     return (
-        <View style={{backgroundColor: COLOR_BACKGROUND}}>
-            <Image style={{position: 'absolute', height: '100%', width: '100%'}}
-                             source={require('../../assets/images/adaptive_background.png')}/>
-            {(state.currentAppScreen === PROFILE) ? (
-                <>
-                    <UserProfile/>
-                    <Header/>
-                </>
-            ) : null}
-            {(state.currentAppScreen === PROFILE_DETAILS) ? (
-                <>
-                    <ProfileDetails/>
-                    <Header/>
-                </>
-            ) : null}
-            {(state.currentAppScreen === HOME) ? (
-                <>
+        <AppBackground>
                     <HeaderHome/>
                     <View style={styles.app}>
                         {(state.activeFilter === FILTER) ? (
@@ -178,16 +158,11 @@ export default function Home() {
                             renderItem={renderItem}
                             keyExtractor={item => item.idDrink}/>
                     </View>
-                    <Header/>
-                </>
-            ) : null}
-            {(state.currentAppScreen === LOGIN) ? (
-                <LoginScreen/>
-            ) : null}
-            {state.isLoading ? (
-                <LoadingScreen/>
-            ) : null}
-        </View>
+                    <Header navigation={navigation}/>
+            {/*{state.isLoading ? (*/}
+            {/*    <LoadingScreen/>*/}
+            {/*) : null}*/}
+        </AppBackground>
     )
 }
 const styles = StyleSheet.create({

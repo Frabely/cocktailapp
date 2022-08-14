@@ -14,13 +14,13 @@ import {
     signInWithEmailAndPassword,
     updateProfile
 } from "firebase/auth";
-import {useState} from "react";
+import React, {useState} from "react";
 import {useAppDispatch} from "../../constants/hooks";
 import {activeUser} from "../../reducers/user/userReducer";
 import FilterButton from "../home/filter/FilterButton";
 import {
     EMAIL_ALREADY_IN_USE,
-    INVALID_EMAIL,
+    INVALID_EMAIL, NETWORK_REQUEST_FAILED,
     TOO_MANY_REQUESTS,
     USER_NOT_FOUND,
     WEAK_PASSWORD,
@@ -33,10 +33,11 @@ import {
     REPEAT_PASSWORD_MISSING,
     USERNAME_MISSING
 } from "../../constants/error_codes";
-import {setHomeScreen} from "../../reducers/currentAppScreenReducer";
 import CardLayout from "../layout/CardLayout";
+import Header from "../layout/Header";
+import AppBackground from "../layout/AppBackground";
 
-export default function LoginScreen() {
+export default function LoginScreen({navigation}: any) {
     const dispatch = useAppDispatch()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -71,7 +72,6 @@ export default function LoginScreen() {
                 username: user.user.displayName,
                 email: user.user.email,
             }))
-            dispatch(setHomeScreen())
         }).catch(error => {
             if (error.code === WRONG_PASSWORD.code)
                 errorArrayPassword.push(WRONG_PASSWORD.code)
@@ -79,6 +79,8 @@ export default function LoginScreen() {
                 errorArrayEmail.push(USER_NOT_FOUND.code)
             else if (error.code === TOO_MANY_REQUESTS.code)
                 alert(TOO_MANY_REQUESTS.message)
+            else if (error.code === NETWORK_REQUEST_FAILED.code)
+                alert(NETWORK_REQUEST_FAILED.message)
             else if (error.code === INVALID_EMAIL.code)
                 errorArrayEmail.push(INVALID_EMAIL.code)
             else {
@@ -133,15 +135,19 @@ export default function LoginScreen() {
                 alert(error.message)
                 return
             })
-            dispatch(setHomeScreen())
         }).catch(error => {
             if (error.code === WEAK_PASSWORD.code) {
                 errorArrayPassword.push(WEAK_PASSWORD.code)
                 errorArrayRepeatPassword.push(WEAK_PASSWORD.code)
-            } else if (error.code === INVALID_EMAIL.code)
+            }
+            else if (error.code === INVALID_EMAIL.code)
                 errorArrayEmail.push(INVALID_EMAIL.code)
             else if (error.code === EMAIL_ALREADY_IN_USE.code)
                 errorArrayEmail.push(EMAIL_ALREADY_IN_USE.code)
+            else if (error.code === TOO_MANY_REQUESTS.code)
+                alert(TOO_MANY_REQUESTS.message)
+            else if (error.code === NETWORK_REQUEST_FAILED.code)
+                alert(NETWORK_REQUEST_FAILED.message)
             else
                 alert(error.message)
             setErrorStateUsername(errorArrayUsername)
@@ -204,81 +210,84 @@ export default function LoginScreen() {
     }
 
     return (
-        <View style={styles.loginScreen}>
-            <Image style={{position: 'absolute', height: '100%', width: '100%'}}
-                             source={require('../../assets/images/adaptive_background.png')}/>
-            <CardLayout width={vw(0.7)}>
-                <View style={[styles.inputCard,
-                    (isCreatingAccount.includes('Create Account') && !!getRepeatPasswordError() ||
-                        !isCreatingAccount.includes('Create Account') && !!getPasswordError())
-                    ? {paddingBottom: PADDING} : null]}>
-                    {(isCreatingAccount.includes('Create Account')) ? (
-                        <>
-                            <TextInput
-                                style={[styles.input,
-                                    (getUsernameError()) ? {backgroundColor: COLOR_INCORRECT_FIELD_INPUT} : {backgroundColor:COLOR_CARD_BACKGROUND}]}
-                                onChangeText={input => {
-                                    setUsername(input)
-                                }}
-                                placeholder={'Username'}
-                                value={username}/>
-                            {getUsernameError() ? (
-                                <Text style={styles.wrongInputMessage}>{getUsernameError()?.message}</Text>
-                            ): null}
-                        </>
-                    ): null}
-                    <TextInput
-                        style={[styles.input,
-                            (getEmailError()) ? {backgroundColor: COLOR_INCORRECT_FIELD_INPUT} : {backgroundColor:COLOR_CARD_BACKGROUND}]}
-                        onChangeText={input => {
-                            setEmail(input)
-                        }}
-                        placeholder={'Email'}
-                        value={email}/>
-                    {getEmailError() ? (
-                        <Text style={styles.wrongInputMessage}>{getEmailError()?.message}</Text>
-                    ): null}
-                    <TextInput
-                        style={[styles.input,
-                            (getPasswordError()) ? {backgroundColor: COLOR_INCORRECT_FIELD_INPUT} : {backgroundColor:COLOR_CARD_BACKGROUND}]}
-                        onChangeText={input => {
-                            setPassword(input)
-                        }}
-                        placeholder={'Password'}
-                        secureTextEntry={true}/>
-                    {getPasswordError() ? (
-                        <Text style={styles.wrongInputMessage}>{getPasswordError()?.message}</Text>
-                    ) : null}
-                    {(isCreatingAccount.includes('Create Account')) ? (
-                        <>
-                            <TextInput
-                                style={[styles.input, (getRepeatPasswordError())
-                                ? {backgroundColor: COLOR_INCORRECT_FIELD_INPUT} : {backgroundColor:COLOR_CARD_BACKGROUND}]}
-                                onChangeText={input => {
-                                    setRepeatPassword(input)
-                                }}
-                                placeholder={'Repeat Password'}
-                                secureTextEntry={true}/>
-                            {getRepeatPasswordError() ? (
-                                <Text style={styles.wrongInputMessage}>{getRepeatPasswordError()?.message}</Text>
-                            ) : null}
-                        </>
-                    ) : null}
-                </View>
-                <StyledButton width={'100%'}
-                              onPress={(isCreatingAccount.includes('Create Account')) ? onCreatAccountHandler : onLoginHandler}
-                              title={(isCreatingAccount.includes('Create Account')) ? 'Finish Account Creation' : 'Login'}/>
-                <FilterButton
-                    title={'Create Account'}
-                    colorActive={COLOR_HEADER}
-                    colorInactive={COLOR_BACKGROUND}
-                    onClick={onCreateAccountButtonClickHandler}
-                    state={isCreatingAccount}
-                    padding={PADDING / 2}
-                    margin={MARGIN / 2}
-                    width={'100%'}/>
-            </CardLayout>
-        </View>
+        <AppBackground>
+            <View style={styles.loginScreen}>
+                <Image style={{position: 'absolute', height: '100%', width: '100%'}}
+                       source={require('../../assets/images/adaptive_background.png')}/>
+                <CardLayout width={vw(0.7)}>
+                    <View style={[styles.inputCard,
+                        (isCreatingAccount.includes('Create Account') && !!getRepeatPasswordError() ||
+                            !isCreatingAccount.includes('Create Account') && !!getPasswordError())
+                            ? {paddingBottom: PADDING} : null]}>
+                        {(isCreatingAccount.includes('Create Account')) ? (
+                            <>
+                                <TextInput
+                                    style={[styles.input,
+                                        (getUsernameError()) ? {backgroundColor: COLOR_INCORRECT_FIELD_INPUT} : {backgroundColor: COLOR_CARD_BACKGROUND}]}
+                                    onChangeText={input => {
+                                        setUsername(input)
+                                    }}
+                                    placeholder={'Username'}
+                                    value={username}/>
+                                {getUsernameError() ? (
+                                    <Text style={styles.wrongInputMessage}>{getUsernameError()?.message}</Text>
+                                ) : null}
+                            </>
+                        ) : null}
+                        <TextInput
+                            style={[styles.input,
+                                (getEmailError()) ? {backgroundColor: COLOR_INCORRECT_FIELD_INPUT} : {backgroundColor: COLOR_CARD_BACKGROUND}]}
+                            onChangeText={input => {
+                                setEmail(input)
+                            }}
+                            placeholder={'Email'}
+                            value={email}/>
+                        {getEmailError() ? (
+                            <Text style={styles.wrongInputMessage}>{getEmailError()?.message}</Text>
+                        ) : null}
+                        <TextInput
+                            style={[styles.input,
+                                (getPasswordError()) ? {backgroundColor: COLOR_INCORRECT_FIELD_INPUT} : {backgroundColor: COLOR_CARD_BACKGROUND}]}
+                            onChangeText={input => {
+                                setPassword(input)
+                            }}
+                            placeholder={'Password'}
+                            secureTextEntry={true}/>
+                        {getPasswordError() ? (
+                            <Text style={styles.wrongInputMessage}>{getPasswordError()?.message}</Text>
+                        ) : null}
+                        {(isCreatingAccount.includes('Create Account')) ? (
+                            <>
+                                <TextInput
+                                    style={[styles.input, (getRepeatPasswordError())
+                                        ? {backgroundColor: COLOR_INCORRECT_FIELD_INPUT} : {backgroundColor: COLOR_CARD_BACKGROUND}]}
+                                    onChangeText={input => {
+                                        setRepeatPassword(input)
+                                    }}
+                                    placeholder={'Repeat Password'}
+                                    secureTextEntry={true}/>
+                                {getRepeatPasswordError() ? (
+                                    <Text style={styles.wrongInputMessage}>{getRepeatPasswordError()?.message}</Text>
+                                ) : null}
+                            </>
+                        ) : null}
+                    </View>
+                    <StyledButton width={'100%'}
+                                  onPress={(isCreatingAccount.includes('Create Account')) ? onCreatAccountHandler : onLoginHandler}
+                                  title={(isCreatingAccount.includes('Create Account')) ? 'Finish Account Creation' : 'Login'}/>
+                    <FilterButton
+                        title={'Create Account'}
+                        colorActive={COLOR_HEADER}
+                        colorInactive={COLOR_BACKGROUND}
+                        onClick={onCreateAccountButtonClickHandler}
+                        state={isCreatingAccount}
+                        padding={PADDING / 2}
+                        margin={MARGIN / 2}
+                        width={'100%'}/>
+                </CardLayout>
+            </View>
+            <Header navigation={navigation}/>
+        </AppBackground>
     )
 }
 
@@ -314,7 +323,7 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     wrongInputMessage: {
-        maxWidth: vw(0.7)-MARGIN-PADDING,
+        maxWidth: vw(0.7) - MARGIN - PADDING,
         color: COLOR_INCORRECT_FIELD_INPUT,
         marginLeft: MARGIN,
         paddingLeft: PADDING,

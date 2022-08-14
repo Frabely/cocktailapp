@@ -5,23 +5,22 @@ import {} from "@fortawesome/free-regular-svg-icons";
 import {} from "@fortawesome/free-brands-svg-icons";
 import {COLOR_HEADER} from "../../constants/color_styles";
 import {BORDER_RADIUS, MARGIN} from "../../constants/style_constants";
-import {useAppDispatch} from "../../constants/hooks";
-import {setHomeScreen, setProfileScreen} from "../../reducers/currentAppScreenReducer";
 import HeaderButton from "./HeaderButton";
+import {HOME, PROFILE} from "../../constants/const_vars";
 
-export default function Header() {
-    const dispatch = useAppDispatch()
+export default function Header({navigation}: any) {
 
     const onBackArrowPressHandler = () => {
-
+        if (navigation.canGoBack())
+        navigation.goBack()
     }
 
     const onProfilePressHandler = () => {
-        dispatch(setProfileScreen())
+        navigation.navigate(PROFILE)
     }
 
     const onHomePressHandler = () => {
-        dispatch(setHomeScreen())
+        navigation.navigate(HOME)
     }
 
     return (
@@ -36,7 +35,7 @@ export default function Header() {
 
 const styles = StyleSheet.create({
     header: {
-        height: vh(0.10)-MARGIN,
+        height: vh(0.10) - MARGIN,
         backgroundColor: COLOR_HEADER,
         alignItems: 'center',
         justifyContent: 'center',
@@ -45,7 +44,7 @@ const styles = StyleSheet.create({
         marginTop: 0,
 
         // marginBottom: 0,
-        borderRadius: BORDER_RADIUS/2,
-        width: vw(1)-MARGIN*2,
+        borderRadius: BORDER_RADIUS / 2,
+        width: vw(1) - MARGIN * 2,
     },
 });

@@ -6,8 +6,10 @@ import {CHANGE_PASSWORD, CHANGE_USERNAME, EMAIL, USERNAME} from "../../../consta
 import ProfileDetailsItem from "../../user_profile/ProfileDetailsItem";
 import StyledButton from "../../layout/StyledButton";
 import {PADDING} from "../../../constants/style_constants";
+import Header from "../../layout/Header";
+import AppBackground from "../../layout/AppBackground";
 
-export default function ProfileDetails() {
+export default function ProfileDetails({navigation}: any) {
     const state = useAppSelector((state) => state)
 
     const onChangePasswordPressHandler = () => {
@@ -19,22 +21,25 @@ export default function ProfileDetails() {
     }
 
     return (
-        <View style={styles.userData}>
-            <CardLayout>
-                <ProfileDetailsItem label={USERNAME.ENG} value={state?.user?.username} />
-                <ProfileDetailsItem label={EMAIL.ENG} value={state?.user?.email} />
-                <StyledButton flex={1}
-                              padding={PADDING}
-                              width={'100%'}
-                              onPress={onChangeUsernamePressHandler}
-                              title={CHANGE_USERNAME.ENG}/>
-                <StyledButton flex={1}
-                              padding={PADDING}
-                              width={'100%'}
-                              onPress={onChangePasswordPressHandler}
-                              title={CHANGE_PASSWORD.ENG}/>
-            </CardLayout>
-        </View>
+        <AppBackground>
+            <View style={styles.userData}>
+                <CardLayout>
+                    <ProfileDetailsItem label={USERNAME.ENG} value={state?.user?.username}/>
+                    <ProfileDetailsItem label={EMAIL.ENG} value={state?.user?.email}/>
+                    <StyledButton
+                        padding={PADDING}
+                        width={'100%'}
+                        onPress={onChangeUsernamePressHandler}
+                        title={CHANGE_USERNAME.ENG}/>
+                    <StyledButton
+                        padding={PADDING}
+                        width={'100%'}
+                        onPress={onChangePasswordPressHandler}
+                        title={CHANGE_PASSWORD.ENG}/>
+                </CardLayout>
+            </View>
+            <Header navigation={navigation}/>
+        </AppBackground>
     )
 };
 
