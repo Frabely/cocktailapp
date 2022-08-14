@@ -8,7 +8,6 @@ import {activeUser} from "../../reducers/user/userReducer";
 import {app} from "../../functions/firebase";
 import {getAuth} from "firebase/auth";
 import {useAppDispatch} from "../../constants/hooks";
-import {setProfileDetailsScreen} from "../../reducers/currentAppScreenReducer";
 import CardLayout from "../layout/CardLayout";
 import UserProfileItem from "../user_profile/UserProfileItem";
 import {PROFILE_DETAILS} from "../../constants/const_vars";
@@ -22,7 +21,6 @@ export default function UserProfile({navigation}: any) {
 
     const onProfileDetailsPressHandler = () => {
         navigation.navigate(PROFILE_DETAILS)
-        dispatch(setProfileDetailsScreen())
     }
 
     const onSettingsPressHandler = () => {
