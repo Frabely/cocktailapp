@@ -5,8 +5,10 @@ import generate_box_shadow_style from "../../../functions/generate_box_shadow_st
 import {BORDER_RADIUS, PADDING} from "../../../constants/style_constants";
 import {COLOR_OPACITY_BACKGROUND} from "../../../constants/color_styles";
 import HighlightedCardInnerImage from "./HighlightedCardInnerImage";
+import {useAppSelector} from "../../../constants/hooks";
 
 export default function HighlightedCard(props: any) {
+    const state = useAppSelector((state) => state)
     const [arrayIngredients, setArrayIngredients] = useState([])
     generate_box_shadow_style(
         styles,
@@ -22,7 +24,7 @@ export default function HighlightedCard(props: any) {
     useEffect(() => {
         const arrayIngredients: any = [];
         const arrayMeasures: any = [];
-        for (const [key, value] of Object.entries(props.item)) {
+        for (const [key, value] of Object.entries(state.currentItem)) {
             if (key !== null) {
                 if (key.startsWith('strIngredient'))
                     if (value !== null)
@@ -40,43 +42,43 @@ export default function HighlightedCard(props: any) {
             arrayCombined.push({[`${arrayIngredients[i]}`]: arrayMeasures[i]})
         }
         setArrayIngredients(arrayCombined)
-    }, [props.item])
+    }, [state.currentItem])
 
     return (
         <View style={styles.highlightView}>
             <ImageBackground style={[styles.highlightViewBackgroundImage, styles.boxShadow]}
-                             source={{uri: props.item.strDrinkThumb}}>
+                             source={ {uri: state.currentItem.strDrinkThumb !== null ? state.currentItem.strDrinkThumb : ''}}>
                 <HighlightedCardInnerImage
-                    imageSource={props.item.strDrinkThumb}
+                    imageSource={state.currentItem.strDrinkThumb}
                     onImageClickHandler={props.onImageClickHandler}/>
                 <View style={styles.cardHighlightBackground}>
                     <View style={{flex: 3}}></View>
                     <View style={{flex: 5}}>
                         <ScrollView nestedScrollEnabled={true}>
                             <Text style={{fontSize: 40}}>
-                                {props.item.strDrink}
+                                {state.currentItem.strDrink}
                             </Text>
-                            {props.item.strAlcoholic !== null ? (
+                            {state.currentItem.strAlcoholic !== null ? (
                                 <Text style={{fontSize: 20}}>
-                                    {props.item.strAlcoholic}
+                                    {state.currentItem.strAlcoholic}
                                 </Text>
                             ) : null
                             }
-                            {props.item.strCategory !== null && props.item.strCategory !== "Other/Unknown" ? (
+                            {state.currentItem.strCategory !== null && state.currentItem.strCategory !== "Other/Unknown" ? (
                                 <Text style={{fontSize: 20}}>
-                                    {props.item.strCategory}
+                                    {state.currentItem.strCategory}
                                 </Text>
                             ) : null
                             }
                             <Text style={{fontWeight: 'bold'}}>
-                                {props.item.strInstructions}
+                                {state.currentItem.strInstructions}
                             </Text>
-                            {props.item.strGlass !== null && props.item.strGlass !== "Other/Unknown" ? (
+                            {state.currentItem.strGlass !== null && state.currentItem.strGlass !== "Other/Unknown" ? (
                                 <Text style={{
                                     fontStyle: 'italic',
                                     fontSize: 15
                                 }}>
-                                    {`Recommended glass type:\n${props.item.strGlass}`}
+                                    {`Recommended glass type:\n${state.currentItem.strGlass}`}
                                 </Text>
                                 ) : null
                             }

@@ -7,6 +7,7 @@ Bugs:
 -shadow on android 'not' working -> see Card component
 -splash new background needs to be added and replaced
 -change label for password placeholder or text to show it should be at least 6 chars long
+
 TODOs:
 -refactor reducer -> change hardcode strings to const's
 -languages: refactored (only dummy data and ingredients missing -> a lot of data)

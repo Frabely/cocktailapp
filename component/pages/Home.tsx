@@ -1,4 +1,4 @@
-import dummyData from "../../constants/dummyData3";
+import dummyData, {Cocktail} from "../../constants/dummyData3";
 import {useEffect, useState} from "react";
 import {FlatList, StyleSheet, View} from "react-native";
 import {useAppDispatch, useAppSelector} from "../../constants/hooks";
@@ -10,20 +10,18 @@ import SearchField from "../home/search_field/SearchField";
 import HighlightedCard from "../home/highlighted_card/HighlightedCard";
 import NoHits from "../home/NoHits"
 import {PADDING} from "../../constants/style_constants";
-import {ALL, FILTER, SEARCH_FIELD} from "../../constants/const_vars";
+import {ALL, EMPTY_ITEM, FILTER, SEARCH_FIELD} from "../../constants/const_vars";
 import {changeAlcoholic} from "../../reducers/filter/alcoholicFilterReducer";
 import {changeCategory} from "../../reducers/filter/categoryFilterReducer";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../reducers/booleans/isLoadingReducer";
-import {setActiveFilter} from "../../reducers/filter/activeFilterReducer";
 import HeaderHome from "../home/HeaderHome";
 import AppBackground from "../layout/AppBackground";
+import {changeCurrentItem} from "../../reducers/home/currentItemReducer";
 
 const data: any[] = dummyData.drinks;
 export default function Home({navigation}: any) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
-
-    const [currentItem, setCurrentItem] = useState(undefined)
     const [currentDataSet, setCurrentDataSet] = useState(data)
     const [currentSearchFieldInput, setCurrentSearchFieldInput] = useState('')
     const [ingredientsValue, setIngredientsValue] = useState(state.ingredientsFilter)
@@ -65,8 +63,8 @@ export default function Home({navigation}: any) {
                 }
             })
 
-            if (searchFieldFilteredData.length === 0 || !searchFieldFilteredData.includes(currentItem)) {
-                setCurrentItem(undefined)
+            if (searchFieldFilteredData.length === 0 || !searchFieldFilteredData.includes(state.currentItem)) {
+                dispatch(changeCurrentItem(EMPTY_ITEM))
             }
             if (state.ingredientsFilter.length !== 0) {
                 const ingredientsFilteredData: any[] = searchFieldFilteredData.filter((item) => {
@@ -102,15 +100,15 @@ export default function Home({navigation}: any) {
     )
 
     const onImageClickHandler = (
-        currentlyClickedItem: any,
-        item: any) => {
+        currentlyClickedItem: Cocktail,
+        item: Cocktail) => {
         if (currentlyClickedItem) {
             if (currentlyClickedItem.idDrink === item.idDrink) {
-                setCurrentItem(undefined)
+                dispatch(changeCurrentItem(EMPTY_ITEM))
                 return
             }
         }
-        setCurrentItem(item)
+        dispatch(changeCurrentItem(item))
     }
 
     const onClearAllFiltersClickHandler = () => {
@@ -124,7 +122,6 @@ export default function Home({navigation}: any) {
         return (
             <Card key={item.idDrink}
                   item={item}
-                  currentItem={currentItem}
                   onImageClickHandler={onImageClickHandler}/>
         )
     }
@@ -145,8 +142,8 @@ export default function Home({navigation}: any) {
                                          currentSearchFieldInput={currentSearchFieldInput}
                                          currentDataSetLength={currentDataSet.length}/>
                         ) : null}
-                        {currentItem ? (
-                            <HighlightedCard item={currentItem} onImageClickHandler={onImageClickHandler}/>
+                        {(state.currentItem.idDrink === '') ? (
+                            <HighlightedCard onImageClickHandler={onImageClickHandler}/>
                         ) : null}
                         {(currentDataSet.length === 0) ? (
                             <NoHits onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>

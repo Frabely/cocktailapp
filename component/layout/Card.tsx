@@ -3,11 +3,13 @@ import {vh} from "../../functions/dimentions";
 import generate_box_shadow_style from '../../functions/generate_box_shadow_style';
 import {BORDER_RADIUS, PADDING} from "../../constants/style_constants";
 import {COLOR_SHADOW} from "../../constants/color_styles";
+import {useAppSelector} from "../../constants/hooks";
 
 export default function Card(props: any) {
+    const state = useAppSelector((state) => state)
     const onImageClickHandler = () => {
         props.onImageClickHandler(
-            props.currentItem,
+            state.currentItem,
             props.item)
     }
     generate_box_shadow_style(
