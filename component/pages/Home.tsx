@@ -17,17 +17,17 @@ import {setIsLoadingFalse, setIsLoadingTrue} from "../../reducers/booleans/isLoa
 import HeaderHome from "../home/HeaderHome";
 import AppBackground from "../layout/AppBackground";
 import {changeCurrentItem} from "../../reducers/home/currentItemReducer";
+import {changeCurrentDataSet} from "../../reducers/home/currentDataSetReducer";
+import {changeCurrentSearchFieldInput} from "../../reducers/home/currentSearchFieldInputReducer";
 
 const data: any[] = dummyData.drinks;
 export default function Home({navigation}: any) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
-    const [currentDataSet, setCurrentDataSet] = useState(data)
-    const [currentSearchFieldInput, setCurrentSearchFieldInput] = useState('')
+
     const [ingredientsValue, setIngredientsValue] = useState(state.ingredientsFilter)
 
     useEffect(() => {
-        setCurrentDataSet(data)
         onClearAllFiltersClickHandler()
     }, [])
 
@@ -56,7 +56,7 @@ export default function Home({navigation}: any) {
                 }
             })
             const searchFieldFilteredData: any[] = categoryFilteredData.filter((item) => {
-                const inputLowerNoSpace = currentSearchFieldInput.toLowerCase().replace(" ", "")
+                const inputLowerNoSpace = state.currentSearchFieldInput.toLowerCase().replace(" ", "")
                 const itemNameLowerNoSpace = item.strDrink.toLowerCase().replace(" ", "")
                 if (itemNameLowerNoSpace.includes(inputLowerNoSpace)) {
                     return item
@@ -85,9 +85,9 @@ export default function Home({navigation}: any) {
                         return item
                     }
                 })
-                setCurrentDataSet(ingredientsFilteredData)
+                dispatch(changeCurrentDataSet(ingredientsFilteredData))
             } else {
-                setCurrentDataSet(searchFieldFilteredData)
+                dispatch(changeCurrentDataSet(searchFieldFilteredData))
             }
 
             dispatch(setIsLoadingFalse())
@@ -96,7 +96,7 @@ export default function Home({navigation}: any) {
 
         }
         ,
-        [state.alcoholicFilter, state.categoryFilter, state.ingredientsFilter, currentSearchFieldInput]
+        [state.alcoholicFilter, state.categoryFilter, state.ingredientsFilter, state.currentSearchFieldInput]
     )
 
     const onImageClickHandler = (
@@ -114,7 +114,7 @@ export default function Home({navigation}: any) {
     const onClearAllFiltersClickHandler = () => {
         dispatch(changeAlcoholic([ALL]))
         dispatch(changeCategory([ALL]))
-        setCurrentSearchFieldInput('')
+        dispatch(changeCurrentSearchFieldInput(''))
         setIngredientsValue([])
     }
 
@@ -131,26 +131,22 @@ export default function Home({navigation}: any) {
                     <HeaderHome/>
                     <View style={styles.app}>
                         {(state.activeFilter === FILTER) ? (
-                            <Filter setCurrentSearchFieldInput={setCurrentSearchFieldInput}
-                                    currentDataSetLength={currentDataSet.length}
-                                    onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}
+                            <Filter onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}
                                     ingredientsValue={ingredientsValue}
                                     setIngredientsValue={setIngredientsValue}/>
                         ) : null}
                         {(state.activeFilter === SEARCH_FIELD) ? (
-                            <SearchField setCurrentSearchFieldInput={setCurrentSearchFieldInput}
-                                         currentSearchFieldInput={currentSearchFieldInput}
-                                         currentDataSetLength={currentDataSet.length}/>
+                            <SearchField/>
                         ) : null}
                         {state.currentItem.idDrink ? (
                             <HighlightedCard/>
                         ) : null}
-                        {(currentDataSet.length === 0) ? (
+                        {(state.currentDataSet.length === 0) ? (
                             <NoHits onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>
                         ) : null}
                         <FlatList
                             numColumns={3}
-                            data={currentDataSet}
+                            data={state.currentDataSet}
                             renderItem={renderItem}
                             keyExtractor={item => item.idDrink}/>
                     </View>

@@ -74,7 +74,7 @@ export default function Filter(props: any) {
                 ingredientsValue={props.ingredientsValue}/>
             <View style={styles.buttonBackgroundStyle}>
                 <StyledButton flex={1} onPress={props.onClearAllFiltersClickHandler} title={CLEAR_ALL_FILTERS.ENG}/>
-                <StyledButton flex={1} onPress={onHitsClickHandler} title={`${HITS.ENG}: ${props.currentDataSetLength}`}/>
+                <StyledButton flex={1} onPress={onHitsClickHandler} title={`${HITS.ENG}: ${state.currentDataSet.length}`}/>
             </View>
         </View>
     )

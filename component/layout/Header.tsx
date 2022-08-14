@@ -6,10 +6,15 @@ import {} from "@fortawesome/free-brands-svg-icons";
 import {COLOR_HEADER} from "../../constants/color_styles";
 import {BORDER_RADIUS, MARGIN} from "../../constants/style_constants";
 import HeaderButton from "./HeaderButton";
-import {EMPTY_ITEM, HOME, PROFILE} from "../../constants/const_vars";
+import {ALL, EMPTY_ITEM, HOME, PROFILE} from "../../constants/const_vars";
 import {useAppDispatch, useAppSelector} from "../../constants/hooks";
 import {setActiveFilter} from "../../reducers/filter/activeFilterReducer";
 import {changeCurrentItem} from "../../reducers/home/currentItemReducer";
+import {changeCurrentDataSet} from "../../reducers/home/currentDataSetReducer";
+import dummyData from "../../constants/dummyData3";
+import {changeCategory} from "../../reducers/filter/categoryFilterReducer";
+import {changeAlcoholic} from "../../reducers/filter/alcoholicFilterReducer";
+import {changeCurrentSearchFieldInput} from "../../reducers/home/currentSearchFieldInputReducer";
 
 export default function Header({navigation}: any) {
     const state = useAppSelector((state) => state)
@@ -33,6 +38,10 @@ export default function Header({navigation}: any) {
     const onHomePressHandler = () => {
         navigation.navigate(HOME)
         dispatch(setActiveFilter(''))
+        dispatch(changeAlcoholic([ALL]))
+        dispatch(changeCategory([ALL]))
+        dispatch(changeCurrentSearchFieldInput(''))
+        dispatch(changeCurrentDataSet(dummyData.drinks))
     }
 
     return (
