@@ -46,7 +46,7 @@ export default function HighlightedCard() {
 
     return (
         <View style={styles.highlightView}>
-            <ImageBackground style={[styles.highlightViewBackgroundImage, styles.boxShadow]}
+            <ImageBackground style={styles.highlightViewBackgroundImage}
                              source={ {uri: state.currentItem.strDrinkThumb !== null ? state.currentItem.strDrinkThumb : ''}}>
                 <HighlightedCardInnerImage
                     imageSource={state.currentItem.strDrinkThumb}/>
@@ -119,5 +119,4 @@ const styles = StyleSheet.create({
         width: '100%',
         padding: PADDING,
     },
-    boxShadow: {},
 })
