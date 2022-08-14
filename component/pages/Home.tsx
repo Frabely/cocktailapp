@@ -1,5 +1,5 @@
 import dummyData, {Cocktail} from "../../constants/dummyData3";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {FlatList, StyleSheet, View} from "react-native";
 import {useAppDispatch, useAppSelector} from "../../constants/hooks";
 import {vh} from "../../functions/dimentions";
@@ -19,17 +19,16 @@ import AppBackground from "../layout/AppBackground";
 import {changeCurrentItem} from "../../reducers/home/currentItemReducer";
 import {changeCurrentDataSet} from "../../reducers/home/currentDataSetReducer";
 import {changeCurrentSearchFieldInput} from "../../reducers/home/currentSearchFieldInputReducer";
+import {changeIngredients} from "../../reducers/filter/ingredientsFilterReducer";
 
 const data: any[] = dummyData.drinks;
 export default function Home({navigation}: any) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
 
-    const [ingredientsValue, setIngredientsValue] = useState(state.ingredientsFilter)
-
-    useEffect(() => {
-        onClearAllFiltersClickHandler()
-    }, [])
+    // useEffect(() => {
+    //     onClearAllFiltersClickHandler()
+    // }, [])
 
     useEffect(() => {
             dispatch(setIsLoadingTrue())
@@ -69,7 +68,7 @@ export default function Home({navigation}: any) {
             if (state.ingredientsFilter.length !== 0) {
                 const ingredientsFilteredData: any[] = searchFieldFilteredData.filter((item) => {
                     let isFiltered = false
-                    state.ingredientsFilter.forEach((itemFilter) => {
+                    state.ingredientsFilter.forEach((itemFilter: string) => {
                         for (let index: number = 1; index < 16; index++) {
                             if (item[`strIngredient${index}`] !== null) {
                                 const itemFilterLowerNoSpace = itemFilter.toLowerCase().replace(" ", "")
@@ -115,7 +114,7 @@ export default function Home({navigation}: any) {
         dispatch(changeAlcoholic([ALL]))
         dispatch(changeCategory([ALL]))
         dispatch(changeCurrentSearchFieldInput(''))
-        setIngredientsValue([])
+        dispatch(changeIngredients([]))
     }
 
     const renderItem = ({item}: any) => {
@@ -131,9 +130,7 @@ export default function Home({navigation}: any) {
                     <HeaderHome/>
                     <View style={styles.app}>
                         {(state.activeFilter === FILTER) ? (
-                            <Filter onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}
-                                    ingredientsValue={ingredientsValue}
-                                    setIngredientsValue={setIngredientsValue}/>
+                            <Filter onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>
                         ) : null}
                         {(state.activeFilter === SEARCH_FIELD) ? (
                             <SearchField/>

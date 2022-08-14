@@ -9,7 +9,7 @@ import {useEffect, useState} from "react";
 import {INGREDIENT_LIST} from "../../../../constants/filter_lists";
 import {vh, vw} from "../../../../functions/dimentions";
 import {Platform} from "react-native";
-import {useAppDispatch} from "../../../../constants/hooks";
+import {useAppDispatch, useAppSelector} from "../../../../constants/hooks";
 import {changeIngredients} from "../../../../reducers/filter/ingredientsFilterReducer";
 import {
     INGREDIENTS_FILTER_SELECTION_NUMBER_MAX,
@@ -17,14 +17,20 @@ import {
 } from "../../../../constants/const_vars";
 import {SEARCH_INGREDIENTS} from "../../../../constants/labels";
 
-export default function DropDownPickerWrapper(props: any) {
+export default function DropDownPickerWrapper() {
+    const dispatch = useAppDispatch()
+    const state = useAppSelector((state) => state)
     const [open, setOpen] = useState(false);
     const [items, setItems] = useState(INGREDIENT_LIST);
-    const dispatch = useAppDispatch()
+    const [value, setValue] = useState(state.ingredientsFilter);
 
     useEffect(() => {
-        dispatch(changeIngredients(props.ingredientsValue))
-    }, [props.ingredientsValue])
+        dispatch(changeIngredients(value))
+    }, [value])
+
+    useEffect(() => {
+        setValue(state.ingredientsFilter)
+    }, [state.ingredientsFilter])
 
     DropDownPicker.setMode("BADGE");
     DropDownPicker.setListMode("SCROLLVIEW");
@@ -34,10 +40,10 @@ export default function DropDownPickerWrapper(props: any) {
             // TODO add category to list (parent key) see docs
             // TODO https://hossein-zare.github.io/react-native-dropdown-picker-website/docs/advanced/category
             open={open}
-            value={props.ingredientsValue}
+            value={value}
             items={items}
             setOpen={setOpen}
-            setValue={props.setIngredientsValue}
+            setValue={setValue}
             setItems={setItems}
             multiple={true}
             min={INGREDIENTS_FILTER_SELECTION_NUMBER_MIN}

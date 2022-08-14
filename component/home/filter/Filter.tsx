@@ -69,9 +69,7 @@ export default function Filter(props: any) {
             }]}>
                 <Label labelName={INGREDIENTS.ENG}/>
             </View>
-            <DropDownPickerWrapper
-                setIngredientsValue={props.setIngredientsValue}
-                ingredientsValue={props.ingredientsValue}/>
+            <DropDownPickerWrapper/>
             <View style={styles.buttonBackgroundStyle}>
                 <StyledButton flex={1} onPress={props.onClearAllFiltersClickHandler} title={CLEAR_ALL_FILTERS.ENG}/>
                 <StyledButton flex={1} onPress={onHitsClickHandler} title={`${HITS.ENG}: ${state.currentDataSet.length}`}/>

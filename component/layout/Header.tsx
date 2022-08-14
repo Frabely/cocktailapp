@@ -15,6 +15,7 @@ import dummyData from "../../constants/dummyData3";
 import {changeCategory} from "../../reducers/filter/categoryFilterReducer";
 import {changeAlcoholic} from "../../reducers/filter/alcoholicFilterReducer";
 import {changeCurrentSearchFieldInput} from "../../reducers/home/currentSearchFieldInputReducer";
+import {changeIngredients} from "../../reducers/filter/ingredientsFilterReducer";
 
 export default function Header({navigation}: any) {
     const state = useAppSelector((state) => state)
@@ -40,6 +41,7 @@ export default function Header({navigation}: any) {
         dispatch(setActiveFilter(''))
         dispatch(changeAlcoholic([ALL]))
         dispatch(changeCategory([ALL]))
+        dispatch(changeIngredients([]))
         dispatch(changeCurrentSearchFieldInput(''))
         dispatch(changeCurrentDataSet(dummyData.drinks))
     }
