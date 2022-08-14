@@ -1,7 +1,7 @@
 import {StyleSheet, TextInput, View, Text, Image} from "react-native";
 import {vh, vw} from "../../functions/dimentions";
 import {
-    COLOR_BACKGROUND, COLOR_CARD_BACKGROUND,
+    COLOR_BACKGROUND, COLOR_CARD_BACKGROUND, COLOR_CORRECT_FIELD_INPUT,
     COLOR_HEADER,
     COLOR_INCORRECT_FIELD_INPUT,
 } from "../../constants/color_styles";
@@ -149,8 +149,7 @@ export default function LoginScreen({navigation}: any) {
             if (error.code === WEAK_PASSWORD.code) {
                 errorArrayPassword.push(WEAK_PASSWORD.code)
                 errorArrayRepeatPassword.push(WEAK_PASSWORD.code)
-            }
-            else if (error.code === INVALID_EMAIL.code)
+            } else if (error.code === INVALID_EMAIL.code)
                 errorArrayEmail.push(INVALID_EMAIL.code)
             else if (error.code === EMAIL_ALREADY_IN_USE.code)
                 errorArrayEmail.push(EMAIL_ALREADY_IN_USE.code)
@@ -219,6 +218,8 @@ export default function LoginScreen({navigation}: any) {
         return undefined;
     }
 
+    console.log(isCreatingAccount)
+
     return (
         <AppBackground>
             <View style={styles.loginScreen}>
@@ -257,7 +258,16 @@ export default function LoginScreen({navigation}: any) {
                         ) : null}
                         <TextInput
                             style={[styles.input,
-                                (getPasswordError()) ? {backgroundColor: COLOR_INCORRECT_FIELD_INPUT} : {backgroundColor: COLOR_CARD_BACKGROUND}]}
+                                {backgroundColor: (getPasswordError()) ? COLOR_INCORRECT_FIELD_INPUT : COLOR_CARD_BACKGROUND},
+                                // {
+                                //     backgroundColor: (
+                                //         password === repeatPassword
+                                //         && (password !== '' || repeatPassword !== '')
+                                //         && password.length > 5
+                                //         && repeatPassword.length > 5
+                                //     ) ? COLOR_CORRECT_FIELD_INPUT : COLOR_CARD_BACKGROUND
+                                // }
+                            ]}
                             onChangeText={input => {
                                 setPassword(input)
                             }}
@@ -269,15 +279,25 @@ export default function LoginScreen({navigation}: any) {
                         {(isCreatingAccount.includes(CREATE_ACCOUNT)) ? (
                             <>
                                 <TextInput
-                                    style={[styles.input, (getRepeatPasswordError())
-                                        ? {backgroundColor: COLOR_INCORRECT_FIELD_INPUT} : {backgroundColor: COLOR_CARD_BACKGROUND}]}
+                                    style={[styles.input,
+                                        {backgroundColor: (getRepeatPasswordError()) ? COLOR_INCORRECT_FIELD_INPUT : COLOR_CARD_BACKGROUND},
+                                        // {
+                                        //     backgroundColor: (
+                                        //         password === repeatPassword
+                                        //         && (password !== '' || repeatPassword !== '')
+                                        //         && password.length > 5
+                                        //         && repeatPassword.length > 5
+                                        //     ) ? COLOR_CORRECT_FIELD_INPUT : COLOR_CARD_BACKGROUND
+                                        // }
+                                    ]}
                                     onChangeText={input => {
                                         setRepeatPassword(input)
                                     }}
                                     placeholder={REPEAT_PASSWORD.ENG}
                                     secureTextEntry={true}/>
                                 {getRepeatPasswordError() ? (
-                                    <Text style={styles.wrongInputMessage}>{getRepeatPasswordError()?.message?.ENG}</Text>
+                                    <Text
+                                        style={styles.wrongInputMessage}>{getRepeatPasswordError()?.message?.ENG}</Text>
                                 ) : null}
                             </>
                         ) : null}
@@ -296,7 +316,6 @@ export default function LoginScreen({navigation}: any) {
                         width={'100%'}/>
                 </CardLayout>
             </View>
-            <Header navigation={navigation}/>
         </AppBackground>
     )
 }

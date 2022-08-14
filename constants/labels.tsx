@@ -1,10 +1,10 @@
 export const USERNAME = {ENG: 'Username', GER: 'Nutzername',}
 export const EMAIL = {ENG: 'Email', GER: 'Email',}
 export const PASSWORD = {ENG: 'Password', GER: 'Passwort'}
+export const REPEAT_PASSWORD = {ENG: 'Repeat Password', GER: 'Passwort wiederholen'}
 export const FINISH_ACCOUNT_CREATION = {ENG: 'Finish Account Creation', GER: 'Account Erstellung abschließen'}
 export const LOGIN_LABEL  = {ENG: 'Login', GER: 'Einloggen'}
 export const CREATE_ACCOUNT_LABEL = {ENG: 'Create Account', GER: 'Account erstellen'}
-export const REPEAT_PASSWORD = {ENG: 'Repeat Password', GER: 'Passwort wiederholen'}
 export const CHANGE_PASSWORD = {ENG: 'Change Password', GER: 'Passwort ändern'}
 export const CHANGE_USERNAME = {ENG: 'Change Username', GER: 'Nutzername ändern'}
 export const SEARCH_INGREDIENTS = {ENG: 'Search Ingredient', GER: 'Zutat suchen'}
