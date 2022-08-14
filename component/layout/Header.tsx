@@ -28,6 +28,7 @@ export default function Header({navigation}: any) {
 
     const onHomePressHandler = () => {
         navigation.navigate(HOME)
+        dispatch(setActiveFilter(''))
     }
 
     return (

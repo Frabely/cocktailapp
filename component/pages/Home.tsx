@@ -31,7 +31,6 @@ export default function Home({navigation}: any) {
     useEffect(() => {
         setCurrentDataSet(data)
         onClearAllFiltersClickHandler()
-        dispatch(setActiveFilter(''))
     }, [])
 
     useEffect(() => {
@@ -158,7 +157,10 @@ export default function Home({navigation}: any) {
                             renderItem={renderItem}
                             keyExtractor={item => item.idDrink}/>
                     </View>
-                    <Header navigation={navigation}/>
+                    <Header
+                        navigation={navigation}
+
+                    />
             {/*{state.isLoading ? (*/}
             {/*    <LoadingScreen/>*/}
             {/*) : null}*/}

@@ -218,8 +218,6 @@ export default function LoginScreen({navigation}: any) {
         return undefined;
     }
 
-    console.log(isCreatingAccount)
-
     return (
         <AppBackground>
             <View style={styles.loginScreen}>
