@@ -7,12 +7,19 @@ import {COLOR_HEADER} from "../../constants/color_styles";
 import {BORDER_RADIUS, MARGIN} from "../../constants/style_constants";
 import HeaderButton from "./HeaderButton";
 import {HOME, PROFILE} from "../../constants/const_vars";
+import {useAppDispatch, useAppSelector} from "../../constants/hooks";
+import {setActiveFilter} from "../../reducers/filter/activeFilterReducer";
 
 export default function Header({navigation}: any) {
+    const state = useAppSelector((state) => state)
+    const dispatch = useAppDispatch()
 
     const onBackArrowPressHandler = () => {
         if (navigation.canGoBack())
         navigation.goBack()
+        if (state.activeFilter !== '') {
+            dispatch(setActiveFilter(''))
+        }
     }
 
     const onProfilePressHandler = () => {
