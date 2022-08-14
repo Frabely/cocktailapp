@@ -6,9 +6,10 @@ import {} from "@fortawesome/free-brands-svg-icons";
 import {COLOR_HEADER} from "../../constants/color_styles";
 import {BORDER_RADIUS, MARGIN} from "../../constants/style_constants";
 import HeaderButton from "./HeaderButton";
-import {HOME, PROFILE} from "../../constants/const_vars";
+import {EMPTY_ITEM, HOME, PROFILE} from "../../constants/const_vars";
 import {useAppDispatch, useAppSelector} from "../../constants/hooks";
 import {setActiveFilter} from "../../reducers/filter/activeFilterReducer";
+import {changeCurrentItem} from "../../reducers/home/currentItemReducer";
 
 export default function Header({navigation}: any) {
     const state = useAppSelector((state) => state)
@@ -19,6 +20,9 @@ export default function Header({navigation}: any) {
         navigation.goBack()
         if (state.activeFilter !== '') {
             dispatch(setActiveFilter(''))
+        }
+        if (state.currentItem.idDrink) {
+            dispatch(changeCurrentItem(EMPTY_ITEM))
         }
     }
 

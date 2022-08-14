@@ -7,7 +7,7 @@ import {COLOR_OPACITY_BACKGROUND} from "../../../constants/color_styles";
 import HighlightedCardInnerImage from "./HighlightedCardInnerImage";
 import {useAppSelector} from "../../../constants/hooks";
 
-export default function HighlightedCard(props: any) {
+export default function HighlightedCard() {
     const state = useAppSelector((state) => state)
     const [arrayIngredients, setArrayIngredients] = useState([])
     generate_box_shadow_style(
@@ -49,8 +49,7 @@ export default function HighlightedCard(props: any) {
             <ImageBackground style={[styles.highlightViewBackgroundImage, styles.boxShadow]}
                              source={ {uri: state.currentItem.strDrinkThumb !== null ? state.currentItem.strDrinkThumb : ''}}>
                 <HighlightedCardInnerImage
-                    imageSource={state.currentItem.strDrinkThumb}
-                    onImageClickHandler={props.onImageClickHandler}/>
+                    imageSource={state.currentItem.strDrinkThumb}/>
                 <View style={styles.cardHighlightBackground}>
                     <View style={{flex: 3}}></View>
                     <View style={{flex: 5}}>

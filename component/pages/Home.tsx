@@ -142,8 +142,8 @@ export default function Home({navigation}: any) {
                                          currentSearchFieldInput={currentSearchFieldInput}
                                          currentDataSetLength={currentDataSet.length}/>
                         ) : null}
-                        {(state.currentItem.idDrink === '') ? (
-                            <HighlightedCard onImageClickHandler={onImageClickHandler}/>
+                        {state.currentItem.idDrink ? (
+                            <HighlightedCard/>
                         ) : null}
                         {(currentDataSet.length === 0) ? (
                             <NoHits onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>

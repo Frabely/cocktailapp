@@ -1,12 +1,14 @@
 import {ImageBackground, Pressable, StyleSheet} from "react-native";
 import {BORDER_RADIUS, MARGIN} from "../../../constants/style_constants";
 import {COLOR_HEADER} from "../../../constants/color_styles";
+import {useAppDispatch} from "../../../constants/hooks";
+import {changeCurrentItem} from "../../../reducers/home/currentItemReducer";
+import {EMPTY_ITEM} from "../../../constants/const_vars";
 
 export default function HighlightedCardInnerImage(props: any) {
+    const dispatch = useAppDispatch()
     const onCloseHighlightedImage = () => {
-        props.onImageClickHandler(
-            undefined,
-            undefined)
+        dispatch(changeCurrentItem(EMPTY_ITEM))
     }
     return (
         <Pressable onPress={onCloseHighlightedImage} style={styles.innerImageCard}>
