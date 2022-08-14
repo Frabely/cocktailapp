@@ -2,8 +2,8 @@ Bugs:
 -after logout set Home to default (no filters/buttons pressed) -> still ingredients selected (else fixed)
 -ingredients state is still in Home and not in redux
 -input: on click current value is selected
+
 TODOs:
--Implement back arrow -> refactor to React (Native) Router
 -Implement profile -> change username and password:
     -expend page with additional input fields and buttons (like login sign up account)
 -user profile:
@@ -12,7 +12,9 @@ TODOs:
             -user name unique -> set username as id in firebase?
                 ->throw error when register user with already used username
         -bar/favorites ----> later create own recipes
-        -settings
+        -settings:
+            -font size?
+            -color themes?
 -user login:
     -modal for errors/UI messages:
         -successfully logged in/logged out
@@ -25,12 +27,11 @@ TODOs:
 -languages: only home components refactored
 -testing:
     -cover as much as possible with error codes and matching messages
--zahnrad icon in header für zB font und font size
 -change padding and margin const's to rem
--Font auswählen und defaults sizes setzen
+-what font and default size used -> make font sizes const's
 -refactor app states in store
--refactor and optimize highlight card
--make selection of filter better => possible make a reusable component for header elements
+-refactor and optimize highlight card, extract maybe
+-refactor filter file, extract maybe (possible make a reusable component for header elements)
 -werbung -> wie?
 -add app to stores
     -create logo and splash -> already done? https://www.figma.com/file/4TD0sMutRjxBI6zKySFV2n/Expo-App-Icon-%26-Splash-(Community)?node-id=1%3A1357
