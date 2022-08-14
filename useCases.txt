@@ -3,8 +3,9 @@ Bugs:
 -ingredients state is still in Home and not in redux
 -input: on click current value is selected
 TODOs:
--Decide fixed Header Icons (reachable from every page)
--How should Filter and SearchField be displayed in Home -> not in Header (not usable elsewhere)
+-Implement back arrow -> refactor to React (Native) Router
+-Implement profile -> change username and password:
+    -expend page with additional input fields and buttons (like login sign up account)
 -user profile:
     -pages:
         -profile:
@@ -16,9 +17,12 @@ TODOs:
     -modal for errors/UI messages:
         -successfully logged in/logged out
         -created account
--settings page
--Header at Bottom? if yes Filter and Search field coming from bottom?
 -Firebase Backend -> upload data auf firebase
+-settings page
+-favorites page:
+    -same like full list
+        -make star on every card to make it as favorite
+-languages: only home components refactored
 -testing:
     -cover as much as possible with error codes and matching messages
 -zahnrad icon in header für zB font und font size
@@ -30,6 +34,9 @@ TODOs:
 -werbung -> wie?
 -add app to stores
     -create logo and splash -> already done? https://www.figma.com/file/4TD0sMutRjxBI6zKySFV2n/Expo-App-Icon-%26-Splash-(Community)?node-id=1%3A1357
+
+Nice to have features:
+-make colors changeable
 
 Cocktail App
 
