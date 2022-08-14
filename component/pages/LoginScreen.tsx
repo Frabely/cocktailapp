@@ -36,6 +36,16 @@ import {
 import CardLayout from "../layout/CardLayout";
 import Header from "../layout/Header";
 import AppBackground from "../layout/AppBackground";
+import {CREATE_ACCOUNT} from "../../constants/const_vars";
+import {
+    CREATE_ACCOUNT_LABEL,
+    EMAIL,
+    FINISH_ACCOUNT_CREATION,
+    LOGIN_LABEL,
+    PASSWORD,
+    REPEAT_PASSWORD,
+    USERNAME
+} from "../../constants/labels";
 
 export default function LoginScreen({navigation}: any) {
     const dispatch = useAppDispatch()
@@ -78,9 +88,9 @@ export default function LoginScreen({navigation}: any) {
             else if (error.code === USER_NOT_FOUND.code)
                 errorArrayEmail.push(USER_NOT_FOUND.code)
             else if (error.code === TOO_MANY_REQUESTS.code)
-                alert(TOO_MANY_REQUESTS.message)
+                alert(TOO_MANY_REQUESTS.message?.ENG)
             else if (error.code === NETWORK_REQUEST_FAILED.code)
-                alert(NETWORK_REQUEST_FAILED.message)
+                alert(NETWORK_REQUEST_FAILED.message?.ENG)
             else if (error.code === INVALID_EMAIL.code)
                 errorArrayEmail.push(INVALID_EMAIL.code)
             else {
@@ -145,9 +155,9 @@ export default function LoginScreen({navigation}: any) {
             else if (error.code === EMAIL_ALREADY_IN_USE.code)
                 errorArrayEmail.push(EMAIL_ALREADY_IN_USE.code)
             else if (error.code === TOO_MANY_REQUESTS.code)
-                alert(TOO_MANY_REQUESTS.message)
+                alert(TOO_MANY_REQUESTS.message?.ENG)
             else if (error.code === NETWORK_REQUEST_FAILED.code)
-                alert(NETWORK_REQUEST_FAILED.message)
+                alert(NETWORK_REQUEST_FAILED.message?.ENG)
             else
                 alert(error.message)
             setErrorStateUsername(errorArrayUsername)
@@ -162,11 +172,11 @@ export default function LoginScreen({navigation}: any) {
         setErrorStateEmail([])
         setErrorStatePassword([])
         setErrorStateRepeatPassword([])
-        if (isCreatingAccount.includes('Create Account')) {
+        if (isCreatingAccount.includes(CREATE_ACCOUNT)) {
             setIsCreatingAccount([''])
             return
         }
-        setIsCreatingAccount(['Create Account'])
+        setIsCreatingAccount([CREATE_ACCOUNT])
     }
 
     const getUsernameError = () => {
@@ -216,10 +226,10 @@ export default function LoginScreen({navigation}: any) {
                        source={require('../../assets/images/adaptive_background.png')}/>
                 <CardLayout width={vw(0.7)}>
                     <View style={[styles.inputCard,
-                        (isCreatingAccount.includes('Create Account') && !!getRepeatPasswordError() ||
-                            !isCreatingAccount.includes('Create Account') && !!getPasswordError())
+                        (isCreatingAccount.includes(CREATE_ACCOUNT) && !!getRepeatPasswordError() ||
+                            !isCreatingAccount.includes(CREATE_ACCOUNT) && !!getPasswordError())
                             ? {paddingBottom: PADDING} : null]}>
-                        {(isCreatingAccount.includes('Create Account')) ? (
+                        {(isCreatingAccount.includes(CREATE_ACCOUNT)) ? (
                             <>
                                 <TextInput
                                     style={[styles.input,
@@ -227,10 +237,10 @@ export default function LoginScreen({navigation}: any) {
                                     onChangeText={input => {
                                         setUsername(input)
                                     }}
-                                    placeholder={'Username'}
+                                    placeholder={USERNAME.ENG}
                                     value={username}/>
                                 {getUsernameError() ? (
-                                    <Text style={styles.wrongInputMessage}>{getUsernameError()?.message}</Text>
+                                    <Text style={styles.wrongInputMessage}>{getUsernameError()?.message?.ENG}</Text>
                                 ) : null}
                             </>
                         ) : null}
@@ -240,10 +250,10 @@ export default function LoginScreen({navigation}: any) {
                             onChangeText={input => {
                                 setEmail(input)
                             }}
-                            placeholder={'Email'}
+                            placeholder={EMAIL.ENG}
                             value={email}/>
                         {getEmailError() ? (
-                            <Text style={styles.wrongInputMessage}>{getEmailError()?.message}</Text>
+                            <Text style={styles.wrongInputMessage}>{getEmailError()?.message?.ENG}</Text>
                         ) : null}
                         <TextInput
                             style={[styles.input,
@@ -251,12 +261,12 @@ export default function LoginScreen({navigation}: any) {
                             onChangeText={input => {
                                 setPassword(input)
                             }}
-                            placeholder={'Password'}
+                            placeholder={PASSWORD.ENG}
                             secureTextEntry={true}/>
                         {getPasswordError() ? (
-                            <Text style={styles.wrongInputMessage}>{getPasswordError()?.message}</Text>
+                            <Text style={styles.wrongInputMessage}>{getPasswordError()?.message?.ENG}</Text>
                         ) : null}
-                        {(isCreatingAccount.includes('Create Account')) ? (
+                        {(isCreatingAccount.includes(CREATE_ACCOUNT)) ? (
                             <>
                                 <TextInput
                                     style={[styles.input, (getRepeatPasswordError())
@@ -264,19 +274,19 @@ export default function LoginScreen({navigation}: any) {
                                     onChangeText={input => {
                                         setRepeatPassword(input)
                                     }}
-                                    placeholder={'Repeat Password'}
+                                    placeholder={REPEAT_PASSWORD.ENG}
                                     secureTextEntry={true}/>
                                 {getRepeatPasswordError() ? (
-                                    <Text style={styles.wrongInputMessage}>{getRepeatPasswordError()?.message}</Text>
+                                    <Text style={styles.wrongInputMessage}>{getRepeatPasswordError()?.message?.ENG}</Text>
                                 ) : null}
                             </>
                         ) : null}
                     </View>
                     <StyledButton width={'100%'}
-                                  onPress={(isCreatingAccount.includes('Create Account')) ? onCreatAccountHandler : onLoginHandler}
-                                  title={(isCreatingAccount.includes('Create Account')) ? 'Finish Account Creation' : 'Login'}/>
+                                  onPress={(isCreatingAccount.includes(CREATE_ACCOUNT)) ? onCreatAccountHandler : onLoginHandler}
+                                  title={(isCreatingAccount.includes(CREATE_ACCOUNT)) ? FINISH_ACCOUNT_CREATION.ENG : LOGIN_LABEL.ENG}/>
                     <FilterButton
-                        title={'Create Account'}
+                        title={CREATE_ACCOUNT_LABEL.ENG}
                         colorActive={COLOR_HEADER}
                         colorInactive={COLOR_BACKGROUND}
                         onClick={onCreateAccountButtonClickHandler}

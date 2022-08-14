@@ -10,9 +10,16 @@ import {getAuth} from "firebase/auth";
 import {useAppDispatch} from "../../constants/hooks";
 import CardLayout from "../layout/CardLayout";
 import UserProfileItem from "../user_profile/UserProfileItem";
-import {PROFILE_DETAILS} from "../../constants/const_vars";
+import {EMPTY_USER, PROFILE_DETAILS} from "../../constants/const_vars";
 import Header from "../layout/Header";
 import AppBackground from "../layout/AppBackground";
+import {
+    FAVORITES_LABEL,
+    IN_DEVELOPMENT,
+    LOGOUT_LABEL,
+    PROFILE_DETAILS_LABEL,
+    SETTINGS_LABEL
+} from "../../constants/labels";
 
 
 export default function UserProfile({navigation}: any) {
@@ -24,16 +31,16 @@ export default function UserProfile({navigation}: any) {
     }
 
     const onSettingsPressHandler = () => {
-        alert('in development')
+        alert(IN_DEVELOPMENT.ENG)
     }
 
     const onFavoritesPressHandler = () => {
-        alert('in development')
+        alert(IN_DEVELOPMENT.ENG)
     }
 
     const onLogoutPressHandler = () => {
         auth.signOut().then(() => {
-            dispatch(activeUser({username: null, email: null}))
+            dispatch(activeUser(EMPTY_USER))
         }).catch(error => {
             alert(error.message)
         })
@@ -45,10 +52,10 @@ export default function UserProfile({navigation}: any) {
                        source={require('../../assets/images/adaptive_background.png')}/>
                 <CardLayout>
                     <UserProfileItem onPress={onProfileDetailsPressHandler} icon={faUserGear}
-                                     label={'Profile Details'}/>
-                    <UserProfileItem onPress={onSettingsPressHandler} icon={faGear} label={'Settings'}/>
-                    <UserProfileItem onPress={onFavoritesPressHandler} icon={faStar} label={'Favorites'}/>
-                    <UserProfileItem onPress={onLogoutPressHandler} icon={faPowerOff} label={'Logout'}/>
+                                     label={PROFILE_DETAILS_LABEL.ENG}/>
+                    <UserProfileItem onPress={onSettingsPressHandler} icon={faGear} label={SETTINGS_LABEL.ENG}/>
+                    <UserProfileItem onPress={onFavoritesPressHandler} icon={faStar} label={FAVORITES_LABEL.ENG}/>
+                    <UserProfileItem onPress={onLogoutPressHandler} icon={faPowerOff} label={LOGOUT_LABEL.ENG}/>
                 </CardLayout>
             </View>
             <Header navigation={navigation}/>

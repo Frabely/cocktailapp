@@ -1,5 +1,10 @@
 export const USERNAME = {ENG: 'Username', GER: 'Nutzername',}
 export const EMAIL = {ENG: 'Email', GER: 'Email',}
+export const PASSWORD = {ENG: 'Password', GER: 'Passwort'}
+export const FINISH_ACCOUNT_CREATION = {ENG: 'Finish Account Creation', GER: 'Account Erstellung abschließen'}
+export const LOGIN_LABEL  = {ENG: 'Login', GER: 'Einloggen'}
+export const CREATE_ACCOUNT_LABEL = {ENG: 'Create Account', GER: 'Account erstellen'}
+export const REPEAT_PASSWORD = {ENG: 'Repeat Password', GER: 'Passwort wiederholen'}
 export const CHANGE_PASSWORD = {ENG: 'Change Password', GER: 'Passwort ändern'}
 export const CHANGE_USERNAME = {ENG: 'Change Username', GER: 'Nutzername ändern'}
 export const SEARCH_INGREDIENTS = {ENG: 'Search Ingredient', GER: 'Zutat suchen'}
@@ -12,3 +17,9 @@ export const HITS = {ENG: 'Hits', GER: 'Treffer'}
 export const ENTER_SEARCH_TERM = {ENG: 'Enter search term', GER: 'Suchbegriff eintragen'}
 export const RESET_FILTER = {ENG: 'Reset Filters', GER: 'Filter zurücksetzen'}
 export const NO_HITS = {ENG: 'No Hits', GER: 'Keine Treffer'}
+export const IN_DEVELOPMENT = {ENG: 'in development', GER: 'In Entwicklung'}
+export const PROFILE_DETAILS_LABEL = {ENG: 'Profile Details', GER: 'Accountinformation'}
+export const SETTINGS_LABEL = {ENG: 'Settings', GER: 'Einstellungen'}
+export const FAVORITES_LABEL = {ENG: 'Favorites', GER: 'Favoriten'}
+export const LOGOUT_LABEL = {ENG: 'Logout', GER: 'Ausloggen'}
+

@@ -32,7 +32,7 @@ export default function Home({navigation}: any) {
         setCurrentDataSet(data)
         onClearAllFiltersClickHandler()
         dispatch(setActiveFilter(''))
-    }, [state.currentAppScreen])
+    }, [])
 
     useEffect(() => {
             dispatch(setIsLoadingTrue())

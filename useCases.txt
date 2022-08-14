@@ -2,8 +2,11 @@ Bugs:
 -after logout set Home to default (no filters/buttons pressed) -> still ingredients selected (else fixed)
 -ingredients state is still in Home and not in redux
 -input: on click current value is selected
-
+-shadow on android 'not' working -> see Card component
 TODOs:
+-refactor reducer -> change hardcode strings to const's
+-languages: refactored (only dummy data and ingredients missing -> a lot of data)
+    -add prop to components and get message language like <const_call>[`&{props.language}`]
 -Implement profile -> change username and password:
     -expend page with additional input fields and buttons (like login sign up account)
 -user profile:
@@ -24,7 +27,6 @@ TODOs:
 -favorites page:
     -same like full list
         -make star on every card to make it as favorite
--languages: only home components refactored
 -testing:
     -cover as much as possible with error codes and matching messages
 -change padding and margin const's to rem

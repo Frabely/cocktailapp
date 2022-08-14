@@ -1,5 +1,5 @@
-export const USERNAME_MISSING = {code: 'username-missing', message: 'Username missing'}
-export const EMAIL_MISSING = {code: 'email-missing', message: 'Email missing'}
-export const PASSWORD_MISSING = {code: 'password-missing', message: 'Password missing'}
-export const REPEAT_PASSWORD_MISSING = {code: 'repeat-password-missing', message: 'Repeated password missing'}
-export const PASSWORDS_NOT_MATCHING = {code: 'passwords-not-matching', message: 'Passwords not matching'}
+export const USERNAME_MISSING = {code: 'username-missing', message: {ENG: 'Username missing', GER: 'Nutzername fehlt'}}
+export const EMAIL_MISSING = {code: 'email-missing', message: {ENG: 'Email missing', GER: 'Email fehlt'}}
+export const PASSWORD_MISSING = {code: 'password-missing', message: {ENG: 'Password missing', GER: 'Passwort fehlt'}}
+export const REPEAT_PASSWORD_MISSING = {code: 'repeat-password-missing', message: {ENG: 'Repeated password missing', GER: 'Wiederholtes Passwort fehlt'}}
+export const PASSWORDS_NOT_MATCHING = {code: 'passwords-not-matching', message: {ENG: 'Passwords not matching', GER: 'Passwörter stimmen nicht überein'}}
