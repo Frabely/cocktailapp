@@ -1,8 +1,4 @@
 Bugs:
--home button should reset all filters currently in useEffect in home but not working -> assign it to header (make sure only called when actually in home -> header is used elsewhere)
--currentItem and setCurrentItem should be a redux state -> refactor -> make sure to define a empty item and set it as default type {idDrink: null}
--after logout set Home to default (no filters/buttons pressed) -> still ingredients selected (else fixed)
--ingredients state is still in Home and not in redux
 -input: on click current value is selected
 -shadow on android 'not' working -> see Card component
 -splash new background needs to be added and replaced
