@@ -3,9 +3,9 @@ Bugs:
 -change label for password placeholder or text to show it should be at least 6 chars long
 
 TODOs:
--refactor reducer -> change hardcode strings to const's
 -languages: refactored (only dummy data and ingredients missing -> a lot of data)
     -add prop to components and get message language like <const_call>[`&{props.language}`]
+-refactor reducer -> change hardcode strings to const's
 -Implement profile -> change username and password:
     -expend page with additional input fields and buttons (like login sign up account)
 -user profile:

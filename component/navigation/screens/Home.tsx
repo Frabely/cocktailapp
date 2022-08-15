@@ -1,25 +1,25 @@
-import dummyData, {Cocktail} from "../../constants/dummyData3";
+import dummyData, {Cocktail} from "../../../constants/dummyData3";
 import {useEffect} from "react";
 import {FlatList, StyleSheet, View} from "react-native";
-import {useAppDispatch, useAppSelector} from "../../constants/hooks";
-import {vh} from "../../functions/dimentions";
-import Card from "../layout/Card";
-import Header from "../layout/Header";
-import Filter from "../home/filter/Filter";
-import SearchField from "../home/search_field/SearchField";
-import HighlightedCard from "../home/highlighted_card/HighlightedCard";
-import NoHits from "../home/NoHits"
-import {PADDING} from "../../constants/style_constants";
-import {ALL, EMPTY_ITEM, FILTER, SEARCH_FIELD} from "../../constants/const_vars";
-import {changeAlcoholic} from "../../reducers/filter/alcoholicFilterReducer";
-import {changeCategory} from "../../reducers/filter/categoryFilterReducer";
-import {setIsLoadingFalse, setIsLoadingTrue} from "../../reducers/booleans/isLoadingReducer";
-import HeaderHome from "../home/HeaderHome";
-import AppBackground from "../layout/AppBackground";
-import {changeCurrentItem} from "../../reducers/home/currentItemReducer";
-import {changeCurrentDataSet} from "../../reducers/home/currentDataSetReducer";
-import {changeCurrentSearchFieldInput} from "../../reducers/home/currentSearchFieldInputReducer";
-import {changeIngredients} from "../../reducers/filter/ingredientsFilterReducer";
+import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
+import {vh} from "../../../functions/dimentions";
+import Card from "../../layout/Card";
+import Header from "../../layout/Header";
+import Filter from "../../home/filter/Filter";
+import SearchField from "../../home/search_field/SearchField";
+import HighlightedCard from "../../home/highlighted_card/HighlightedCard";
+import NoHits from "../../home/NoHits"
+import {PADDING} from "../../../constants/style_constants";
+import {ALL, EMPTY_ITEM, FILTER, SEARCH_FIELD} from "../../../constants/const_vars";
+import {changeAlcoholic} from "../../../reducers/filter/alcoholicFilterReducer";
+import {changeCategory} from "../../../reducers/filter/categoryFilterReducer";
+import {setIsLoadingFalse, setIsLoadingTrue} from "../../../reducers/booleans/isLoadingReducer";
+import HeaderHome from "../../home/HeaderHome";
+import AppBackground from "../../layout/AppBackground";
+import {changeCurrentItem} from "../../../reducers/home/currentItemReducer";
+import {changeCurrentDataSet} from "../../../reducers/home/currentDataSetReducer";
+import {changeCurrentSearchFieldInput} from "../../../reducers/home/currentSearchFieldInputReducer";
+import {changeIngredients} from "../../../reducers/filter/ingredientsFilterReducer";
 
 const data: any[] = dummyData.drinks;
 export default function Home({navigation}: any) {

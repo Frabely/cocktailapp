@@ -1,13 +1,13 @@
 import {StyleSheet, TextInput, View, Text, Image} from "react-native";
-import {vh, vw} from "../../functions/dimentions";
+import {vh, vw} from "../../../functions/dimentions";
 import {
     COLOR_BACKGROUND, COLOR_CARD_BACKGROUND,
     COLOR_HEADER,
     COLOR_INCORRECT_FIELD_INPUT,
-} from "../../constants/color_styles";
-import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
-import StyledButton from "../layout/StyledButton";
-import {app} from "../../functions/firebase";
+} from "../../../constants/color_styles";
+import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
+import StyledButton from "../../layout/StyledButton";
+import {app} from "../../../functions/firebase";
 import {
     getAuth,
     createUserWithEmailAndPassword,
@@ -15,9 +15,9 @@ import {
     updateProfile
 } from "firebase/auth";
 import React, {useState} from "react";
-import {useAppDispatch} from "../../constants/hooks";
-import {activeUser} from "../../reducers/user/userReducer";
-import FilterButton from "../home/filter/FilterButton";
+import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
+import {activeUser} from "../../../reducers/user/userReducer";
+import FilterButton from "../../home/filter/FilterButton";
 import {
     EMAIL_ALREADY_IN_USE,
     INVALID_EMAIL, NETWORK_REQUEST_FAILED,
@@ -25,28 +25,29 @@ import {
     USER_NOT_FOUND,
     WEAK_PASSWORD,
     WRONG_PASSWORD
-} from "../../constants/error_codes_firebase";
+} from "../../../constants/error_codes_firebase";
 import {
     EMAIL_MISSING,
     PASSWORD_MISSING,
     PASSWORDS_NOT_MATCHING,
     REPEAT_PASSWORD_MISSING,
     USERNAME_MISSING
-} from "../../constants/error_codes";
-import CardLayout from "../layout/CardLayout";
-import AppBackground from "../layout/AppBackground";
-import {CREATE_ACCOUNT} from "../../constants/const_vars";
+} from "../../../constants/error_codes";
+import CardLayout from "../../layout/CardLayout";
+import AppBackground from "../../layout/AppBackground";
+import {CREATE_ACCOUNT} from "../../../constants/const_vars";
 import {
     CREATE_ACCOUNT_LABEL,
-    EMAIL,
-    FINISH_ACCOUNT_CREATION,
+    EMAIL_LABEL,
+    FINISH_ACCOUNT_CREATION_LABEL,
     LOGIN_LABEL,
-    PASSWORD,
-    REPEAT_PASSWORD,
-    USERNAME
-} from "../../constants/labels";
+    PASSWORD_LABEL,
+    REPEAT_PASSWORD_LABEL,
+    USERNAME_LABEL
+} from "../../../constants/labels";
 
 export default function LoginScreen() {
+    const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -57,6 +58,7 @@ export default function LoginScreen() {
     const [errorStateUsername, setErrorStateUsername] = useState(['']);
     const [errorStatePassword, setErrorStatePassword] = useState(['']);
     const [errorStateRepeatPassword, setErrorStateRepeatPassword] = useState(['']);
+    const language: any = state.language
 
     const auth = getAuth(app)
 
@@ -87,9 +89,9 @@ export default function LoginScreen() {
             else if (error.code === USER_NOT_FOUND.code)
                 errorArrayEmail.push(USER_NOT_FOUND.code)
             else if (error.code === TOO_MANY_REQUESTS.code)
-                alert(TOO_MANY_REQUESTS.message?.ENG)
+                alert(TOO_MANY_REQUESTS.message[`${language}`])
             else if (error.code === NETWORK_REQUEST_FAILED.code)
-                alert(NETWORK_REQUEST_FAILED.message?.ENG)
+                alert(NETWORK_REQUEST_FAILED.message[`${language}`])
             else if (error.code === INVALID_EMAIL.code)
                 errorArrayEmail.push(INVALID_EMAIL.code)
             else {
@@ -153,9 +155,9 @@ export default function LoginScreen() {
             else if (error.code === EMAIL_ALREADY_IN_USE.code)
                 errorArrayEmail.push(EMAIL_ALREADY_IN_USE.code)
             else if (error.code === TOO_MANY_REQUESTS.code)
-                alert(TOO_MANY_REQUESTS.message?.ENG)
+                alert(TOO_MANY_REQUESTS.message[`${language}`])
             else if (error.code === NETWORK_REQUEST_FAILED.code)
-                alert(NETWORK_REQUEST_FAILED.message?.ENG)
+                alert(NETWORK_REQUEST_FAILED.message[`${language}`])
             else
                 alert(error.message)
             setErrorStateUsername(errorArrayUsername)
@@ -221,7 +223,7 @@ export default function LoginScreen() {
         <AppBackground>
             <View style={styles.loginScreen}>
                 <Image style={{position: 'absolute', height: '100%', width: '100%'}}
-                       source={require('../../assets/images/adaptive_background.png')}/>
+                       source={require('../../../assets/images/adaptive_background.png')}/>
                 <CardLayout width={vw(0.7)}>
                     <View style={[styles.inputCard,
                         (isCreatingAccount.includes(CREATE_ACCOUNT) && !!getRepeatPasswordError() ||
@@ -235,11 +237,11 @@ export default function LoginScreen() {
                                     onChangeText={input => {
                                         setUsername(input)
                                     }}
-                                    placeholder={USERNAME.ENG}
+                                    placeholder={USERNAME_LABEL[`${language}`]}
                                     value={username}
                                     selectTextOnFocus={true}/>
                                 {getUsernameError() ? (
-                                    <Text style={styles.wrongInputMessage}>{getUsernameError()?.message?.ENG}</Text>
+                                    <Text style={styles.wrongInputMessage}>{getUsernameError()?.message[`${language}`]}</Text>
                                 ) : null}
                             </>
                         ) : null}
@@ -249,11 +251,11 @@ export default function LoginScreen() {
                             onChangeText={input => {
                                 setEmail(input)
                             }}
-                            placeholder={EMAIL.ENG}
+                            placeholder={EMAIL_LABEL[`${language}`]}
                             value={email}
                             selectTextOnFocus={true}/>
                         {getEmailError() ? (
-                            <Text style={styles.wrongInputMessage}>{getEmailError()?.message?.ENG}</Text>
+                            <Text style={styles.wrongInputMessage}>{getEmailError()?.message[`${language}`]}</Text>
                         ) : null}
                         <TextInput
                             style={[styles.input,
@@ -270,11 +272,11 @@ export default function LoginScreen() {
                             onChangeText={input => {
                                 setPassword(input)
                             }}
-                            placeholder={PASSWORD.ENG}
+                            placeholder={PASSWORD_LABEL[`${language}`]}
                             secureTextEntry={true}
                             selectTextOnFocus={true}/>
                         {getPasswordError() ? (
-                            <Text style={styles.wrongInputMessage}>{getPasswordError()?.message?.ENG}</Text>
+                            <Text style={styles.wrongInputMessage}>{getPasswordError()?.message[`${language}`]}</Text>
                         ) : null}
                         {(isCreatingAccount.includes(CREATE_ACCOUNT)) ? (
                             <>
@@ -293,21 +295,21 @@ export default function LoginScreen() {
                                     onChangeText={input => {
                                         setRepeatPassword(input)
                                     }}
-                                    placeholder={REPEAT_PASSWORD.ENG}
+                                    placeholder={REPEAT_PASSWORD_LABEL[`${language}`]}
                                     secureTextEntry={true}
                                     selectTextOnFocus={true}/>
                                 {getRepeatPasswordError() ? (
                                     <Text
-                                        style={styles.wrongInputMessage}>{getRepeatPasswordError()?.message?.ENG}</Text>
+                                        style={styles.wrongInputMessage}>{getRepeatPasswordError()?.message[`${language}`]}</Text>
                                 ) : null}
                             </>
                         ) : null}
                     </View>
                     <StyledButton width={'100%'}
                                   onPress={(isCreatingAccount.includes(CREATE_ACCOUNT)) ? onCreatAccountHandler : onLoginHandler}
-                                  title={(isCreatingAccount.includes(CREATE_ACCOUNT)) ? FINISH_ACCOUNT_CREATION.ENG : LOGIN_LABEL.ENG}/>
+                                  title={(isCreatingAccount.includes(CREATE_ACCOUNT)) ? FINISH_ACCOUNT_CREATION_LABEL[`${language}`] : LOGIN_LABEL[`${language}`]}/>
                     <FilterButton
-                        title={CREATE_ACCOUNT_LABEL.ENG}
+                        title={CREATE_ACCOUNT_LABEL[`${language}`]}
                         colorActive={COLOR_HEADER}
                         colorInactive={COLOR_BACKGROUND}
                         onClick={onCreateAccountButtonClickHandler}

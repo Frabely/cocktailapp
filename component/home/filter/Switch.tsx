@@ -1,24 +1,22 @@
 import {Pressable, StyleSheet, Text, View} from "react-native";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
-import {useState} from "react";
 
 export default function Switch(props: any) {
-    const [isLeftActive, setIsLeftActive] = useState(true)
 
     const onclickHandler = () => {
-        setIsLeftActive(!isLeftActive)
+        props.setIsLeftActive(!props.isLeftActive)
     }
     return (
         <View style={{flexDirection: 'row'}}>
             <Pressable onPress={onclickHandler}
                        style={[styles.outerButtonLeft, styles.switchStyle,
-                           isLeftActive ? {backgroundColor: props.colorSelected} : {backgroundColor: props.color}
+                           props.isLeftActive ? {backgroundColor: props.colorSelected} : {backgroundColor: props.color}
                        ]}>
                 <Text>{props.leftTitle}</Text>
             </Pressable>
             <Pressable onPress={onclickHandler}
                        style={[styles.outerButtonRight, styles.switchStyle,
-                           isLeftActive ? {backgroundColor: props.color} : {backgroundColor: props.colorSelected}
+                           props.isLeftActive ? {backgroundColor: props.color} : {backgroundColor: props.colorSelected}
                        ]}>
                 <Text>{props.rightTitle}</Text>
             </Pressable>
@@ -28,9 +26,9 @@ export default function Switch(props: any) {
 
 const styles = StyleSheet.create({
     switchStyle: {
-        flex: 1,
-        height: '50%',
-        padding: PADDING / 2,
+        // flex: 1,
+        // height: '50%',
+        padding: PADDING,
         alignItems: "center",
         justifyContent: "center"
     },

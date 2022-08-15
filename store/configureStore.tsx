@@ -11,6 +11,7 @@ import activeFilterSlice from "../reducers/filter/activeFilterReducer"
 import currentItemSlice from "../reducers/home/currentItemReducer";
 import CurrentDataSetSlice from "../reducers/home/currentDataSetReducer";
 import CurrentSearchFieldInputSlice from "../reducers/home/currentSearchFieldInputReducer";
+import LanguageSlice from "../reducers/user/languageReducer";
 
 const rootReducer = combineReducers({
     alcoholicFilter: alcoholicFilterSlice,
@@ -23,7 +24,8 @@ const rootReducer = combineReducers({
     activeFilter: activeFilterSlice,
     currentItem: currentItemSlice,
     currentDataSet: CurrentDataSetSlice,
-    currentSearchFieldInput: CurrentSearchFieldInputSlice
+    currentSearchFieldInput: CurrentSearchFieldInputSlice,
+    language: LanguageSlice
 })
 
 const store = configureStore({

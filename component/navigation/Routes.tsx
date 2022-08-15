@@ -1,11 +1,12 @@
 import {NavigationContainer} from '@react-navigation/native';
-import Home from "./pages/Home";
-import LoginScreen from "./pages/LoginScreen";
-import UserProfile from "./pages/UserProfile";
-import {HOME, LOGIN, PROFILE, PROFILE_DETAILS} from "../constants/const_vars";
-import ProfileDetails from "./pages/user_profile/ProfileDetails";
+import Home from "./screens/Home";
+import LoginScreen from "./screens/LoginScreen";
+import UserProfile from "./screens/UserProfile";
+import {HOME, LOGIN, PROFILE, PROFILE_DETAILS, SETTINGS} from "../../constants/const_vars";
+import ProfileDetails from "./screens/user_profile/ProfileDetails";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
-import {useAppSelector} from "../constants/hooks";
+import {useAppSelector} from "../../constants/hooks";
+import Settings from "./screens/user_profile/Settings";
 
 export default function Routes() {
     const state = useAppSelector((state) => state)
@@ -22,6 +23,7 @@ export default function Routes() {
                             <Stack.Screen name={HOME} component={Home}/>
                             <Stack.Screen name={PROFILE} component={UserProfile}/>
                             <Stack.Screen name={PROFILE_DETAILS} component={ProfileDetails}/>
+                            <Stack.Screen name={SETTINGS} component={Settings}/>
                         </>
                     )
                 }

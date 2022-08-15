@@ -4,7 +4,7 @@ import {COLOR_CARD_BACKGROUND} from "../../../constants/color_styles";
 import {BORDER_RADIUS, MARGIN} from "../../../constants/style_constants";
 import FilterPanel from "./FilterPanel";
 import {ALL} from "../../../constants/const_vars";
-import {CATEGORY, CLEAR_ALL_FILTERS, HITS, INGREDIENTS} from "../../../constants/labels";
+import {CATEGORY_LABEL, CLEAR_ALL_FILTERS_LABEL, HITS_LABEL, INGREDIENTS_LABEL} from "../../../constants/labels";
 import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
 import {changeAlcoholic} from "../../../reducers/filter/alcoholicFilterReducer";
 import {changeCategory} from "../../../reducers/filter/categoryFilterReducer";
@@ -13,15 +13,17 @@ import {ALCOHOLIC_LIST, CATEGORY_LIST} from "../../../constants/filter_lists";
 import DropDownPickerWrapper from "./drop_down/DropDownPickerWrapper";
 import Label from "./Label";
 import {setActiveFilter} from "../../../reducers/filter/activeFilterReducer";
-import {ALCOHOLIC} from "../../../constants/labels";
+import {ALCOHOLIC_LABEL} from "../../../constants/labels";
 
 
-const alcFilterOptions = ALCOHOLIC_LIST.ENG
-const categoryFilterOptions = CATEGORY_LIST.ENG
+
 
 export default function Filter(props: any) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
+    const language: any = state.language
+    const alcFilterOptions = ALCOHOLIC_LIST[`${language}`]
+    const categoryFilterOptions = CATEGORY_LIST[`${language}`]
 
     const onHitsClickHandler = () => {
         dispatch(setActiveFilter(''))
@@ -31,7 +33,7 @@ export default function Filter(props: any) {
         <View style={styles.filter}>
             <View style={styles.rowStyle}>
                 <FilterPanel options={alcFilterOptions}
-                             labelName={ALCOHOLIC.ENG}
+                             labelName={ALCOHOLIC_LABEL[`${language}`]}
                              default={[ALL]}
                              isMultiSelectable={false}
                              filterState={state.alcoholicFilter}
@@ -54,7 +56,7 @@ export default function Filter(props: any) {
             {/*</View>*/}
             <View style={styles.rowStyle}>
                 <FilterPanel options={categoryFilterOptions}
-                             labelName={CATEGORY.ENG}
+                             labelName={CATEGORY_LABEL[`${language}`]}
                              default={[ALL]}
                              isMultiSelectable={true}
                              filterState={state.categoryFilter}
@@ -67,12 +69,12 @@ export default function Filter(props: any) {
                 borderBottomLeftRadius: 0,
                 borderBottomRightRadius: 0
             }]}>
-                <Label labelName={INGREDIENTS.ENG}/>
+                <Label labelName={INGREDIENTS_LABEL[`${language}`]}/>
             </View>
             <DropDownPickerWrapper/>
             <View style={styles.buttonBackgroundStyle}>
-                <StyledButton flex={1} onPress={props.onClearAllFiltersClickHandler} title={CLEAR_ALL_FILTERS.ENG}/>
-                <StyledButton flex={1} onPress={onHitsClickHandler} title={`${HITS.ENG}: ${state.currentDataSet.length}`}/>
+                <StyledButton flex={1} onPress={props.onClearAllFiltersClickHandler} title={CLEAR_ALL_FILTERS_LABEL[`${language}`]}/>
+                <StyledButton flex={1} onPress={onHitsClickHandler} title={`${HITS_LABEL[`${language}`]}: ${state.currentDataSet.length}`}/>
             </View>
         </View>
     )
