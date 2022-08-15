@@ -1,7 +1,5 @@
 Bugs:
--input: on click current value is selected
 -shadow on android 'not' working -> see Card component
--splash new background needs to be added and replaced
 -change label for password placeholder or text to show it should be at least 6 chars long
 
 TODOs:
