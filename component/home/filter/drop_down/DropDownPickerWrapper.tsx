@@ -70,6 +70,7 @@ export default function DropDownPickerWrapper() {
             }}
             searchTextInputProps={{
                 maxLength: 25,
+                selectTextOnFocus: true
             }}
             dropDownContainerStyle={{
                 width: '100%',

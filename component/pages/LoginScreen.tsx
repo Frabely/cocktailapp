@@ -1,7 +1,7 @@
 import {StyleSheet, TextInput, View, Text, Image} from "react-native";
 import {vh, vw} from "../../functions/dimentions";
 import {
-    COLOR_BACKGROUND, COLOR_CARD_BACKGROUND, COLOR_CORRECT_FIELD_INPUT,
+    COLOR_BACKGROUND, COLOR_CARD_BACKGROUND,
     COLOR_HEADER,
     COLOR_INCORRECT_FIELD_INPUT,
 } from "../../constants/color_styles";
@@ -34,7 +34,6 @@ import {
     USERNAME_MISSING
 } from "../../constants/error_codes";
 import CardLayout from "../layout/CardLayout";
-import Header from "../layout/Header";
 import AppBackground from "../layout/AppBackground";
 import {CREATE_ACCOUNT} from "../../constants/const_vars";
 import {
@@ -47,7 +46,7 @@ import {
     USERNAME
 } from "../../constants/labels";
 
-export default function LoginScreen({navigation}: any) {
+export default function LoginScreen() {
     const dispatch = useAppDispatch()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -237,7 +236,8 @@ export default function LoginScreen({navigation}: any) {
                                         setUsername(input)
                                     }}
                                     placeholder={USERNAME.ENG}
-                                    value={username}/>
+                                    value={username}
+                                    selectTextOnFocus={true}/>
                                 {getUsernameError() ? (
                                     <Text style={styles.wrongInputMessage}>{getUsernameError()?.message?.ENG}</Text>
                                 ) : null}
@@ -250,7 +250,8 @@ export default function LoginScreen({navigation}: any) {
                                 setEmail(input)
                             }}
                             placeholder={EMAIL.ENG}
-                            value={email}/>
+                            value={email}
+                            selectTextOnFocus={true}/>
                         {getEmailError() ? (
                             <Text style={styles.wrongInputMessage}>{getEmailError()?.message?.ENG}</Text>
                         ) : null}
@@ -270,7 +271,8 @@ export default function LoginScreen({navigation}: any) {
                                 setPassword(input)
                             }}
                             placeholder={PASSWORD.ENG}
-                            secureTextEntry={true}/>
+                            secureTextEntry={true}
+                            selectTextOnFocus={true}/>
                         {getPasswordError() ? (
                             <Text style={styles.wrongInputMessage}>{getPasswordError()?.message?.ENG}</Text>
                         ) : null}
@@ -292,7 +294,8 @@ export default function LoginScreen({navigation}: any) {
                                         setRepeatPassword(input)
                                     }}
                                     placeholder={REPEAT_PASSWORD.ENG}
-                                    secureTextEntry={true}/>
+                                    secureTextEntry={true}
+                                    selectTextOnFocus={true}/>
                                 {getRepeatPasswordError() ? (
                                     <Text
                                         style={styles.wrongInputMessage}>{getRepeatPasswordError()?.message?.ENG}</Text>

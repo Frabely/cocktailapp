@@ -13,7 +13,8 @@ export default function searchField() {
         <View style={styles.searchField}>
             <TextInput value={state.currentSearchFieldInput}
                        onChangeText={input => {dispatch(changeCurrentSearchFieldInput(input))}}
-                       style={styles.testInput} placeholder={ENTER_SEARCH_TERM.ENG}/>
+                       style={styles.testInput} placeholder={ENTER_SEARCH_TERM.ENG}
+                       selectTextOnFocus={true}/>
         </View>
     )
 }
