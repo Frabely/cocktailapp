@@ -3,8 +3,11 @@ Bugs:
 -change label for password placeholder or text to show it should be at least 6 chars long
 
 TODOs:
--highlight card full screen:
-    -swipe down to get next cocktail
+-Firebase Backend -> upload data auf firebase
+-change padding and margin const's to rem
+-favorites page:
+    -same like full list
+        -make star on every card to make it as favorite
 -rating:
     -filter
 -share cocktails
@@ -27,24 +30,20 @@ TODOs:
     -modal for errors/UI messages:
         -successfully logged in/logged out
         -created account
--Firebase Backend -> upload data auf firebase
 -settings page
--favorites page:
-    -same like full list
-        -make star on every card to make it as favorite
 -testing:
     -cover as much as possible with error codes and matching messages
--change padding and margin const's to rem
--what font and default size used -> make font sizes const's
--refactor app states in store
 -refactor and optimize highlight card, extract maybe
 -refactor filter file, extract maybe (possible make a reusable component for header elements)
--werbung -> wie?
--add app to stores
+-what font and default size used -> make font sizes const's
+-add app to stores:
+    -adds
     -create logo and splash -> already done? https://www.figma.com/file/4TD0sMutRjxBI6zKySFV2n/Expo-App-Icon-%26-Splash-(Community)?node-id=1%3A1357
 -abo
 
 Nice to have features:
+-highlight card full screen:
+    -swipe down to get next cocktail
 -make colors changeable
 
 Cocktail App
