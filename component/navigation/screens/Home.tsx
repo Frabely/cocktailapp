@@ -20,6 +20,7 @@ import {changeCurrentItem} from "../../../reducers/home/currentItemReducer";
 import {changeCurrentDataSet} from "../../../reducers/home/currentDataSetReducer";
 import {changeCurrentSearchFieldInput} from "../../../reducers/home/currentSearchFieldInputReducer";
 import {changeIngredients} from "../../../reducers/filter/ingredientsFilterReducer";
+import LoadingScreen from "../../layout/LoadingScreen";
 
 const data: any[] = dummyData.drinks;
 export default function Home({navigation}: any) {
@@ -127,33 +128,33 @@ export default function Home({navigation}: any) {
 
     return (
         <AppBackground>
-                    <HeaderHome/>
-                    <View style={styles.app}>
-                        {(state.activeFilter === FILTER) ? (
-                            <Filter onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>
-                        ) : null}
-                        {(state.activeFilter === SEARCH_FIELD) ? (
-                            <SearchField/>
-                        ) : null}
-                        {state.currentItem.idDrink ? (
-                            <HighlightedCard/>
-                        ) : null}
-                        {(state.currentDataSet.length === 0) ? (
-                            <NoHits onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>
-                        ) : null}
-                        <FlatList
-                            numColumns={3}
-                            data={state.currentDataSet}
-                            renderItem={renderItem}
-                            keyExtractor={item => item.idDrink}/>
-                    </View>
-                    <Header
-                        navigation={navigation}
+            <HeaderHome/>
+            <View style={styles.app}>
+                {(state.activeFilter === FILTER) ? (
+                    <Filter onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>
+                ) : null}
+                {(state.activeFilter === SEARCH_FIELD) ? (
+                    <SearchField/>
+                ) : null}
+                {state.currentItem.idDrink ? (
+                    <HighlightedCard/>
+                ) : null}
+                {(state.currentDataSet.length === 0) ? (
+                    <NoHits onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>
+                ) : null}
+                <FlatList
+                    numColumns={3}
+                    data={state.currentDataSet}
+                    renderItem={renderItem}
+                    keyExtractor={item => item.idDrink}/>
+            </View>
+            <Header
+                navigation={navigation}
 
-                    />
-            {/*{state.isLoading ? (*/}
-            {/*    <LoadingScreen/>*/}
-            {/*) : null}*/}
+            />
+            {state.isLoading ? (
+                <LoadingScreen/>
+            ) : null}
         </AppBackground>
     )
 }

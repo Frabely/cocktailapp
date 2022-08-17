@@ -3,6 +3,12 @@ Bugs:
 -change label for password placeholder or text to show it should be at least 6 chars long
 
 TODOs:
+-highlight card full screen:
+    -swipe down to get next cocktail
+-rating:
+    -filter
+-share cocktails
+-create cocktails
 -languages: refactored (only dummy data and ingredients missing -> a lot of data)
     -add prop to components and get message language like <const_call>[`&{props.language}`]
 -refactor reducer -> change hardcode strings to const's
@@ -36,6 +42,7 @@ TODOs:
 -werbung -> wie?
 -add app to stores
     -create logo and splash -> already done? https://www.figma.com/file/4TD0sMutRjxBI6zKySFV2n/Expo-App-Icon-%26-Splash-(Community)?node-id=1%3A1357
+-abo
 
 Nice to have features:
 -make colors changeable

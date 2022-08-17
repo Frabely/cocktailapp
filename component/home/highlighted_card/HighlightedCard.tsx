@@ -2,7 +2,7 @@ import {ImageBackground, ScrollView, StyleSheet, Text, View} from "react-native"
 import {vh} from "../../../functions/dimentions";
 import {useEffect, useState} from "react";
 import generate_box_shadow_style from "../../../functions/generate_box_shadow_style";
-import {BORDER_RADIUS, PADDING} from "../../../constants/style_constants";
+import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
 import {COLOR_OPACITY_BACKGROUND} from "../../../constants/color_styles";
 import HighlightedCardInnerImage from "./HighlightedCardInnerImage";
 import {useAppSelector} from "../../../constants/hooks";
@@ -115,8 +115,9 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
     },
     highlightView: {
-        height: vh(0.6),
+        height: vh(0.6)-PADDING*2,
         width: '100%',
-        padding: PADDING,
+        // TODO if fullscreen remove
+        marginBottom: MARGIN
     },
 })
