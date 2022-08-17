@@ -1,6 +1,8 @@
 Bugs:
+-update language after sign in -> get user from db when signing in
 -shadow on android 'not' working -> see Card component
 -change label for password placeholder or text to show it should be at least 6 chars long
+
 
 TODOs:
 -Firebase Backend -> upload data auf firebase

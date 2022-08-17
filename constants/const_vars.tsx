@@ -7,7 +7,7 @@ export const SEARCH_FIELD = 'searchField'
 export const INGREDIENTS_FILTER_SELECTION_NUMBER_MAX = 3
 export const INGREDIENTS_FILTER_SELECTION_NUMBER_MIN = 0
 export const CREATE_ACCOUNT = 'Create Account'
-export const EMPTY_USER: User = {email: null, username: null}
+export const EMPTY_USER: User = {email: null, username: null, userID: null}
 export const ENGLISH: string = 'ENG'
 export const GERMAN: string = 'GER'
 export const EMPTY_ITEM: Cocktail = {
@@ -63,6 +63,9 @@ export const EMPTY_ITEM: Cocktail = {
     "strCreativeCommonsConfirmed": null,
     "dateModified": null
 }
+
+//database paths
+export const USERS_PATH = 'users'
 
 //main pages
 export const HOME = 'home'

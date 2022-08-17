@@ -14,8 +14,9 @@ import {useAppDispatch, useAppSelector} from "../../../../constants/hooks";
 import StyledButton from "../../../layout/StyledButton";
 import React, {useState} from "react";
 import {changeLanguage} from "../../../../reducers/user/languageReducer";
-import {ENGLISH, GERMAN} from "../../../../constants/const_vars";
+import {ENGLISH, GERMAN, USERS_PATH} from "../../../../constants/const_vars";
 import {BORDER_RADIUS, MARGIN} from "../../../../constants/style_constants";
+import {updateUser} from "../../../../functions/firebase";
 
 export default function Settings({navigation}: any) {
     const state = useAppSelector((state) => state)
@@ -23,12 +24,21 @@ export default function Settings({navigation}: any) {
     const [isLeftActive, setIsLeftActive] = useState((state.language === ENGLISH))
     const language: any = state.language
 
-    const onSaveSettingsHandler = () => {
+    const onSaveSettingsHandler = async () => {
         navigation.goBack()
-        if (isLeftActive)
+        if (isLeftActive) {
             dispatch(changeLanguage(ENGLISH))
-        else
+            await updateUser({
+                path: `${USERS_PATH}/${state.user.userID}`,
+                language_setting: ENGLISH
+            })
+        } else {
             dispatch(changeLanguage(GERMAN))
+            await updateUser({
+                path: `${USERS_PATH}/${state.user.userID}`,
+                language_setting: GERMAN
+            })
+        }
     }
     return (
         <AppBackground>
@@ -36,7 +46,7 @@ export default function Settings({navigation}: any) {
                 <CardLayout>
                     <View style={styles.profileDetailsItem}>
                         <Text style={{fontWeight: 'bold', flex: 1}}>{LANGUAGE_LABEL[`${language}`]}:</Text>
-                        <View style={{flex: 1}}                              >
+                        <View style={{flex: 1}}>
                             <Switch colorSelected={COLOR_HEADER}
                                     color={COLOR_BACKGROUND}
                                     leftTitle={ENGLISH_LABEL[`${language}`]}

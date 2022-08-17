@@ -14,6 +14,8 @@ export const { activeUser } = UserSlice.actions
 export type User = {
     username: string | null,
     email: string | null,
+    userID: string | null,
+    // language_Setting: string | null
 }
 
 export default UserSlice.reducer;

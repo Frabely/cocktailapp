@@ -1,26 +1,23 @@
-import {StyleSheet, TextInput, View, Text, Image} from "react-native";
+import {Image, StyleSheet, Text, TextInput, View} from "react-native";
 import {vh, vw} from "../../../functions/dimentions";
 import {
-    COLOR_BACKGROUND, COLOR_CARD_BACKGROUND,
+    COLOR_BACKGROUND,
+    COLOR_CARD_BACKGROUND,
     COLOR_HEADER,
     COLOR_INCORRECT_FIELD_INPUT,
 } from "../../../constants/color_styles";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
 import StyledButton from "../../layout/StyledButton";
-import {app} from "../../../functions/firebase";
-import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    updateProfile
-} from "firebase/auth";
+import {app, createUserInDb, isUsernameUsed} from "../../../functions/firebase";
+import {createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile} from "firebase/auth";
 import React, {useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
 import {activeUser} from "../../../reducers/user/userReducer";
 import FilterButton from "../../home/filter/FilterButton";
 import {
     EMAIL_ALREADY_IN_USE,
-    INVALID_EMAIL, NETWORK_REQUEST_FAILED,
+    INVALID_EMAIL,
+    NETWORK_REQUEST_FAILED,
     TOO_MANY_REQUESTS,
     USER_NOT_FOUND,
     WEAK_PASSWORD,
@@ -30,12 +27,12 @@ import {
     EMAIL_MISSING,
     PASSWORD_MISSING,
     PASSWORDS_NOT_MATCHING,
-    REPEAT_PASSWORD_MISSING,
+    REPEAT_PASSWORD_MISSING, USERNAME_ALREADY_USED,
     USERNAME_MISSING
 } from "../../../constants/error_codes";
 import CardLayout from "../../layout/CardLayout";
 import AppBackground from "../../layout/AppBackground";
-import {CREATE_ACCOUNT} from "../../../constants/const_vars";
+import {CREATE_ACCOUNT, USERS_PATH} from "../../../constants/const_vars";
 import {
     CREATE_ACCOUNT_LABEL,
     EMAIL_LABEL,
@@ -65,7 +62,7 @@ export default function LoginScreen() {
     const onLoginHandler = () => {
         let errorArrayEmail: string[] = []
         let errorArrayPassword: string[] = []
-        if (email.trim() === '') {
+        if (email === '') {
             setEmail('')
             errorArrayEmail.push(EMAIL_MISSING.code)
         }
@@ -82,6 +79,7 @@ export default function LoginScreen() {
             dispatch(activeUser({
                 username: user.user.displayName,
                 email: user.user.email,
+                userID: user.user.uid
             }))
         }).catch(error => {
             if (error.code === WRONG_PASSWORD.code)
@@ -102,16 +100,20 @@ export default function LoginScreen() {
         })
     }
 
-    const onCreatAccountHandler = () => {
+    const onCreatAccountHandler = async () => {
         let errorArrayUsername: string[] = []
         let errorArrayEmail: string[] = []
         let errorArrayPassword: string[] = []
         let errorArrayRepeatPassword: string[] = []
-        if (username.trim() === '') {
+        if (username === '') {
             setUsername('')
             errorArrayUsername.push(USERNAME_MISSING.code)
         }
-        if (email.trim() === '') {
+        await isUsernameUsed(username.toLowerCase()).then(result => {
+            if (result)
+                errorArrayUsername.push(USERNAME_ALREADY_USED.code)
+        })
+        if (email === '') {
             setEmail('')
             errorArrayEmail.push(EMAIL_MISSING.code)
         }
@@ -137,11 +139,20 @@ export default function LoginScreen() {
         }
 
         createUserWithEmailAndPassword(auth, email, password).then(user => {
-            updateProfile(user.user, {displayName: username}).then(() => {
+            updateProfile(user.user, {displayName: username}).then(async () => {
+                const displayName = user.user.displayName ? user.user.displayName : ''
+                const email = user.user.email ? user.user.email : ''
                 dispatch(activeUser({
-                    username: user.user.displayName,
-                    email: user.user.email,
+                    username: displayName,
+                    email: email,
+                    userID: user.user.uid
                 }))
+                await createUserInDb({
+                        path: `${USERS_PATH}/${user.user.uid}`,
+                        username: displayName,
+                        email: email,
+                        language_setting: state.language
+                })
             }).catch(error => {
                 alert(error.message)
                 return
@@ -182,6 +193,8 @@ export default function LoginScreen() {
     const getUsernameError = () => {
         if (errorStateUsername.includes(USERNAME_MISSING.code))
             return USERNAME_MISSING
+        if (errorStateUsername.includes(USERNAME_ALREADY_USED.code))
+            return USERNAME_ALREADY_USED
         return undefined;
     }
 
@@ -235,7 +248,7 @@ export default function LoginScreen() {
                                     style={[styles.input,
                                         (getUsernameError()) ? {backgroundColor: COLOR_INCORRECT_FIELD_INPUT} : {backgroundColor: COLOR_CARD_BACKGROUND}]}
                                     onChangeText={input => {
-                                        setUsername(input)
+                                        setUsername(input.trim())
                                     }}
                                     placeholder={USERNAME_LABEL[`${language}`]}
                                     value={username}
@@ -249,7 +262,7 @@ export default function LoginScreen() {
                             style={[styles.input,
                                 (getEmailError()) ? {backgroundColor: COLOR_INCORRECT_FIELD_INPUT} : {backgroundColor: COLOR_CARD_BACKGROUND}]}
                             onChangeText={input => {
-                                setEmail(input)
+                                setEmail(input.toLowerCase().trim())
                             }}
                             placeholder={EMAIL_LABEL[`${language}`]}
                             value={email}
@@ -270,7 +283,7 @@ export default function LoginScreen() {
                                 // }
                             ]}
                             onChangeText={input => {
-                                setPassword(input)
+                                setPassword(input.trim())
                             }}
                             placeholder={PASSWORD_LABEL[`${language}`]}
                             secureTextEntry={true}
@@ -293,7 +306,7 @@ export default function LoginScreen() {
                                         // }
                                     ]}
                                     onChangeText={input => {
-                                        setRepeatPassword(input)
+                                        setRepeatPassword(input.trim())
                                     }}
                                     placeholder={REPEAT_PASSWORD_LABEL[`${language}`]}
                                     secureTextEntry={true}
