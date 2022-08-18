@@ -1,15 +1,20 @@
 import {ImageBackground, ScrollView, StyleSheet, Text, View} from "react-native";
-import {vh} from "../../../functions/dimentions";
+import {vh, vw} from "../../../functions/dimentions";
 import {useEffect, useState} from "react";
 import generate_box_shadow_style from "../../../functions/generate_box_shadow_style";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
-import {COLOR_OPACITY_BACKGROUND} from "../../../constants/color_styles";
+import {COLOR_FAVORITE, COLOR_OPACITY_BACKGROUND} from "../../../constants/color_styles";
 import HighlightedCardInnerImage from "./HighlightedCardInnerImage";
 import {useAppSelector} from "../../../constants/hooks";
+import HeaderButton from "../../layout/HeaderButton";
+import {faStar} from "@fortawesome/free-solid-svg-icons";
+import {AddOrDeleteFavoriteOfUser} from "../../../functions/firebase";
 
 export default function HighlightedCard() {
     const state = useAppSelector((state) => state)
     const [arrayIngredients, setArrayIngredients] = useState([])
+    const [favorite, setFavorite] = useState(false);
+
     generate_box_shadow_style(
         styles,
         -2,
@@ -44,14 +49,36 @@ export default function HighlightedCard() {
         setArrayIngredients(arrayCombined)
     }, [state.currentItem])
 
+    const onFavoritesCLickHandler = async () => {
+        if (state.user.userID && state.currentItem.idDrink) {
+            await AddOrDeleteFavoriteOfUser(state.user.userID, state.currentItem.idDrink)
+            // if (state.user.userID && state.currentItem.idDrink) {
+            //     isFavoriteOfUser(state.user.userID, state.currentItem.idDrink).then(result => {
+            //         setFavorite(result)
+            //     })
+            // }
+        }
+    }
+
     return (
         <View style={styles.highlightView}>
             <ImageBackground style={styles.highlightViewBackgroundImage}
-                             source={ {uri: state.currentItem.strDrinkThumb !== null ? state.currentItem.strDrinkThumb : ''}}>
+                             source={{uri: state.currentItem.strDrinkThumb !== null ? state.currentItem.strDrinkThumb : ''}}>
                 <HighlightedCardInnerImage
                     imageSource={state.currentItem.strDrinkThumb}/>
                 <View style={styles.cardHighlightBackground}>
-                    <View style={{flex: 3}}></View>
+                    <View style={{flex: 3, flexDirection: 'row'}}>
+                        <View style={{flex: 1}}></View>
+                        <View style={{flex: 1, alignItems: 'center'}}>
+                            <HeaderButton
+                                onPress={onFavoritesCLickHandler}
+                                height={vh(0.05)}
+                                width={vw(0.1)}
+                                icon={faStar}
+                                color={favorite ? COLOR_FAVORITE : null}/>
+                        </View>
+
+                    </View>
                     <View style={{flex: 5}}>
                         <ScrollView nestedScrollEnabled={true}>
                             <Text style={{fontSize: 40}}>
@@ -79,7 +106,7 @@ export default function HighlightedCard() {
                                 }}>
                                     {`Recommended glass type:\n${state.currentItem.strGlass}`}
                                 </Text>
-                                ) : null
+                            ) : null
                             }
                             {/*TODO Make better*/}
                             {arrayIngredients.map((item, index) => {
@@ -115,7 +142,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
     },
     highlightView: {
-        height: vh(0.6)-PADDING*2,
+        height: vh(0.6) - PADDING * 2,
         width: '100%',
         // TODO if fullscreen remove
         marginBottom: MARGIN

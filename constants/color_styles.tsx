@@ -7,3 +7,4 @@ export const COLOR_SHADOW = 'rgba(23,23,23, 1)';
 export const COLOR_CARD_BACKGROUND = 'rgba(255,255,255,0.5)';
 export const COLOR_INCORRECT_FIELD_INPUT = 'rgb(255,123,123)';
 export const COLOR_CORRECT_FIELD_INPUT = 'rgb(123,255,123)';
+export const COLOR_FAVORITE = 'rgb(255,219,0)';

@@ -65,7 +65,12 @@ export const EMPTY_ITEM: Cocktail = {
 }
 
 //database paths
-export const USERS_PATH = 'users'
+export const USERS_DB = 'users'
+export const USER_FAVORITES_DB = 'favorites'
+
+//database attributes
+export const USER_USERNAME_LOWER_DB = "usernameLower"
+export const USER_FAVORITES_DRINK_ID_DB = "drinkID"
 
 //main pages
 export const HOME = 'home'

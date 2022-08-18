@@ -4,18 +4,23 @@ import {PADDING} from "../../constants/style_constants";
 
 export default function HeaderButton(props: any) {
     return (
-        <Pressable onPress={props.onPress} style={styles.headerButton}>
-            <FontAwesomeIcon icon={props.icon}/>
+        <Pressable onPress={props.onPress} style={[styles.headerButton, {
+            justifyContent: props?.justifyContent ? props.justifyContent : 'center',
+            height: props?.heightButton ? props.heightButton : '100%',
+            flex: props?.flex ? props.flex : 1,
+        }]}>
+            <FontAwesomeIcon style={{
+                height: props?.height ? props.height : null,
+                width: props?.width ? props.width : null,
+                color: props?.color ? props.color : null
+            }} icon={props.icon}/>
         </Pressable>
     )
 }
 
 const styles = StyleSheet.create({
     headerButton: {
-        height: '100%',
-        flex: 1,
         padding: PADDING,
         alignItems: 'center',
-        justifyContent: 'center',
     },
 })
