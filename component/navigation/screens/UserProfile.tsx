@@ -10,12 +10,11 @@ import {getAuth} from "firebase/auth";
 import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
 import CardLayout from "../../layout/CardLayout";
 import UserProfileItem from "../../user_profile/UserProfileItem";
-import {EMPTY_ITEM, EMPTY_USER, PROFILE_DETAILS, SETTINGS} from "../../../constants/const_vars";
+import {EMPTY_ITEM, EMPTY_USER, FAVORITES, PROFILE_DETAILS, SETTINGS} from "../../../constants/const_vars";
 import Header from "../../layout/Header";
 import AppBackground from "../../layout/AppBackground";
 import {
     FAVORITES_LABEL,
-    IN_DEVELOPMENT_LABEL,
     LOGOUT_LABEL,
     PROFILE_DETAILS_LABEL,
     SETTINGS_LABEL
@@ -38,7 +37,7 @@ export default function UserProfile({navigation}: any) {
     }
 
     const onFavoritesPressHandler = () => {
-        alert(IN_DEVELOPMENT_LABEL[`${language}`])
+        navigation.navigate(FAVORITES)
     }
 
     const onLogoutPressHandler = () => {

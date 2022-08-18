@@ -10,7 +10,7 @@ import SearchField from "../../home/search_field/SearchField";
 import HighlightedCard from "../../home/highlighted_card/HighlightedCard";
 import NoHits from "../../home/NoHits"
 import {PADDING} from "../../../constants/style_constants";
-import {ALL, EMPTY_ITEM, FILTER, SEARCH_FIELD} from "../../../constants/const_vars";
+import {ALL, EMPTY_ITEM, FAVORITES, FILTER, SEARCH_FIELD} from "../../../constants/const_vars";
 import {changeAlcoholic} from "../../../reducers/filter/alcoholicFilterReducer";
 import {changeCategory} from "../../../reducers/filter/categoryFilterReducer";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../../reducers/booleans/isLoadingReducer";
@@ -21,9 +21,10 @@ import {changeCurrentDataSet} from "../../../reducers/home/currentDataSetReducer
 import {changeCurrentSearchFieldInput} from "../../../reducers/home/currentSearchFieldInputReducer";
 import {changeIngredients} from "../../../reducers/filter/ingredientsFilterReducer";
 import LoadingScreen from "../../layout/LoadingScreen";
+import {getFavoritesList} from "../../../functions/firebase";
 
 const data: any[] = dummyData.drinks;
-export default function Home({navigation}: any) {
+export default function CocktailList({route, navigation}: any) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
 
@@ -62,8 +63,9 @@ export default function Home({navigation}: any) {
             if (searchFieldFilteredData.length === 0 || !searchFieldFilteredData.includes(state.currentItem)) {
                 dispatch(changeCurrentItem(EMPTY_ITEM))
             }
+            let ingredientsFilteredData: any[] = searchFieldFilteredData
             if (state.ingredientsFilter.length !== 0) {
-                const ingredientsFilteredData: any[] = searchFieldFilteredData.filter((item) => {
+                ingredientsFilteredData = searchFieldFilteredData.filter((item) => {
                     let isFiltered = false
                     state.ingredientsFilter.forEach((itemFilter: string) => {
                         for (let index: number = 1; index < 16; index++) {
@@ -81,15 +83,52 @@ export default function Home({navigation}: any) {
                         return item
                     }
                 })
-                dispatch(changeCurrentDataSet(ingredientsFilteredData))
-            } else {
-                dispatch(changeCurrentDataSet(searchFieldFilteredData))
+
             }
 
-            dispatch(setIsLoadingFalse())
+            let favoritesFilteredData: any[] = ingredientsFilteredData
+            if (route.name === FAVORITES) {
+                const favArrayAsyncFunction = async () => {
+                    if (!state.user.userID)
+                        return
+                    return await getFavoritesList(state.user.userID).then(result => {
+                        return result
+                    }).catch(error => {
+                        console.log(error.message)
+                        alert(error.message)
+                    })
+                }
+                favArrayAsyncFunction().then(result => {
+                    let favArray: any = result
+                    if (favArray && favArray !== []) {
+                        favoritesFilteredData = ingredientsFilteredData.filter((item) => {
+                            let isFavoriteFiltered = false
+                            favArray.forEach((itemFilter: any) => {
+                                if (item['idDrink'] !== null) {
+                                    if (item['idDrink'] === itemFilter.id) {
+                                        isFavoriteFiltered = true
+                                    }
+                                }
+                            })
+                            if (isFavoriteFiltered) {
+                                isFavoriteFiltered = false
+                                return item
+                            }
+                        })
+                    }
+                    dispatch(changeCurrentDataSet(favoritesFilteredData))
+                    dispatch(setIsLoadingFalse())
+                }).catch(error => {
+                    console.log(error.message)
+                    alert(error.message)
+                })
+            }
+            else {
+                dispatch(changeCurrentDataSet(favoritesFilteredData))
+                dispatch(setIsLoadingFalse())
+            }
             //TODO set timeout so see Loading spinner
             // }, 2000);
-
         }
         ,
         [state.alcoholicFilter, state.categoryFilter, state.ingredientsFilter, state.currentSearchFieldInput]

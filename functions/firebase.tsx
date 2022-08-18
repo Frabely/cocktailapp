@@ -98,3 +98,18 @@ export const AddOrDeleteFavoriteOfUser = async (userID: string, drinkID: string)
     })
     return
 }
+
+export const getFavoritesList = async (userID: string) => {
+    const userFavoritesRef = collection(db, `${USERS_DB}/${userID}/${USER_FAVORITES_DB}`);
+    return await getDocs(userFavoritesRef).then(result => {
+        if (result.empty) {
+            return null
+        }
+        else if (result?.docs){
+            return result.docs
+        }
+    }).catch(error => {
+        console.log(error.message)
+        alert(error.message)
+    })
+}
