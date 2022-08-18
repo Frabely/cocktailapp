@@ -3,11 +3,12 @@ import {vh, vw} from "../../../functions/dimentions";
 import {useEffect, useState} from "react";
 import generate_box_shadow_style from "../../../functions/generate_box_shadow_style";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
-import {COLOR_FAVORITE, COLOR_OPACITY_BACKGROUND} from "../../../constants/color_styles";
+import {COLOR_HEADER, COLOR_OPACITY_BACKGROUND} from "../../../constants/color_styles";
 import HighlightedCardInnerImage from "./HighlightedCardInnerImage";
 import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
 import HeaderButton from "../../layout/HeaderButton";
-import {faStar} from "@fortawesome/free-solid-svg-icons";
+import {faStar as faStar_solid} from "@fortawesome/free-solid-svg-icons";
+import {faStar as faStar_regular} from "@fortawesome/free-regular-svg-icons";
 import {AddOrDeleteFavoriteOfUser, isFavoriteOfUser} from "../../../functions/firebase";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../../reducers/booleans/isLoadingReducer";
 
@@ -27,10 +28,11 @@ export default function HighlightedCard() {
                     console.log(error.message)
                     alert(error.message)
                 })
+                dispatch(setIsLoadingFalse())
             }
         }
         checkIsFavorite().then()
-        dispatch(setIsLoadingFalse())
+
     }, [])
 
     generate_box_shadow_style(
@@ -90,8 +92,8 @@ export default function HighlightedCard() {
                                 onPress={onFavoritesCLickHandler}
                                 height={vh(0.05)}
                                 width={vw(0.1)}
-                                icon={faStar}
-                                color={favorite ? COLOR_FAVORITE : null}/>
+                                icon={favorite ? faStar_solid : faStar_regular}
+                                color={COLOR_HEADER}/>
                         </View>
 
                     </View>
