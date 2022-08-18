@@ -18,6 +18,7 @@ import {ENGLISH, GERMAN} from "../../../../constants/const_vars";
 import {BORDER_RADIUS, MARGIN} from "../../../../constants/style_constants";
 import {updateUser} from "../../../../functions/firebase";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../../../reducers/booleans/isLoadingReducer";
+import LoadingScreen from "../../../layout/LoadingScreen";
 
 export default function Settings({navigation}: any) {
     const state = useAppSelector((state) => state)
@@ -65,6 +66,9 @@ export default function Settings({navigation}: any) {
                 </CardLayout>
             </View>
             <Header navigation={navigation}/>
+            {state.isLoading ? (
+                <LoadingScreen/>
+            ) : null}
         </AppBackground>
     )
 

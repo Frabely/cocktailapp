@@ -10,7 +10,7 @@ import {getAuth} from "firebase/auth";
 import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
 import CardLayout from "../../layout/CardLayout";
 import UserProfileItem from "../../user_profile/UserProfileItem";
-import {EMPTY_USER, PROFILE_DETAILS, SETTINGS} from "../../../constants/const_vars";
+import {EMPTY_ITEM, EMPTY_USER, PROFILE_DETAILS, SETTINGS} from "../../../constants/const_vars";
 import Header from "../../layout/Header";
 import AppBackground from "../../layout/AppBackground";
 import {
@@ -20,7 +20,8 @@ import {
     PROFILE_DETAILS_LABEL,
     SETTINGS_LABEL
 } from "../../../constants/labels";
-
+import LoadingScreen from "../../layout/LoadingScreen";
+import {changeCurrentItem} from "../../../reducers/home/currentItemReducer";
 
 export default function UserProfile({navigation}: any) {
     const state = useAppSelector((state) => state)
@@ -43,6 +44,7 @@ export default function UserProfile({navigation}: any) {
     const onLogoutPressHandler = () => {
         auth.signOut().then(() => {
             dispatch(activeUser(EMPTY_USER))
+            dispatch(changeCurrentItem(EMPTY_ITEM))
         }).catch(error => {
             alert(error.message)
         })
@@ -61,6 +63,9 @@ export default function UserProfile({navigation}: any) {
                 </CardLayout>
             </View>
             <Header navigation={navigation}/>
+            {state.isLoading ? (
+                <LoadingScreen/>
+            ) : null}
         </AppBackground>
     )
 };

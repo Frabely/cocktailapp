@@ -8,6 +8,7 @@ import StyledButton from "../../../layout/StyledButton";
 import {PADDING} from "../../../../constants/style_constants";
 import Header from "../../../layout/Header";
 import AppBackground from "../../../layout/AppBackground";
+import LoadingScreen from "../../../layout/LoadingScreen";
 
 export default function ProfileDetails({navigation}: any) {
     const state = useAppSelector((state) => state)
@@ -40,6 +41,9 @@ export default function ProfileDetails({navigation}: any) {
                 </CardLayout>
             </View>
             <Header navigation={navigation}/>
+            {state.isLoading ? (
+                <LoadingScreen/>
+            ) : null}
         </AppBackground>
     )
 };

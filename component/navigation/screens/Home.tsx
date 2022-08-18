@@ -30,7 +30,7 @@ export default function Home({navigation}: any) {
     useEffect(() => {
             dispatch(setIsLoadingTrue())
             // TODO set timeout so see Loading spinner
-            // setTimeout(() => {
+            // setTimeout(() =>
             const alcoholFilteredData: any[] = data.filter((item) => {
                 if (state.alcoholicFilter[0] === ALL || item.strAlcoholic === state.alcoholicFilter[0])
                     return item

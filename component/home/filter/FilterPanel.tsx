@@ -2,8 +2,8 @@ import {FlatList, StyleSheet, View} from "react-native";
 import Label from "./Label";
 import FilterButton from "./FilterButton";
 import {COLOR_BACKGROUND, COLOR_HEADER} from "../../../constants/color_styles";
-import {ALL} from "../../../constants/const_vars";
 import {useAppDispatch} from "../../../constants/hooks";
+import {ALL} from "../../../constants/const_vars";
 
 export default function FilterPanel(props: any) {
     const dispatch = useAppDispatch()
@@ -39,11 +39,12 @@ export default function FilterPanel(props: any) {
         dispatch(props.setFilterState(resultArray))
     }
 
-    const renderItem = ({item}: any) => {
+    const renderItem = ({item, index}: any) => {
         return (
             <View style={styles.flatListItem}>
                 <FilterButton
                     title={item}
+                    titleENG={props.optionsENG[index]}
                     colorActive={COLOR_HEADER}
                     colorInactive={COLOR_BACKGROUND}
                     onClick={onFilterButtonClickHandler}

@@ -4,7 +4,12 @@ import {COLOR_CARD_BACKGROUND} from "../../../constants/color_styles";
 import {BORDER_RADIUS, MARGIN} from "../../../constants/style_constants";
 import FilterPanel from "./FilterPanel";
 import {ALL} from "../../../constants/const_vars";
-import {CATEGORY_LABEL, CLEAR_ALL_FILTERS_LABEL, HITS_LABEL, INGREDIENTS_LABEL} from "../../../constants/labels";
+import {
+    CATEGORY_LABEL,
+    CLEAR_ALL_FILTERS_LABEL,
+    HITS_LABEL,
+    INGREDIENTS_LABEL
+} from "../../../constants/labels";
 import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
 import {changeAlcoholic} from "../../../reducers/filter/alcoholicFilterReducer";
 import {changeCategory} from "../../../reducers/filter/categoryFilterReducer";
@@ -15,15 +20,14 @@ import Label from "./Label";
 import {setActiveFilter} from "../../../reducers/filter/activeFilterReducer";
 import {ALCOHOLIC_LABEL} from "../../../constants/labels";
 
-
-
-
 export default function Filter(props: any) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
     const language: any = state.language
     const alcFilterOptions = ALCOHOLIC_LIST[`${language}`]
+    const alcFilterOptionsENG = ALCOHOLIC_LIST.ENG
     const categoryFilterOptions = CATEGORY_LIST[`${language}`]
+    const categoryFilterOptionsENG = CATEGORY_LIST.ENG
 
     const onHitsClickHandler = () => {
         dispatch(setActiveFilter(''))
@@ -33,6 +37,7 @@ export default function Filter(props: any) {
         <View style={styles.filter}>
             <View style={styles.rowStyle}>
                 <FilterPanel options={alcFilterOptions}
+                             optionsENG={alcFilterOptionsENG}
                              labelName={ALCOHOLIC_LABEL[`${language}`]}
                              default={[ALL]}
                              isMultiSelectable={false}
@@ -56,6 +61,7 @@ export default function Filter(props: any) {
             {/*</View>*/}
             <View style={styles.rowStyle}>
                 <FilterPanel options={categoryFilterOptions}
+                             optionsENG={categoryFilterOptionsENG}
                              labelName={CATEGORY_LABEL[`${language}`]}
                              default={[ALL]}
                              isMultiSelectable={true}

@@ -77,6 +77,7 @@ export default function LoginScreen() {
             (errorArrayPassword.length !== 0)) {
             setErrorStateEmail(errorArrayEmail)
             setErrorStatePassword(errorArrayPassword)
+            dispatch(setIsLoadingFalse())
             return
         }
         signInWithEmailAndPassword(auth, email, password).then(async user => {
@@ -153,16 +154,19 @@ export default function LoginScreen() {
             setErrorStateEmail(errorArrayEmail)
             setErrorStatePassword(errorArrayPassword)
             setErrorStateRepeatPassword(errorArrayRepeatPassword)
+            dispatch(setIsLoadingFalse())
             return
         }
         createUserWithEmailAndPassword(auth, email, password).then(user => {
             updateProfile(user.user, {displayName: username}).then(async () => {
                 if (!user.user.displayName) {
                     alert(USERNAME_MISSING.message)
+                    dispatch(setIsLoadingFalse())
                     return
                 }
                 if (!user.user.email) {
                     alert(EMAIL_MISSING.message)
+                    dispatch(setIsLoadingFalse())
                     return
                 }
                 const userDb: CreationData = {
@@ -176,6 +180,7 @@ export default function LoginScreen() {
                 dispatch(setIsLoadingFalse())
             }).catch(error => {
                 alert(error.message)
+                dispatch(setIsLoadingFalse())
                 return
             })
         }).catch(error => {
