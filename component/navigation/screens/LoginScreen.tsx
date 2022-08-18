@@ -43,6 +43,8 @@ import {
     USERNAME_LABEL
 } from "../../../constants/labels";
 import {changeLanguage} from "../../../reducers/user/languageReducer";
+import LoadingScreen from "../../layout/LoadingScreen";
+import {setIsLoadingFalse, setIsLoadingTrue} from "../../../reducers/booleans/isLoadingReducer";
 
 export default function LoginScreen() {
     const state = useAppSelector((state) => state)
@@ -61,6 +63,7 @@ export default function LoginScreen() {
     const auth = getAuth(app)
 
     const onLoginHandler = async () => {
+        dispatch(setIsLoadingTrue())
         let errorArrayEmail: string[] = []
         let errorArrayPassword: string[] = []
         if (email === '') {
@@ -91,6 +94,7 @@ export default function LoginScreen() {
                 } else {
                     alert(USER_NOT_FOUND.message)
                 }
+                dispatch(setIsLoadingFalse())
             })
         }).catch(error => {
             if (error.code === WRONG_PASSWORD.code)
@@ -109,10 +113,12 @@ export default function LoginScreen() {
             }
             setErrorStateEmail(errorArrayEmail)
             setErrorStatePassword(errorArrayPassword)
+            dispatch(setIsLoadingFalse())
         })
     }
 
     const onCreatAccountHandler = async () => {
+        dispatch(setIsLoadingTrue())
         let errorArrayUsername: string[] = []
         let errorArrayEmail: string[] = []
         let errorArrayPassword: string[] = []
@@ -149,7 +155,6 @@ export default function LoginScreen() {
             setErrorStateRepeatPassword(errorArrayRepeatPassword)
             return
         }
-
         createUserWithEmailAndPassword(auth, email, password).then(user => {
             updateProfile(user.user, {displayName: username}).then(async () => {
                 if (!user.user.displayName) {
@@ -168,6 +173,7 @@ export default function LoginScreen() {
                 }
                 dispatch(activeUser(userDb))
                 await createUserInDb(userDb)
+                dispatch(setIsLoadingFalse())
             }).catch(error => {
                 alert(error.message)
                 return
@@ -190,6 +196,7 @@ export default function LoginScreen() {
             setErrorStateEmail(errorArrayEmail)
             setErrorStatePassword(errorArrayPassword)
             setErrorStateRepeatPassword(errorArrayRepeatPassword)
+            dispatch(setIsLoadingFalse())
         })
     }
 
@@ -246,7 +253,6 @@ export default function LoginScreen() {
             return WEAK_PASSWORD
         return undefined;
     }
-
     return (
         <AppBackground>
             <View style={styles.loginScreen}>
@@ -348,6 +354,9 @@ export default function LoginScreen() {
                         width={'100%'}/>
                 </CardLayout>
             </View>
+            {state.isLoading ? (
+                <LoadingScreen/>
+            ) : null}
         </AppBackground>
     )
 }

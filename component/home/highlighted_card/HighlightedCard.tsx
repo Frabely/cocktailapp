@@ -5,15 +5,33 @@ import generate_box_shadow_style from "../../../functions/generate_box_shadow_st
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
 import {COLOR_FAVORITE, COLOR_OPACITY_BACKGROUND} from "../../../constants/color_styles";
 import HighlightedCardInnerImage from "./HighlightedCardInnerImage";
-import {useAppSelector} from "../../../constants/hooks";
+import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
 import HeaderButton from "../../layout/HeaderButton";
 import {faStar} from "@fortawesome/free-solid-svg-icons";
-import {AddOrDeleteFavoriteOfUser} from "../../../functions/firebase";
+import {AddOrDeleteFavoriteOfUser, isFavoriteOfUser} from "../../../functions/firebase";
+import {setIsLoadingFalse, setIsLoadingTrue} from "../../../reducers/booleans/isLoadingReducer";
 
 export default function HighlightedCard() {
     const state = useAppSelector((state) => state)
+    const dispatch = useAppDispatch()
     const [arrayIngredients, setArrayIngredients] = useState([])
     const [favorite, setFavorite] = useState(false);
+
+    useEffect(()  => {
+        dispatch(setIsLoadingTrue())
+        const checkIsFavorite = async () => {
+            if (state.user.userID && state.currentItem.idDrink) {
+                await isFavoriteOfUser(state.user.userID, state.currentItem.idDrink).then(result => {
+                    setFavorite(result)
+                }).catch(error => {
+                    console.log(error.message)
+                    alert(error.message)
+                })
+            }
+        }
+        checkIsFavorite().then()
+        dispatch(setIsLoadingFalse())
+    }, [])
 
     generate_box_shadow_style(
         styles,
@@ -50,14 +68,12 @@ export default function HighlightedCard() {
     }, [state.currentItem])
 
     const onFavoritesCLickHandler = async () => {
+        dispatch(setIsLoadingTrue())
         if (state.user.userID && state.currentItem.idDrink) {
             await AddOrDeleteFavoriteOfUser(state.user.userID, state.currentItem.idDrink)
-            // if (state.user.userID && state.currentItem.idDrink) {
-            //     isFavoriteOfUser(state.user.userID, state.currentItem.idDrink).then(result => {
-            //         setFavorite(result)
-            //     })
-            // }
+            setFavorite(!favorite)
         }
+        dispatch(setIsLoadingFalse())
     }
 
     return (

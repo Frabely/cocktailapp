@@ -17,6 +17,7 @@ import {changeLanguage} from "../../../../reducers/user/languageReducer";
 import {ENGLISH, GERMAN} from "../../../../constants/const_vars";
 import {BORDER_RADIUS, MARGIN} from "../../../../constants/style_constants";
 import {updateUser} from "../../../../functions/firebase";
+import {setIsLoadingFalse, setIsLoadingTrue} from "../../../../reducers/booleans/isLoadingReducer";
 
 export default function Settings({navigation}: any) {
     const state = useAppSelector((state) => state)
@@ -25,6 +26,7 @@ export default function Settings({navigation}: any) {
     const language: any = state.language
 
     const onSaveSettingsHandler = async () => {
+        dispatch(setIsLoadingTrue())
         navigation.goBack()
         if (isLeftActive) {
             dispatch(changeLanguage(ENGLISH))
@@ -39,6 +41,7 @@ export default function Settings({navigation}: any) {
                 {languageSetting: GERMAN
             })
         }
+        dispatch(setIsLoadingFalse())
     }
     return (
         <AppBackground>

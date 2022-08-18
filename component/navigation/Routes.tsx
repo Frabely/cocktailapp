@@ -29,5 +29,6 @@ export default function Routes() {
                 }
             </Stack.Navigator>
         </NavigationContainer>
+
     )
 }
