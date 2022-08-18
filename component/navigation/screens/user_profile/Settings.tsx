@@ -14,7 +14,7 @@ import {useAppDispatch, useAppSelector} from "../../../../constants/hooks";
 import StyledButton from "../../../layout/StyledButton";
 import React, {useState} from "react";
 import {changeLanguage} from "../../../../reducers/user/languageReducer";
-import {ENGLISH, GERMAN, USERS_PATH} from "../../../../constants/const_vars";
+import {ENGLISH, GERMAN} from "../../../../constants/const_vars";
 import {BORDER_RADIUS, MARGIN} from "../../../../constants/style_constants";
 import {updateUser} from "../../../../functions/firebase";
 
@@ -28,15 +28,15 @@ export default function Settings({navigation}: any) {
         navigation.goBack()
         if (isLeftActive) {
             dispatch(changeLanguage(ENGLISH))
-            await updateUser({
-                path: `${USERS_PATH}/${state.user.userID}`,
-                language_setting: ENGLISH
+            await updateUser(
+                `${state.user.userID}`,
+                {languageSetting: ENGLISH
             })
         } else {
             dispatch(changeLanguage(GERMAN))
-            await updateUser({
-                path: `${USERS_PATH}/${state.user.userID}`,
-                language_setting: GERMAN
+            await updateUser(
+                `${state.user.userID}`,
+                {languageSetting: GERMAN
             })
         }
     }

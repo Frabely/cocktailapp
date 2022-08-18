@@ -8,11 +8,11 @@ import {
 } from "../../../constants/color_styles";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
 import StyledButton from "../../layout/StyledButton";
-import {app, createUserInDb, isUsernameUsed} from "../../../functions/firebase";
+import {app, createUserInDb, CreationData, getUser, isUsernameUsed} from "../../../functions/firebase";
 import {createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile} from "firebase/auth";
 import React, {useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
-import {activeUser} from "../../../reducers/user/userReducer";
+import {activeUser, User} from "../../../reducers/user/userReducer";
 import FilterButton from "../../home/filter/FilterButton";
 import {
     EMAIL_ALREADY_IN_USE,
@@ -32,7 +32,7 @@ import {
 } from "../../../constants/error_codes";
 import CardLayout from "../../layout/CardLayout";
 import AppBackground from "../../layout/AppBackground";
-import {CREATE_ACCOUNT, USERS_PATH} from "../../../constants/const_vars";
+import {CREATE_ACCOUNT} from "../../../constants/const_vars";
 import {
     CREATE_ACCOUNT_LABEL,
     EMAIL_LABEL,
@@ -42,6 +42,7 @@ import {
     REPEAT_PASSWORD_LABEL,
     USERNAME_LABEL
 } from "../../../constants/labels";
+import {changeLanguage} from "../../../reducers/user/languageReducer";
 
 export default function LoginScreen() {
     const state = useAppSelector((state) => state)
@@ -59,7 +60,7 @@ export default function LoginScreen() {
 
     const auth = getAuth(app)
 
-    const onLoginHandler = () => {
+    const onLoginHandler = async () => {
         let errorArrayEmail: string[] = []
         let errorArrayPassword: string[] = []
         if (email === '') {
@@ -75,12 +76,22 @@ export default function LoginScreen() {
             setErrorStatePassword(errorArrayPassword)
             return
         }
-        signInWithEmailAndPassword(auth, email, password).then(user => {
-            dispatch(activeUser({
-                username: user.user.displayName,
-                email: user.user.email,
-                userID: user.user.uid
-            }))
+        signInWithEmailAndPassword(auth, email, password).then(async user => {
+            let userDb: User
+            await getUser(user.user.uid).then(resultUser => {
+                if (resultUser) {
+                    userDb = {
+                        userID: user.user.uid,
+                        email: resultUser.email,
+                        username: resultUser.username,
+                        languageSetting: resultUser.languageSetting,
+                    }
+                    dispatch(activeUser(userDb))
+                    dispatch(changeLanguage(resultUser.languageSetting))
+                } else {
+                    alert(USER_NOT_FOUND.message)
+                }
+            })
         }).catch(error => {
             if (error.code === WRONG_PASSWORD.code)
                 errorArrayPassword.push(WRONG_PASSWORD.code)
@@ -93,6 +104,7 @@ export default function LoginScreen() {
             else if (error.code === INVALID_EMAIL.code)
                 errorArrayEmail.push(INVALID_EMAIL.code)
             else {
+                console.log(error)
                 alert(error.code)
             }
             setErrorStateEmail(errorArrayEmail)
@@ -140,19 +152,22 @@ export default function LoginScreen() {
 
         createUserWithEmailAndPassword(auth, email, password).then(user => {
             updateProfile(user.user, {displayName: username}).then(async () => {
-                const displayName = user.user.displayName ? user.user.displayName : ''
-                const email = user.user.email ? user.user.email : ''
-                dispatch(activeUser({
-                    username: displayName,
-                    email: email,
-                    userID: user.user.uid
-                }))
-                await createUserInDb({
-                        path: `${USERS_PATH}/${user.user.uid}`,
-                        username: displayName,
-                        email: email,
-                        language_setting: state.language
-                })
+                if (!user.user.displayName) {
+                    alert(USERNAME_MISSING.message)
+                    return
+                }
+                if (!user.user.email) {
+                    alert(EMAIL_MISSING.message)
+                    return
+                }
+                const userDb: CreationData = {
+                    userID: user.user.uid,
+                    username: user.user.displayName,
+                    email: user.user.email,
+                    languageSetting: state.language
+                }
+                dispatch(activeUser(userDb))
+                await createUserInDb(userDb)
             }).catch(error => {
                 alert(error.message)
                 return
@@ -254,7 +269,8 @@ export default function LoginScreen() {
                                     value={username}
                                     selectTextOnFocus={true}/>
                                 {getUsernameError() ? (
-                                    <Text style={styles.wrongInputMessage}>{getUsernameError()?.message[`${language}`]}</Text>
+                                    <Text
+                                        style={styles.wrongInputMessage}>{getUsernameError()?.message[`${language}`]}</Text>
                                 ) : null}
                             </>
                         ) : null}

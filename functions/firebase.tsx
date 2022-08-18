@@ -1,5 +1,5 @@
 import {initializeApp} from "firebase/app";
-import {collection, doc, getDocs, getFirestore, query, setDoc, where, updateDoc} from "firebase/firestore";
+import {collection, doc, getDocs, getFirestore, query, setDoc, where, updateDoc, getDoc, UpdateData} from "firebase/firestore";
 import {USERS_PATH} from "../constants/const_vars";
 
 const firebaseConfig = {
@@ -13,40 +13,44 @@ const firebaseConfig = {
 };
 
 export type CreationData = {
-    path: string,
+    userID: string,
     username: string,
     email: string,
-    language_setting: string
+    languageSetting: string
 }
-
-export type UpdateData = {
-    path: string,
-    language_setting: string | null
-}
-
 
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 export const createUserInDb = async (creationData: CreationData) => {
-    await setDoc(doc(db, `${creationData.path}`), {
+    await setDoc(doc(db, `${USERS_PATH}/${creationData.userID}`), {
         username: creationData.username,
-        username_lower: creationData.username.toLowerCase(),
+        usernameLower: creationData.username.toLowerCase(),
         email: creationData.email,
-        language_setting: creationData.language_setting
+        languageSetting: creationData.languageSetting
     })
 }
 
 export const isUsernameUsed = async (username: string) => {
     const usersRef = collection(db, USERS_PATH);
-    const queryResult = query(usersRef, where("username_lower", "==", username.toLowerCase()));
+    const queryResult = query(usersRef, where("usernameLower", "==", username.toLowerCase()));
     const querySnapshot = await getDocs(queryResult);
     return !querySnapshot.empty;
-
 }
 
-export const updateUser = async (creationData: UpdateData) => {
-    const userRef = doc(db, `${creationData.path}`);
+export const updateUser = async (userID: string, creationData: UpdateData<any>) => {
+    const userRef = doc(db, `${USERS_PATH}/${userID}` );
     await updateDoc(userRef, creationData)
+}
+
+export const getUser = async (userID: string) => {
+    const userRef = doc(db, `${USERS_PATH}/${userID}` );
+    const docSnap = await getDoc(userRef);
+    if (docSnap.exists()) {
+        return docSnap.data();
+    } else {
+        // doc.data() will be undefined in this case
+        return null
+    }
 }
