@@ -1,9 +1,8 @@
 Bugs:
--set dataSet for favorites before filtering it
+-reload after star in favorites is removed -> removed card from dataSet
 -update language after sign in -> get user from db when signing in
 -shadow on android 'not' working -> see Card component
 -change label for password placeholder or text to show it should be at least 6 chars long
-
 
 TODOs:
 -add something to verify that the user is on favorites or home
