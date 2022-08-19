@@ -33,14 +33,14 @@ export default function Settings({navigation}: any) {
             dispatch(changeLanguage(ENGLISH))
             await updateUser(
                 `${state.user.userID}`,
-                {languageSetting: ENGLISH
-            })
-        } else {
+                {languageSetting: ENGLISH}
+            )
+        }
+        else {
             dispatch(changeLanguage(GERMAN))
             await updateUser(
                 `${state.user.userID}`,
-                {languageSetting: GERMAN
-            })
+                {languageSetting: GERMAN})
         }
         dispatch(setIsLoadingFalse())
     }

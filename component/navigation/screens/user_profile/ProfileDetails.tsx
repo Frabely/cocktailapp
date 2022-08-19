@@ -22,7 +22,7 @@ import {
 import FilterButton from "../../../home/filter/FilterButton";
 import React, {useState} from "react";
 import {app, isUsernameUsed, updateUser} from "../../../../functions/firebase";
-import {USERNAME_ALREADY_USED} from "../../../../constants/error_codes";
+import {USERNAME_ALREADY_USED, USERNAME_MISSING} from "../../../../constants/error_codes";
 import {getUsernameError} from "../../../../functions/getErrorFunctionsInputs";
 import StyledButton from "../../../layout/StyledButton";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../../../reducers/booleans/isLoadingReducer";
@@ -55,18 +55,31 @@ export default function ProfileDetails({navigation}: any) {
 
     const changeUserNameOnClickHandler = async () => {
         dispatch(setIsLoadingTrue())
-        await isUsernameUsed(username.toLowerCase()).then( async (result) => {
-            if (result || !auth.currentUser ) {
-                setErrorStateUsername([USERNAME_ALREADY_USED.code])
+        await isUsernameUsed(username.toLowerCase()).then(async (result) => {
+            let arrayErrorStateUsername: string[] = []
+            if (!auth.currentUser) {
+                dispatch(setIsLoadingFalse())
+                return
+            }
+            if (result) {
+                arrayErrorStateUsername.push(USERNAME_ALREADY_USED.code)
+            }
+            if (username.trim() === '') {
+                arrayErrorStateUsername.push(USERNAME_MISSING.code)
+            }
+            if (!arrayErrorStateUsername) {
+                setErrorStateUsername(arrayErrorStateUsername)
                 dispatch(setIsLoadingFalse())
                 return
             }
             await updateProfile(auth.currentUser, {displayName: username}).then(async () => {
-                if (state.user.userID)
-                    await updateUser(state.user.userID, {
-                        username: username,
-                        usernameLower: username.toLowerCase()
-                    }).then(() => {
+                if (state.user.userID) {
+                    await updateUser(
+                        state.user.userID,
+                        {
+                            username: username,
+                            usernameLower: username.toLowerCase(),
+                        }).then(() => {
                         const currentUser = state.user
                         dispatch(activeUser({
                             username: username,
@@ -75,16 +88,16 @@ export default function ProfileDetails({navigation}: any) {
                             languageSetting: currentUser.languageSetting
                         }))
                         dispatch(changeModalMessage(USERNAME_SUCCESSFUL_UPDATED[`${language}`]))
-                        dispatch(invertIsModalState())
                         dispatch(setIsLoadingFalse())
+                        dispatch(invertIsModalState())
                         onChangeUsernamePressHandler()
                     }).catch(error => {
                         console.log(error.message)
                         alert(error.message)
                     })
+                } else
+                    dispatch(setIsLoadingFalse())
             })
-
-            dispatch(setIsLoadingFalse())
         }).catch(error => {
             console.log(error.message)
             alert(error.message)
@@ -99,8 +112,6 @@ export default function ProfileDetails({navigation}: any) {
         }
         setIsChangingPassword([CHANGE_PASSWORD_LABEL.ENG])
     }
-
-
 
 
     return (
@@ -157,8 +168,8 @@ export default function ProfileDetails({navigation}: any) {
                 <LoadingScreen/>
             ) : null}
             {state.isModal ? (
-                <Modal message={state.modalMessage} />
-            ): null}
+                <Modal message={state.modalMessage}/>
+            ) : null}
         </AppBackground>
     )
 };

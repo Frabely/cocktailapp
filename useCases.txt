@@ -1,6 +1,9 @@
 Bugs:
 -reload after star in favorites is removed -> removed card from dataSet
 -if no favorites -> Favorites page shows "No Hits -- Reset Filters" -> should display something like no favorites found
+-status bar not transparent
+-on android close on name change not correctly shown (overflow in border)
+-on name change loading symbol disappearing too early -> resulting into nothing happening on early button press
 
 Master branch Goals:
 (x)-user login:

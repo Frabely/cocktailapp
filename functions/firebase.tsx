@@ -53,9 +53,7 @@ export const isUsernameUsed = async (username: string) => {
 
 export const updateUser = async (userID: string, creationData: UpdateData<any>) => {
     const userRef = doc(db, `${USERS_DB}/${userID}`);
-    await updateDoc(userRef, creationData).then(() => {
-        return
-    })
+    await updateDoc(userRef, creationData).then()
 }
 
 export const getUser = async (userID: string) => {

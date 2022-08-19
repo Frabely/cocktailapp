@@ -84,8 +84,8 @@ export default function LoginScreen() {
         if (password === '') {
             errorArrayPassword.push(PASSWORD_MISSING.code)
         }
-        if ((errorArrayEmail.length !== 0) ||
-            (errorArrayPassword.length !== 0)) {
+        if ((!errorArrayEmail) ||
+            (!errorArrayPassword)) {
             setErrorStateEmail(errorArrayEmail)
             setErrorStatePassword(errorArrayPassword)
             dispatch(setIsLoadingFalse())
@@ -173,10 +173,10 @@ export default function LoginScreen() {
             errorArrayPassword.push(PASSWORDS_NOT_MATCHING.code)
             errorArrayRepeatPassword.push(PASSWORDS_NOT_MATCHING.code)
         }
-        if ((errorArrayUsername.length !== 0) ||
-            (errorArrayEmail.length !== 0) ||
-            (errorArrayPassword.length !== 0) ||
-            (errorArrayRepeatPassword.length !== 0)) {
+        if ((!errorArrayUsername) ||
+            (!errorArrayEmail) ||
+            (!errorArrayPassword) ||
+            (!errorArrayRepeatPassword)) {
             setErrorStateUsername(errorArrayUsername)
             setErrorStateEmail(errorArrayEmail)
             setErrorStatePassword(errorArrayPassword)
@@ -297,7 +297,7 @@ export default function LoginScreen() {
                             style={[styles.input,
                                 (getEmailError(errorStateEmail)) ? {backgroundColor: COLOR_INCORRECT_FIELD_INPUT} : {backgroundColor: COLOR_CARD_BACKGROUND}]}
                             onChangeText={input => {
-                                setEmail(input.toLowerCase().trim())
+                                setEmail(input.trim())
                             }}
                             placeholder={EMAIL_LABEL[`${language}`]}
                             value={email}
