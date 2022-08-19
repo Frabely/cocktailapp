@@ -1,43 +1,41 @@
 Bugs:
 -reload after star in favorites is removed -> removed card from dataSet
--update language after sign in -> get user from db when signing in
--shadow on android 'not' working -> see Card component
--change label for password placeholder or text to show it should be at least 6 chars long
 
-TODOs:
+Master branch Goals:
+-user login:
+    -verify email
+    -modal for errors/UI messages:
+        -successfully logged in/logged out
 -add something to verify that the user is on favorites or home
 -Firebase Backend -> upload data auf firebase
--change padding and margin const's to rem
--favorites page:
-    -same like full list
-        -make star on every card to make it as favorite
--rating:
-    -filter
--share cocktails
--create cocktails
--languages: refactored (only dummy data and ingredients missing -> a lot of data)
-    -add prop to components and get message language like <const_call>[`&{props.language}`]
--refactor reducer -> change hardcode strings to const's
--Implement profile -> change username and password:
-    -expend page with additional input fields and buttons (like login sign up account)
 -user profile:
     -pages:
-        -profile:
-            -user name unique -> set username as id in firebase?
-                ->throw error when register user with already used username
-        -bar/favorites ----> later create own recipes
+        -profile details:
+            -change username and password
+
+
+TODOs:
+-rating:
+    -filter
+-change padding and margin const's to rem
+-change label for password placeholder or text to show it should be at least 6 chars long
+favorites:
+    -share cocktails
+    -create cocktails
+-languages:
+    -API to change dummyData and ingredients
+-refactor reducer -> change hardcode strings to const's
+-user profile:
+    -pages:
+        -profile details:
+            -change username and password
         -settings:
             -font size?
             -color themes?
--user login:
-    -modal for errors/UI messages:
-        -successfully logged in/logged out
-        -created account
--settings page
 -testing:
     -cover as much as possible with error codes and matching messages
 -refactor and optimize highlight card, extract maybe
--refactor filter file, extract maybe (possible make a reusable component for header elements)
+-refactor filter file, extract maybe
 -what font and default size used -> make font sizes const's
 -add app to stores:
     -adds
@@ -48,6 +46,7 @@ Nice to have features:
 -highlight card full screen:
     -swipe down to get next cocktail
 -make colors changeable
+-shadow on android 'not' working -> see Card component
 
 Cocktail App
 
