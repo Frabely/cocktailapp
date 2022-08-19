@@ -24,7 +24,7 @@ import {
     WRONG_PASSWORD
 } from "../../../constants/error_codes_firebase";
 import {
-    EMAIL_MISSING,
+    EMAIL_MISSING, EMAIL_NOT_VERIFIED,
     PASSWORD_MISSING,
     PASSWORDS_NOT_MATCHING,
     REPEAT_PASSWORD_MISSING, USERNAME_ALREADY_USED,
@@ -34,6 +34,7 @@ import CardLayout from "../../layout/CardLayout";
 import AppBackground from "../../layout/AppBackground";
 import {CREATE_ACCOUNT} from "../../../constants/const_vars";
 import {
+    ACCOUNT_CREATED_VERIFY_EMAIL,
     CREATE_ACCOUNT_LABEL,
     EMAIL_LABEL,
     FINISH_ACCOUNT_CREATION_LABEL,
@@ -45,6 +46,7 @@ import {
 import {changeLanguage} from "../../../reducers/user/languageReducer";
 import LoadingScreen from "../../layout/LoadingScreen";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../../reducers/booleans/isLoadingReducer";
+import {sendEmailVerification} from "@firebase/auth";
 
 export default function LoginScreen() {
     const state = useAppSelector((state) => state)
@@ -81,6 +83,16 @@ export default function LoginScreen() {
             return
         }
         signInWithEmailAndPassword(auth, email, password).then(async user => {
+            if (!user.user.emailVerified) {
+                errorArrayEmail.push(EMAIL_NOT_VERIFIED.code)
+                alert(EMAIL_NOT_VERIFIED.message[`${language}`])
+                auth.signOut().then(() => {
+                    dispatch(setIsLoadingFalse())
+                }).catch(error => {
+                    alert(error.message)
+                })
+                return
+            }
             let userDb: User
             await getUser(user.user.uid).then(resultUser => {
                 if (resultUser) {
@@ -157,27 +169,40 @@ export default function LoginScreen() {
             dispatch(setIsLoadingFalse())
             return
         }
-        createUserWithEmailAndPassword(auth, email, password).then(user => {
-            updateProfile(user.user, {displayName: username}).then(async () => {
-                if (!user.user.displayName) {
-                    alert(USERNAME_MISSING.message)
+        createUserWithEmailAndPassword(auth, email, password).then( async (user) => {
+            await updateProfile(user.user, {displayName: username}).then(async () => {
+                await sendEmailVerification(user.user).then( async () => {
+                    if (!user.user.displayName) {
+                        alert(USERNAME_MISSING.message)
+                        dispatch(setIsLoadingFalse())
+                        return
+                    }
+                    if (!user.user.email) {
+                        alert(EMAIL_MISSING.message)
+                        dispatch(setIsLoadingFalse())
+                        return
+                    }
+                    const userDb: CreationData = {
+                        userID: user.user.uid,
+                        username: user.user.displayName,
+                        email: user.user.email,
+                        languageSetting: state.language
+                    }
+                    // dispatch(activeUser(userDb))
+                    await createUserInDb(userDb)
                     dispatch(setIsLoadingFalse())
-                    return
-                }
-                if (!user.user.email) {
-                    alert(EMAIL_MISSING.message)
-                    dispatch(setIsLoadingFalse())
-                    return
-                }
-                const userDb: CreationData = {
-                    userID: user.user.uid,
-                    username: user.user.displayName,
-                    email: user.user.email,
-                    languageSetting: state.language
-                }
-                dispatch(activeUser(userDb))
-                await createUserInDb(userDb)
-                dispatch(setIsLoadingFalse())
+                    auth.signOut().then(() => {
+                        dispatch(setIsLoadingFalse())
+                    }).catch(error => {
+                        alert(error.message)
+                    })
+                    alert(ACCOUNT_CREATED_VERIFY_EMAIL[`${language}`])
+                    onCreateAccountButtonClickHandler()
+                }).catch(error => {
+                    console.log(error.message)
+                    alert(error.message)
+                })
+
             }).catch(error => {
                 alert(error.message)
                 dispatch(setIsLoadingFalse())
@@ -350,6 +375,7 @@ export default function LoginScreen() {
                                   title={(isCreatingAccount.includes(CREATE_ACCOUNT)) ? FINISH_ACCOUNT_CREATION_LABEL[`${language}`] : LOGIN_LABEL[`${language}`]}/>
                     <FilterButton
                         title={CREATE_ACCOUNT_LABEL[`${language}`]}
+                        titleENG={CREATE_ACCOUNT_LABEL[`${language}`]}
                         colorActive={COLOR_HEADER}
                         colorInactive={COLOR_BACKGROUND}
                         onClick={onCreateAccountButtonClickHandler}

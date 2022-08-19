@@ -47,6 +47,7 @@ Nice to have features:
     -swipe down to get next cocktail
 -make colors changeable
 -shadow on android 'not' working -> see Card component
+-(python-)script to delete all not verified accounts in db as well as in firebase auth console
 
 Cocktail App
 
