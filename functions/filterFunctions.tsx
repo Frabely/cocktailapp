@@ -98,3 +98,12 @@ export const filterFavorites = async (prevDataSet: any[], state: any) => {
     }
     return favoritesFilteredData
 }
+
+export const applySyncFilters = (prevDataSet: any[], state: any, dispatch: any) => {
+    let newDataSet: any []
+    newDataSet = filterAlcoholic(prevDataSet, state)
+    newDataSet = filterCategory(newDataSet, state)
+    newDataSet = filterSearchField(newDataSet, state, dispatch)
+    newDataSet = filterIngredients(newDataSet, state)
+    return newDataSet
+}

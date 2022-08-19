@@ -21,7 +21,10 @@ import {changeCurrentDataSet} from "../../../reducers/home/currentDataSetReducer
 import {changeCurrentSearchFieldInput} from "../../../reducers/home/currentSearchFieldInputReducer";
 import {changeIngredients} from "../../../reducers/filter/ingredientsFilterReducer";
 import LoadingScreen from "../../layout/LoadingScreen";
-import {filterAlcoholic, filterCategory, filterSearchField, filterIngredients, filterFavorites} from "../../../functions/filterFunctions";
+import {
+    filterFavorites,
+    applySyncFilters
+} from "../../../functions/filterFunctions";
 
 const data: any[] = dummyData.drinks;
 export default function CocktailList({route, navigation}: any) {
@@ -30,24 +33,16 @@ export default function CocktailList({route, navigation}: any) {
 
     useEffect(() => {
         let dataSet = []
-        const applySyncFilters = (prevDataSet: any[]) => {
-            let newDataSet: any []
-            newDataSet = filterAlcoholic(prevDataSet, state)
-            newDataSet = filterCategory(newDataSet, state)
-            newDataSet = filterSearchField(newDataSet, state, dispatch)
-            newDataSet = filterIngredients(newDataSet, state)
-            return newDataSet
-        }
         if (route.name === FAVORITES) {
             dispatch(setIsLoadingTrue())
             filterFavorites(data, state).then((result => {
-                dataSet = applySyncFilters(result)
+                dataSet = applySyncFilters(result, state, dispatch)
                 dispatch(setIsLoadingFalse())
                 dispatch(changeCurrentDataSet(dataSet))
             }))
         }
         else {
-            dataSet = applySyncFilters(data)
+            dataSet = applySyncFilters(data, state, dispatch)
             dispatch(changeCurrentDataSet(dataSet))
         }
     }, [state.alcoholicFilter, state.categoryFilter, state.ingredientsFilter, state.currentSearchFieldInput])
