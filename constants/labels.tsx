@@ -26,6 +26,7 @@ export const LANGUAGE_LABEL: any = {ENG: 'Language', GER: 'Sprache'}
 export const ENGLISH_LABEL: any = {ENG: 'English', GER: 'Englisch'}
 export const GERMAN_LABEL: any = {ENG: 'German', GER: 'Deutsch'}
 export const SAVE_SETTINGS_LABEL: any = {ENG: 'Save Settings', GER: 'Einstellungen speichern'}
+export const CLOSE: any = {ENG: 'Close', GER: 'Schließen'}
 export const ACCOUNT_CREATED_VERIFY_EMAIL: any = {
     ENG: 'Account created. We sent a verification email. Check your mailbox and click the link to verify.',
     GER: 'Account wurde erstellt. Bestätigen Sie Ihre Emailadresse mit dem, an ihre Emailadresse gesendeten, Verifizierungslink.'

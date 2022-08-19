@@ -1,11 +1,12 @@
 Bugs:
 -reload after star in favorites is removed -> removed card from dataSet
+-if no favorites -> Favorites page shows "No Hits -- Reset Filters" -> should display something like no favorites found
 
 Master branch Goals:
--user login:
-    -verify email
-    -modal for errors/UI messages:
-        -successfully logged in/logged out
+(x)-user login:
+    (x)-verify email
+    (x)-modal for errors/UI messages:
+        (x)-successfully created account
 -add something to verify that the user is on favorites or home
 -Firebase Backend -> upload data auf firebase
 -user profile:

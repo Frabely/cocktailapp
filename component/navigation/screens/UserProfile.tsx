@@ -21,6 +21,7 @@ import {
 } from "../../../constants/labels";
 import LoadingScreen from "../../layout/LoadingScreen";
 import {changeCurrentItem} from "../../../reducers/home/currentItemReducer";
+import {setIsLoadingFalse, setIsLoadingTrue} from "../../../reducers/booleans/isLoadingReducer";
 
 export default function UserProfile({navigation}: any) {
     const state = useAppSelector((state) => state)
@@ -41,9 +42,11 @@ export default function UserProfile({navigation}: any) {
     }
 
     const onLogoutPressHandler = () => {
+        dispatch(setIsLoadingTrue())
         auth.signOut().then(() => {
             dispatch(activeUser(EMPTY_USER))
             dispatch(changeCurrentItem(EMPTY_ITEM))
+            dispatch(setIsLoadingFalse())
         }).catch(error => {
             alert(error.message)
         })

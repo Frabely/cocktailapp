@@ -8,3 +8,4 @@ export const COLOR_CARD_BACKGROUND = 'rgba(255,255,255,0.5)';
 export const COLOR_INCORRECT_FIELD_INPUT = 'rgb(255,123,123)';
 export const COLOR_CORRECT_FIELD_INPUT = 'rgb(123,255,123)';
 export const COLOR_FAVORITE = 'rgb(183,131,0)';
+export const OPACITY_ZERO = 'rgba(0,0,0,0)'

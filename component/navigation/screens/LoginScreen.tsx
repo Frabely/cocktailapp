@@ -47,6 +47,9 @@ import {changeLanguage} from "../../../reducers/user/languageReducer";
 import LoadingScreen from "../../layout/LoadingScreen";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../../reducers/booleans/isLoadingReducer";
 import {sendEmailVerification} from "@firebase/auth";
+import Modal from "../../layout/Modal";
+import {invertIsModalState} from "../../../reducers/booleans/isModalReducer";
+import {changeModalMessage} from "../../../reducers/general/modalMessageReducer";
 
 export default function LoginScreen() {
     const state = useAppSelector((state) => state)
@@ -85,7 +88,8 @@ export default function LoginScreen() {
         signInWithEmailAndPassword(auth, email, password).then(async user => {
             if (!user.user.emailVerified) {
                 errorArrayEmail.push(EMAIL_NOT_VERIFIED.code)
-                alert(EMAIL_NOT_VERIFIED.message[`${language}`])
+                dispatch(changeModalMessage(EMAIL_NOT_VERIFIED.message[`${language}`]))
+                dispatch(invertIsModalState())
                 auth.signOut().then(() => {
                     dispatch(setIsLoadingFalse())
                 }).catch(error => {
@@ -105,7 +109,8 @@ export default function LoginScreen() {
                     dispatch(activeUser(userDb))
                     dispatch(changeLanguage(resultUser.languageSetting))
                 } else {
-                    alert(USER_NOT_FOUND.message)
+                    dispatch(changeModalMessage(USER_NOT_FOUND.message[`${language}`]))
+                    dispatch(invertIsModalState())
                 }
                 dispatch(setIsLoadingFalse())
             })
@@ -114,15 +119,19 @@ export default function LoginScreen() {
                 errorArrayPassword.push(WRONG_PASSWORD.code)
             else if (error.code === USER_NOT_FOUND.code)
                 errorArrayEmail.push(USER_NOT_FOUND.code)
-            else if (error.code === TOO_MANY_REQUESTS.code)
-                alert(TOO_MANY_REQUESTS.message[`${language}`])
-            else if (error.code === NETWORK_REQUEST_FAILED.code)
-                alert(NETWORK_REQUEST_FAILED.message[`${language}`])
+            else if (error.code === TOO_MANY_REQUESTS.code) {
+                dispatch(changeModalMessage(TOO_MANY_REQUESTS.message[`${language}`]))
+                dispatch(invertIsModalState())
+            }
+            else if (error.code === NETWORK_REQUEST_FAILED.code) {
+                dispatch(changeModalMessage(NETWORK_REQUEST_FAILED.message[`${language}`]))
+                dispatch(invertIsModalState())
+            }
             else if (error.code === INVALID_EMAIL.code)
                 errorArrayEmail.push(INVALID_EMAIL.code)
             else {
-                console.log(error)
-                alert(error.code)
+                dispatch(changeModalMessage(error.message))
+                dispatch(invertIsModalState())
             }
             setErrorStateEmail(errorArrayEmail)
             setErrorStatePassword(errorArrayPassword)
@@ -173,12 +182,14 @@ export default function LoginScreen() {
             await updateProfile(user.user, {displayName: username}).then(async () => {
                 await sendEmailVerification(user.user).then( async () => {
                     if (!user.user.displayName) {
-                        alert(USERNAME_MISSING.message)
+                        dispatch(changeModalMessage(USERNAME_MISSING.message[`${language}`]))
+                        dispatch(invertIsModalState())
                         dispatch(setIsLoadingFalse())
                         return
                     }
                     if (!user.user.email) {
-                        alert(EMAIL_MISSING.message)
+                        dispatch(changeModalMessage(EMAIL_MISSING.message[`${language}`]))
+                        dispatch(invertIsModalState())
                         dispatch(setIsLoadingFalse())
                         return
                     }
@@ -196,7 +207,8 @@ export default function LoginScreen() {
                     }).catch(error => {
                         alert(error.message)
                     })
-                    alert(ACCOUNT_CREATED_VERIFY_EMAIL[`${language}`])
+                    dispatch(changeModalMessage(ACCOUNT_CREATED_VERIFY_EMAIL[`${language}`]))
+                    dispatch(invertIsModalState())
                     onCreateAccountButtonClickHandler()
                 }).catch(error => {
                     console.log(error.message)
@@ -216,12 +228,18 @@ export default function LoginScreen() {
                 errorArrayEmail.push(INVALID_EMAIL.code)
             else if (error.code === EMAIL_ALREADY_IN_USE.code)
                 errorArrayEmail.push(EMAIL_ALREADY_IN_USE.code)
-            else if (error.code === TOO_MANY_REQUESTS.code)
-                alert(TOO_MANY_REQUESTS.message[`${language}`])
-            else if (error.code === NETWORK_REQUEST_FAILED.code)
-                alert(NETWORK_REQUEST_FAILED.message[`${language}`])
-            else
-                alert(error.message)
+            else if (error.code === TOO_MANY_REQUESTS.code) {
+                dispatch(changeModalMessage(TOO_MANY_REQUESTS.message[`${language}`]))
+                dispatch(invertIsModalState())
+            }
+            else if (error.code === NETWORK_REQUEST_FAILED.code) {
+                dispatch(changeModalMessage(NETWORK_REQUEST_FAILED.message[`${language}`]))
+                dispatch(invertIsModalState())
+            }
+            else {
+                dispatch(changeModalMessage(error.message))
+                dispatch(invertIsModalState())
+            }
             setErrorStateUsername(errorArrayUsername)
             setErrorStateEmail(errorArrayEmail)
             setErrorStatePassword(errorArrayPassword)
@@ -388,6 +406,9 @@ export default function LoginScreen() {
             {state.isLoading ? (
                 <LoadingScreen/>
             ) : null}
+            {state.isModal ? (
+                <Modal message={state.modalMessage} />
+            ): null}
         </AppBackground>
     )
 }
