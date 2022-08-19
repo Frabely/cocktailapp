@@ -31,4 +31,8 @@ export const ACCOUNT_CREATED_VERIFY_EMAIL: any = {
     ENG: 'Account created. We sent a verification email. Check your mailbox and click the link to verify.',
     GER: 'Account wurde erstellt. Bestätigen Sie Ihre Emailadresse mit dem, an ihre Emailadresse gesendeten, Verifizierungslink.'
 }
+export const USERNAME_SUCCESSFUL_UPDATED: any = {
+    ENG: 'Username successful changed.',
+    GER: 'Nutzername erfolgreich geändert.'
+}
 

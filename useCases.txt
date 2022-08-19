@@ -7,15 +7,16 @@ Master branch Goals:
     (x)-verify email
     (x)-modal for errors/UI messages:
         (x)-successfully created account
--add something to verify that the user is on favorites or home
--Firebase Backend -> upload data auf firebase
 -user profile:
     -pages:
         -profile details:
             -change username and password
+-add something to verify that the user is on favorites or home
+-Firebase Backend -> upload data auf firebase
 
 
 TODOs:
+-make input cards for a component (also include error message on the bottom)
 -rating:
     -filter
 -change padding and margin const's to rem

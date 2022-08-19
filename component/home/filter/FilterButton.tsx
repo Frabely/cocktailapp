@@ -7,7 +7,6 @@ import {useState} from "react";
 export default function FilterButton(props: any) {
     const [isTouched, setIsTouched] = useState(false);
     const isClicked = props.state.includes(props.titleENG)
-
     const onClickHandler = () => {
         props.onClick(props.titleENG)
     }

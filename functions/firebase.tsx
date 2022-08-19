@@ -53,7 +53,9 @@ export const isUsernameUsed = async (username: string) => {
 
 export const updateUser = async (userID: string, creationData: UpdateData<any>) => {
     const userRef = doc(db, `${USERS_DB}/${userID}`);
-    await updateDoc(userRef, creationData)
+    await updateDoc(userRef, creationData).then(() => {
+        return
+    })
 }
 
 export const getUser = async (userID: string) => {
@@ -87,8 +89,7 @@ export const AddOrDeleteFavoriteOfUser = async (userID: string, drinkID: string)
                 alert(error.message)
             })
             return
-        }
-        else {
+        } else {
             await setDoc(userFavoritesDrinkRef, {}).then().catch(error => {
                 console.log(error.message)
                 alert(error.message)
@@ -104,8 +105,7 @@ export const getFavoritesList = async (userID: string) => {
     return await getDocs(userFavoritesRef).then(result => {
         if (result.empty) {
             return null
-        }
-        else if (result?.docs){
+        } else if (result?.docs) {
             return result.docs
         }
     }).catch(error => {

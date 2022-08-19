@@ -50,6 +50,12 @@ import {sendEmailVerification} from "@firebase/auth";
 import Modal from "../../layout/Modal";
 import {invertIsModalState} from "../../../reducers/booleans/isModalReducer";
 import {changeModalMessage} from "../../../reducers/general/modalMessageReducer";
+import {
+    getEmailError,
+    getPasswordError,
+    getRepeatPasswordError,
+    getUsernameError
+} from "../../../functions/getErrorFunctionsInputs";
 
 export default function LoginScreen() {
     const state = useAppSelector((state) => state)
@@ -253,54 +259,13 @@ export default function LoginScreen() {
         setErrorStateEmail([])
         setErrorStatePassword([])
         setErrorStateRepeatPassword([])
-        if (isCreatingAccount.includes(CREATE_ACCOUNT)) {
+        if (isCreatingAccount.includes(CREATE_ACCOUNT_LABEL.ENG)) {
             setIsCreatingAccount([''])
             return
         }
-        setIsCreatingAccount([CREATE_ACCOUNT])
+        setIsCreatingAccount([CREATE_ACCOUNT_LABEL.ENG])
     }
 
-    const getUsernameError = () => {
-        if (errorStateUsername.includes(USERNAME_MISSING.code))
-            return USERNAME_MISSING
-        if (errorStateUsername.includes(USERNAME_ALREADY_USED.code))
-            return USERNAME_ALREADY_USED
-        return undefined;
-    }
-
-    const getEmailError = () => {
-        if (errorStateEmail.includes(EMAIL_MISSING.code))
-            return EMAIL_MISSING
-        if (errorStateEmail.includes(INVALID_EMAIL.code))
-            return INVALID_EMAIL
-        if (errorStateEmail.includes(EMAIL_ALREADY_IN_USE.code))
-            return EMAIL_ALREADY_IN_USE
-        if (errorStateEmail.includes(USER_NOT_FOUND.code))
-            return USER_NOT_FOUND
-        return undefined;
-    }
-
-    const getPasswordError = () => {
-        if (errorStatePassword.includes(PASSWORD_MISSING.code))
-            return PASSWORD_MISSING
-        if (errorStatePassword.includes(WRONG_PASSWORD.code))
-            return WRONG_PASSWORD
-        if (errorStatePassword.includes(PASSWORDS_NOT_MATCHING.code))
-            return PASSWORDS_NOT_MATCHING
-        if (errorStatePassword.includes(WEAK_PASSWORD.code))
-            return WEAK_PASSWORD
-        return undefined;
-    }
-
-    const getRepeatPasswordError = () => {
-        if (errorStateRepeatPassword.includes(REPEAT_PASSWORD_MISSING.code))
-            return REPEAT_PASSWORD_MISSING
-        if (errorStateRepeatPassword.includes(PASSWORDS_NOT_MATCHING.code))
-            return PASSWORDS_NOT_MATCHING
-        if (errorStateRepeatPassword.includes(WEAK_PASSWORD.code))
-            return WEAK_PASSWORD
-        return undefined;
-    }
     return (
         <AppBackground>
             <View style={styles.loginScreen}>
@@ -308,41 +273,41 @@ export default function LoginScreen() {
                        source={require('../../../assets/images/adaptive_background.png')}/>
                 <CardLayout width={vw(0.7)}>
                     <View style={[styles.inputCard,
-                        (isCreatingAccount.includes(CREATE_ACCOUNT) && !!getRepeatPasswordError() ||
-                            !isCreatingAccount.includes(CREATE_ACCOUNT) && !!getPasswordError())
+                        (isCreatingAccount.includes(CREATE_ACCOUNT) && !!getRepeatPasswordError(errorStateRepeatPassword) ||
+                            !isCreatingAccount.includes(CREATE_ACCOUNT) && !!getPasswordError(errorStatePassword))
                             ? {paddingBottom: PADDING} : null]}>
                         {(isCreatingAccount.includes(CREATE_ACCOUNT)) ? (
                             <>
                                 <TextInput
                                     style={[styles.input,
-                                        (getUsernameError()) ? {backgroundColor: COLOR_INCORRECT_FIELD_INPUT} : {backgroundColor: COLOR_CARD_BACKGROUND}]}
+                                        (getUsernameError(errorStateUsername)) ? {backgroundColor: COLOR_INCORRECT_FIELD_INPUT} : {backgroundColor: COLOR_CARD_BACKGROUND}]}
                                     onChangeText={input => {
                                         setUsername(input.trim())
                                     }}
                                     placeholder={USERNAME_LABEL[`${language}`]}
                                     value={username}
                                     selectTextOnFocus={true}/>
-                                {getUsernameError() ? (
+                                {getUsernameError(errorStateUsername) ? (
                                     <Text
-                                        style={styles.wrongInputMessage}>{getUsernameError()?.message[`${language}`]}</Text>
+                                        style={styles.wrongInputMessage}>{getUsernameError(errorStateUsername)?.message[`${language}`]}</Text>
                                 ) : null}
                             </>
                         ) : null}
                         <TextInput
                             style={[styles.input,
-                                (getEmailError()) ? {backgroundColor: COLOR_INCORRECT_FIELD_INPUT} : {backgroundColor: COLOR_CARD_BACKGROUND}]}
+                                (getEmailError(errorStateEmail)) ? {backgroundColor: COLOR_INCORRECT_FIELD_INPUT} : {backgroundColor: COLOR_CARD_BACKGROUND}]}
                             onChangeText={input => {
                                 setEmail(input.toLowerCase().trim())
                             }}
                             placeholder={EMAIL_LABEL[`${language}`]}
                             value={email}
                             selectTextOnFocus={true}/>
-                        {getEmailError() ? (
-                            <Text style={styles.wrongInputMessage}>{getEmailError()?.message[`${language}`]}</Text>
+                        {getEmailError(errorStateEmail) ? (
+                            <Text style={styles.wrongInputMessage}>{getEmailError(errorStateEmail)?.message[`${language}`]}</Text>
                         ) : null}
                         <TextInput
                             style={[styles.input,
-                                {backgroundColor: (getPasswordError()) ? COLOR_INCORRECT_FIELD_INPUT : COLOR_CARD_BACKGROUND},
+                                {backgroundColor: (getPasswordError(errorStatePassword)) ? COLOR_INCORRECT_FIELD_INPUT : COLOR_CARD_BACKGROUND},
                                 // {
                                 //     backgroundColor: (
                                 //         password === repeatPassword
@@ -358,14 +323,14 @@ export default function LoginScreen() {
                             placeholder={PASSWORD_LABEL[`${language}`]}
                             secureTextEntry={true}
                             selectTextOnFocus={true}/>
-                        {getPasswordError() ? (
-                            <Text style={styles.wrongInputMessage}>{getPasswordError()?.message[`${language}`]}</Text>
+                        {getPasswordError(errorStatePassword) ? (
+                            <Text style={styles.wrongInputMessage}>{getPasswordError(errorStatePassword)?.message[`${language}`]}</Text>
                         ) : null}
                         {(isCreatingAccount.includes(CREATE_ACCOUNT)) ? (
                             <>
                                 <TextInput
                                     style={[styles.input,
-                                        {backgroundColor: (getRepeatPasswordError()) ? COLOR_INCORRECT_FIELD_INPUT : COLOR_CARD_BACKGROUND},
+                                        {backgroundColor: (getRepeatPasswordError(errorStateRepeatPassword)) ? COLOR_INCORRECT_FIELD_INPUT : COLOR_CARD_BACKGROUND},
                                         // {
                                         //     backgroundColor: (
                                         //         password === repeatPassword
@@ -381,9 +346,9 @@ export default function LoginScreen() {
                                     placeholder={REPEAT_PASSWORD_LABEL[`${language}`]}
                                     secureTextEntry={true}
                                     selectTextOnFocus={true}/>
-                                {getRepeatPasswordError() ? (
+                                {getRepeatPasswordError(errorStateRepeatPassword) ? (
                                     <Text
-                                        style={styles.wrongInputMessage}>{getRepeatPasswordError()?.message[`${language}`]}</Text>
+                                        style={styles.wrongInputMessage}>{getRepeatPasswordError(errorStateRepeatPassword)?.message[`${language}`]}</Text>
                                 ) : null}
                             </>
                         ) : null}
@@ -393,7 +358,7 @@ export default function LoginScreen() {
                                   title={(isCreatingAccount.includes(CREATE_ACCOUNT)) ? FINISH_ACCOUNT_CREATION_LABEL[`${language}`] : LOGIN_LABEL[`${language}`]}/>
                     <FilterButton
                         title={CREATE_ACCOUNT_LABEL[`${language}`]}
-                        titleENG={CREATE_ACCOUNT_LABEL[`${language}`]}
+                        titleENG={CREATE_ACCOUNT_LABEL.ENG}
                         colorActive={COLOR_HEADER}
                         colorInactive={COLOR_BACKGROUND}
                         onClick={onCreateAccountButtonClickHandler}
