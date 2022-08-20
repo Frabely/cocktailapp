@@ -3,6 +3,7 @@ Bugs:
 -if no favorites -> Favorites page shows "No Hits -- Reset Filters" -> should display something like no favorites found
 -status bar not transparent
 -on android close on name change not correctly shown (overflow in border)
+-change (({}:any) => any) to ((...args :any) => any) -----> check all files after
 
 Master branch Goals:
 (x)-user login:
