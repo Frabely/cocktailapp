@@ -256,7 +256,8 @@ export default function ProfileDetails({navigation}: any) {
                                     errorState={(getUsernameError(errorStateUsername))}
                                     setInputState={setUsername}
                                     inputState={username}
-                                    placeholderLabel={USERNAME_LABEL[`${language}`]}/>
+                                    placeholderLabel={USERNAME_LABEL[`${language}`]}
+                                />
                                 <StyledButton
                                     onPress={changeUserNameOnClickHandler}
                                     title={CHANGE_USERNAME_LABEL[`${language}`]}

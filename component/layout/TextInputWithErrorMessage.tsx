@@ -22,7 +22,7 @@ export default function TextInputWithErrorMessage({errorState, setInputState,
                 placeholder={placeholderLabel}
                 value={inputState}
                 selectTextOnFocus={true}
-                secureTextEntry={(isPassword) ? isPassword : !isPassword}/>
+                secureTextEntry={(isPassword) ? isPassword : isPassword}/>
             {errorState ? (
                 <Text
                     style={styles.wrongInputMessage}>{errorState?.message[`${language}`]}</Text>
