@@ -128,12 +128,10 @@ export default function LoginScreen() {
             else if (error.code === TOO_MANY_REQUESTS.code) {
                 dispatch(changeModalMessage(TOO_MANY_REQUESTS.message[`${language}`]))
                 dispatch(invertIsModalState())
-            }
-            else if (error.code === NETWORK_REQUEST_FAILED.code) {
+            } else if (error.code === NETWORK_REQUEST_FAILED.code) {
                 dispatch(changeModalMessage(NETWORK_REQUEST_FAILED.message[`${language}`]))
                 dispatch(invertIsModalState())
-            }
-            else if (error.code === INVALID_EMAIL.code)
+            } else if (error.code === INVALID_EMAIL.code)
                 errorArrayEmail.push(INVALID_EMAIL.code)
             else {
                 dispatch(changeModalMessage(error.message))
@@ -184,9 +182,9 @@ export default function LoginScreen() {
             dispatch(setIsLoadingFalse())
             return
         }
-        createUserWithEmailAndPassword(auth, email, password).then( async (user) => {
+        createUserWithEmailAndPassword(auth, email, password).then(async (user) => {
             await updateProfile(user.user, {displayName: username}).then(async () => {
-                await sendEmailVerification(user.user).then( async () => {
+                await sendEmailVerification(user.user).then(async () => {
                     if (!user.user.displayName) {
                         dispatch(changeModalMessage(USERNAME_MISSING.message[`${language}`]))
                         dispatch(invertIsModalState())
@@ -237,12 +235,10 @@ export default function LoginScreen() {
             else if (error.code === TOO_MANY_REQUESTS.code) {
                 dispatch(changeModalMessage(TOO_MANY_REQUESTS.message[`${language}`]))
                 dispatch(invertIsModalState())
-            }
-            else if (error.code === NETWORK_REQUEST_FAILED.code) {
+            } else if (error.code === NETWORK_REQUEST_FAILED.code) {
                 dispatch(changeModalMessage(NETWORK_REQUEST_FAILED.message[`${language}`]))
                 dispatch(invertIsModalState())
-            }
-            else {
+            } else {
                 dispatch(changeModalMessage(error.message))
                 dispatch(invertIsModalState())
             }
@@ -265,6 +261,9 @@ export default function LoginScreen() {
         }
         setIsCreatingAccount([CREATE_ACCOUNT_LABEL.ENG])
     }
+
+    // console.log((isCreatingAccount.includes(CREATE_ACCOUNT)))
+    // console.log(LOGIN_LABEL[`${language}`])
 
     return (
         <AppBackground>
@@ -303,19 +302,12 @@ export default function LoginScreen() {
                             value={email}
                             selectTextOnFocus={true}/>
                         {getEmailError(errorStateEmail) ? (
-                            <Text style={styles.wrongInputMessage}>{getEmailError(errorStateEmail)?.message[`${language}`]}</Text>
+                            <Text
+                                style={styles.wrongInputMessage}>{getEmailError(errorStateEmail)?.message[`${language}`]}</Text>
                         ) : null}
                         <TextInput
                             style={[styles.input,
                                 {backgroundColor: (getPasswordError(errorStatePassword)) ? COLOR_INCORRECT_FIELD_INPUT : COLOR_CARD_BACKGROUND},
-                                // {
-                                //     backgroundColor: (
-                                //         password === repeatPassword
-                                //         && (password !== '' || repeatPassword !== '')
-                                //         && password.length > 5
-                                //         && repeatPassword.length > 5
-                                //     ) ? COLOR_CORRECT_FIELD_INPUT : COLOR_CARD_BACKGROUND
-                                // }
                             ]}
                             onChangeText={input => {
                                 setPassword(input.trim())
@@ -324,21 +316,14 @@ export default function LoginScreen() {
                             secureTextEntry={true}
                             selectTextOnFocus={true}/>
                         {getPasswordError(errorStatePassword) ? (
-                            <Text style={styles.wrongInputMessage}>{getPasswordError(errorStatePassword)?.message[`${language}`]}</Text>
+                            <Text
+                                style={styles.wrongInputMessage}>{getPasswordError(errorStatePassword)?.message[`${language}`]}</Text>
                         ) : null}
                         {(isCreatingAccount.includes(CREATE_ACCOUNT)) ? (
                             <>
                                 <TextInput
                                     style={[styles.input,
                                         {backgroundColor: (getRepeatPasswordError(errorStateRepeatPassword)) ? COLOR_INCORRECT_FIELD_INPUT : COLOR_CARD_BACKGROUND},
-                                        // {
-                                        //     backgroundColor: (
-                                        //         password === repeatPassword
-                                        //         && (password !== '' || repeatPassword !== '')
-                                        //         && password.length > 5
-                                        //         && repeatPassword.length > 5
-                                        //     ) ? COLOR_CORRECT_FIELD_INPUT : COLOR_CARD_BACKGROUND
-                                        // }
                                     ]}
                                     onChangeText={input => {
                                         setRepeatPassword(input.trim())
@@ -353,27 +338,27 @@ export default function LoginScreen() {
                             </>
                         ) : null}
                     </View>
-                    <StyledButton width={'100%'}
-                                  onPress={(isCreatingAccount.includes(CREATE_ACCOUNT)) ? onCreatAccountHandler : onLoginHandler}
-                                  title={(isCreatingAccount.includes(CREATE_ACCOUNT)) ? FINISH_ACCOUNT_CREATION_LABEL[`${language}`] : LOGIN_LABEL[`${language}`]}/>
+                    <StyledButton
+                        onPress={(isCreatingAccount.includes(CREATE_ACCOUNT)) ?
+                            onCreatAccountHandler : onLoginHandler}
+                        title={(isCreatingAccount.includes(CREATE_ACCOUNT)) ?
+                            FINISH_ACCOUNT_CREATION_LABEL[`${language}`] : LOGIN_LABEL[`${language}`]}
+                    />
                     <FilterButton
                         title={CREATE_ACCOUNT_LABEL[`${language}`]}
                         titleENG={CREATE_ACCOUNT_LABEL.ENG}
                         colorActive={COLOR_HEADER}
                         colorInactive={COLOR_BACKGROUND}
                         onClick={onCreateAccountButtonClickHandler}
-                        state={isCreatingAccount}
-                        padding={PADDING / 2}
-                        margin={MARGIN / 2}
-                        width={'100%'}/>
+                        state={isCreatingAccount}/>
                 </CardLayout>
             </View>
             {state.isLoading ? (
                 <LoadingScreen/>
             ) : null}
             {state.isModal ? (
-                <Modal message={state.modalMessage} />
-            ): null}
+                <Modal message={state.modalMessage}/>
+            ) : null}
         </AppBackground>
     )
 }

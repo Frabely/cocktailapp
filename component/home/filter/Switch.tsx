@@ -1,24 +1,24 @@
-import {Pressable, StyleSheet, Text, View} from "react-native";
+import {ColorValue, Pressable, StyleSheet, Text, View} from "react-native";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
+import {Dispatch, SetStateAction} from "react";
 
-export default function Switch(props: any) {
-
+export default function Switch({setIsLeftActive, isLeftActive, colorSelected, color, leftTitle, rightTitle }: SwitchProps) {
     const onclickHandler = () => {
-        props.setIsLeftActive(!props.isLeftActive)
+        setIsLeftActive(!isLeftActive)
     }
     return (
         <View style={{flexDirection: 'row'}}>
             <Pressable onPress={onclickHandler}
                        style={[styles.outerButtonLeft, styles.switchStyle,
-                           props.isLeftActive ? {backgroundColor: props.colorSelected} : {backgroundColor: props.color}
+                           isLeftActive ? {backgroundColor: colorSelected} : {backgroundColor: color}
                        ]}>
-                <Text>{props.leftTitle}</Text>
+                <Text>{leftTitle}</Text>
             </Pressable>
             <Pressable onPress={onclickHandler}
                        style={[styles.outerButtonRight, styles.switchStyle,
-                           props.isLeftActive ? {backgroundColor: props.color} : {backgroundColor: props.colorSelected}
+                           isLeftActive ? {backgroundColor: color} : {backgroundColor: colorSelected}
                        ]}>
-                <Text>{props.rightTitle}</Text>
+                <Text>{rightTitle}</Text>
             </Pressable>
         </View>
     )
@@ -43,3 +43,12 @@ const styles = StyleSheet.create({
         marginRight: MARGIN / 2,
     },
 })
+
+export type SwitchProps = {
+    setIsLeftActive: Dispatch<SetStateAction<boolean>>,
+    isLeftActive: boolean,
+    colorSelected: ColorValue,
+    color: ColorValue,
+    leftTitle: string,
+    rightTitle: string
+}

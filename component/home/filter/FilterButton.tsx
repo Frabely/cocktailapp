@@ -3,9 +3,8 @@ import {BORDER_RADIUS, DEFAULT_BUTTON_HEIGHT, MARGIN, PADDING} from "../../../co
 import {COLOR_BACKGROUND} from "../../../constants/color_styles";
 import {vh} from "../../../functions/dimentions";
 import {useState} from "react";
-import {LabelType} from "../../../constants/types";
 
-export default function FilterButton(props: any, {state, titleENG, onClick, title, colorActive, colorInactive}: FilterButtonProps) {
+export default function FilterButton({state, titleENG, onClick, title, colorActive, colorInactive, padding, width, margin}: FilterButtonProps) {
     const [isTouched, setIsTouched] = useState(false);
     const isClicked = state.includes(titleENG)
     const onClickHandler = () => {
@@ -21,9 +20,9 @@ export default function FilterButton(props: any, {state, titleENG, onClick, titl
                 styles.outerButton,
                 {
                     backgroundColor: (isClicked || isTouched) ? colorActive : colorInactive,
-                    padding: props?.padding ? props.padding :  PADDING / 8,
-                    margin: props?.margin ? props.margin : MARGIN / 2,
-                    width: props?.width ? props.width : null,
+                    padding: padding ? padding :  PADDING / 8,
+                    margin: margin ? margin : MARGIN / 2,
+                    width: width ? width : undefined,
                 },
             ]}>
             <Text style={{textAlign: "center"}}>{title}</Text>
@@ -45,7 +44,10 @@ export type FilterButtonProps = {
     state: string[],
     titleENG : string,
     onClick: (({}: any) => any),
-    title: LabelType,
+    title: string,
     colorActive: ColorValue | undefined,
-    colorInactive: ColorValue | undefined
+    colorInactive: ColorValue | undefined,
+    padding?: number | undefined,
+    margin?: number | undefined,
+    width?: string | number | null
 }

@@ -1,10 +1,10 @@
 import {StyleSheet, Text, View} from "react-native";
 import {PADDING} from "../../../constants/style_constants";
 
-export default function Label(props: any) {
+export default function Label({labelName}: LabelProps) {
     return (
         <View style={styles.labelStyle}>
-            <Text style={{fontWeight: 'bold',}}>{props.labelName}</Text>
+            <Text style={{fontWeight: 'bold',}}>{labelName}</Text>
         </View>
     )
 }
@@ -16,3 +16,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     }
 })
+
+export type LabelProps = {
+    labelName: string
+}

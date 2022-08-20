@@ -5,7 +5,7 @@ import {useAppDispatch} from "../../../constants/hooks";
 import {changeCurrentItem} from "../../../reducers/home/currentItemReducer";
 import {EMPTY_ITEM} from "../../../constants/const_vars";
 
-export default function HighlightedCardInnerImage(props: any) {
+export default function HighlightedCardInnerImage({imageSource}: HighlightedCardInnerImageProps) {
     const dispatch = useAppDispatch()
     const onCloseHighlightedImage = () => {
         dispatch(changeCurrentItem(EMPTY_ITEM))
@@ -13,7 +13,7 @@ export default function HighlightedCardInnerImage(props: any) {
     return (
         <Pressable onPress={onCloseHighlightedImage} style={styles.innerImageCard}>
             <ImageBackground style={styles.innerImage}
-                             source={{uri: props.imageSource}}></ImageBackground>
+                             source={{uri: imageSource}}></ImageBackground>
         </Pressable>
     )
 }
@@ -39,3 +39,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
     },
 })
+
+export type HighlightedCardInnerImageProps = {
+    imageSource: string
+}

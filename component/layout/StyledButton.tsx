@@ -3,9 +3,8 @@ import {COLOR_BACKGROUND, COLOR_HEADER} from "../../constants/color_styles";
 import {useState} from "react";
 import {vh} from "../../functions/dimentions";
 import {BORDER_RADIUS, DEFAULT_BUTTON_HEIGHT, MARGIN, PADDING} from "../../constants/style_constants";
-import {LabelType} from "../../constants/types";
 
-export default function StyledButton(props: any, {onPress, title}: StyledButtonProps) {
+export default function StyledButton({onPress, title, margin, padding, width, flex, height}: StyledButtonProps) {
     const [isTouched, setIsTouched] = useState(false)
     const onTouchStartHandler = () => {
         setIsTouched(true)
@@ -18,11 +17,11 @@ export default function StyledButton(props: any, {onPress, title}: StyledButtonP
     return (
         <Pressable style={[styles.styledButton, {
             backgroundColor: isTouched ? COLOR_HEADER : COLOR_BACKGROUND,
-            padding: props?.padding  ? props.padding : PADDING / 2,
-            margin: props?.margin  ? props.margin : MARGIN / 2,
-            height: props?.height ? props.height : vh(DEFAULT_BUTTON_HEIGHT),
-            width: props?.width ? props.width : null,
-            flex: props?.flex ? props.flex : null
+            padding: padding  ? padding : PADDING / 2,
+            margin: margin  ? margin : MARGIN / 2,
+            height: height ? height : vh(DEFAULT_BUTTON_HEIGHT),
+            width: width ? width : undefined,
+            flex: flex ? flex : undefined
         }]}
                    onTouchStart={onTouchStartHandler}
                    onTouchEnd={onTouchEndHandler}
@@ -42,6 +41,11 @@ const styles = StyleSheet.create({
 })
 
 export type StyledButtonProps = {
-    title: LabelType,
-    onPress: (({}: any) => any)
+    title: string,
+    onPress: (({}: any) => any),
+    padding?: number | undefined,
+    margin?: number | undefined,
+    width?: string | number | undefined,
+    height?: string | number | undefined,
+    flex?: number | undefined
 }

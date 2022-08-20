@@ -66,6 +66,7 @@ export default function CocktailList({route, navigation}: any) {
         dispatch(changeIngredients([]))
     }
 
+    // TODO find out what any is
     const renderItem = ({item}: any) => {
         return (
             <Card key={item.idDrink}
@@ -94,6 +95,7 @@ export default function CocktailList({route, navigation}: any) {
                     numColumns={3}
                     data={state.currentDataSet}
                     renderItem={renderItem}
+                    //TODO use keyExtractor
                     // keyExtractor={item => item.idDrink}
                 />
             </View>

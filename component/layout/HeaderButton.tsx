@@ -3,17 +3,17 @@ import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 import {PADDING} from "../../constants/style_constants";
 import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
-export default function HeaderButton(props: any, {icon, onPress}: HeaderButtonProps) {
+export default function HeaderButton({icon, onPress, height, width, color, flex, heightButton, justifyContent}: HeaderButtonProps) {
     return (
         <Pressable onPress={onPress} style={[styles.headerButton, {
-            justifyContent: props?.justifyContent ? props.justifyContent : 'center',
-            height: props?.heightButton ? props.heightButton : '100%',
-            flex: props?.flex ? props.flex : 1,
+            justifyContent: justifyContent ? justifyContent : 'center',
+            height: heightButton ? heightButton : '100%',
+            flex: flex ? flex : 1,
         }]}>
             <FontAwesomeIcon style={{
-                height: props?.height ? props.height : null,
-                width: props?.width ? props.width : null,
-                color: props?.color ? props.color : null
+                height: height ? height : undefined,
+                width: width ? width : undefined,
+                color: color ? color : undefined
             }} icon={icon}/>
         </Pressable>
     )
@@ -28,5 +28,11 @@ const styles = StyleSheet.create({
 
 export type HeaderButtonProps = {
     icon: IconProp,
-    onPress: ((...args :any) => any)
+    onPress: ((...args :any) => any),
+    height?: string | number | undefined,
+    heightButton?: string | number | undefined,
+    width?: string | number | undefined,
+    color?: string | undefined,
+    flex?: number | undefined,
+    justifyContent?: "center" | "flex-start" | "flex-end" | "space-between" | "space-around" | "space-evenly" | undefined
 }

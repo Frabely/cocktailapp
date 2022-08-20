@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
 
 export type TextInputWithErrorMessageProps = {
     errorState: ErrorCodesType | undefined,
-    setInputState: Dispatch<SetStateAction<any>>,
+    setInputState: Dispatch<SetStateAction<string>>,
     inputState: string,
     placeholderLabel: string
 }
