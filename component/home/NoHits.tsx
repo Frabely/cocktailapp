@@ -7,7 +7,7 @@ import {useAppSelector} from "../../constants/hooks";
 
 export default function NoHits(props: any) {
     const state = useAppSelector((state) => state)
-    const language: any = state.language
+    const language: string = state.language
 
     return (
         <View style={styles.noHits}>

@@ -27,7 +27,7 @@ export default function UserProfile({navigation}: any) {
     const state = useAppSelector((state) => state)
     const auth = getAuth(app)
     const dispatch = useAppDispatch()
-    const language: any = state.language
+    const language: string = state.language
 
     const onProfileDetailsPressHandler = () => {
         navigation.navigate(PROFILE_DETAILS)

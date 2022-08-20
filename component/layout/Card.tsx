@@ -75,3 +75,9 @@ const styles = StyleSheet.create({
     boxShadow: {}
 });
 
+export type CardProps = {
+    onImageClickHandler: any,
+    item: any,
+
+}
+

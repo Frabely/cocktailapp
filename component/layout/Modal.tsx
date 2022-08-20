@@ -12,7 +12,7 @@ import {changeModalMessage} from "../../reducers/general/modalMessageReducer";
 export default function Modal(props: any) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
-    const language: any = state.language
+    const language: string = state.language
 
     const closeModelOnPressHandler = () => {
         dispatch(changeModalMessage(''))

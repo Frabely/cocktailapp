@@ -1,4 +1,4 @@
-import {StyleSheet, Text, TextInput, View} from "react-native";
+import {StyleSheet, View} from "react-native";
 import {vh, vw} from "../../../../functions/dimentions";
 import CardLayout from "../../../layout/CardLayout";
 import {useAppDispatch, useAppSelector} from "../../../../constants/hooks";
@@ -15,7 +15,6 @@ import AppBackground from "../../../layout/AppBackground";
 import LoadingScreen from "../../../layout/LoadingScreen";
 import {
     COLOR_BACKGROUND,
-    COLOR_CARD_BACKGROUND,
     COLOR_HEADER,
     COLOR_INCORRECT_FIELD_INPUT
 } from "../../../../constants/color_styles";
@@ -31,11 +30,12 @@ import {activeUser} from "../../../../reducers/user/userReducer";
 import Modal from "../../../layout/Modal";
 import {invertIsModalState} from "../../../../reducers/booleans/isModalReducer";
 import {changeModalMessage} from "../../../../reducers/general/modalMessageReducer";
+import TextInputWithErrorMessage from "../../../layout/TextInputWithErrorMessage";
 
 export default function ProfileDetails({navigation}: any) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
-    const language: any = state.language
+    const language: string = state.language
     const [username, setUsername] = useState('');
     const [isChangingUsername, setIsChangingUsername] = useState(['']);
     const [isChangingPassword, setIsChangingPassword] = useState(['']);
@@ -133,20 +133,12 @@ export default function ProfileDetails({navigation}: any) {
                         (isChangingUsername.includes(CHANGE_USERNAME_LABEL.ENG)) && !!getUsernameError(errorStateUsername) ? {paddingBottom: PADDING} : null]}>
                         {(isChangingUsername.includes(CHANGE_USERNAME_LABEL.ENG)) ? (
                             <>
-                                <TextInput
-                                    style={[styles.input,
-                                        (getUsernameError(errorStateUsername)) ? {backgroundColor: COLOR_INCORRECT_FIELD_INPUT} : {backgroundColor: COLOR_CARD_BACKGROUND}]}
-                                    onChangeText={input => {
-                                        setUsername(input.trim())
-                                    }}
-                                    placeholder={USERNAME_LABEL[`${language}`]}
-                                    value={username}
-                                    selectTextOnFocus={true}/>
-                                {getUsernameError(errorStateUsername) ? (
-                                    <Text
-                                        style={styles.wrongInputMessage}>{getUsernameError(errorStateUsername)?.message[`${language}`]}</Text>
-                                ) : null}
-                                <StyledButton width={'50%'}
+                            <TextInputWithErrorMessage
+                                errorState={(getUsernameError(errorStateUsername))}
+                                setInputState={setUsername}
+                                inputState={username}
+                                placeholderLabel={USERNAME_LABEL[`${language}`]}/>
+                            <StyledButton width={'50%'}
                                               onPress={changeUserNameOnClickHandler}
                                               title={CHANGE_USERNAME_LABEL[`${language}`]}/>
                             </>

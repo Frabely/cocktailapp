@@ -23,7 +23,7 @@ export default function DropDownPickerWrapper() {
     const [open, setOpen] = useState(false);
     const [items, setItems] = useState(INGREDIENT_LIST);
     const [value, setValue] = useState(state.ingredientsFilter);
-    const language: any = state.language
+    const language: string = state.language
 
     useEffect(() => {
         dispatch(changeIngredients(value))

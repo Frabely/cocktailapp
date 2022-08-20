@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {EMPTY_ITEM} from "../../constants/const_vars";
-import {Cocktail} from "../../constants/dummyData3";
+import {Cocktail} from "../../constants/types";
 
 // Todo add item type
 const CurrentItemSlice = createSlice({

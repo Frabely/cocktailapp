@@ -69,7 +69,7 @@ export default function LoginScreen() {
     const [errorStateUsername, setErrorStateUsername] = useState(['']);
     const [errorStatePassword, setErrorStatePassword] = useState(['']);
     const [errorStateRepeatPassword, setErrorStateRepeatPassword] = useState(['']);
-    const language: any = state.language
+    const language: string = state.language
 
     const auth = getAuth(app)
 

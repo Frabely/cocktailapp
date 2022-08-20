@@ -24,7 +24,7 @@ export default function Settings({navigation}: any) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
     const [isLeftActive, setIsLeftActive] = useState((state.language === ENGLISH))
-    const language: any = state.language
+    const language: string = state.language
 
     const onSaveSettingsHandler = async () => {
         dispatch(setIsLoadingTrue())

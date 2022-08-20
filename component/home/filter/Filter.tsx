@@ -23,7 +23,7 @@ import {ALCOHOLIC_LABEL} from "../../../constants/labels";
 export default function Filter(props: any) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
-    const language: any = state.language
+    const language: string = state.language
     const alcFilterOptions = ALCOHOLIC_LIST[`${language}`]
     const alcFilterOptionsENG = ALCOHOLIC_LIST.ENG
     const categoryFilterOptions = CATEGORY_LIST[`${language}`]

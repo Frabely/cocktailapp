@@ -12,3 +12,5 @@ https://hossein-zare.github.io/react-native-dropdown-picker-website/
 https://clippingmagic.com
 ### Docs React Navigation
 https://reactnavigation.org/docs/getting-started
+### Define type with object which can be accessed by passing a string -> obj[:string:] -> const myObj: {[index: string]:any} = {}
+https://stackoverflow.com/questions/56833469/typescript-error-ts7053-element-implicitly-has-an-any-type

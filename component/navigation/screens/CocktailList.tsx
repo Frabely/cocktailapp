@@ -1,4 +1,4 @@
-import dummyData, {Cocktail} from "../../../constants/dummyData3";
+import dummyData from "../../../constants/dummyData3";
 import {useEffect} from "react";
 import {FlatList, StyleSheet, View} from "react-native";
 import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
@@ -25,6 +25,7 @@ import {
     filterFavorites,
     applySyncFilters
 } from "../../../functions/filterFunctions";
+import {Cocktail} from "../../../constants/types";
 
 const data: any[] = dummyData.drinks;
 export default function CocktailList({route, navigation}: any) {

@@ -8,7 +8,7 @@ import {changeCurrentSearchFieldInput} from "../../../reducers/home/currentSearc
 export default function searchField() {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
-    const language: any = state.language
+    const language: string = state.language
 
     return (
         <View style={styles.searchField}>

@@ -1,13 +1,14 @@
 import {ALL_LABEL} from "./labels";
+import {LabelListType} from "./types";
 
-export const CATEGORY_LIST: any = {
+export const CATEGORY_LIST: LabelListType = {
     ENG: [ALL_LABEL.ENG, 'Shot', 'Beer', 'Shake', 'Cocktail', 'Ordinary Drink', 'Homemade Liqueur',
         'Punch / Party Drink', 'Coffee / Tea', 'Cocoa', 'Soft Drink', 'Other / Unknown'],
     GER: [ALL_LABEL.GER, 'Shot', 'Bier', 'Shake', 'Cocktail', 'Gewöhnliches Getränk', 'Hausgemachter Likör',
         'Punsch / Partygetränk', 'Kaffee / Tee', 'Kakao', 'Erfrischungs-Getränk', 'Andere / Unbekannt']
 }
 
-export const ALCOHOLIC_LIST: any = {
+export const ALCOHOLIC_LIST: LabelListType = {
     ENG: [ALL_LABEL.ENG, 'Alcoholic', 'Non alcoholic'],
     GER: [ALL_LABEL.GER, 'Alkoholisch', 'Nicht Alkoholisch']
 }

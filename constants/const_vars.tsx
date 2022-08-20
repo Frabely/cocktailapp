@@ -1,5 +1,5 @@
 import {User} from "../reducers/user/userReducer";
-import {Cocktail} from "./dummyData3";
+import {Cocktail} from "./types";
 
 export const ALL = 'All'
 export const FILTER = 'filter'
