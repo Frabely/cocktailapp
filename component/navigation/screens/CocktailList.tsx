@@ -27,13 +27,13 @@ import {
 } from "../../../functions/filterFunctions";
 import {Cocktail} from "../../../constants/types";
 
-const data: any[] = dummyData.drinks;
+const data: Cocktail[] = dummyData.drinks;
 export default function CocktailList({route, navigation}: any) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        let dataSet = []
+        let dataSet: Cocktail[] = []
         if (route.name === FAVORITES) {
             dispatch(setIsLoadingTrue())
             filterFavorites(data, state).then((result => {
@@ -41,8 +41,7 @@ export default function CocktailList({route, navigation}: any) {
                 dispatch(setIsLoadingFalse())
                 dispatch(changeCurrentDataSet(dataSet))
             }))
-        }
-        else {
+        } else {
             dataSet = applySyncFilters(data, state, dispatch)
             dispatch(changeCurrentDataSet(dataSet))
         }
@@ -95,12 +94,10 @@ export default function CocktailList({route, navigation}: any) {
                     numColumns={3}
                     data={state.currentDataSet}
                     renderItem={renderItem}
-                    keyExtractor={item => item.idDrink}/>
+                    // keyExtractor={item => item.idDrink}
+                />
             </View>
-            <Header
-                navigation={navigation}
-
-            />
+            <Header navigation={navigation}/>
             {state.isLoading ? (
                 <LoadingScreen/>
             ) : null}

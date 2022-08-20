@@ -1,12 +1,13 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {Cocktail} from "../../constants/types";
 
-const initialState: any[] = []
+const initialState: Cocktail[] = []
 
 const CurrentDataSetSlice = createSlice({
     name: 'currentDataSet',
     initialState: initialState,
     reducers: {
-        changeCurrentDataSet: (state, action: PayloadAction<any[]>) => {
+        changeCurrentDataSet: (state, action: PayloadAction<Cocktail[]>) => {
             return action.payload
         }
     },
