@@ -6,6 +6,7 @@ Bugs:
 -fix all labels and buttons overflowing -> margin and padding not setting when passing as props -> something to do with props change
 
 Master branch Goals:
+-set margin and padding on every FilterButton and StyledButton used
 (x)-user login:
     (x)-verify email
     (x)-modal for errors/UI messages:

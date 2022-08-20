@@ -5,6 +5,7 @@ import {COLOR_BACKGROUND, COLOR_HEADER} from "../../../constants/color_styles";
 import {useAppDispatch} from "../../../constants/hooks";
 import {ALL} from "../../../constants/const_vars";
 import {ActionCreatorWithPayload} from "@reduxjs/toolkit";
+import {MARGIN, PADDING} from "../../../constants/style_constants";
 
 export default function FilterPanel({filterState, setFilterState, isMultiSelectable,
                                         options, optionsENG, labelName, numColumns}: FilterPanelProps) {
@@ -51,6 +52,8 @@ export default function FilterPanel({filterState, setFilterState, isMultiSelecta
                     colorInactive={COLOR_BACKGROUND}
                     onClick={onFilterButtonClickHandler}
                     state={filterState}
+                    padding={PADDING}
+                    margin={MARGIN / 2}
                 />
             </View>
         )

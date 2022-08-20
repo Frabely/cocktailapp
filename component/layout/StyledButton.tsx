@@ -2,7 +2,7 @@ import {Pressable, StyleSheet, Text} from "react-native";
 import {COLOR_BACKGROUND, COLOR_HEADER} from "../../constants/color_styles";
 import {useState} from "react";
 import {vh} from "../../functions/dimentions";
-import {BORDER_RADIUS, DEFAULT_BUTTON_HEIGHT, MARGIN, PADDING} from "../../constants/style_constants";
+import {BORDER_RADIUS, DEFAULT_BUTTON_HEIGHT} from "../../constants/style_constants";
 
 export default function StyledButton({onPress, title, margin, padding, width, flex, height}: StyledButtonProps) {
     const [isTouched, setIsTouched] = useState(false)
@@ -18,8 +18,8 @@ export default function StyledButton({onPress, title, margin, padding, width, fl
         <Pressable style={[styles.styledButton, {
             backgroundColor: isTouched ? COLOR_HEADER : COLOR_BACKGROUND,
             height: (height || height === 0) ? height : vh(DEFAULT_BUTTON_HEIGHT),
-            padding: (padding || padding === 0)   ? padding : PADDING,
-            margin: (margin || margin === 0)  ? margin : MARGIN / 2,
+            padding: (padding || padding === 0)   ? padding : undefined,
+            margin: (margin || margin === 0)  ? margin : undefined,
             width: (width || width === 0) ? width : undefined,
             flex: (flex || flex === 0) ? flex : undefined
         }]}
