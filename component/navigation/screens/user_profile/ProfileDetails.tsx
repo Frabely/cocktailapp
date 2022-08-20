@@ -118,8 +118,12 @@ export default function ProfileDetails({navigation}: any) {
         <AppBackground>
             <View style={styles.userData}>
                 <CardLayout>
-                    <ProfileDetailsItem label={USERNAME_LABEL[`${language}`]} value={state?.user?.username}/>
-                    <ProfileDetailsItem label={EMAIL_LABEL[`${language}`]} value={state?.user?.email}/>
+                    <ProfileDetailsItem
+                        label={USERNAME_LABEL[`${language}`]}
+                        value={(state?.user?.username) ? state?.user?.username : ''}/>
+                    <ProfileDetailsItem
+                        label={EMAIL_LABEL[`${language}`]}
+                        value={(state?.user?.email) ? state?.user?.email : ''}/>
                     <FilterButton
                         title={CHANGE_USERNAME_LABEL[`${language}`]}
                         titleENG={CHANGE_USERNAME_LABEL.ENG}
@@ -133,14 +137,14 @@ export default function ProfileDetails({navigation}: any) {
                         (isChangingUsername.includes(CHANGE_USERNAME_LABEL.ENG)) && !!getUsernameError(errorStateUsername) ? {paddingBottom: PADDING} : null]}>
                         {(isChangingUsername.includes(CHANGE_USERNAME_LABEL.ENG)) ? (
                             <>
-                            <TextInputWithErrorMessage
-                                errorState={(getUsernameError(errorStateUsername))}
-                                setInputState={setUsername}
-                                inputState={username}
-                                placeholderLabel={USERNAME_LABEL[`${language}`]}/>
-                            <StyledButton width={'50%'}
-                                              onPress={changeUserNameOnClickHandler}
-                                              title={CHANGE_USERNAME_LABEL[`${language}`]}/>
+                                <TextInputWithErrorMessage
+                                    errorState={(getUsernameError(errorStateUsername))}
+                                    setInputState={setUsername}
+                                    inputState={username}
+                                    placeholderLabel={USERNAME_LABEL[`${language}`]}/>
+                                <StyledButton onPress={changeUserNameOnClickHandler}
+                                              title={CHANGE_USERNAME_LABEL[`${language}`]}
+                                              width={'50%'}/>
                             </>
                         ) : null}
                     </View>

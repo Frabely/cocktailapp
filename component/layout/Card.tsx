@@ -4,13 +4,14 @@ import generate_box_shadow_style from '../../functions/generate_box_shadow_style
 import {BORDER_RADIUS, PADDING} from "../../constants/style_constants";
 import {COLOR_SHADOW} from "../../constants/color_styles";
 import {useAppSelector} from "../../constants/hooks";
+import {Cocktail} from "../../constants/types";
 
-export default function Card(props: any) {
+export default function Card({onPress, item}: CardProps) {
     const state = useAppSelector((state) => state)
     const onImageClickHandler = () => {
-        props.onImageClickHandler(
+        onPress(
             state.currentItem,
-            props.item)
+            item)
     }
     generate_box_shadow_style(
         styles,
@@ -34,7 +35,9 @@ export default function Card(props: any) {
     // } else {
         return (
             <Pressable onPress={onImageClickHandler} style={styles.cardOuter}>
-                <ImageBackground style={[styles.cardInner, styles.boxShadow]} source={{uri: props.item.strDrinkThumb}}/>
+                <ImageBackground style={[styles.cardInner, styles.boxShadow]} source={
+                    {uri: (item?.strDrinkThumb) ? item.strDrinkThumb : ''}
+                }/>
             </Pressable>
         )
     // }
@@ -76,8 +79,8 @@ const styles = StyleSheet.create({
 });
 
 export type CardProps = {
-    onImageClickHandler: any,
-    item: any,
+    onPress: ((...args: any) => any),
+    item: Cocktail,
 
 }
 

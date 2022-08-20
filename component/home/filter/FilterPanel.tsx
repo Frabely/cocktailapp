@@ -4,26 +4,27 @@ import FilterButton from "./FilterButton";
 import {COLOR_BACKGROUND, COLOR_HEADER} from "../../../constants/color_styles";
 import {useAppDispatch} from "../../../constants/hooks";
 import {ALL} from "../../../constants/const_vars";
+import {ActionCreatorWithPayload} from "@reduxjs/toolkit";
 
-export default function FilterPanel(props: any) {
+export default function FilterPanel(props: any, {filterState, setFilterState, isMultiSelectable, options, optionsENG, labelName, numColumns}: FilterPanelProps) {
     const dispatch = useAppDispatch()
 
     const onFilterButtonClickHandler = (filterName: string) => {
-        const array = [...props.filterState]
+        const array = [...filterState]
         if (filterName === ALL) {
-            dispatch(props.setFilterState([ALL]))
+            dispatch(setFilterState([ALL]))
             return
         }
         let resultArray = []
-        if (!props.isMultiSelectable) {
+        if (!isMultiSelectable) {
             resultArray.push(filterName)
-            dispatch(props.setFilterState(resultArray))
+            dispatch(setFilterState(resultArray))
 
         }
-        if (props.isMultiSelectable) {
+        if (isMultiSelectable) {
             if (!array.includes(filterName)) {
                 array.push(filterName)
-                if (array.length === props.options.length - 1)
+                if (options && array.length === options.length - 1)
                     resultArray = [ALL]
                 else
                     resultArray = array
@@ -36,7 +37,7 @@ export default function FilterPanel(props: any) {
         if (array.includes(ALL) && array.length > 1) {
             resultArray = array.filter(itemOnIndex => itemOnIndex !== ALL)
         }
-        dispatch(props.setFilterState(resultArray))
+        dispatch(setFilterState(resultArray))
     }
 
     const renderItem = ({item, index}: any) => {
@@ -44,11 +45,11 @@ export default function FilterPanel(props: any) {
             <View style={styles.flatListItem}>
                 <FilterButton
                     title={item}
-                    titleENG={props.optionsENG[index]}
+                    titleENG={optionsENG[index]}
                     colorActive={COLOR_HEADER}
                     colorInactive={COLOR_BACKGROUND}
                     onClick={onFilterButtonClickHandler}
-                    state={props.filterState}
+                    state={filterState}
                 />
             </View>
         )
@@ -56,43 +57,8 @@ export default function FilterPanel(props: any) {
 
     return (
         <View style={styles.filterPanel}>
-            <Label labelName={props.labelName}/>
-            {/*TODO remove Flatlist as Grid item to make sure andriod does not throw error
-                D:\react_native_workspace\cocktailapp\node_modules\react-native\Libraries\Core\ExceptionsManager.js:149
-                VirtualizedLists should never be nested inside plain ScrollViews with the same orientation because it can break windowing and other functionality
-                - use another VirtualizedList-backed container instead.
-           */}
-            {/*<View style={styles.container}>*/}
-            {/*    {props.options.map((item: any, index: number) => {*/}
-            {/*        if (index%3 ===0 ) {*/}
-            {/*            index= index-1*/}
-            {/*            return (<View style={{flexDirection: 'row', height: vh(0.1)}}>*/}
-            {/*                <View style={styles.flatListItem}>*/}
-            {/*                    <FilterButton*/}
-            {/*                        key={item}*/}
-            {/*                        title={item}*/}
-            {/*                        colorActive={COLOR_HEADER}*/}
-            {/*                        colorInactive={COLOR_BACKGROUND}*/}
-            {/*                        onClick={onFilterButtonClickHandler}*/}
-            {/*                        currentFilter={currentFilter}*/}
-            {/*                    />*/}
-            {/*                </View>*/}
-            {/*            </View>)*/}
-            {/*        }*/}
-            {/*        return (*/}
-            {/*                <View style={styles.flatListItem}>*/}
-            {/*                    <FilterButton*/}
-            {/*                        key={item}*/}
-            {/*                        title={item}*/}
-            {/*                        colorActive={COLOR_HEADER}*/}
-            {/*                        colorInactive={COLOR_BACKGROUND}*/}
-            {/*                        onClick={onFilterButtonClickHandler}*/}
-            {/*                        currentFilter={currentFilter}*/}
-            {/*                    />*/}
-            {/*                </View> )*/}
-            {/*})}*/}
-            {/*</View>*/}
-            <FlatList keyExtractor={(item) => item} data={props.options} renderItem={renderItem} numColumns={props.numColumns}/>
+            <Label labelName={labelName}/>
+            <FlatList keyExtractor={(item) => item} data={options} renderItem={renderItem} numColumns={numColumns}/>
         </View>
 
     )
@@ -106,3 +72,13 @@ const styles = StyleSheet.create({
         width: '100%'
     }
 })
+
+export type FilterPanelProps = {
+    isMultiSelectable: boolean,
+    filterState: any[],
+    setFilterState:  ActionCreatorWithPayload<any[]>,
+    options:  readonly string[] | null | undefined,
+    optionsENG: readonly string[],
+    labelName: string,
+    numColumns: number
+}

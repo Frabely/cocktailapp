@@ -6,7 +6,7 @@ import {COLOR_CARD_BACKGROUND, COLOR_HEADER, COLOR_INCORRECT_FIELD_INPUT} from "
 import {useAppSelector} from "../../constants/hooks";
 import {ErrorCodesType} from "../../constants/types";
 
-export default function TextInputWithErrorMessage(props: TextInputWithErrorMessageProps) {
+export default function TextInputWithErrorMessage({errorState, setInputState, placeholderLabel, inputState}: TextInputWithErrorMessageProps) {
     const state = useAppSelector((state) => state)
     const language: string = state.language
 
@@ -14,16 +14,16 @@ export default function TextInputWithErrorMessage(props: TextInputWithErrorMessa
         <>
             <TextInput
                 style={[styles.input,
-                    (props.errorState ? {backgroundColor: COLOR_INCORRECT_FIELD_INPUT} : {backgroundColor: COLOR_CARD_BACKGROUND})]}
+                    (errorState ? {backgroundColor: COLOR_INCORRECT_FIELD_INPUT} : {backgroundColor: COLOR_CARD_BACKGROUND})]}
                 onChangeText={input => {
-                    props.setInputState(input.trim())
+                    setInputState(input.trim())
                 }}
-                placeholder={props.placeholderLabel[`${language}`]}
-                value={props.inputState}
+                placeholder={placeholderLabel}
+                value={inputState}
                 selectTextOnFocus={true}/>
-            {props.errorState ? (
+            {errorState ? (
                 <Text
-                    style={styles.wrongInputMessage}>{props.errorState?.message[`${language}`]}</Text>
+                    style={styles.wrongInputMessage}>{errorState?.message[`${language}`]}</Text>
             ) : null}
         </>
     )
@@ -55,5 +55,5 @@ export type TextInputWithErrorMessageProps = {
     errorState: ErrorCodesType | undefined,
     setInputState: Dispatch<SetStateAction<any>>,
     inputState: string,
-    placeholderLabel: ErrorCodesType
+    placeholderLabel: string
 }

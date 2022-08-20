@@ -3,19 +3,20 @@ import {COLOR_BACKGROUND, COLOR_HEADER} from "../../constants/color_styles";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
 import {useState} from "react";
+import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
-export default function UserProfileItem(props: any) {
+export default function UserProfileItem({onPress, icon, label}: UserProfileItemProps) {
     const [isTouched, setIsTouched] = useState(false);
 
     return (
         <Pressable style={[styles.userProfileItem, {backgroundColor: isTouched ? COLOR_HEADER : COLOR_BACKGROUND}]}
-                   onPress={props.onPress}
+                   onPress={onPress}
                    onTouchStart={() => setIsTouched(true)}
                    onTouchEnd={() => setIsTouched(false)}>
             <View style={styles.icon}>
-                <FontAwesomeIcon icon={props.icon}/>
+                <FontAwesomeIcon icon={icon}/>
             </View>
-            <Text style={styles.text}>{props.label}</Text>
+            <Text style={styles.text}>{label}</Text>
         </Pressable>
     )
 
@@ -36,3 +37,9 @@ const styles = StyleSheet.create({
         paddingLeft: PADDING / 2
     }
 })
+
+export type UserProfileItemProps = {
+    onPress: (({}:any) => any),
+    icon: IconProp,
+    label: string
+}

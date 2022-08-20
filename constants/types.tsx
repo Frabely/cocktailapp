@@ -1,23 +1,23 @@
 export type LabelType = {
-    [index: string]: any
+    [index: string]: string
     ENG: string,
     GER: string
 }
 
 export type ErrorCodesType = {
-    [index: string]: any
+    [index: string]: string | LabelType
     code: string,
     message: LabelType
 }
 
 export type LabelListType = {
-    [index: string]: any
+    [index: string]: readonly string[]
     ENG: string[],
     GER: string[]
 }
 
 export type CocktailListType = {
-    [index: string]: any
+    [index: string]: readonly Cocktail[]
     drinks: Cocktail[]
 }
 

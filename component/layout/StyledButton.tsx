@@ -3,8 +3,9 @@ import {COLOR_BACKGROUND, COLOR_HEADER} from "../../constants/color_styles";
 import {useState} from "react";
 import {vh} from "../../functions/dimentions";
 import {BORDER_RADIUS, DEFAULT_BUTTON_HEIGHT, MARGIN, PADDING} from "../../constants/style_constants";
+import {LabelType} from "../../constants/types";
 
-export default function StyledButton(props: any) {
+export default function StyledButton(props: any, {onPress, title}: StyledButtonProps) {
     const [isTouched, setIsTouched] = useState(false)
     const onTouchStartHandler = () => {
         setIsTouched(true)
@@ -25,8 +26,8 @@ export default function StyledButton(props: any) {
         }]}
                    onTouchStart={onTouchStartHandler}
                    onTouchEnd={onTouchEndHandler}
-                   onPress={props.onPress}>
-            <Text style={{textAlign: "center"}}>{props.title}</Text>
+                   onPress={onPress}>
+            <Text style={{textAlign: "center"}}>{title}</Text>
         </Pressable>
     )
 }
@@ -39,3 +40,8 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     }
 })
+
+export type StyledButtonProps = {
+    title: LabelType,
+    onPress: (({}: any) => any)
+}

@@ -1,10 +1,11 @@
 import {Pressable, StyleSheet} from "react-native";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 import {PADDING} from "../../constants/style_constants";
+import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
-export default function HeaderButton(props: any) {
+export default function HeaderButton(props: any, {icon, onPress}: HeaderButtonProps) {
     return (
-        <Pressable onPress={props.onPress} style={[styles.headerButton, {
+        <Pressable onPress={onPress} style={[styles.headerButton, {
             justifyContent: props?.justifyContent ? props.justifyContent : 'center',
             height: props?.heightButton ? props.heightButton : '100%',
             flex: props?.flex ? props.flex : 1,
@@ -13,7 +14,7 @@ export default function HeaderButton(props: any) {
                 height: props?.height ? props.height : null,
                 width: props?.width ? props.width : null,
                 color: props?.color ? props.color : null
-            }} icon={props.icon}/>
+            }} icon={icon}/>
         </Pressable>
     )
 }
@@ -24,3 +25,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
 })
+
+export type HeaderButtonProps = {
+    icon: IconProp,
+    onPress: (({}:any) => any)
+}

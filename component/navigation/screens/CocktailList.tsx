@@ -71,7 +71,7 @@ export default function CocktailList({route, navigation}: any) {
         return (
             <Card key={item.idDrink}
                   item={item}
-                  onImageClickHandler={onImageClickHandler}/>
+                  onPress={onImageClickHandler}/>
         )
     }
 

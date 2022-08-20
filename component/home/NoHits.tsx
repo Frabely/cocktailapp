@@ -13,7 +13,8 @@ export default function NoHits(props: any) {
         <View style={styles.noHits}>
             <CardLayout width={vw(0.5)}>
                     <Text style={{fontWeight: '900'}}>{`${NO_HITS_LABEL[`${language}`]} 😕`}</Text>
-                    <StyledButton width={'100%'} title={RESET_FILTER_LABEL[`${language}`]}
+                    <StyledButton width={'100%'}
+                                  title={RESET_FILTER_LABEL[`${language}`]}
                                   onPress={props.onClearAllFiltersClickHandler}/>
             </CardLayout>
         </View>

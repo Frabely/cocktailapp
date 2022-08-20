@@ -9,7 +9,7 @@ import {invertIsModalState} from "../../reducers/booleans/isModalReducer";
 import {BORDER_RADIUS, PADDING} from "../../constants/style_constants";
 import {changeModalMessage} from "../../reducers/general/modalMessageReducer";
 
-export default function Modal(props: any) {
+export default function Modal({message}: ModalProps) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
     const language: string = state.language
@@ -22,8 +22,14 @@ export default function Modal(props: any) {
         <Pressable onPress={closeModelOnPressHandler} style={styles.modalBackground}>
             <View style={styles.modalInner}>
                 <CardLayout>
-                    <Text>{props.message}</Text>
-                    <StyledButton width={'50%'} height={vh(0.05)} padding={PADDING} title={CLOSE[`${language}`]} onPress={closeModelOnPressHandler} />
+                    <Text>{message}</Text>
+                    <StyledButton
+                        title={CLOSE[`${language}`]}
+                        onPress={closeModelOnPressHandler}
+                        width={'50%'}
+                        height={vh(0.05)}
+                        padding={PADDING}
+                        />
                 </CardLayout>
             </View>
         </Pressable>
@@ -46,3 +52,7 @@ const styles = StyleSheet.create({
         borderRadius: BORDER_RADIUS
     }
 });
+
+export type ModalProps = {
+    message: string
+}

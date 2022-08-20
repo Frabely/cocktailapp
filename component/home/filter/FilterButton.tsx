@@ -1,14 +1,15 @@
-import {Pressable, StyleSheet, Text} from "react-native";
+import {ColorValue, Pressable, StyleSheet, Text} from "react-native";
 import {BORDER_RADIUS, DEFAULT_BUTTON_HEIGHT, MARGIN, PADDING} from "../../../constants/style_constants";
 import {COLOR_BACKGROUND} from "../../../constants/color_styles";
 import {vh} from "../../../functions/dimentions";
 import {useState} from "react";
+import {LabelType} from "../../../constants/types";
 
-export default function FilterButton(props: any) {
+export default function FilterButton(props: any, {state, titleENG, onClick, title, colorActive, colorInactive}: FilterButtonProps) {
     const [isTouched, setIsTouched] = useState(false);
-    const isClicked = props.state.includes(props.titleENG)
+    const isClicked = state.includes(titleENG)
     const onClickHandler = () => {
-        props.onClick(props.titleENG)
+        onClick(titleENG)
     }
 
     return (
@@ -19,13 +20,13 @@ export default function FilterButton(props: any) {
             [
                 styles.outerButton,
                 {
-                    backgroundColor: (isClicked || isTouched) ? props.colorActive : props.colorInactive,
+                    backgroundColor: (isClicked || isTouched) ? colorActive : colorInactive,
                     padding: props?.padding ? props.padding :  PADDING / 8,
                     margin: props?.margin ? props.margin : MARGIN / 2,
                     width: props?.width ? props.width : null,
                 },
             ]}>
-            <Text style={{textAlign: "center"}}>{props.title}</Text>
+            <Text style={{textAlign: "center"}}>{title}</Text>
         </Pressable>
     )
 }
@@ -39,3 +40,12 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     }
 })
+
+export type FilterButtonProps = {
+    state: string[],
+    titleENG : string,
+    onClick: (({}: any) => any),
+    title: LabelType,
+    colorActive: ColorValue | undefined,
+    colorInactive: ColorValue | undefined
+}
