@@ -2,6 +2,8 @@ import { LabelType } from "./types"
 
 export const USERNAME_LABEL: LabelType = {ENG: 'Username', GER: 'Nutzername',}
 export const EMAIL_LABEL: LabelType = {ENG: 'Email', GER: 'Email',}
+export const OLD_PASSWORD_LABEL: LabelType = {ENG: 'Old Password', GER: 'Altes Passwort'}
+export const NEW_PASSWORD_LABEL: LabelType = {ENG: 'New Password', GER: 'Neues Passwort'}
 export const PASSWORD_LABEL: LabelType = {ENG: 'Password', GER: 'Passwort'}
 export const REPEAT_PASSWORD_LABEL: LabelType = {ENG: 'Repeat Password', GER: 'Passwort wiederholen'}
 export const FINISH_ACCOUNT_CREATION_LABEL: LabelType = {ENG: 'Finish Account Creation', GER: 'Account Erstellung abschließen'}
@@ -33,8 +35,13 @@ export const ACCOUNT_CREATED_VERIFY_EMAIL: LabelType = {
     ENG: 'Account created. We sent a verification email. Check your mailbox and click the link to verify.',
     GER: 'Account wurde erstellt. Bestätigen Sie Ihre Emailadresse mit dem, an ihre Emailadresse gesendeten, Verifizierungslink.'
 }
-export const USERNAME_SUCCESSFUL_UPDATED: LabelType = {
+export const USERNAME_SUCCESSFUL_CHANGED: LabelType = {
     ENG: 'Username successful changed.',
     GER: 'Nutzername erfolgreich geändert.'
+}
+
+export const PASSWORD_SUCCESSFUL_CHANGED: LabelType = {
+    ENG: 'Password successful changed.',
+    GER: 'Passwort erfolgreich geändert.'
 }
 

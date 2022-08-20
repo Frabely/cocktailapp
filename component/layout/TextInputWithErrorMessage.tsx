@@ -6,7 +6,8 @@ import {COLOR_CARD_BACKGROUND, COLOR_INCORRECT_FIELD_INPUT} from "../../constant
 import {useAppSelector} from "../../constants/hooks";
 import {ErrorCodesType} from "../../constants/types";
 
-export default function TextInputWithErrorMessage({errorState, setInputState, placeholderLabel, inputState}: TextInputWithErrorMessageProps) {
+export default function TextInputWithErrorMessage({errorState, setInputState,
+                                                      placeholderLabel, inputState, isPassword}: TextInputWithErrorMessageProps) {
     const state = useAppSelector((state) => state)
     const language: string = state.language
 
@@ -20,7 +21,8 @@ export default function TextInputWithErrorMessage({errorState, setInputState, pl
                 }}
                 placeholder={placeholderLabel}
                 value={inputState}
-                selectTextOnFocus={true}/>
+                selectTextOnFocus={true}
+                secureTextEntry={(isPassword) ? isPassword : !isPassword}/>
             {errorState ? (
                 <Text
                     style={styles.wrongInputMessage}>{errorState?.message[`${language}`]}</Text>
@@ -49,5 +51,6 @@ export type TextInputWithErrorMessageProps = {
     errorState: ErrorCodesType | undefined,
     setInputState: Dispatch<SetStateAction<string>>,
     inputState: string,
-    placeholderLabel: string
+    placeholderLabel: string,
+    isPassword?: boolean
 }

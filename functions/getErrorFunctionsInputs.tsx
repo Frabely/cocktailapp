@@ -1,5 +1,5 @@
 import {
-    EMAIL_MISSING,
+    EMAIL_MISSING, NEW_PASSWORD_MISSING, OLD_AND_NEW_PASSWORDS_MATCHING, OLD_PASSWORD_MISSING,
     PASSWORD_MISSING,
     PASSWORDS_NOT_MATCHING, REPEAT_PASSWORD_MISSING,
     USERNAME_ALREADY_USED,
@@ -33,15 +33,31 @@ export const getEmailError = (errorStateEmail: string[]) => {
     return undefined;
 }
 
+export const getOldPasswordError = (errorStateOldPassword: string[]) => {
+    if (errorStateOldPassword.includes(OLD_PASSWORD_MISSING.code))
+        return OLD_PASSWORD_MISSING
+    if (errorStateOldPassword.includes(OLD_AND_NEW_PASSWORDS_MATCHING.code))
+        return OLD_AND_NEW_PASSWORDS_MATCHING
+    if (errorStateOldPassword.includes(WRONG_PASSWORD.code))
+        return WRONG_PASSWORD
+    if (errorStateOldPassword.includes(WEAK_PASSWORD.code))
+        return WEAK_PASSWORD
+    return undefined
+}
+
 export const getPasswordError = (errorStatePassword: string[]) => {
     if (errorStatePassword.includes(PASSWORD_MISSING.code))
         return PASSWORD_MISSING
+    if (errorStatePassword.includes(NEW_PASSWORD_MISSING.code))
+        return NEW_PASSWORD_MISSING
     if (errorStatePassword.includes(WRONG_PASSWORD.code))
         return WRONG_PASSWORD
     if (errorStatePassword.includes(PASSWORDS_NOT_MATCHING.code))
         return PASSWORDS_NOT_MATCHING
     if (errorStatePassword.includes(WEAK_PASSWORD.code))
         return WEAK_PASSWORD
+    if (errorStatePassword.includes(OLD_AND_NEW_PASSWORDS_MATCHING.code))
+        return OLD_AND_NEW_PASSWORDS_MATCHING
     return undefined;
 }
 
@@ -52,5 +68,7 @@ export const getRepeatPasswordError = (errorStateRepeatPassword: string[]) => {
         return PASSWORDS_NOT_MATCHING
     if (errorStateRepeatPassword.includes(WEAK_PASSWORD.code))
         return WEAK_PASSWORD
+    if (errorStateRepeatPassword.includes(OLD_AND_NEW_PASSWORDS_MATCHING.code))
+        return OLD_AND_NEW_PASSWORDS_MATCHING
     return undefined;
 }

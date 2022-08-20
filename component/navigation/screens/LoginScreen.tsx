@@ -84,8 +84,8 @@ export default function LoginScreen() {
         if (password === '') {
             errorArrayPassword.push(PASSWORD_MISSING.code)
         }
-        if ((!errorArrayEmail) ||
-            (!errorArrayPassword)) {
+        if ((errorArrayEmail.length > 0) ||
+            (errorArrayPassword.length > 0)) {
             setErrorStateEmail(errorArrayEmail)
             setErrorStatePassword(errorArrayPassword)
             dispatch(setIsLoadingFalse())
@@ -171,10 +171,10 @@ export default function LoginScreen() {
             errorArrayPassword.push(PASSWORDS_NOT_MATCHING.code)
             errorArrayRepeatPassword.push(PASSWORDS_NOT_MATCHING.code)
         }
-        if ((!errorArrayUsername) ||
-            (!errorArrayEmail) ||
-            (!errorArrayPassword) ||
-            (!errorArrayRepeatPassword)) {
+        if ((errorArrayUsername.length > 0) ||
+            (errorArrayEmail.length > 0) ||
+            (errorArrayPassword.length > 0) ||
+            (errorArrayRepeatPassword.length > 0)) {
             setErrorStateUsername(errorArrayUsername)
             setErrorStateEmail(errorArrayEmail)
             setErrorStatePassword(errorArrayPassword)
