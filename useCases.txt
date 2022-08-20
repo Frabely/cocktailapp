@@ -5,7 +5,6 @@ Bugs:
 -on android close on name change not correctly shown (overflow in border)
 
 Master branch Goals:
--set margin and padding on every FilterButton and StyledButton used
 (x)-user login:
     (x)-verify email
     (x)-modal for errors/UI messages:
