@@ -1,7 +1,7 @@
 import {StyleSheet, View} from "react-native";
 import {vw} from "../../../functions/dimentions";
 import {COLOR_CARD_BACKGROUND} from "../../../constants/color_styles";
-import {BORDER_RADIUS, MARGIN} from "../../../constants/style_constants";
+import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
 import FilterPanel from "./FilterPanel";
 import {
     CATEGORY_LABEL,
@@ -61,9 +61,15 @@ export default function Filter({onClearAllFiltersClickHandler}: FilterProps) {
             </View>
             <DropDownPickerWrapper/>
             <View style={styles.buttonBackgroundStyle}>
-                <StyledButton flex={1} onPress={onClearAllFiltersClickHandler}
+                <StyledButton flex={1}
+                              margin={MARGIN / 2}
+                              padding={PADDING}
+                              onPress={onClearAllFiltersClickHandler}
                               title={CLEAR_ALL_FILTERS_LABEL[`${language}`]}/>
-                <StyledButton flex={1} onPress={onHitsClickHandler}
+                <StyledButton flex={1}
+                              margin={MARGIN / 2}
+                              padding={PADDING}
+                              onPress={onHitsClickHandler}
                               title={`${HITS_LABEL[`${language}`]}: ${state.currentDataSet.length}`}/>
             </View>
         </View>

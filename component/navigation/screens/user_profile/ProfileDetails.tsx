@@ -132,7 +132,8 @@ export default function ProfileDetails({navigation}: any) {
                         colorInactive={COLOR_BACKGROUND}
                         onClick={onChangeUsernamePressHandler}
                         state={isChangingUsername}
-                        padding={PADDING}/>
+                        padding={PADDING}
+                        margin={MARGIN / 2}/>
                     <View style={[styles.inputCard,
                         (isChangingUsername.includes(CHANGE_USERNAME_LABEL.ENG)) && !!getUsernameError(errorStateUsername) ? {paddingBottom: PADDING} : null]}>
                         {(isChangingUsername.includes(CHANGE_USERNAME_LABEL.ENG)) ? (
@@ -146,7 +147,8 @@ export default function ProfileDetails({navigation}: any) {
                                     onPress={changeUserNameOnClickHandler}
                                     title={CHANGE_USERNAME_LABEL[`${language}`]}
                                     flex={1}
-                                />
+                                    padding={PADDING}
+                                    margin={MARGIN}/>
                             </>
                         ) : null}
                     </View>
@@ -158,7 +160,9 @@ export default function ProfileDetails({navigation}: any) {
                         colorInactive={COLOR_BACKGROUND}
                         onClick={onChangePasswordPressHandler}
                         state={isChangingPassword}
-                        padding={PADDING}/>
+                        padding={PADDING}
+                        margin={MARGIN / 2}
+                    />
                 </CardLayout>
             </View>
             <Header navigation={navigation}/>
@@ -178,15 +182,10 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     inputCard: {
-        width: '100%',
-        marginBottom: MARGIN / 2,
+        // width: '100%',
+        marginHorizontal: MARGIN/2,
         backgroundColor: COLOR_HEADER,
         borderRadius: BORDER_RADIUS / 2,
-    },
-    input: {
-        borderRadius: BORDER_RADIUS / 2,
-        padding: PADDING,
-        margin: MARGIN
     },
     wrongInputMessage: {
         maxWidth: vw(0.7) - MARGIN - PADDING,

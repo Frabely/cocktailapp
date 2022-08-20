@@ -15,7 +15,7 @@ import StyledButton from "../../../layout/StyledButton";
 import React, {useState} from "react";
 import {changeLanguage} from "../../../../reducers/user/languageReducer";
 import {ENGLISH, GERMAN} from "../../../../constants/const_vars";
-import {BORDER_RADIUS, MARGIN} from "../../../../constants/style_constants";
+import {BORDER_RADIUS, MARGIN, PADDING} from "../../../../constants/style_constants";
 import {updateUser} from "../../../../functions/firebase";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../../../reducers/booleans/isLoadingReducer";
 import LoadingScreen from "../../../layout/LoadingScreen";
@@ -59,8 +59,8 @@ export default function Settings({navigation}: any) {
                                     setIsLeftActive={setIsLeftActive}/>
                         </View>
                     </View>
-
                     <StyledButton
+                        padding={PADDING}
                         flex={1}
                         onPress={onSaveSettingsHandler}
                         title={SAVE_SETTINGS_LABEL[`${language}`]}/>

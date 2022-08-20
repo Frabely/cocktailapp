@@ -4,6 +4,7 @@ import {vw} from "../../functions/dimentions";
 import CardLayout from "../layout/CardLayout";
 import {NO_HITS_LABEL, RESET_FILTER_LABEL} from "../../constants/labels";
 import {useAppSelector} from "../../constants/hooks";
+import {MARGIN, PADDING} from "../../constants/style_constants";
 
 export default function NoHits({onClearAllFiltersClickHandler}: NoHitsProps) {
     const state = useAppSelector((state) => state)
@@ -16,7 +17,9 @@ export default function NoHits({onClearAllFiltersClickHandler}: NoHitsProps) {
                     <StyledButton
                         flex={1}
                         title={RESET_FILTER_LABEL[`${language}`]}
-                        onPress={onClearAllFiltersClickHandler}/>
+                        onPress={onClearAllFiltersClickHandler}
+                        padding={PADDING}
+                        margin={MARGIN / 2}/>
             </CardLayout>
         </View>
     )

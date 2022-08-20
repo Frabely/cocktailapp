@@ -338,21 +338,27 @@ export default function LoginScreen() {
                             </>
                         ) : null}
                     </View>
-                    <StyledButton
-                        flex={1}
-                        onPress={(isCreatingAccount.includes(CREATE_ACCOUNT)) ?
-                            onCreatAccountHandler : onLoginHandler}
-                        title={(isCreatingAccount.includes(CREATE_ACCOUNT)) ?
-                            FINISH_ACCOUNT_CREATION_LABEL[`${language}`] : LOGIN_LABEL[`${language}`]}
-                    />
-                    <FilterButton
-                        flex={1}
-                        title={CREATE_ACCOUNT_LABEL[`${language}`]}
-                        titleENG={CREATE_ACCOUNT_LABEL.ENG}
-                        colorActive={COLOR_HEADER}
-                        colorInactive={COLOR_BACKGROUND}
-                        onClick={onCreateAccountButtonClickHandler}
-                        state={isCreatingAccount}/>
+                    <View style={{marginVertical: MARGIN / 2}}>
+                        <StyledButton
+                            flex={1}
+                            padding={PADDING}
+                            onPress={(isCreatingAccount.includes(CREATE_ACCOUNT)) ?
+                                onCreatAccountHandler : onLoginHandler}
+                            title={(isCreatingAccount.includes(CREATE_ACCOUNT)) ?
+                                FINISH_ACCOUNT_CREATION_LABEL[`${language}`] : LOGIN_LABEL[`${language}`]}
+                        />
+                    </View>
+                    <View style={{marginVertical: MARGIN / 2}}>
+                        <FilterButton
+                            flex={1}
+                            padding={PADDING}
+                            title={CREATE_ACCOUNT_LABEL[`${language}`]}
+                            titleENG={CREATE_ACCOUNT_LABEL.ENG}
+                            colorActive={COLOR_HEADER}
+                            colorInactive={COLOR_BACKGROUND}
+                            onClick={onCreateAccountButtonClickHandler}
+                            state={isCreatingAccount}/>
+                    </View>
                 </CardLayout>
             </View>
             {state.isLoading ? (

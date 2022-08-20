@@ -6,7 +6,7 @@ import StyledButton from "./StyledButton";
 import {useAppDispatch, useAppSelector} from "../../constants/hooks";
 import {CLOSE} from "../../constants/labels";
 import {invertIsModalState} from "../../reducers/booleans/isModalReducer";
-import {BORDER_RADIUS, PADDING} from "../../constants/style_constants";
+import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
 import {changeModalMessage} from "../../reducers/general/modalMessageReducer";
 
 export default function Modal({message}: ModalProps) {
@@ -23,13 +23,13 @@ export default function Modal({message}: ModalProps) {
             <View style={styles.modalInner}>
                 <CardLayout>
                     <Text>{message}</Text>
-                    <StyledButton
-                        title={CLOSE[`${language}`]}
-                        onPress={closeModelOnPressHandler}
-                        width={'50%'}
-                        height={vh(0.05)}
-                        padding={PADDING}
-                        />
+                    <View style={{marginTop: MARGIN}}>
+                        <StyledButton
+                            flex={1}
+                            title={CLOSE[`${language}`]}
+                            onPress={closeModelOnPressHandler}
+                            padding={PADDING}/>
+                    </View>
                 </CardLayout>
             </View>
         </Pressable>
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     modalInner: {
         width: vw(0.8),
         backgroundColor: COLOR_HEADER,
-        borderRadius: BORDER_RADIUS
+        borderRadius: BORDER_RADIUS,
     }
 });
 
