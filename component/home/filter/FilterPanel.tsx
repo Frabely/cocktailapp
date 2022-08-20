@@ -52,7 +52,7 @@ export default function FilterPanel({filterState, setFilterState, isMultiSelecta
                     colorInactive={COLOR_BACKGROUND}
                     onClick={onFilterButtonClickHandler}
                     state={filterState}
-                    padding={PADDING}
+                    padding={PADDING / 2}
                     margin={MARGIN / 2}
                 />
             </View>

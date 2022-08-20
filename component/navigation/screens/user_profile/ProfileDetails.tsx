@@ -241,7 +241,6 @@ export default function ProfileDetails({navigation}: any) {
                         label={EMAIL_LABEL[`${language}`]}
                         value={(state?.user?.email) ? state?.user?.email : ''}/>
                     <FilterButton
-                        flex={1}
                         title={CHANGE_USERNAME_LABEL[`${language}`]}
                         titleENG={CHANGE_USERNAME_LABEL.ENG}
                         colorActive={COLOR_HEADER}
@@ -261,14 +260,12 @@ export default function ProfileDetails({navigation}: any) {
                                 <StyledButton
                                     onPress={changeUserNameOnClickHandler}
                                     title={CHANGE_USERNAME_LABEL[`${language}`]}
-                                    flex={1}
                                     padding={PADDING}
                                     margin={MARGIN}/>
                             </>
                         ) : null}
                     </View>
                     <FilterButton
-                        flex={1}
                         title={CHANGE_PASSWORD_LABEL[`${language}`]}
                         titleENG={CHANGE_PASSWORD_LABEL.ENG}
                         colorActive={COLOR_HEADER}
@@ -302,7 +299,6 @@ export default function ProfileDetails({navigation}: any) {
                                 <StyledButton
                                     onPress={changePasswordOnClickHandler}
                                     title={CHANGE_PASSWORD_LABEL[`${language}`]}
-                                    flex={1}
                                     padding={PADDING}
                                     margin={MARGIN}/>
                             </>

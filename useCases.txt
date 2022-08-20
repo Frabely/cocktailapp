@@ -3,6 +3,8 @@ Bugs:
 -if no favorites -> Favorites page shows "No Hits -- Reset Filters" -> should display something like no favorites found
 -status bar not transparent
 -on android close on name change not correctly shown (overflow in border)
+-on android buttons labels not showing
+-on android filter buttons padding to big
 
 Master branch Goals:
 (x)-user login:
@@ -13,17 +15,15 @@ Master branch Goals:
     -pages:
         -profile details:
             (x)-change username
-            -change password
+            (x)-change password
         -login:
             -reset password
 -set email language (https://firebase.google.com/docs/auth/web/manage-users?hl=de&authuser=0)
 -add something to verify that the user is on favorites or home
 -Firebase Backend -> upload data auf firebase
 
-
 TODOs:
--set propsType for every Component -> huge bug resolver when refactoring -> set props: any to props: ComponentNameProps {object with props}
-    -check if possible
+-refactor login screen and settings -> put all error checking into functions -> currently way to many code
 -user profile:
     -pages:
         -profile details:

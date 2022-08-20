@@ -1,4 +1,4 @@
-import {ColorValue, Pressable, StyleSheet, Text} from "react-native";
+import {ColorValue, Platform, Pressable, StyleSheet, Text} from "react-native";
 import {BORDER_RADIUS, DEFAULT_BUTTON_HEIGHT} from "../../../constants/style_constants";
 import {COLOR_BACKGROUND} from "../../../constants/color_styles";
 import {vh} from "../../../functions/dimentions";
@@ -30,7 +30,7 @@ export default function FilterButton({
                            padding: (padding || padding === 0) ? padding : undefined,
                            margin: (margin || margin === 0) ? margin : undefined,
                            width: (width || width === 0) ? width : undefined,
-                           flex: (flex || flex === 0) ? flex : undefined,
+                           flex: (flex || flex === 0) ? flex : (Platform.OS === "android") ? undefined : 1,
                        },
                    ]}>
             <Text style={{textAlign: "center"}}>{title}</Text>

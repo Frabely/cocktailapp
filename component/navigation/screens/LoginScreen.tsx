@@ -340,7 +340,6 @@ export default function LoginScreen() {
                     </View>
                     <View style={{marginVertical: MARGIN / 2}}>
                         <StyledButton
-                            flex={1}
                             padding={PADDING}
                             onPress={(isCreatingAccount.includes(CREATE_ACCOUNT)) ?
                                 onCreatAccountHandler : onLoginHandler}
@@ -350,7 +349,6 @@ export default function LoginScreen() {
                     </View>
                     <View style={{marginVertical: MARGIN / 2}}>
                         <FilterButton
-                            flex={1}
                             padding={PADDING}
                             title={CREATE_ACCOUNT_LABEL[`${language}`]}
                             titleENG={CREATE_ACCOUNT_LABEL.ENG}

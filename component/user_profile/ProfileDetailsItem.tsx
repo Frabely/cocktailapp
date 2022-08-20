@@ -1,10 +1,11 @@
-import {StyleSheet, Text, View} from "react-native";
+import {Platform, StyleSheet, Text, View} from "react-native";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
 import {COLOR_BACKGROUND} from "../../constants/color_styles";
 
 export default function ProfileDetailsItem({label, value}: ProfileDetailsItemProps) {
     return (
-        <View style={styles.profileDetailsItem}>
+        <View style={[styles.profileDetailsItem,
+            {flex: (Platform.OS === "android") ? undefined : 1}]}>
             <Text style={{fontWeight: 'bold', flex: 1}}>{label}:</Text>
             <View>
                 <Text style={{flex: 1}}>{value}</Text>
@@ -15,7 +16,6 @@ export default function ProfileDetailsItem({label, value}: ProfileDetailsItemPro
 
 const styles = StyleSheet.create({
     profileDetailsItem: {
-        flex: 1,
         flexDirection: 'row',
         padding: PADDING,
         margin: MARGIN / 2,

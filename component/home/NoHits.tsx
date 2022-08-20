@@ -15,7 +15,6 @@ export default function NoHits({onClearAllFiltersClickHandler}: NoHitsProps) {
             <CardLayout width={vw(0.5)}>
                     <Text style={styles.text}>{`${NO_HITS_LABEL[`${language}`]} 😕`}</Text>
                     <StyledButton
-                        flex={1}
                         title={RESET_FILTER_LABEL[`${language}`]}
                         onPress={onClearAllFiltersClickHandler}
                         padding={PADDING}

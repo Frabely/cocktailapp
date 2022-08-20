@@ -25,7 +25,6 @@ export default function Modal({message}: ModalProps) {
                     <Text>{message}</Text>
                     <View style={{marginTop: MARGIN}}>
                         <StyledButton
-                            flex={1}
                             title={CLOSE[`${language}`]}
                             onPress={closeModelOnPressHandler}
                             padding={PADDING}/>

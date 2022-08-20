@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from "react-native";
+import {Platform, StyleSheet, Text, View} from "react-native";
 import {vh} from "../../../../functions/dimentions";
 import AppBackground from "../../../layout/AppBackground";
 import Header from "../../../layout/Header";
@@ -48,7 +48,8 @@ export default function Settings({navigation}: any) {
         <AppBackground>
             <View style={styles.settings}>
                 <CardLayout>
-                    <View style={styles.profileDetailsItem}>
+                    <View style={[styles.profileDetailsItem,
+                        {flex: (Platform.OS === "android") ? undefined : 1}]}>
                         <Text style={{fontWeight: 'bold', flex: 1}}>{LANGUAGE_LABEL[`${language}`]}:</Text>
                         <View style={{flex: 1, flexDirection: 'row-reverse'}}>
                             <Switch colorSelected={COLOR_HEADER}
@@ -62,7 +63,6 @@ export default function Settings({navigation}: any) {
                     <StyledButton
                         margin={MARGIN / 2}
                         padding={PADDING}
-                        flex={1}
                         onPress={onSaveSettingsHandler}
                         title={SAVE_SETTINGS_LABEL[`${language}`]}/>
                 </CardLayout>

@@ -1,4 +1,4 @@
-import {Pressable, StyleSheet, Text} from "react-native";
+import {Platform, Pressable, StyleSheet, Text} from "react-native";
 import {COLOR_BACKGROUND, COLOR_HEADER} from "../../constants/color_styles";
 import {useState} from "react";
 import {vh} from "../../functions/dimentions";
@@ -21,7 +21,7 @@ export default function StyledButton({onPress, title, margin, padding, width, fl
             padding: (padding || padding === 0)   ? padding : undefined,
             margin: (margin || margin === 0)  ? margin : undefined,
             width: (width || width === 0) ? width : undefined,
-            flex: (flex || flex === 0) ? flex : undefined
+            flex: (flex || flex === 0) ? flex : (Platform.OS === "android") ? undefined : 1
         }]}
                    onTouchStart={onTouchStartHandler}
                    onTouchEnd={onTouchEndHandler}

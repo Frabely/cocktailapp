@@ -61,16 +61,18 @@ export default function Filter({onClearAllFiltersClickHandler}: FilterProps) {
             </View>
             <DropDownPickerWrapper/>
             <View style={styles.buttonBackgroundStyle}>
-                <StyledButton flex={1}
-                              margin={MARGIN / 2}
-                              padding={PADDING}
-                              onPress={onClearAllFiltersClickHandler}
-                              title={CLEAR_ALL_FILTERS_LABEL[`${language}`]}/>
-                <StyledButton flex={1}
-                              margin={MARGIN / 2}
-                              padding={PADDING}
-                              onPress={onHitsClickHandler}
-                              title={`${HITS_LABEL[`${language}`]}: ${state.currentDataSet.length}`}/>
+                <StyledButton
+                    flex={1}
+                    margin={MARGIN / 2}
+                    padding={PADDING}
+                    onPress={onClearAllFiltersClickHandler}
+                    title={CLEAR_ALL_FILTERS_LABEL[`${language}`]}/>
+                <StyledButton
+                    flex={1}
+                    margin={MARGIN / 2}
+                    padding={PADDING}
+                    onPress={onHitsClickHandler}
+                    title={`${HITS_LABEL[`${language}`]}: ${state.currentDataSet.length}`}/>
             </View>
         </View>
     )
