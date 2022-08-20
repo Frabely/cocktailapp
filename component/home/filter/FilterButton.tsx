@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 export type FilterButtonProps = {
     state: string[],
     titleENG: string,
-    onClick: (({}: any) => any),
+    onClick: ((...args :any) => any),
     title: string,
     colorActive: ColorValue | undefined,
     colorInactive: ColorValue | undefined,

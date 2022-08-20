@@ -39,10 +39,9 @@ const styles = StyleSheet.create({
     wrongInputMessage: {
         maxWidth: vw(0.7) - MARGIN - PADDING,
         color: COLOR_INCORRECT_FIELD_INPUT,
-        marginLeft: MARGIN / 2,
-        paddingLeft: PADDING,
-        marginRight: MARGIN,
-        paddingRight: PADDING
+        marginHorizontal:  MARGIN / 2,
+        paddingHorizontal: PADDING,
+        marginTop: MARGIN / 2
     }
 })
 

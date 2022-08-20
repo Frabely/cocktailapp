@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
 
 export type StyledButtonProps = {
     title: string,
-    onPress: (({}: any) => any),
+    onPress: ((...args :any) => any),
     padding?: number | undefined,
     margin?: number | undefined,
     width?: string | number | undefined,

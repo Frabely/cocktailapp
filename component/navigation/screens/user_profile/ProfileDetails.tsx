@@ -56,6 +56,7 @@ export default function ProfileDetails({navigation}: any) {
     const changeUserNameOnClickHandler = async () => {
         dispatch(setIsLoadingTrue())
         await isUsernameUsed(username.toLowerCase()).then(async (result) => {
+            console.log(result)
             let arrayErrorStateUsername: string[] = []
             if (!auth.currentUser) {
                 dispatch(setIsLoadingFalse())
@@ -67,7 +68,8 @@ export default function ProfileDetails({navigation}: any) {
             if (username.trim() === '') {
                 arrayErrorStateUsername.push(USERNAME_MISSING.code)
             }
-            if (!arrayErrorStateUsername) {
+            console.log(arrayErrorStateUsername)
+            if (arrayErrorStateUsername.length > 0) {
                 setErrorStateUsername(arrayErrorStateUsername)
                 dispatch(setIsLoadingFalse())
                 return
@@ -134,8 +136,7 @@ export default function ProfileDetails({navigation}: any) {
                         state={isChangingUsername}
                         padding={PADDING}
                         margin={MARGIN / 2}/>
-                    <View style={[styles.inputCard,
-                        (isChangingUsername.includes(CHANGE_USERNAME_LABEL.ENG)) && !!getUsernameError(errorStateUsername) ? {paddingBottom: PADDING} : null]}>
+                    <View style={styles.inputCard}>
                         {(isChangingUsername.includes(CHANGE_USERNAME_LABEL.ENG)) ? (
                             <>
                                 <TextInputWithErrorMessage
@@ -183,7 +184,7 @@ const styles = StyleSheet.create({
     },
     inputCard: {
         // width: '100%',
-        marginHorizontal: MARGIN/2,
+        marginHorizontal: MARGIN / 2,
         backgroundColor: COLOR_HEADER,
         borderRadius: BORDER_RADIUS / 2,
     },
