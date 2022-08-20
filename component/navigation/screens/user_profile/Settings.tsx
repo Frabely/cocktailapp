@@ -50,7 +50,7 @@ export default function Settings({navigation}: any) {
                 <CardLayout>
                     <View style={styles.profileDetailsItem}>
                         <Text style={{fontWeight: 'bold', flex: 1}}>{LANGUAGE_LABEL[`${language}`]}:</Text>
-                        <View style={{flex: 1}}>
+                        <View style={{flex: 1, flexDirection: 'row-reverse'}}>
                             <Switch colorSelected={COLOR_HEADER}
                                     color={COLOR_BACKGROUND}
                                     leftTitle={ENGLISH_LABEL[`${language}`]}
@@ -60,6 +60,7 @@ export default function Settings({navigation}: any) {
                         </View>
                     </View>
                     <StyledButton
+                        margin={MARGIN / 2}
                         padding={PADDING}
                         flex={1}
                         onPress={onSaveSettingsHandler}
@@ -81,10 +82,11 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     profileDetailsItem: {
-        width: '100%',
+        flex: 1,
         flexDirection: 'row',
+        paddingVertical: PADDING,
         margin: MARGIN / 2,
         borderRadius: BORDER_RADIUS / 2,
-        alignItems: 'center'
+        alignItems: 'center',
     }
 })

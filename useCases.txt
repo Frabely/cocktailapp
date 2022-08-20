@@ -3,8 +3,6 @@ Bugs:
 -if no favorites -> Favorites page shows "No Hits -- Reset Filters" -> should display something like no favorites found
 -status bar not transparent
 -on android close on name change not correctly shown (overflow in border)
--fix all labels and buttons overflowing -> margin and padding not setting when passing as props -> something to do with props change
--username always updating
 
 Master branch Goals:
 -set margin and padding on every FilterButton and StyledButton used

@@ -1,5 +1,5 @@
 import {ColorValue, Pressable, StyleSheet, Text, View} from "react-native";
-import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
+import {BORDER_RADIUS, PADDING} from "../../../constants/style_constants";
 import {Dispatch, SetStateAction} from "react";
 
 export default function Switch({setIsLeftActive, isLeftActive, colorSelected, color, leftTitle, rightTitle }: SwitchProps) {
@@ -26,8 +26,6 @@ export default function Switch({setIsLeftActive, isLeftActive, colorSelected, co
 
 const styles = StyleSheet.create({
     switchStyle: {
-        // flex: 1,
-        // height: '50%',
         padding: PADDING,
         alignItems: "center",
         justifyContent: "center"
@@ -35,12 +33,10 @@ const styles = StyleSheet.create({
     outerButtonLeft: {
         borderTopLeftRadius: BORDER_RADIUS / 2,
         borderBottomLeftRadius: BORDER_RADIUS / 2,
-        marginLeft: MARGIN / 2,
     },
     outerButtonRight: {
         borderTopRightRadius: BORDER_RADIUS / 2,
         borderBottomRightRadius: BORDER_RADIUS / 2,
-        marginRight: MARGIN / 2,
     },
 })
 
