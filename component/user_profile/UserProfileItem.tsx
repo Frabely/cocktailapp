@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
 })
 
 export type UserProfileItemProps = {
-    onPress: (({}:any) => any),
+    onPress: ((...args :any) => any),
     icon: IconProp,
     label: string
 }

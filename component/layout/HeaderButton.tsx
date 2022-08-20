@@ -28,5 +28,5 @@ const styles = StyleSheet.create({
 
 export type HeaderButtonProps = {
     icon: IconProp,
-    onPress: (({}:any) => any)
+    onPress: ((...args :any) => any)
 }
