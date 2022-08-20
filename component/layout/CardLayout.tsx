@@ -6,9 +6,9 @@ export default function CardLayout({width, height, alignItems, children}: CardLa
     return (
         <View style={[
             styles.cardOuter, {
-            width: width ? width : undefined,
-            height: height ? height : undefined,
-            alignItems: alignItems ? alignItems : undefined,
+                width: (width || width === 0) ? width : undefined,
+                height: (height || height === 0) ? height : undefined,
+                alignItems: alignItems ? alignItems : undefined,
             }
         ]}>{children}</View>
     )

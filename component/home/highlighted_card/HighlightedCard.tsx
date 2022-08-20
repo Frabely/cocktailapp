@@ -83,7 +83,7 @@ export default function HighlightedCard() {
             <ImageBackground style={styles.highlightViewBackgroundImage}
                              source={{uri: state.currentItem.strDrinkThumb !== null ? state.currentItem.strDrinkThumb : ''}}>
                 <HighlightedCardInnerImage
-                    imageSource={state.currentItem.strDrinkThumb}/>
+                    imageSource={(state.currentItem.strDrinkThumb) ? state.currentItem.strDrinkThumb : ''}/>
                 <View style={styles.cardHighlightBackground}>
                     <View style={{flex: 3, flexDirection: 'row'}}>
                         <View style={{flex: 1}}></View>

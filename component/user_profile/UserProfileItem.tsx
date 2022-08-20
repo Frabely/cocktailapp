@@ -23,11 +23,12 @@ export default function UserProfileItem({onPress, icon, label}: UserProfileItemP
 }
 const styles = StyleSheet.create({
     userProfileItem: {
+        flex: 1,
         padding: PADDING,
         margin: MARGIN / 2,
         flexDirection: 'row',
         borderRadius: BORDER_RADIUS / 2,
-        width: '80%'
+        // width: '80%'
     },
     icon: {
         justifyContent: 'center',

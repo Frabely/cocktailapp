@@ -23,7 +23,7 @@ export default function Filter({onClearAllFiltersClickHandler}: FilterProps) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
     const language: string = state.language
-    const alcFilterOptions: readonly string[]  = ALCOHOLIC_LIST[`${language}`]
+    const alcFilterOptions: readonly string[] = ALCOHOLIC_LIST[`${language}`]
     const alcFilterOptionsENG: readonly string[] = ALCOHOLIC_LIST.ENG
     const categoryFilterOptions: readonly string[] = CATEGORY_LIST[`${language}`]
     const categoryFilterOptionsENG: readonly string[] = CATEGORY_LIST.ENG
@@ -41,8 +41,7 @@ export default function Filter({onClearAllFiltersClickHandler}: FilterProps) {
                              isMultiSelectable={false}
                              filterState={state.alcoholicFilter}
                              setFilterState={changeAlcoholic}
-                             numColumns={3}>
-                </FilterPanel>
+                             numColumns={3}/>
             </View>
             <View style={styles.rowStyle}>
                 <FilterPanel options={categoryFilterOptions}
@@ -51,8 +50,7 @@ export default function Filter({onClearAllFiltersClickHandler}: FilterProps) {
                              isMultiSelectable={true}
                              filterState={state.categoryFilter}
                              setFilterState={changeCategory}
-                             numColumns={3}>
-                </FilterPanel>
+                             numColumns={3}/>
             </View>
             <View style={[styles.rowStyle, {
                 flexDirection: 'row',
@@ -63,8 +61,10 @@ export default function Filter({onClearAllFiltersClickHandler}: FilterProps) {
             </View>
             <DropDownPickerWrapper/>
             <View style={styles.buttonBackgroundStyle}>
-                <StyledButton flex={1} onPress={onClearAllFiltersClickHandler} title={CLEAR_ALL_FILTERS_LABEL[`${language}`]}/>
-                <StyledButton flex={1} onPress={onHitsClickHandler} title={`${HITS_LABEL[`${language}`]}: ${state.currentDataSet.length}`}/>
+                <StyledButton flex={1} onPress={onClearAllFiltersClickHandler}
+                              title={CLEAR_ALL_FILTERS_LABEL[`${language}`]}/>
+                <StyledButton flex={1} onPress={onHitsClickHandler}
+                              title={`${HITS_LABEL[`${language}`]}: ${state.currentDataSet.length}`}/>
             </View>
         </View>
     )

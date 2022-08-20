@@ -12,10 +12,11 @@ export default function NoHits({onClearAllFiltersClickHandler}: NoHitsProps) {
     return (
         <View style={styles.noHits}>
             <CardLayout width={vw(0.5)}>
-                    <Text style={{fontWeight: '900'}}>{`${NO_HITS_LABEL[`${language}`]} 😕`}</Text>
-                    <StyledButton width={'100%'}
-                                  title={RESET_FILTER_LABEL[`${language}`]}
-                                  onPress={onClearAllFiltersClickHandler}/>
+                    <Text style={styles.text}>{`${NO_HITS_LABEL[`${language}`]} 😕`}</Text>
+                    <StyledButton
+                        flex={1}
+                        title={RESET_FILTER_LABEL[`${language}`]}
+                        onPress={onClearAllFiltersClickHandler}/>
             </CardLayout>
         </View>
     )
@@ -26,6 +27,10 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "flex-end",
     },
+    text: {
+        fontWeight: '900',
+        textAlign: 'center'
+    }
 })
 
 export type NoHitsProps = {

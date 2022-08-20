@@ -6,7 +6,8 @@ import {useAppDispatch} from "../../../constants/hooks";
 import {ALL} from "../../../constants/const_vars";
 import {ActionCreatorWithPayload} from "@reduxjs/toolkit";
 
-export default function FilterPanel({filterState, setFilterState, isMultiSelectable, options, optionsENG, labelName, numColumns}: FilterPanelProps) {
+export default function FilterPanel({filterState, setFilterState, isMultiSelectable,
+                                        options, optionsENG, labelName, numColumns}: FilterPanelProps) {
     const dispatch = useAppDispatch()
 
     const onFilterButtonClickHandler = (filterName: string) => {

@@ -15,7 +15,7 @@ export default function ProfileDetailsItem({label, value}: ProfileDetailsItemPro
 
 const styles = StyleSheet.create({
     profileDetailsItem: {
-        width: '100%',
+        flex: 1,
         flexDirection: 'row',
         padding: PADDING,
         margin: MARGIN / 2,

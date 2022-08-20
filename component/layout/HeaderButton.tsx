@@ -7,12 +7,12 @@ export default function HeaderButton({icon, onPress, height, width, color, flex,
     return (
         <Pressable onPress={onPress} style={[styles.headerButton, {
             justifyContent: justifyContent ? justifyContent : 'center',
-            height: heightButton ? heightButton : '100%',
-            flex: flex ? flex : 1,
+            height: (heightButton || heightButton === 0)  ? heightButton : '100%',
+            flex: (flex || flex == 0)  ? flex : 1,
         }]}>
             <FontAwesomeIcon style={{
-                height: height ? height : undefined,
-                width: width ? width : undefined,
+                width: (width || width === 0) ? width : undefined,
+                height: (height || height === 0) ? height : undefined,
                 color: color ? color : undefined
             }} icon={icon}/>
         </Pressable>

@@ -4,7 +4,10 @@ import {COLOR_BACKGROUND} from "../../../constants/color_styles";
 import {vh} from "../../../functions/dimentions";
 import {useState} from "react";
 
-export default function FilterButton({state, titleENG, onClick, title, colorActive, colorInactive, padding, width, margin}: FilterButtonProps) {
+export default function FilterButton({
+                                         state, titleENG, onClick, title, colorActive, colorInactive,
+                                         padding, width, margin, height, flex
+                                     }: FilterButtonProps) {
     const [isTouched, setIsTouched] = useState(false);
     const isClicked = state.includes(titleENG)
     const onClickHandler = () => {
@@ -13,18 +16,23 @@ export default function FilterButton({state, titleENG, onClick, title, colorActi
 
     return (
         <Pressable onPress={onClickHandler}
-                   onTouchStart={() => {setIsTouched(true)}}
-                   onTouchEnd={() => {setIsTouched(false)}}
-                   style={
-            [
-                styles.outerButton,
-                {
-                    backgroundColor: (isClicked || isTouched) ? colorActive : colorInactive,
-                    padding: padding ? padding :  PADDING / 8,
-                    margin: margin ? margin : MARGIN / 2,
-                    width: width ? width : undefined,
-                },
-            ]}>
+                   onTouchStart={() => {
+                       setIsTouched(true)
+                   }}
+                   onTouchEnd={() => {
+                       setIsTouched(false)
+                   }}
+                   style={[
+                       styles.outerButton,
+                       {
+                           backgroundColor: (isClicked || isTouched) ? colorActive : colorInactive,
+                           height: (height || height === 0) ? height : vh(DEFAULT_BUTTON_HEIGHT),
+                           padding: (padding || padding === 0) ? padding : PADDING,
+                           margin: (margin || margin === 0) ? margin : MARGIN / 2,
+                           width: (width || width === 0) ? width : undefined,
+                           flex: (flex || flex === 0) ? flex : undefined,
+                       },
+                   ]}>
             <Text style={{textAlign: "center"}}>{title}</Text>
         </Pressable>
     )
@@ -42,12 +50,14 @@ const styles = StyleSheet.create({
 
 export type FilterButtonProps = {
     state: string[],
-    titleENG : string,
+    titleENG: string,
     onClick: (({}: any) => any),
     title: string,
     colorActive: ColorValue | undefined,
     colorInactive: ColorValue | undefined,
     padding?: number | undefined,
     margin?: number | undefined,
-    width?: string | number | null
+    width?: string | number | null,
+    flex?: number | undefined,
+    height?: string | number | undefined,
 }

@@ -60,9 +60,10 @@ export default function Settings({navigation}: any) {
                         </View>
                     </View>
 
-                    <StyledButton width={'100%'}
-                                  onPress={onSaveSettingsHandler}
-                                  title={SAVE_SETTINGS_LABEL[`${language}`]}/>
+                    <StyledButton
+                        flex={1}
+                        onPress={onSaveSettingsHandler}
+                        title={SAVE_SETTINGS_LABEL[`${language}`]}/>
                 </CardLayout>
             </View>
             <Header navigation={navigation}/>

@@ -125,14 +125,14 @@ export default function ProfileDetails({navigation}: any) {
                         label={EMAIL_LABEL[`${language}`]}
                         value={(state?.user?.email) ? state?.user?.email : ''}/>
                     <FilterButton
+                        flex={1}
                         title={CHANGE_USERNAME_LABEL[`${language}`]}
                         titleENG={CHANGE_USERNAME_LABEL.ENG}
                         colorActive={COLOR_HEADER}
                         colorInactive={COLOR_BACKGROUND}
                         onClick={onChangeUsernamePressHandler}
                         state={isChangingUsername}
-                        padding={PADDING}
-                        width={'100%'}/>
+                        padding={PADDING}/>
                     <View style={[styles.inputCard,
                         (isChangingUsername.includes(CHANGE_USERNAME_LABEL.ENG)) && !!getUsernameError(errorStateUsername) ? {paddingBottom: PADDING} : null]}>
                         {(isChangingUsername.includes(CHANGE_USERNAME_LABEL.ENG)) ? (
@@ -142,21 +142,23 @@ export default function ProfileDetails({navigation}: any) {
                                     setInputState={setUsername}
                                     inputState={username}
                                     placeholderLabel={USERNAME_LABEL[`${language}`]}/>
-                                <StyledButton onPress={changeUserNameOnClickHandler}
-                                              title={CHANGE_USERNAME_LABEL[`${language}`]}
-                                              width={'50%'}/>
+                                <StyledButton
+                                    onPress={changeUserNameOnClickHandler}
+                                    title={CHANGE_USERNAME_LABEL[`${language}`]}
+                                    flex={1}
+                                />
                             </>
                         ) : null}
                     </View>
                     <FilterButton
+                        flex={1}
                         title={CHANGE_PASSWORD_LABEL[`${language}`]}
                         titleENG={CHANGE_PASSWORD_LABEL.ENG}
                         colorActive={COLOR_HEADER}
                         colorInactive={COLOR_BACKGROUND}
                         onClick={onChangePasswordPressHandler}
                         state={isChangingPassword}
-                        padding={PADDING}
-                        width={'100%'}/>
+                        padding={PADDING}/>
                 </CardLayout>
             </View>
             <Header navigation={navigation}/>
