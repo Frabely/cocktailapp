@@ -18,12 +18,12 @@ Master branch Goals:
             (x)-change password
         -login:
             -reset password
--set email language (https://firebase.google.com/docs/auth/web/manage-users?hl=de&authuser=0)
 -Firebase Backend -> upload data auf firebase
 
 TODOs:
 -refactor filter to ScrollView -> remove flatlist or open filter section on click like change password etc
 -refactor login screen and settings -> put all error checking into functions -> currently way to many code
+-set email language (https://firebase.google.com/docs/auth/web/manage-users?hl=de&authuser=0)
 -user profile:
     -pages:
         -profile details:
