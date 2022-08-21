@@ -1,9 +1,9 @@
 Bugs:
--reload after star in favorites is removed -> removed card from dataSet
 -if no favorites -> Favorites page shows "No Hits -- Reset Filters" -> should display something like no favorites found
+-favorite on android to small
+-reload after star in favorites is removed -> removed card from dataSet
 -status bar not transparent
 -on login (with other account) filter might be open -> set all filter closed on logout
-
 
 Master branch Goals:
 (x)-user login:
@@ -12,13 +12,12 @@ Master branch Goals:
         (x)-successfully created account
 -user profile:
     -pages:
-        -profile details:
+        (x)-profile details:
             (x)-change username
             (x)-change password
         -login:
             -reset password
 -set email language (https://firebase.google.com/docs/auth/web/manage-users?hl=de&authuser=0)
--add something to verify that the user is on favorites or home
 -Firebase Backend -> upload data auf firebase
 
 TODOs:
@@ -28,7 +27,6 @@ TODOs:
         -profile details:
             -change email
             -delete account
--make input cards for a component (also include error message on the bottom)
 -rating:
     -filter
 -change padding and margin const's to rem

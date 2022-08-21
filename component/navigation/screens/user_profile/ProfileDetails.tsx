@@ -8,7 +8,7 @@ import {
     EMAIL_LABEL,
     NEW_PASSWORD_LABEL,
     OLD_PASSWORD_LABEL,
-    PASSWORD_SUCCESSFUL_CHANGED,
+    PASSWORD_SUCCESSFUL_CHANGED, PROFILE_DETAILS_LABEL,
     REPEAT_PASSWORD_LABEL,
     USERNAME_LABEL,
     USERNAME_SUCCESSFUL_CHANGED
@@ -57,6 +57,7 @@ import {
     TOO_MANY_REQUESTS, WEAK_PASSWORD,
     WRONG_PASSWORD
 } from "../../../../constants/error_codes_firebase";
+import HeadLine from "../../../layout/HeadLine";
 
 export default function ProfileDetails({navigation}: any) {
     const state = useAppSelector((state) => state)
@@ -234,6 +235,7 @@ export default function ProfileDetails({navigation}: any) {
         <AppBackground>
             <View style={styles.userData}>
                 <CardLayout>
+                    <HeadLine label={PROFILE_DETAILS_LABEL[`${language}`]} margin={MARGIN / 2}/>
                     <ProfileDetailsItem
                         label={USERNAME_LABEL[`${language}`]}
                         value={(state?.user?.username) ? state?.user?.username : ''}/>

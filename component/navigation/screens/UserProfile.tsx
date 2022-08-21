@@ -17,11 +17,12 @@ import {
     FAVORITES_LABEL,
     LOGOUT_LABEL,
     PROFILE_DETAILS_LABEL,
-    SETTINGS_LABEL
+    SETTINGS_LABEL, USER_PROFILE_LABEL
 } from "../../../constants/labels";
 import LoadingScreen from "../../layout/LoadingScreen";
 import {changeCurrentItem} from "../../../reducers/home/currentItemReducer";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../../reducers/booleans/isLoadingReducer";
+import HeadLine from "../../layout/HeadLine";
 
 export default function UserProfile({navigation}: any) {
     const state = useAppSelector((state) => state)
@@ -57,6 +58,7 @@ export default function UserProfile({navigation}: any) {
                 <Image style={{position: 'absolute', height: '100%', width: '100%'}}
                        source={require('../../../assets/images/adaptive_background.png')}/>
                 <CardLayout>
+                    <HeadLine label={USER_PROFILE_LABEL[`${language}`]} margin={MARGIN / 2}/>
                     <UserProfileItem onPress={onProfileDetailsPressHandler} icon={faUserGear}
                                      label={PROFILE_DETAILS_LABEL[`${language}`]}/>
                     <UserProfileItem onPress={onSettingsPressHandler} icon={faGear} label={SETTINGS_LABEL[`${language}`]}/>

@@ -1,5 +1,5 @@
 import dummyData from "../../../constants/dummyData3";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 import {FlatList, StyleSheet, View} from "react-native";
 import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
 import {vh} from "../../../functions/dimentions";
@@ -26,20 +26,28 @@ import {
     applySyncFilters
 } from "../../../functions/filterFunctions";
 import {Cocktail} from "../../../constants/types";
+import {changeModalMessage} from "../../../reducers/general/modalMessageReducer";
+import {YOUR_FAVORITES} from "../../../constants/labels";
+import {invertIsModalState} from "../../../reducers/booleans/isModalReducer";
+import Modal from "../../layout/Modal";
 
 const data: Cocktail[] = dummyData.drinks;
 export default function CocktailList({route, navigation}: any) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
+    const isFavorites = route.name === FAVORITES
+    const language: string = state.language
 
     useEffect(() => {
         let dataSet: Cocktail[] = []
-        if (route.name === FAVORITES) {
+        if (isFavorites) {
             dispatch(setIsLoadingTrue())
             filterFavorites(data, state).then((result => {
                 dataSet = applySyncFilters(result, state, dispatch)
                 dispatch(setIsLoadingFalse())
                 dispatch(changeCurrentDataSet(dataSet))
+                dispatch(changeModalMessage(YOUR_FAVORITES[`${language}`]))
+                dispatch(invertIsModalState())
             }))
         } else {
             dataSet = applySyncFilters(data, state, dispatch)
@@ -102,6 +110,9 @@ export default function CocktailList({route, navigation}: any) {
             <Header navigation={navigation}/>
             {state.isLoading ? (
                 <LoadingScreen/>
+            ) : null}
+            {state.isModal ? (
+                <Modal message={state.modalMessage}/>
             ) : null}
         </AppBackground>
     )

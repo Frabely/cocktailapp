@@ -22,10 +22,6 @@ export const ENTER_SEARCH_TERM_LABEL: LabelType = {ENG: 'Enter search term', GER
 export const RESET_FILTER_LABEL: LabelType = {ENG: 'Reset Filters', GER: 'Filter zurücksetzen'}
 export const NO_HITS_LABEL: LabelType = {ENG: 'No Hits', GER: 'Keine Treffer'}
 export const IN_DEVELOPMENT_LABEL: LabelType = {ENG: 'in development', GER: 'In Entwicklung'}
-export const PROFILE_DETAILS_LABEL: LabelType = {ENG: 'Profile Details', GER: 'Accountinformation'}
-export const SETTINGS_LABEL: LabelType = {ENG: 'Settings', GER: 'Einstellungen'}
-export const FAVORITES_LABEL: LabelType = {ENG: 'Favorites', GER: 'Favoriten'}
-export const LOGOUT_LABEL: LabelType = {ENG: 'Logout', GER: 'Ausloggen'}
 export const LANGUAGE_LABEL: LabelType = {ENG: 'Language', GER: 'Sprache'}
 export const ENGLISH_LABEL: LabelType = {ENG: 'English', GER: 'Englisch'}
 export const GERMAN_LABEL: LabelType = {ENG: 'German', GER: 'Deutsch'}
@@ -44,4 +40,12 @@ export const PASSWORD_SUCCESSFUL_CHANGED: LabelType = {
     ENG: 'Password successful changed.',
     GER: 'Passwort erfolgreich geändert.'
 }
+
+//pages
+export const USER_PROFILE_LABEL: LabelType = {ENG: 'User Profile', GER: 'Nutzerprofil'}
+export const PROFILE_DETAILS_LABEL: LabelType = {ENG: 'Profile Details', GER: 'Accountinformation'}
+export const SETTINGS_LABEL: LabelType = {ENG: 'Settings', GER: 'Einstellungen'}
+export const FAVORITES_LABEL: LabelType = {ENG: 'Favorites', GER: 'Favoriten'}
+export const YOUR_FAVORITES: LabelType = {ENG: 'Your Favorites', GER: 'Deine Favoriten'}
+export const LOGOUT_LABEL: LabelType = {ENG: 'Logout', GER: 'Ausloggen'}
 

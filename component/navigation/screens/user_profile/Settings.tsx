@@ -8,7 +8,7 @@ import {COLOR_BACKGROUND, COLOR_HEADER} from "../../../../constants/color_styles
 import {
     ENGLISH_LABEL,
     GERMAN_LABEL, LANGUAGE_LABEL,
-    SAVE_SETTINGS_LABEL
+    SAVE_SETTINGS_LABEL, SETTINGS_LABEL
 } from "../../../../constants/labels";
 import {useAppDispatch, useAppSelector} from "../../../../constants/hooks";
 import StyledButton from "../../../layout/StyledButton";
@@ -19,6 +19,7 @@ import {BORDER_RADIUS, MARGIN, PADDING} from "../../../../constants/style_consta
 import {updateUser} from "../../../../functions/firebase";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../../../reducers/booleans/isLoadingReducer";
 import LoadingScreen from "../../../layout/LoadingScreen";
+import HeadLine from "../../../layout/HeadLine";
 
 export default function Settings({navigation}: any) {
     const state = useAppSelector((state) => state)
@@ -48,6 +49,7 @@ export default function Settings({navigation}: any) {
         <AppBackground>
             <View style={styles.settings}>
                 <CardLayout>
+                    <HeadLine label={SETTINGS_LABEL[`${language}`]} margin={MARGIN / 2}/>
                     <View style={[styles.profileDetailsItem,
                         {flex: (Platform.OS === "android") ? undefined : 1}]}>
                         <Text style={{fontWeight: 'bold', flex: 1}}>{LANGUAGE_LABEL[`${language}`]}:</Text>
