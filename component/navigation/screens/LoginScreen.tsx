@@ -56,6 +56,7 @@ import {
     getRepeatPasswordError,
     getUsernameError
 } from "../../../functions/getErrorFunctionsInputs";
+import ForgotPassword from "../../login/ForgotPassword";
 
 export default function LoginScreen() {
     const state = useAppSelector((state) => state)
@@ -357,6 +358,7 @@ export default function LoginScreen() {
                             onClick={onCreateAccountButtonClickHandler}
                             state={isCreatingAccount}/>
                     </View>
+                    <ForgotPassword/>
                 </CardLayout>
             </View>
             {state.isLoading ? (
@@ -385,7 +387,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     input: {
-        // backgroundColor: COLOR_CARD_BACKGROUND,
         borderRadius: BORDER_RADIUS / 2,
         padding: PADDING,
         margin: MARGIN
