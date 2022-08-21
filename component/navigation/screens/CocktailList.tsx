@@ -30,6 +30,7 @@ import {changeModalMessage} from "../../../reducers/general/modalMessageReducer"
 import {YOUR_FAVORITES} from "../../../constants/labels";
 import {invertIsModalState} from "../../../reducers/booleans/isModalReducer";
 import Modal from "../../layout/Modal";
+import {isHeightBiggerWidth} from "../../../functions/isHeightBiggerWidth";
 
 const data: Cocktail[] = dummyData.drinks;
 export default function CocktailList({route, navigation}: any) {
@@ -93,19 +94,41 @@ export default function CocktailList({route, navigation}: any) {
                 {(state.activeFilter === SEARCH_FIELD) ? (
                     <SearchField/>
                 ) : null}
-                {state.currentItem.idDrink ? (
-                    <HighlightedCard/>
-                ) : null}
                 {(state.currentDataSet.length === 0) ? (
                     <NoHits onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>
                 ) : null}
-                <FlatList
-                    numColumns={3}
-                    data={state.currentDataSet}
-                    renderItem={renderItem}
-                    //TODO use keyExtractor
-                    // keyExtractor={item => item.idDrink}
-                />
+                {isHeightBiggerWidth() ? (
+                    <View style={{flexDirection: 'column', height: '100%'}}>
+                        {(state.currentItem.idDrink) ? (
+                            <HighlightedCard/>
+                        ) : null
+                        }
+                        <FlatList
+                            columnWrapperStyle={{justifyContent: 'space-around'}}
+                            key={'#'}
+                            numColumns={3}
+                            data={state.currentDataSet}
+                            renderItem={renderItem}
+                            keyExtractor={item => '#' + item.idDrink}
+                        />
+                    </View>) : (
+                    <View style={{flexDirection: 'row', height: '100%'}}>
+                        <FlatList
+                            columnWrapperStyle={{justifyContent: 'space-around'}}
+                            key={'_'}
+                            style={{flex: 1}}
+                            numColumns={6}
+                            data={state.currentDataSet}
+                            renderItem={renderItem}
+                            keyExtractor={item => '_' + item.idDrink}
+                            extraData={state.currentItem.idDrink}/>
+                        {(state.currentItem.idDrink) ? (
+                            <View style={{flex: 1}}>
+                                <HighlightedCard height={vh(0.8) - PADDING * 2}/>
+                            </View>
+                        ) : null}
+                    </View>
+                )}
             </View>
             <Header navigation={navigation}/>
             {state.isLoading ? (

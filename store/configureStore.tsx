@@ -29,7 +29,7 @@ const rootReducer = combineReducers({
     currentSearchFieldInput: CurrentSearchFieldInputSlice,
     language: LanguageSlice,
     isModal: isModalSlice,
-    modalMessage: modalMessageSlice
+    modalMessage: modalMessageSlice,
 })
 
 const store = configureStore({

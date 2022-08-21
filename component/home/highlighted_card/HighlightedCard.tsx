@@ -12,7 +12,7 @@ import {faStar as faStar_regular} from "@fortawesome/free-regular-svg-icons";
 import {AddOrDeleteFavoriteOfUser, isFavoriteOfUser} from "../../../functions/firebase";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../../reducers/booleans/isLoadingReducer";
 
-export default function HighlightedCard() {
+export default function HighlightedCard({height}: HighlightedCardProps) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
     const [arrayIngredients, setArrayIngredients] = useState([])
@@ -79,7 +79,9 @@ export default function HighlightedCard() {
     }
 
     return (
-        <View style={styles.highlightView}>
+        <View style={[styles.highlightView, {
+            height: (height || height == 0) ? height : vh(0.6) - PADDING * 2
+        }]}>
             <ImageBackground style={styles.highlightViewBackgroundImage}
                              source={{uri: state.currentItem.strDrinkThumb !== null ? state.currentItem.strDrinkThumb : ''}}>
                 <HighlightedCardInnerImage
@@ -166,3 +168,7 @@ const styles = StyleSheet.create({
         marginBottom: MARGIN
     },
 })
+
+export type HighlightedCardProps = {
+    height?: string | number
+}

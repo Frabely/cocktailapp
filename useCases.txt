@@ -21,6 +21,7 @@ Master branch Goals:
 -Firebase Backend -> upload data auf firebase
 
 TODOs:
+-set var -> isHeightBiggerWidth = vh > vw / 1.5? almost all mobile formats are bigger than 2:1
 -refactor login screen and settings -> put all error checking into functions -> currently way to many code
 -user profile:
     -pages:

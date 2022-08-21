@@ -1,6 +1,6 @@
 import {Animated, Easing, Image, StyleSheet, View} from "react-native";
 import {BORDER_RADIUS} from "../../constants/style_constants";
-import {vh} from "../../functions/dimentions";
+import {vh, vw} from "../../functions/dimentions";
 import {COLOR_CARD_BACKGROUND} from "../../constants/color_styles";
 
 export default function LoadingScreen() {
@@ -51,7 +51,8 @@ const styles = StyleSheet.create({
     },
     loadingScreenInner: {
         height: vh(0.1),
-        width: '20%',
+        width: vw(0.2),
+        maxWidth: vh(0.1),
         backgroundColor: COLOR_CARD_BACKGROUND,
         borderRadius: BORDER_RADIUS,
     }

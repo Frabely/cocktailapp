@@ -1,10 +1,11 @@
 import {ImageBackground, Pressable, StyleSheet} from "react-native";
-import {vh} from "../../functions/dimentions";
+import {vh, vw} from "../../functions/dimentions";
 import generate_box_shadow_style from '../../functions/generate_box_shadow_style';
 import {BORDER_RADIUS, PADDING} from "../../constants/style_constants";
 import {COLOR_SHADOW} from "../../constants/color_styles";
 import {useAppSelector} from "../../constants/hooks";
 import {Cocktail} from "../../constants/types";
+import {isHeightBiggerWidth} from "../../functions/isHeightBiggerWidth";
 
 export default function Card({onPress, item}: CardProps) {
     const state = useAppSelector((state) => state)
@@ -34,7 +35,14 @@ export default function Card({onPress, item}: CardProps) {
     //     )
     // } else {
         return (
-            <Pressable onPress={onImageClickHandler} style={styles.cardOuter}>
+            <Pressable onPress={onImageClickHandler} style={[styles.cardOuter, isHeightBiggerWidth() ? {
+                height: vh(0.15),
+                maxWidth: vh(0.15),
+            } : {
+                height: vw(0.10),
+                maxWidth: vw(0.10),
+            }
+            ]}>
                 <ImageBackground style={[styles.cardInner, styles.boxShadow]} source={
                     {uri: (item?.strDrinkThumb) ? item.strDrinkThumb : ''}
                 }/>
@@ -46,7 +54,6 @@ export default function Card({onPress, item}: CardProps) {
 const styles = StyleSheet.create({
     cardOuter: {
         flex: 1,
-        height: vh(0.20),
         padding: PADDING,
     },
     cardInner: {
