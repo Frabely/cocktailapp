@@ -4,6 +4,7 @@ Bugs:
 -reload after star in favorites is removed -> removed card from dataSet
 -status bar not transparent
 -on login (with other account) filter might be open -> set all filter closed on logout
+-on star click does not show loading icon
 
 Master branch Goals:
 (x)-user login:
@@ -21,7 +22,6 @@ Master branch Goals:
 -Firebase Backend -> upload data auf firebase
 
 TODOs:
--set var -> isHeightBiggerWidth = vh > vw / 1.5? almost all mobile formats are bigger than 2:1
 -refactor login screen and settings -> put all error checking into functions -> currently way to many code
 -user profile:
     -pages:

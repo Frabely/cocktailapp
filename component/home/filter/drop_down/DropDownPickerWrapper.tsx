@@ -16,6 +16,7 @@ import {
     INGREDIENTS_FILTER_SELECTION_NUMBER_MIN
 } from "../../../../constants/const_vars";
 import {SEARCH_INGREDIENTS_LABEL} from "../../../../constants/labels";
+import {isHeightBiggerWidth} from "../../../../functions/isHeightBiggerWidth";
 
 export default function DropDownPickerWrapper() {
     const dispatch = useAppDispatch()
@@ -132,10 +133,19 @@ export default function DropDownPickerWrapper() {
             //     console.log(value);
             // }}
             maxHeight={300}
-            arrowIconStyle={{
+            // arrowIconStyle={{
+            //     margin: MARGIN,
+            //     width: vw(0.1),
+            //     height: vh(0.03),
+            // }}
+            arrowIconStyle={isHeightBiggerWidth() ? {
                 margin: MARGIN,
-                width: vw(0.1),
                 height: vh(0.03),
+                width: vw(0.1),
+            } : {
+                margin: MARGIN,
+                height: vh(0.1),
+                width: vw(0.03),
             }}
             badgeStyle={{
                 height: vh(0.04),
