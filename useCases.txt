@@ -22,6 +22,7 @@ Master branch Goals:
 -Firebase Backend -> upload data auf firebase
 
 TODOs:
+-refactor filter to ScrollView -> remove flatlist or open filter section on click like change password etc
 -refactor login screen and settings -> put all error checking into functions -> currently way to many code
 -user profile:
     -pages:

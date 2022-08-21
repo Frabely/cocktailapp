@@ -6,6 +6,7 @@ import {useAppDispatch} from "../../../constants/hooks";
 import {ALL} from "../../../constants/const_vars";
 import {ActionCreatorWithPayload} from "@reduxjs/toolkit";
 import {MARGIN, PADDING} from "../../../constants/style_constants";
+import {vh} from "../../../functions/dimentions";
 
 export default function FilterPanel({filterState, setFilterState, isMultiSelectable,
                                         options, optionsENG, labelName, numColumns}: FilterPanelProps) {
@@ -70,7 +71,8 @@ export default function FilterPanel({filterState, setFilterState, isMultiSelecta
 
 const styles = StyleSheet.create({
     flatListItem: {
-        width: '33.33333%',
+        flex: 1,
+        minHeight: vh(0.08)
     },
     filterPanel: {
         width: '100%'
