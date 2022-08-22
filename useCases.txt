@@ -2,9 +2,7 @@ Bugs:
 -if no favorites -> Favorites page shows "No Hits -- Reset Filters" -> should display something like no favorites found
 -favorite on android to small
 -reload after star in favorites is removed -> removed card from dataSet
--status bar not transparent
 -on login (with other account) filter might be open -> set all filter closed on logout
--on star click does not show loading icon
 
 Master branch Goals:
 (x)-user login:
