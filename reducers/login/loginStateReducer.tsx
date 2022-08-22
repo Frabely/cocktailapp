@@ -1,18 +1,18 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {CREATE_ACCOUNT, FORGOT_PASSWORD, LOGIN} from "../../constants/const_vars";
+import {CREATE_ACCOUNT_LABEL, FORGOT_PASSWORD_LABEL, LOGIN_LABEL} from "../../constants/labels";
 
 const loginStateSlice = createSlice({
     name: 'loginState',
-    initialState: LOGIN,
+    initialState: LOGIN_LABEL.ENG,
     reducers: {
         login: () => {
-            return LOGIN
+            return LOGIN_LABEL.ENG
         },
         createAccount: () => {
-            return CREATE_ACCOUNT
+            return CREATE_ACCOUNT_LABEL.ENG
         },
         forgotPassword: () => {
-            return FORGOT_PASSWORD
+            return FORGOT_PASSWORD_LABEL.ENG
         }
     },
 })

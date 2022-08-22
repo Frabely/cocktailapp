@@ -1,9 +1,8 @@
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
-import {Pressable, StyleSheet, Text, View} from "react-native";
-import {COLOR_BACKGROUND, COLOR_HEADER} from "../../constants/color_styles";
+import {StyleSheet, View} from "react-native";
+import {COLOR_BACKGROUND} from "../../constants/color_styles";
 import {
     EMAIL_LABEL,
-    FORGOT_PASSWORD_LABEL,
     LOGIN_LABEL, RESET_PASSWORD_EMAIL_SENT_LABEL,
     SEND_RESET_PASSWORD_EMAIL_LABEL
 } from "../../constants/labels";
@@ -15,20 +14,16 @@ import {getAuth, sendPasswordResetEmail} from "firebase/auth";
 import {app} from "../../functions/firebase";
 import TextInputWithErrorMessage from "../layout/TextInputWithErrorMessage";
 import StyledButton from "../layout/StyledButton";
-import {forgotPassword, login} from "../../reducers/login/loginStateReducer";
+import {login} from "../../reducers/login/loginStateReducer";
+import {getEmailError} from "../../functions/getErrorFunctionsInputs";
+import ForgotPasswordButton from "./ForgotPasswordButton";
 
-export default function ForgotPassword({}: ForgotPassword) {
+export default function ForgotPassword({}: ForgotPasswordProps) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
-    const language: string = state.language
-
-    const [isTouched, setIsTouched] = useState(false);
     const [email, setEmail] = useState('');
-    const [errorEmailState, setErrorEmailState] = useState(undefined);
-
-    const onForgotPasswordPressHandler = () => {
-        dispatch(forgotPassword())
-    }
+    const [errorEmailState, setErrorEmailState] = useState<string [] | undefined>(undefined);
+    const language: string = state.language
 
     const changeToLoginScreenPressHandler = () => {
         dispatch(login())
@@ -52,15 +47,8 @@ export default function ForgotPassword({}: ForgotPassword) {
     return (
         <>
             <View style={styles.inputCard}>
-                <TextInputWithErrorMessage errorState={undefined} setInputState={setEmail} inputState={email}
+                <TextInputWithErrorMessage errorState={ (errorEmailState) ? getEmailError(errorEmailState) : undefined} setInputState={setEmail} inputState={email}
                                            placeholderLabel={EMAIL_LABEL[`${language}`]}/>
-            </View>
-            <View style={{marginVertical: MARGIN / 2}}>
-                <StyledButton
-                    padding={PADDING}
-                    onPress={changeToLoginScreenPressHandler}
-                    title={LOGIN_LABEL[`${language}`]}
-                />
             </View>
             <View style={{marginVertical: MARGIN / 2}}>
                 <StyledButton
@@ -69,17 +57,14 @@ export default function ForgotPassword({}: ForgotPassword) {
                     title={SEND_RESET_PASSWORD_EMAIL_LABEL[`${language}`]}
                 />
             </View>
-            <View style={{marginVertical: MARGIN / 2, alignItems: 'center'}}>
-                <Pressable onPress={onForgotPasswordPressHandler}
-                           onTouchStart={() => setIsTouched(true)}
-                           onTouchEnd={() => setIsTouched(false)}>
-                    <Text style={{
-                        color: isTouched ? COLOR_BACKGROUND : COLOR_HEADER,
-                        fontWeight: 'bold'
-                    }
-                    }>{FORGOT_PASSWORD_LABEL[`${language}`]}</Text>
-                </Pressable>
+            <View style={{marginVertical: MARGIN / 2}}>
+                <StyledButton
+                    padding={PADDING}
+                    onPress={changeToLoginScreenPressHandler}
+                    title={LOGIN_LABEL[`${language}`]}
+                />
             </View>
+            <ForgotPasswordButton/>
         </>
     )
 }
@@ -93,4 +78,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export type ForgotPassword = {}
+export type ForgotPasswordProps = {}
