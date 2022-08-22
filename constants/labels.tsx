@@ -8,6 +8,7 @@ export const PASSWORD_LABEL: LabelType = {ENG: 'Password', GER: 'Passwort'}
 export const REPEAT_PASSWORD_LABEL: LabelType = {ENG: 'Repeat Password', GER: 'Passwort wiederholen'}
 export const FINISH_ACCOUNT_CREATION_LABEL: LabelType = {ENG: 'Finish Account Creation', GER: 'Account Erstellung abschließen'}
 export const LOGIN_LABEL: LabelType  = {ENG: 'Login', GER: 'Einloggen'}
+export const LOGIN_PAGE_LABEL: LabelType  = {ENG: 'Login page', GER: 'Einlogseite'}
 export const SEND_RESET_PASSWORD_EMAIL_LABEL: LabelType  = {ENG: 'Send reset password email', GER: 'Verifizierungsemail senden'}
 export const RESET_PASSWORD_EMAIL_SENT_LABEL: LabelType  = {ENG: 'Reset password email sent', GER: 'Email zum Zurücksetzen des Passwortes gesendet'}
 export const FORGOT_PASSWORD_LABEL: LabelType = {ENG: 'Forgot Password?', GER: 'Passwort vergessen?'}

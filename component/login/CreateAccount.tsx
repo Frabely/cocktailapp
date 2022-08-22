@@ -178,6 +178,11 @@ export default function CreateAccount({}: CreateAccountProps) {
         <>
             <View style={styles.inputCard}>
                 <TextInputWithErrorMessage
+                    errorState={errorStateUsername ? getUsernameError(errorStateUsername) : undefined}
+                    setInputState={setUsername}
+                    inputState={username}
+                    placeholderLabel={USERNAME_LABEL[`${language}`]}/>
+                <TextInputWithErrorMessage
                     errorState={errorStateEmail ? getEmailError(errorStateEmail) : undefined}
                     setInputState={setEmail}
                     inputState={email}
@@ -186,17 +191,14 @@ export default function CreateAccount({}: CreateAccountProps) {
                     errorState={errorStatePassword ? getPasswordError(errorStatePassword) : undefined}
                     setInputState={setPassword}
                     inputState={password}
-                    placeholderLabel={PASSWORD_LABEL[`${language}`]}/>
-                <TextInputWithErrorMessage
-                    errorState={errorStateUsername ? getUsernameError(errorStateUsername) : undefined}
-                    setInputState={setUsername}
-                    inputState={username}
-                    placeholderLabel={USERNAME_LABEL[`${language}`]}/>
+                    placeholderLabel={PASSWORD_LABEL[`${language}`]}
+                    isPassword={true}                />
                 <TextInputWithErrorMessage
                     errorState={errorStateRepeatPassword ? getRepeatPasswordError(errorStateRepeatPassword) : undefined}
                     setInputState={setRepeatPassword}
                     inputState={repeatPassword}
-                    placeholderLabel={REPEAT_PASSWORD_LABEL[`${language}`]}/>
+                    placeholderLabel={REPEAT_PASSWORD_LABEL[`${language}`]}
+                    isPassword={true}/>
             </View>
             <View style={{marginVertical: MARGIN / 2}}>
                 <StyledButton

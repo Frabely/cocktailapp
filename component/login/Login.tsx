@@ -133,7 +133,8 @@ export default function Login({}: LoginProps) {
                     errorState={errorStatePassword ? getPasswordError(errorStatePassword) : undefined}
                     setInputState={setPassword}
                     inputState={password}
-                    placeholderLabel={PASSWORD_LABEL[`${language}`]}/>
+                    placeholderLabel={PASSWORD_LABEL[`${language}`]}
+                    isPassword={true}/>
             </View>
             <View style={{marginVertical: MARGIN / 2}}>
                 <StyledButton
@@ -166,6 +167,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export type LoginProps = {
-
-}
+export type LoginProps = {}
