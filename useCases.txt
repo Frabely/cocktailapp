@@ -11,16 +11,17 @@ Master branch Goals:
     (x)-verify email
     (x)-modal for errors/UI messages:
         (x)-successfully created account
--user profile:
-    -pages:
+(x)-user profile:
+    (x)-pages:
         (x)-profile details:
             (x)-change username
             (x)-change password
-        -login:
-            -reset password
--Firebase Backend -> upload data auf firebase
+        (x)-login:
+            (x)-reset password
+-Firebase Backend -> upload data auf firebase -> use data in app
 
 TODOs:
+-highlight image (to close) should be height:width 1:1 or 1.5:1
 -refactor filter to ScrollView -> remove flatlist or open filter section on click like change password etc
 -refactor login screen and settings -> put all error checking into functions -> currently way to many code
 -set email language (https://firebase.google.com/docs/auth/web/manage-users?hl=de&authuser=0)

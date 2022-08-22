@@ -11,6 +11,8 @@ import {faStar as faStar_solid} from "@fortawesome/free-solid-svg-icons";
 import {faStar as faStar_regular} from "@fortawesome/free-regular-svg-icons";
 import {AddOrDeleteFavoriteOfUser, isFavoriteOfUser} from "../../../functions/firebase";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../../reducers/booleans/isLoadingReducer";
+import {invertIsModalState} from "../../../reducers/booleans/isModalReducer";
+import {changeModalMessage} from "../../../reducers/general/modalMessageReducer";
 
 export default function HighlightedCard({height}: HighlightedCardProps) {
     const state = useAppSelector((state) => state)
@@ -72,8 +74,14 @@ export default function HighlightedCard({height}: HighlightedCardProps) {
     const onFavoritesCLickHandler = async () => {
         dispatch(setIsLoadingTrue())
         if (state.user.userID && state.currentItem.idDrink) {
-            await AddOrDeleteFavoriteOfUser(state.user.userID, state.currentItem.idDrink)
-            setFavorite(!favorite)
+            await AddOrDeleteFavoriteOfUser(state.user.userID, state.currentItem.idDrink).then(() => {
+                setFavorite(!favorite)
+                dispatch(setIsLoadingFalse())
+            }).catch(error => {
+                dispatch(changeModalMessage(error.message))
+                dispatch(invertIsModalState())
+                dispatch(setIsLoadingFalse())
+            })
         }
         dispatch(setIsLoadingFalse())
     }
