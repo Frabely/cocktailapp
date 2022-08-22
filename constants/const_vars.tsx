@@ -6,7 +6,6 @@ export const FILTER = 'filter'
 export const SEARCH_FIELD = 'searchField'
 export const INGREDIENTS_FILTER_SELECTION_NUMBER_MAX = 3
 export const INGREDIENTS_FILTER_SELECTION_NUMBER_MIN = 0
-export const CREATE_ACCOUNT = 'Create Account'
 export const EMPTY_USER: User = {email: null, username: null, userID: null, languageSetting: null}
 export const ENGLISH: string = 'ENG'
 export const GERMAN: string = 'GER'
@@ -75,6 +74,8 @@ export const USER_FAVORITES_DRINK_ID_DB = "drinkID"
 //main pages
 export const HOME = 'home'
 export const LOGIN = 'login'
+export const FORGOT_PASSWORD = 'forgotPassword'
+export const CREATE_ACCOUNT = 'createAccount'
 export const PROFILE = 'profile'
 
 // profile pages

@@ -32,7 +32,7 @@ import {
 } from "../../../constants/error_codes";
 import CardLayout from "../../layout/CardLayout";
 import AppBackground from "../../layout/AppBackground";
-import {CREATE_ACCOUNT} from "../../../constants/const_vars";
+// import {CREATE_ACCOUNT_LABEL} from "../../../constants/labels";
 import {
     ACCOUNT_CREATED_VERIFY_EMAIL,
     CREATE_ACCOUNT_LABEL,
@@ -263,9 +263,6 @@ export default function LoginScreen() {
         setIsCreatingAccount([CREATE_ACCOUNT_LABEL.ENG])
     }
 
-    // console.log((isCreatingAccount.includes(CREATE_ACCOUNT)))
-    // console.log(LOGIN_LABEL[`${language}`])
-
     return (
         <AppBackground>
             <View style={styles.loginScreen}>
@@ -273,10 +270,10 @@ export default function LoginScreen() {
                        source={require('../../../assets/images/adaptive_background.png')}/>
                 <CardLayout width={vw(0.7)}>
                     <View style={[styles.inputCard,
-                        (isCreatingAccount.includes(CREATE_ACCOUNT) && !!getRepeatPasswordError(errorStateRepeatPassword) ||
-                            !isCreatingAccount.includes(CREATE_ACCOUNT) && !!getPasswordError(errorStatePassword))
+                        (isCreatingAccount.includes(CREATE_ACCOUNT_LABEL.ENG) && !!getRepeatPasswordError(errorStateRepeatPassword) ||
+                            !isCreatingAccount.includes(CREATE_ACCOUNT_LABEL.ENG) && !!getPasswordError(errorStatePassword))
                             ? {paddingBottom: PADDING} : null]}>
-                        {(isCreatingAccount.includes(CREATE_ACCOUNT)) ? (
+                        {(isCreatingAccount.includes(CREATE_ACCOUNT_LABEL.ENG)) ? (
                             <>
                                 <TextInput
                                     style={[styles.input,
@@ -320,7 +317,7 @@ export default function LoginScreen() {
                             <Text
                                 style={styles.wrongInputMessage}>{getPasswordError(errorStatePassword)?.message[`${language}`]}</Text>
                         ) : null}
-                        {(isCreatingAccount.includes(CREATE_ACCOUNT)) ? (
+                        {(isCreatingAccount.includes(CREATE_ACCOUNT_LABEL.ENG)) ? (
                             <>
                                 <TextInput
                                     style={[styles.input,
@@ -342,9 +339,9 @@ export default function LoginScreen() {
                     <View style={{marginVertical: MARGIN / 2}}>
                         <StyledButton
                             padding={PADDING}
-                            onPress={(isCreatingAccount.includes(CREATE_ACCOUNT)) ?
+                            onPress={(isCreatingAccount.includes(CREATE_ACCOUNT_LABEL.ENG)) ?
                                 onCreatAccountHandler : onLoginHandler}
-                            title={(isCreatingAccount.includes(CREATE_ACCOUNT)) ?
+                            title={(isCreatingAccount.includes(CREATE_ACCOUNT_LABEL.ENG)) ?
                                 FINISH_ACCOUNT_CREATION_LABEL[`${language}`] : LOGIN_LABEL[`${language}`]}
                         />
                     </View>
@@ -358,7 +355,7 @@ export default function LoginScreen() {
                             onClick={onCreateAccountButtonClickHandler}
                             state={isCreatingAccount}/>
                     </View>
-                    <ForgotPassword/>
+                    {/*<ForgotPassword/>*/}
                 </CardLayout>
             </View>
             {state.isLoading ? (

@@ -14,6 +14,7 @@ import CurrentSearchFieldInputSlice from "../reducers/home/currentSearchFieldInp
 import LanguageSlice from "../reducers/user/languageReducer";
 import isModalSlice from "../reducers/booleans/isModalReducer";
 import modalMessageSlice from "../reducers/general/modalMessageReducer"
+import loginStateSlice from "../reducers/login/loginStateReducer"
 
 const rootReducer = combineReducers({
     alcoholicFilter: alcoholicFilterSlice,
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
     language: LanguageSlice,
     isModal: isModalSlice,
     modalMessage: modalMessageSlice,
+    loginState: loginStateSlice
 })
 
 const store = configureStore({

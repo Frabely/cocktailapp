@@ -36,14 +36,14 @@ const styles = StyleSheet.create({
         borderRadius: BORDER_RADIUS / 2,
         padding: PADDING,
         margin: MARGIN,
-        marginBottom: 0
+        // marginBottom: 0
     },
     wrongInputMessage: {
         maxWidth: vw(0.7) - MARGIN - PADDING,
         color: COLOR_INCORRECT_FIELD_INPUT,
         marginHorizontal:  MARGIN / 2,
         paddingHorizontal: PADDING,
-        marginTop: MARGIN / 2
+        marginBottom: MARGIN
     }
 })
 
