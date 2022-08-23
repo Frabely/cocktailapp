@@ -111,3 +111,14 @@ export const getFavoritesList = async (userID: string) => {
         alert(error.message)
     })
 }
+
+export const fetchDataSetAsArray = async () => {
+    const usersRef = collection(db, `${USERS_DB}`);
+    await getDocs(usersRef).then((result) => {
+        if (!result.empty)
+            return result.docs
+    }).catch(error => {
+        console.log(error.message)
+    })
+    return undefined
+}
