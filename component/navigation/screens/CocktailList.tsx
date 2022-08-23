@@ -1,4 +1,3 @@
-import dummyData from "../../../constants/dummyData3";
 import React, {useEffect} from "react";
 import {FlatList, StyleSheet, View} from "react-native";
 import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
@@ -31,8 +30,8 @@ import {YOUR_FAVORITES} from "../../../constants/labels";
 import {invertIsModalState} from "../../../reducers/booleans/isModalReducer";
 import Modal from "../../layout/Modal";
 import {isHeightBiggerWidth} from "../../../functions/isHeightBiggerWidth";
+import {fetchDataSetAsArray} from "../../../functions/firebase";
 
-const data: Cocktail[] = dummyData.drinks;
 export default function CocktailList({route, navigation}: any) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
@@ -40,20 +39,34 @@ export default function CocktailList({route, navigation}: any) {
     const language: string = state.language
 
     useEffect(() => {
-        let dataSet: Cocktail[] = []
         if (isFavorites) {
-            dispatch(setIsLoadingTrue())
-            filterFavorites(data, state).then((result => {
-                dataSet = applySyncFilters(result, state, dispatch)
-                dispatch(setIsLoadingFalse())
-                dispatch(changeCurrentDataSet(dataSet))
-                dispatch(changeModalMessage(YOUR_FAVORITES[`${language}`]))
-                dispatch(invertIsModalState())
-            }))
-        } else {
-            dataSet = applySyncFilters(data, state, dispatch)
-            dispatch(changeCurrentDataSet(dataSet))
+            dispatch(changeModalMessage(YOUR_FAVORITES[`${language}`]))
+            dispatch(invertIsModalState())
         }
+    }, [])
+
+    useEffect(() => {
+        let dataSet: Cocktail[] = []
+        dispatch(setIsLoadingTrue())
+        fetchDataSetAsArray().then(resultData => {
+            if (resultData) {
+                if (isFavorites) {
+                    dispatch(setIsLoadingTrue())
+                    filterFavorites(resultData, state).then((result => {
+                        dataSet = applySyncFilters(result, state, dispatch)
+                        dispatch(setIsLoadingFalse())
+                        dispatch(changeCurrentDataSet(dataSet))
+                    }))
+                } else {
+                    dispatch(setIsLoadingFalse())
+                    dataSet = applySyncFilters(resultData, state, dispatch)
+                    dispatch(changeCurrentDataSet(dataSet))
+                }
+            }
+        }).catch(error => {
+            dispatch(setIsLoadingFalse())
+            console.log(error.message)
+        })
     }, [state.alcoholicFilter, state.categoryFilter, state.ingredientsFilter, state.currentSearchFieldInput])
 
     const onImageClickHandler = (

@@ -3,6 +3,7 @@ Bugs:
 -favorite on android to small
 -reload after star in favorites is removed -> removed card from dataSet
 -on login (with other account) filter might be open -> set all filter closed on logout
+-briefly showing all cocktails on favorites page load
 
 Master branch Goals:
 (x)-user login:
@@ -16,7 +17,7 @@ Master branch Goals:
             (x)-change password
         (x)-login:
             (x)-reset password
--Firebase Backend -> upload data auf firebase -> use data in app
+(x)-Firebase Backend -> upload data auf firebase -> use data in app
 
 TODOs:
 -highlight image (to close) should be height:width 1:1 or 1.5:1

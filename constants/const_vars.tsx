@@ -66,6 +66,7 @@ export const EMPTY_ITEM: Cocktail = {
 //database paths
 export const USERS_DB = 'users'
 export const USER_FAVORITES_DB = 'favorites'
+export const DRINKS_DB = 'drinks'
 
 //database attributes
 export const USER_USERNAME_LOWER_DB = "usernameLower"

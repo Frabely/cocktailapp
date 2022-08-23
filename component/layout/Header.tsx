@@ -11,11 +11,12 @@ import {useAppDispatch, useAppSelector} from "../../constants/hooks";
 import {setActiveFilter} from "../../reducers/filter/activeFilterReducer";
 import {changeCurrentItem} from "../../reducers/home/currentItemReducer";
 import {changeCurrentDataSet} from "../../reducers/home/currentDataSetReducer";
-import dummyData from "../../constants/dummyData3";
 import {changeCategory} from "../../reducers/filter/categoryFilterReducer";
 import {changeAlcoholic} from "../../reducers/filter/alcoholicFilterReducer";
 import {changeCurrentSearchFieldInput} from "../../reducers/home/currentSearchFieldInputReducer";
 import {changeIngredients} from "../../reducers/filter/ingredientsFilterReducer";
+import {fetchDataSetAsArray} from "../../functions/firebase";
+import {setIsLoadingFalse, setIsLoadingTrue} from "../../reducers/booleans/isLoadingReducer";
 
 export default function Header({navigation}: any) {
     const state = useAppSelector((state) => state)
@@ -23,7 +24,7 @@ export default function Header({navigation}: any) {
 
     const onBackArrowPressHandler = () => {
         if (navigation.canGoBack())
-        navigation.goBack()
+            navigation.goBack()
         if (state.activeFilter !== '') {
             dispatch(setActiveFilter(''))
         }
@@ -43,7 +44,20 @@ export default function Header({navigation}: any) {
         dispatch(changeCategory([ALL]))
         dispatch(changeIngredients([]))
         dispatch(changeCurrentSearchFieldInput(''))
-        dispatch(changeCurrentDataSet(dummyData.drinks))
+        dispatch(setIsLoadingTrue())
+        fetchDataSetAsArray().then(resultData => {
+            if (resultData) {
+                dispatch(changeCurrentDataSet(resultData))
+                dispatch(setIsLoadingFalse())
+            } else {
+                dispatch(changeCurrentDataSet([]))
+                dispatch(setIsLoadingFalse())
+            }
+        }).catch(error => {
+            console.log(error.message)
+            dispatch(setIsLoadingFalse())
+        })
+
     }
 
     return (
