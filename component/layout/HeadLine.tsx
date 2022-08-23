@@ -11,7 +11,7 @@ export default function HeadLine({label, margin}: HeadLineProps) {
 
 const styles = StyleSheet.create({
     headLine: {
-        fontSize: 40,
+        fontSize: 35,
     },
 })
 

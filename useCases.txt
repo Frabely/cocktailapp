@@ -1,12 +1,20 @@
 Bugs:
 -if no favorites -> Favorites page shows "No Hits -- Reset Filters" -> should display something like no favorites found
--favorite on android to small
 -reload after star in favorites is removed -> removed card from dataSet
 -on login (with other account) filter might be open -> set all filter closed on logout
 -briefly showing all cocktails on favorites page load
+-if All selected and gets reselected page reloads -> should not reload -> takes time that is not needed
 
 Master branch Goals:
--
+-testing start:
+    -cover as much as possible with error codes and matching messages
+-button/label sizes for tablet
+-(remove) flatlist from filter -> add map to iterate and scrollview to scroll if overflow
+-setup GooglePlay deploy
+-favorite on android to small
+-disable language -> German not fully supported:
+    -check for translation API -> maybe fast, good, free solution to translate
+-set Font consts
 
 TODOs:
 -fetch only favorites function -> don't need to fetch all when only favorites are required
@@ -22,22 +30,15 @@ TODOs:
 -rating:
     -filter
 -change padding and margin const's to rem
--change label for password placeholder or text to show it should be at least 6 chars long
 favorites:
     -share cocktails
     -create cocktails
--languages:
-    -API to change dummyData and ingredients
 -refactor reducer -> change hardcode strings to const's
 -user profile:
     -pages:
-        -profile details:
-            -change username and password
         -settings:
             -font size?
             -color themes?
--testing:
-    -cover as much as possible with error codes and matching messages
 -refactor and optimize highlight card, extract maybe
 -refactor filter file, extract maybe
 -what font and default size used -> make font sizes const's
@@ -49,7 +50,9 @@ favorites:
 Nice to have features:
 -highlight card full screen:
     -swipe down to get next cocktail
+-use mobile turn 90deg function
 -make colors changeable
+-change label for password placeholder or text to show it should be at least 6 chars long
 -shadow on android 'not' working -> see Card component
 -(python-)script to delete all not verified accounts in db as well as in firebase auth console
 -profile picture

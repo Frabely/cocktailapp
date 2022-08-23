@@ -7,10 +7,20 @@ import ProfileDetails from "./screens/user_profile/ProfileDetails";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {useAppSelector} from "../../constants/hooks";
 import Settings from "./screens/user_profile/Settings";
+import {useEffect, useState} from "react";
+import {useWindowDimensions} from "react-native";
 
 export default function Routes() {
     const state = useAppSelector((state) => state)
     const Stack = createNativeStackNavigator();
+    // const [rerender, setRerender] = useState(0);
+    //
+    // const test = useWindowDimensions().width;
+    //
+    // useEffect(() => {
+    //     setRerender(rerender+1)
+    // }, [test]);
+
 
     return (
         <NavigationContainer>
