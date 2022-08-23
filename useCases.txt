@@ -6,20 +6,10 @@ Bugs:
 -briefly showing all cocktails on favorites page load
 
 Master branch Goals:
-(x)-user login:
-    (x)-verify email
-    (x)-modal for errors/UI messages:
-        (x)-successfully created account
-(x)-user profile:
-    (x)-pages:
-        (x)-profile details:
-            (x)-change username
-            (x)-change password
-        (x)-login:
-            (x)-reset password
-(x)-Firebase Backend -> upload data auf firebase -> use data in app
+-
 
 TODOs:
+-fetch only favorites function -> don't need to fetch all when only favorites are required
 -highlight image (to close) should be height:width 1:1 or 1.5:1
 -refactor filter to ScrollView -> remove flatlist or open filter section on click like change password etc
 -refactor login screen and settings -> put all error checking into functions -> currently way to many code
