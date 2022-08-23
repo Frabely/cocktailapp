@@ -34,6 +34,7 @@ export default function Header({navigation}: any) {
     }
 
     const onProfilePressHandler = () => {
+        dispatch(changeCurrentDataSet([]))
         navigation.navigate(PROFILE)
     }
 

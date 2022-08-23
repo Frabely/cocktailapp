@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {FlatList, StyleSheet, View} from "react-native";
 import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
 import {vh} from "../../../functions/dimentions";
@@ -37,17 +37,11 @@ export default function CocktailList({route, navigation}: any) {
     const dispatch = useAppDispatch()
     const isFavorites = route.name === FAVORITES
     const language: string = state.language
+    const [isFavoritesModalShown, setIsFavoritesModalShown] = useState(false);
 
     useEffect(() => {
-        if (isFavorites) {
-            dispatch(changeModalMessage(YOUR_FAVORITES[`${language}`]))
-            dispatch(invertIsModalState())
-        }
-    }, [])
-
-    useEffect(() => {
-        let dataSet: Cocktail[] = []
         dispatch(setIsLoadingTrue())
+        let dataSet: Cocktail[] = []
         fetchDataSetAsArray().then(resultData => {
             if (resultData) {
                 if (isFavorites) {
@@ -56,6 +50,11 @@ export default function CocktailList({route, navigation}: any) {
                         dataSet = applySyncFilters(result, state, dispatch)
                         dispatch(setIsLoadingFalse())
                         dispatch(changeCurrentDataSet(dataSet))
+                        if (!isFavoritesModalShown) {
+                            dispatch(changeModalMessage(YOUR_FAVORITES[`${language}`]))
+                            dispatch(invertIsModalState())
+                            setIsFavoritesModalShown(true)
+                        }
                     }))
                 } else {
                     dispatch(setIsLoadingFalse())
@@ -107,7 +106,7 @@ export default function CocktailList({route, navigation}: any) {
                 {(state.activeFilter === SEARCH_FIELD) ? (
                     <SearchField/>
                 ) : null}
-                {(state.currentDataSet.length === 0) ? (
+                {(state.currentDataSet.length === 0 && !state.isLoading) ? (
                     <NoHits onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>
                 ) : null}
                 {isHeightBiggerWidth() ? (
