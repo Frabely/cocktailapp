@@ -5,20 +5,23 @@ import UserProfile from "./screens/UserProfile";
 import {FAVORITES, HOME, LOGIN, PROFILE, PROFILE_DETAILS, SETTINGS} from "../../constants/const_vars";
 import ProfileDetails from "./screens/user_profile/ProfileDetails";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
-import {useAppSelector} from "../../constants/hooks";
+import {useAppDispatch, useAppSelector} from "../../constants/hooks";
 import Settings from "./screens/user_profile/Settings";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {useWindowDimensions} from "react-native";
+import {changeHeight, changeWidth} from "../../reducers/general/screenSizeReducer";
 
 export default function Routes() {
     const state = useAppSelector((state) => state)
+    const dispatch = useAppDispatch()
     const Stack = createNativeStackNavigator();
-    const [rerender, setRerender] = useState(0);
+    const SCREEN_WIDTH = useWindowDimensions().width;
+    const SCREEN_HEIGHT = useWindowDimensions().height;
 
     useEffect(() => {
-        setRerender(rerender+1)
-    }, [SCREEN_WIDTH, SCREEN_HEIGHT]);
-
+        dispatch(changeHeight(SCREEN_HEIGHT))
+        dispatch(changeWidth(SCREEN_WIDTH))
+    }, [SCREEN_WIDTH, SCREEN_HEIGHT])
 
     return (
         <NavigationContainer>
@@ -41,6 +44,3 @@ export default function Routes() {
 
     )
 }
-
-export const SCREEN_WIDTH = useWindowDimensions().width;
-export const SCREEN_HEIGHT = useWindowDimensions().height;

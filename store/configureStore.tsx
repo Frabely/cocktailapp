@@ -16,6 +16,7 @@ import isModalSlice from "../reducers/booleans/isModalReducer";
 import modalMessageSlice from "../reducers/general/modalMessageReducer"
 import loginStateSlice from "../reducers/login/loginStateReducer"
 import isCreatingAccountSlice from "../reducers/login/isCreatingAccountReducer"
+import DimensionsSlice from "../reducers/general/screenSizeReducer"
 
 const rootReducer = combineReducers({
     alcoholicFilter: alcoholicFilterSlice,
@@ -33,7 +34,8 @@ const rootReducer = combineReducers({
     isModal: isModalSlice,
     modalMessage: modalMessageSlice,
     loginState: loginStateSlice,
-    isCreatingAccount: isCreatingAccountSlice
+    isCreatingAccount: isCreatingAccountSlice,
+    dimensions: DimensionsSlice
 })
 
 const store = configureStore({
