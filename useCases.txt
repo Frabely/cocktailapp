@@ -4,6 +4,9 @@ Bugs:
 -on login (with other account) filter might be open -> set all filter closed on logout
 -briefly showing all cocktails on favorites page load
 -if All selected and gets reselected page reloads -> should not reload -> takes time that is not needed
+-labels on android overflowing (german filter buttons)
+-loading symbol behind filter
+-labels to big for change password -> overflowing screen
 
 Master branch Goals:
 -testing start:
@@ -17,6 +20,11 @@ Master branch Goals:
 -set Font consts
 
 TODOs:
+-labels to big for change password -> overflowing screen
+-loading too much on search?
+-data state to big -> laggy?
+-load only 10 items and update on scroll?
+-app icon rework -> add triangle
 -fetch only favorites function -> don't need to fetch all when only favorites are required
 -highlight image (to close) should be height:width 1:1 or 1.5:1
 -refactor filter to ScrollView -> remove flatlist or open filter section on click like change password etc

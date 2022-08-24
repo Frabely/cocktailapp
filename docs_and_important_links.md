@@ -14,3 +14,14 @@ https://clippingmagic.com
 https://reactnavigation.org/docs/getting-started
 ### Define type with object which can be accessed by passing a string -> obj[:string:] -> const myObj: {[index: string]:any} = {}
 https://stackoverflow.com/questions/56833469/typescript-error-ts7053-element-implicitly-has-an-any-type
+### bundlephobia check bundlesize and package size
+https://bundlephobia.com
+### kaggle free dataSets
+https://www.kaggle.com/datasets
+### fontflipper
+https://fontflipper.com/upload
+### vizbug
+chrome extension
+### useful tools
+https://www.youtube.com/watch?v=U_gANjtv28g
+### figma and flare to create images and animation

@@ -13,13 +13,11 @@ import {useWindowDimensions} from "react-native";
 export default function Routes() {
     const state = useAppSelector((state) => state)
     const Stack = createNativeStackNavigator();
-    // const [rerender, setRerender] = useState(0);
-    //
-    // const test = useWindowDimensions().width;
-    //
-    // useEffect(() => {
-    //     setRerender(rerender+1)
-    // }, [test]);
+    const [rerender, setRerender] = useState(0);
+
+    useEffect(() => {
+        setRerender(rerender+1)
+    }, [SCREEN_WIDTH, SCREEN_HEIGHT]);
 
 
     return (
@@ -43,3 +41,6 @@ export default function Routes() {
 
     )
 }
+
+export const SCREEN_WIDTH = useWindowDimensions().width;
+export const SCREEN_HEIGHT = useWindowDimensions().height;
