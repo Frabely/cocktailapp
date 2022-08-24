@@ -1,5 +1,5 @@
 import {ImageBackground, Pressable, StyleSheet} from "react-native";
-import {vh, vw} from "../../functions/dimentions";
+import {vh_reactive, vw_reactive} from "../../functions/dimentions";
 import generate_box_shadow_style from '../../functions/generate_box_shadow_style';
 import {BORDER_RADIUS, PADDING} from "../../constants/style_constants";
 import {COLOR_SHADOW} from "../../constants/color_styles";
@@ -36,11 +36,11 @@ export default function Card({onPress, item}: CardProps) {
     // } else {
         return (
             <Pressable onPress={onImageClickHandler} style={[styles.cardOuter, isHeightBiggerWidth() ? {
-                height: vh(0.15),
-                maxWidth: vh(0.15),
+                height: vh_reactive(0.15, state.dimensions.height),
+                maxWidth: vh_reactive(0.15, state.dimensions.height),
             } : {
-                height: vw(0.10),
-                maxWidth: vw(0.10),
+                height: vw_reactive(0.10, state.dimensions.width),
+                maxWidth: vw_reactive(0.10, state.dimensions.width),
             }
             ]}>
                 <ImageBackground style={[styles.cardInner, styles.boxShadow]} source={
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     // },
     // androidCardOuter: {
     //     flex: 1,
-    //     height: vh(0.25),
+    //     height: vh_reactive(0.25),
     // },
     // androidImageBackground: {
     //     height: '100%',

@@ -1,5 +1,5 @@
 import {StyleSheet, View} from "react-native";
-import {vh, vw} from "../../functions/dimentions";
+import {vh, vh_reactive, vw, vw_reactive} from "../../functions/dimentions";
 import {faUser, faHouse, faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import {} from "@fortawesome/free-regular-svg-icons";
 import {} from "@fortawesome/free-brands-svg-icons";
@@ -62,7 +62,10 @@ export default function Header({navigation}: any) {
     }
 
     return (
-        <View style={styles.header}>
+        <View style={[styles.header, {
+            width: vw_reactive(1, state.dimensions.width) - MARGIN * 2,
+            height: vh_reactive(0.10, state.dimensions.height) - MARGIN
+        }]}>
             <HeaderButton onPress={onBackArrowPressHandler} icon={faArrowLeft}/>
             <HeaderButton onPress={onProfilePressHandler} icon={faUser}/>
             <HeaderButton onPress={onHomePressHandler} icon={faHouse}/>

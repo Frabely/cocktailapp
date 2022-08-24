@@ -7,7 +7,7 @@ import {
 import DropDownPicker from "react-native-dropdown-picker";
 import {useEffect, useState} from "react";
 import {INGREDIENT_LIST} from "../../../../constants/filter_lists";
-import {vh, vw} from "../../../../functions/dimentions";
+import {vh_reactive, vw_reactive} from "../../../../functions/dimentions";
 import {Platform} from "react-native";
 import {useAppDispatch, useAppSelector} from "../../../../constants/hooks";
 import {changeIngredients} from "../../../../reducers/filter/ingredientsFilterReducer";
@@ -113,7 +113,7 @@ export default function DropDownPickerWrapper() {
             autoScroll={true}
             containerStyle={{
                 backgroundColor: COLOR_CARD_BACKGROUND,
-                width: vw(1) - 2 * PADDING,
+                width: vw_reactive(1, state.dimensions.width) - 2 * PADDING,
                 borderBottomRightRadius: BORDER_RADIUS / 2,
                 borderBottomLeftRadius: BORDER_RADIUS / 2,
                 marginLeft: MARGIN,
@@ -135,21 +135,21 @@ export default function DropDownPickerWrapper() {
             maxHeight={300}
             // arrowIconStyle={{
             //     margin: MARGIN,
-            //     width: vw(0.1),
-            //     height: vh(0.03),
+            //     width: vw_reactive(0.1),
+            //     height: vh_reactive(0.03),
             // }}
             arrowIconStyle={isHeightBiggerWidth() ? {
                 margin: MARGIN,
-                height: vh(0.03),
-                width: vw(0.1),
+                height: vh_reactive(0.03, state.dimensions.height),
+                width: vw_reactive(0.1, state.dimensions.width),
             } : {
                 margin: MARGIN,
-                height: vh(0.1),
-                width: vw(0.03),
+                height: vh_reactive(0.1, state.dimensions.height),
+                width: vw_reactive(0.03, state.dimensions.width),
             }}
             badgeStyle={{
-                height: vh(0.04),
-                width: vw(0.9) - 4 * PADDING - 2 * MARGIN,
+                height: vh_reactive(0.04, state.dimensions.height),
+                width: vw_reactive(0.9, state.dimensions.width) - 4 * PADDING - 2 * MARGIN,
                 borderRadius: BORDER_RADIUS / 2,
                 justifyContent: 'center'
             }}

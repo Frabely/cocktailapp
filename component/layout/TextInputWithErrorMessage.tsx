@@ -1,5 +1,5 @@
 import {StyleSheet, Text, TextInput} from "react-native";
-import {vw} from "../../functions/dimentions";
+import {vw, vw_reactive} from "../../functions/dimentions";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
 import React, {Dispatch, SetStateAction} from "react";
 import {COLOR_CARD_BACKGROUND, COLOR_INCORRECT_FIELD_INPUT} from "../../constants/color_styles";
@@ -25,7 +25,9 @@ export default function TextInputWithErrorMessage({errorState, setInputState,
                 secureTextEntry={(isPassword) ? isPassword : isPassword}/>
             {errorState ? (
                 <Text
-                    style={styles.wrongInputMessage}>{errorState?.message[`${language}`]}</Text>
+                    style={[styles.wrongInputMessage,
+                        {maxWidth: vw_reactive(0.7, state.dimensions.width) - MARGIN - PADDING}]}>
+                    {errorState?.message[`${language}`]}</Text>
             ) : null}
         </>
     )

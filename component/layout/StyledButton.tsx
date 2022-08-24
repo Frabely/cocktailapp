@@ -1,11 +1,13 @@
 import {Platform, Pressable, StyleSheet, Text} from "react-native";
 import {COLOR_BACKGROUND, COLOR_HEADER} from "../../constants/color_styles";
 import {useState} from "react";
-import {vh} from "../../functions/dimentions";
+import {vh_reactive} from "../../functions/dimentions";
 import {BORDER_RADIUS, DEFAULT_BUTTON_HEIGHT} from "../../constants/style_constants";
+import {useAppSelector} from "../../constants/hooks";
 
 export default function StyledButton({onPress, title, margin, padding, width, flex, height}: StyledButtonProps) {
     const [isTouched, setIsTouched] = useState(false)
+    const state = useAppSelector((state) => state)
     const onTouchStartHandler = () => {
         setIsTouched(true)
     }
@@ -17,7 +19,7 @@ export default function StyledButton({onPress, title, margin, padding, width, fl
     return (
         <Pressable style={[styles.styledButton, {
             backgroundColor: isTouched ? COLOR_HEADER : COLOR_BACKGROUND,
-            height: (height || height === 0) ? height : vh(DEFAULT_BUTTON_HEIGHT),
+            height: (height || height === 0) ? height : vh_reactive(DEFAULT_BUTTON_HEIGHT, state.dimensions.height),
             padding: (padding || padding === 0)   ? padding : undefined,
             margin: (margin || margin === 0)  ? margin : undefined,
             width: (width || width === 0) ? width : undefined,

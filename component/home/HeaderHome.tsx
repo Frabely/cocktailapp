@@ -1,5 +1,5 @@
 import {StyleSheet, View} from "react-native";
-import {vh, vw} from "../../functions/dimentions";
+import {vh, vh_reactive, vw, vw_reactive} from "../../functions/dimentions";
 import {BORDER_RADIUS, MARGIN} from "../../constants/style_constants";
 import {COLOR_HEADER} from "../../constants/color_styles";
 import HeaderButton from "../layout/HeaderButton";
@@ -29,7 +29,10 @@ export default function HeaderHome() {
     }
 
     return (
-        <View style={styles.headerHome}>
+        <View style={[styles.headerHome, {
+            width: vw_reactive(1, state.dimensions.width)-MARGIN*2,
+            height: vh_reactive(0.10, state.dimensions.height)-MARGIN
+        }]}>
             <HeaderButton onPress={onSearchPressHandler} icon={faSearch}/>
             <HeaderButton onPress={onFilterPressHandler} icon={faFilter}/>
         </View>

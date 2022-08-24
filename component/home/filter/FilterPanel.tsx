@@ -2,15 +2,16 @@ import {FlatList, StyleSheet, View} from "react-native";
 import Label from "./Label";
 import FilterButton from "./FilterButton";
 import {COLOR_BACKGROUND, COLOR_HEADER} from "../../../constants/color_styles";
-import {useAppDispatch} from "../../../constants/hooks";
+import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
 import {ALL} from "../../../constants/const_vars";
 import {ActionCreatorWithPayload} from "@reduxjs/toolkit";
 import {MARGIN, PADDING} from "../../../constants/style_constants";
-import {vh} from "../../../functions/dimentions";
+import {vh, vh_reactive} from "../../../functions/dimentions";
 
 export default function FilterPanel({filterState, setFilterState, isMultiSelectable,
                                         options, optionsENG, labelName, numColumns}: FilterPanelProps) {
     const dispatch = useAppDispatch()
+    const state = useAppSelector((state) => state)
 
     const onFilterButtonClickHandler = (filterName: string) => {
         const array = [...filterState]
@@ -45,7 +46,7 @@ export default function FilterPanel({filterState, setFilterState, isMultiSelecta
 
     const renderItem = ({item, index}: any) => {
         return (
-            <View style={styles.flatListItem}>
+            <View style={[styles.flatListItem, {minHeight: vh_reactive(0.08, state.dimensions.height)}]}>
                 <FilterButton
                     title={item}
                     titleENG={optionsENG[index]}

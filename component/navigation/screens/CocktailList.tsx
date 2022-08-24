@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {FlatList, StyleSheet, View} from "react-native";
 import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
-import {vh} from "../../../functions/dimentions";
+import {vh, vh_reactive} from "../../../functions/dimentions";
 import Card from "../../layout/Card";
 import Header from "../../layout/Header";
 import Filter from "../../home/filter/Filter";
@@ -99,7 +99,7 @@ export default function CocktailList({route, navigation}: any) {
     return (
         <AppBackground>
             <HeaderHome/>
-            <View style={styles.app}>
+            <View style={[styles.app, {height: vh_reactive(0.8, state.dimensions.height)}]}>
                 {(state.activeFilter === FILTER) ? (
                     <Filter onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>
                 ) : null}
@@ -136,7 +136,7 @@ export default function CocktailList({route, navigation}: any) {
                             extraData={state.currentItem.idDrink}/>
                         {(state.currentItem.idDrink) ? (
                             <View style={{flex: 1}}>
-                                <HighlightedCard height={vh(0.8) - PADDING * 2}/>
+                                <HighlightedCard height={vh_reactive(0.8, state.dimensions.height) - PADDING * 2}/>
                             </View>
                         ) : null}
                     </View>

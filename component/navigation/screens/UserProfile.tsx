@@ -1,6 +1,6 @@
 import {StyleSheet, View, Image} from "react-native";
 import {COLOR_BACKGROUND, COLOR_CARD_BACKGROUND} from "../../../constants/color_styles";
-import {vh} from "../../../functions/dimentions";
+import {vh, vh_reactive} from "../../../functions/dimentions";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
 import {faGear, faPowerOff, faUserGear} from "@fortawesome/free-solid-svg-icons";
 import {faStar} from "@fortawesome/free-regular-svg-icons";
@@ -54,7 +54,9 @@ export default function UserProfile({navigation}: any) {
     }
     return (
         <AppBackground>
-            <View style={styles.userProfile}>
+            <View style={[styles.userProfile, {
+                height: vh_reactive(0.9, state.dimensions.height)
+            }]}>
                 <Image style={{position: 'absolute', height: '100%', width: '100%'}}
                        source={require('../../../assets/images/adaptive_background.png')}/>
                 <CardLayout>
@@ -95,6 +97,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderRadius: BORDER_RADIUS / 2,
         width: '80%'
-        // width: vw(1)-MARGIN-PADDING
+        // width: vw_reactive(1)-MARGIN-PADDING
     }
 })

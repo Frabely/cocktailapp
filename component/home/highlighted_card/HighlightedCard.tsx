@@ -1,5 +1,5 @@
 import {ImageBackground, ScrollView, StyleSheet, Text, View} from "react-native";
-import {vh, vw} from "../../../functions/dimentions";
+import {vh, vh_reactive, vw_reactive} from "../../../functions/dimentions";
 import {useEffect, useState} from "react";
 import generate_box_shadow_style from "../../../functions/generate_box_shadow_style";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
@@ -88,7 +88,7 @@ export default function HighlightedCard({height}: HighlightedCardProps) {
 
     return (
         <View style={[styles.highlightView, {
-            height: (height || height == 0) ? height : vh(0.6) - PADDING * 2
+            height: (height || height == 0) ? height : vh_reactive(0.6, state.dimensions.height) - PADDING * 2
         }]}>
             <ImageBackground style={styles.highlightViewBackgroundImage}
                              source={{uri: state.currentItem.strDrinkThumb !== null ? state.currentItem.strDrinkThumb : ''}}>
@@ -100,8 +100,8 @@ export default function HighlightedCard({height}: HighlightedCardProps) {
                         <View style={{flex: 1, alignItems: 'center'}}>
                             <HeaderButton
                                 onPress={onFavoritesCLickHandler}
-                                height={vh(0.05)}
-                                width={vw(0.1)}
+                                height={vh_reactive(0.05, state.dimensions.height)}
+                                width={vw_reactive(0.1, state.dimensions.width)}
                                 icon={favorite ? faStar_solid : faStar_regular}
                                 color={COLOR_HEADER}/>
                         </View>

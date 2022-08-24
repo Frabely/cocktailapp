@@ -1,5 +1,5 @@
 import {StyleSheet, View} from "react-native";
-import {vh, vw} from "../../../../functions/dimentions";
+import {vh, vh_reactive} from "../../../../functions/dimentions";
 import CardLayout from "../../../layout/CardLayout";
 import {useAppDispatch, useAppSelector} from "../../../../constants/hooks";
 import {
@@ -21,7 +21,6 @@ import LoadingScreen from "../../../layout/LoadingScreen";
 import {
     COLOR_BACKGROUND,
     COLOR_HEADER,
-    COLOR_INCORRECT_FIELD_INPUT
 } from "../../../../constants/color_styles";
 import FilterButton from "../../../home/filter/FilterButton";
 import React, {useState} from "react";
@@ -233,7 +232,7 @@ export default function ProfileDetails({navigation}: any) {
 
     return (
         <AppBackground>
-            <View style={styles.userData}>
+            <View style={[styles.userData, {height: vh_reactive(0.9, state.dimensions.height)}]}>
                 <CardLayout>
                     <HeadLine label={PROFILE_DETAILS_LABEL[`${language}`]} margin={MARGIN / 2}/>
                     <ProfileDetailsItem
@@ -331,12 +330,4 @@ const styles = StyleSheet.create({
         backgroundColor: COLOR_HEADER,
         borderRadius: BORDER_RADIUS / 2,
     },
-    wrongInputMessage: {
-        maxWidth: vw(0.7) - MARGIN - PADDING,
-        color: COLOR_INCORRECT_FIELD_INPUT,
-        marginLeft: MARGIN,
-        paddingLeft: PADDING,
-        marginRight: MARGIN,
-        paddingRight: PADDING
-    }
 })

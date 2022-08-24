@@ -1,5 +1,5 @@
 import {Image, StyleSheet, View} from "react-native";
-import {vh, vw} from "../../../functions/dimentions";
+import {vh, vh_reactive, vw_reactive} from "../../../functions/dimentions";
 import {
     COLOR_BACKGROUND,
 } from "../../../constants/color_styles";
@@ -21,10 +21,12 @@ export default function LoginScreen() {
 
     return (
         <AppBackground>
-            <View style={styles.loginScreen}>
+            <View style={[styles.loginScreen, {
+                height: vh_reactive(1, state.dimensions.height)
+            }]}>
                 <Image style={{position: 'absolute', height: '100%', width: '100%'}}
                        source={require('../../../assets/images/adaptive_background.png')}/>
-                <CardLayout width={vw(0.7)}>
+                <CardLayout width={vw_reactive(0.7, state.dimensions.width)}>
                     {state.loginState === LOGIN_LABEL.ENG ? <Login/> : null}
                     {state.loginState === CREATE_ACCOUNT_LABEL.ENG ? <CreateAccount/> : null}
                     {state.loginState === FORGOT_PASSWORD_LABEL.ENG ? <ForgotPassword/> : null}

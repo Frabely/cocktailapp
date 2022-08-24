@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View} from "react-native";
 import StyledButton from "../layout/StyledButton";
-import {vw} from "../../functions/dimentions";
+import {vw_reactive} from "../../functions/dimentions";
 import CardLayout from "../layout/CardLayout";
 import {NO_HITS_LABEL, RESET_FILTER_LABEL} from "../../constants/labels";
 import {useAppSelector} from "../../constants/hooks";
@@ -12,7 +12,7 @@ export default function NoHits({onClearAllFiltersClickHandler}: NoHitsProps) {
 
     return (
         <View style={styles.noHits}>
-            <CardLayout width={vw(0.5)}>
+            <CardLayout width={vw_reactive(0.5, state.dimensions.width)}>
                     <Text style={styles.text}>{`${NO_HITS_LABEL[`${language}`]} 😕`}</Text>
                     <StyledButton
                         title={RESET_FILTER_LABEL[`${language}`]}

@@ -1,5 +1,5 @@
 import {StyleSheet, View} from "react-native";
-import {vw} from "../../../functions/dimentions";
+import {vw, vw_reactive} from "../../../functions/dimentions";
 import {COLOR_CARD_BACKGROUND} from "../../../constants/color_styles";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
 import FilterPanel from "./FilterPanel";
@@ -33,7 +33,7 @@ export default function Filter({onClearAllFiltersClickHandler}: FilterProps) {
     }
 
     return (
-        <View style={styles.filter}>
+        <View style={[styles.filter, {width: vw_reactive(1, state.dimensions.width)}]}>
             <View style={styles.rowStyle}>
                 <FilterPanel options={alcFilterOptions}
                              optionsENG={alcFilterOptionsENG}

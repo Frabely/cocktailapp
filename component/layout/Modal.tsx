@@ -1,5 +1,5 @@
 import {StyleSheet, View, Text, Pressable} from "react-native";
-import {vh, vw} from "../../functions/dimentions";
+import {vh, vh_reactive, vw, vw_reactive} from "../../functions/dimentions";
 import {COLOR_HEADER, OPACITY_ZERO} from "../../constants/color_styles";
 import CardLayout from "./CardLayout";
 import StyledButton from "./StyledButton";
@@ -19,8 +19,11 @@ export default function Modal({message}: ModalProps) {
         dispatch(invertIsModalState())
     }
     return (
-        <Pressable onPress={closeModelOnPressHandler} style={styles.modalBackground}>
-            <View style={styles.modalInner}>
+        <Pressable onPress={closeModelOnPressHandler} style={[styles.modalBackground, {
+            width: vw_reactive(1, state.dimensions.width),
+            height: vh_reactive(1, state.dimensions.height)
+        }]}>
+            <View style={[styles.modalInner, {width: vw_reactive(0.8, state.dimensions.width)}]}>
                 <CardLayout>
                     <Text>{message}</Text>
                     <View style={{marginTop: MARGIN}}>

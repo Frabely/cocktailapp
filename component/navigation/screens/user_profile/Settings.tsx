@@ -1,5 +1,5 @@
 import {Platform, StyleSheet, Text, View} from "react-native";
-import {vh} from "../../../../functions/dimentions";
+import {vh, vh_reactive} from "../../../../functions/dimentions";
 import AppBackground from "../../../layout/AppBackground";
 import Header from "../../../layout/Header";
 import CardLayout from "../../../layout/CardLayout";
@@ -47,7 +47,9 @@ export default function Settings({navigation}: any) {
     }
     return (
         <AppBackground>
-            <View style={styles.settings}>
+            <View style={[styles.settings, {
+                height: vh_reactive(0.9, state.dimensions.height)
+            }]}>
                 <CardLayout>
                     <HeadLine label={SETTINGS_LABEL[`${language}`]} margin={MARGIN / 2}/>
                     <View style={[styles.profileDetailsItem,
