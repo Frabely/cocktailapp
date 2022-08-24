@@ -29,7 +29,6 @@ import {changeModalMessage} from "../../../reducers/general/modalMessageReducer"
 import {YOUR_FAVORITES} from "../../../constants/labels";
 import {invertIsModalState} from "../../../reducers/booleans/isModalReducer";
 import Modal from "../../layout/Modal";
-import {isHeightBiggerWidth} from "../../../functions/isHeightBiggerWidth";
 import {fetchDataSetAsArray} from "../../../functions/firebase";
 
 export default function CocktailList({route, navigation}: any) {
@@ -109,7 +108,7 @@ export default function CocktailList({route, navigation}: any) {
                 {(state.currentDataSet.length === 0 && !state.isLoading) ? (
                     <NoHits onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>
                 ) : null}
-                {isHeightBiggerWidth() ? (
+                {(state.dimensions.height > state.dimensions.width) ? (
                     <View style={{flexDirection: 'column', height: '100%'}}>
                         {(state.currentItem.idDrink) ? (
                             <HighlightedCard/>

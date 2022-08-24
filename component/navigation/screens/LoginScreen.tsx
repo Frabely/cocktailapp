@@ -15,9 +15,14 @@ import Modal from "../../layout/Modal";
 import ForgotPassword from "../../login/ForgotPassword";
 import Login from "../../login/Login";
 import CreateAccount from "../../login/CreateAccount";
+import {useEffect} from "react";
 
 export default function LoginScreen() {
     const state = useAppSelector((state) => state)
+
+    useEffect(() => {
+
+    }, [state.dimensions.height, state.dimensions.width])
 
     return (
         <AppBackground>

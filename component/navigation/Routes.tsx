@@ -9,7 +9,7 @@ import {useAppDispatch, useAppSelector} from "../../constants/hooks";
 import Settings from "./screens/user_profile/Settings";
 import {useEffect} from "react";
 import {useWindowDimensions} from "react-native";
-import {changeHeight, changeWidth} from "../../reducers/general/screenSizeReducer";
+import {changeScreen} from "../../reducers/general/screenSizeReducer";
 
 export default function Routes() {
     const state = useAppSelector((state) => state)
@@ -19,8 +19,7 @@ export default function Routes() {
     const SCREEN_HEIGHT = useWindowDimensions().height;
 
     useEffect(() => {
-        dispatch(changeHeight(SCREEN_HEIGHT))
-        dispatch(changeWidth(SCREEN_WIDTH))
+        dispatch(changeScreen({height: SCREEN_HEIGHT, width: SCREEN_WIDTH}))
     }, [SCREEN_WIDTH, SCREEN_HEIGHT])
 
     return (

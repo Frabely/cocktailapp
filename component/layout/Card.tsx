@@ -5,7 +5,6 @@ import {BORDER_RADIUS, PADDING} from "../../constants/style_constants";
 import {COLOR_SHADOW} from "../../constants/color_styles";
 import {useAppSelector} from "../../constants/hooks";
 import {Cocktail} from "../../constants/types";
-import {isHeightBiggerWidth} from "../../functions/isHeightBiggerWidth";
 
 export default function Card({onPress, item}: CardProps) {
     const state = useAppSelector((state) => state)
@@ -35,7 +34,8 @@ export default function Card({onPress, item}: CardProps) {
     //     )
     // } else {
         return (
-            <Pressable onPress={onImageClickHandler} style={[styles.cardOuter, isHeightBiggerWidth() ? {
+            <Pressable onPress={onImageClickHandler} style={[styles.cardOuter,
+                (state.dimensions.height > state.dimensions.width) ? {
                 height: vh_reactive(0.15, state.dimensions.height),
                 maxWidth: vh_reactive(0.15, state.dimensions.height),
             } : {

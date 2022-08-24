@@ -16,7 +16,6 @@ import {
     INGREDIENTS_FILTER_SELECTION_NUMBER_MIN
 } from "../../../../constants/const_vars";
 import {SEARCH_INGREDIENTS_LABEL} from "../../../../constants/labels";
-import {isHeightBiggerWidth} from "../../../../functions/isHeightBiggerWidth";
 
 export default function DropDownPickerWrapper() {
     const dispatch = useAppDispatch()
@@ -138,7 +137,7 @@ export default function DropDownPickerWrapper() {
             //     width: vw_reactive(0.1),
             //     height: vh_reactive(0.03),
             // }}
-            arrowIconStyle={isHeightBiggerWidth() ? {
+            arrowIconStyle={(state.dimensions.height > state.dimensions.width) ? {
                 margin: MARGIN,
                 height: vh_reactive(0.03, state.dimensions.height),
                 width: vw_reactive(0.1, state.dimensions.width),

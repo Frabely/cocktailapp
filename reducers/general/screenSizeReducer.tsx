@@ -19,9 +19,12 @@ const DimensionsSlice = createSlice({
         changeWidth: (state, action: PayloadAction<number>) => {
             let objNew: DimensionsType = {...initialState, width: action.payload}
             return objNew
+        },
+        changeScreen: (state, action: PayloadAction<DimensionsType>) => {
+            return action.payload
         }
     },
 })
-export const { changeHeight, changeWidth } = DimensionsSlice.actions
+export const { changeHeight, changeWidth, changeScreen } = DimensionsSlice.actions
 
 export default DimensionsSlice.reducer;
