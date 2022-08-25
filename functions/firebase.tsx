@@ -10,7 +10,8 @@ import {
     where,
     updateDoc,
     getDoc,
-    deleteDoc
+    deleteDoc,
+    DocumentSnapshot,
 } from "firebase/firestore";
 import {DRINKS_DB, USER_FAVORITES_DB, USER_USERNAME_LOWER_DB, USERS_DB} from "../constants/const_vars";
 import {Cocktail} from "../constants/types";
@@ -103,76 +104,33 @@ export const getFavoritesList = async (userID: string) => {
     const userFavoritesRef = collection(db, `${USERS_DB}/${userID}/${USER_FAVORITES_DB}`);
     return await getDocs(userFavoritesRef).then(result => {
         if (result.empty) {
-            return null
+            return undefined
         } else if (result?.docs) {
-            return result.docs
+            let favoriteArray: string[] = []
+            result.docs.map((item) => {
+                favoriteArray.push(item.id)
+            })
+            return favoriteArray
         }
     }).catch(error => {
         console.log(error.message)
         alert(error.message)
+        return undefined
     })
 }
 
-export const fetchFullDataSetAsArray = async () => {
+export const fetchFullDataSetAsArray = async (getOnlyFavorites?: {favoriteIDArray: string[]}) => {
     const usersRef = collection(db, `${DRINKS_DB}`);
     return await getDocs(usersRef).then((result) => {
         if (!result.empty) {
             let returnArray: Cocktail[] = []
             result.docs.map((item) => {
-                let cocktail: Cocktail = {
-                    "idDrink": item.get("idDrink"),
-                    "strDrink": item.get("strDrink"),
-                    "strDrinkAlternate": item.get("strDrinkAlternate"),
-                    "strTags": item.get("strTags"),
-                    "strVideo": item.get("strVideo"),
-                    "strCategory": item.get("strCategory"),
-                    "strIBA": item.get("strIBA"),
-                    "strAlcoholic": item.get("strAlcoholic"),
-                    "strGlass": item.get("strGlass"),
-                    "strInstructions": item.get("strInstructions"),
-                    "strInstructionsES": item.get("strInstructionsES"),
-                    "strInstructionsDE": item.get("strInstructionsDE"),
-                    "strInstructionsFR": item.get("strInstructionsFR"),
-                    "strInstructionsIT": item.get("strInstructionsIT"),
-                    "strInstructionsZH-HANS": item.get("strInstructionsZH-HANS"),
-                    "strInstructionsZH-HANT": item.get("strInstructionsZH-HANT"),
-                    "strDrinkThumb": item.get("strDrinkThumb"),
-                    "strIngredient1": item.get("strIngredient1"),
-                    "strIngredient2": item.get("strIngredient2"),
-                    "strIngredient3": item.get("strIngredient3"),
-                    "strIngredient4": item.get("strIngredient4"),
-                    "strIngredient5": item.get("strIngredient5"),
-                    "strIngredient6": item.get("strIngredient6"),
-                    "strIngredient7": item.get("strIngredient7"),
-                    "strIngredient8": item.get("strIngredient8"),
-                    "strIngredient9": item.get("strIngredient9"),
-                    "strIngredient10": item.get("strIngredient10"),
-                    "strIngredient11": item.get("strIngredient11"),
-                    "strIngredient12": item.get("strIngredient12"),
-                    "strIngredient13": item.get("strIngredient13"),
-                    "strIngredient14": item.get("strIngredient14"),
-                    "strIngredient15": item.get("strIngredient15"),
-                    "strMeasure1": item.get("strMeasure1"),
-                    "strMeasure2": item.get("strMeasure2"),
-                    "strMeasure3": item.get("strMeasure3"),
-                    "strMeasure4": item.get("strMeasure4"),
-                    "strMeasure5": item.get("strMeasure5"),
-                    "strMeasure6": item.get("strMeasure6"),
-                    "strMeasure7": item.get("strMeasure7"),
-                    "strMeasure8": item.get("strMeasure8"),
-                    "strMeasure9": item.get("strMeasure9"),
-                    "strMeasure10": item.get("strMeasure10"),
-                    "strMeasure11": item.get("strMeasure11"),
-                    "strMeasure12": item.get("strMeasure12"),
-                    "strMeasure13": item.get("strMeasure13"),
-                    "strMeasure14": item.get("strMeasure14"),
-                    "strMeasure15": item.get("strMeasure15"),
-                    "strImageSource": item.get("strImageSource"),
-                    "strImageAttribution": item.get("strImageAttribution"),
-                    "strCreativeCommonsConfirmed": item.get("strCreativeCommonsConfirmed"),
-                    "dateModified": item.get("dateModified")
-                }
-                returnArray.push(cocktail)
+                if (getOnlyFavorites) {
+                    if (getOnlyFavorites.favoriteIDArray.includes(item.id)){
+                        returnArray.push(setCocktailFromDoc(item))
+                    }
+                } else
+                    returnArray.push(setCocktailFromDoc(item))
             })
             return returnArray
         }
@@ -182,79 +140,59 @@ export const fetchFullDataSetAsArray = async () => {
     })
 }
 
-export const fetchFavoriteDataSetAsArray = async (userID: string) => {
-    const result = await getFavoritesList(userID)
-    if (result) {
-        result.forEach((item => {
-            console.log(item.id)
-        }))
+const setCocktailFromDoc = (docResult: DocumentSnapshot) => {
+    let cocktail: Cocktail = {
+        "idDrink": docResult.get("idDrink"),
+        "strDrink": docResult.get("strDrink"),
+        "strDrinkAlternate": docResult.get("strDrinkAlternate"),
+        "strTags": docResult.get("strTags"),
+        "strVideo": docResult.get("strVideo"),
+        "strCategory": docResult.get("strCategory"),
+        "strIBA": docResult.get("strIBA"),
+        "strAlcoholic": docResult.get("strAlcoholic"),
+        "strGlass": docResult.get("strGlass"),
+        "strInstructions": docResult.get("strInstructions"),
+        "strInstructionsES": docResult.get("strInstructionsES"),
+        "strInstructionsDE": docResult.get("strInstructionsDE"),
+        "strInstructionsFR": docResult.get("strInstructionsFR"),
+        "strInstructionsIT": docResult.get("strInstructionsIT"),
+        "strInstructionsZH-HANS": docResult.get("strInstructionsZH-HANS"),
+        "strInstructionsZH-HANT": docResult.get("strInstructionsZH-HANT"),
+        "strDrinkThumb": docResult.get("strDrinkThumb"),
+        "strIngredient1": docResult.get("strIngredient1"),
+        "strIngredient2": docResult.get("strIngredient2"),
+        "strIngredient3": docResult.get("strIngredient3"),
+        "strIngredient4": docResult.get("strIngredient4"),
+        "strIngredient5": docResult.get("strIngredient5"),
+        "strIngredient6": docResult.get("strIngredient6"),
+        "strIngredient7": docResult.get("strIngredient7"),
+        "strIngredient8": docResult.get("strIngredient8"),
+        "strIngredient9": docResult.get("strIngredient9"),
+        "strIngredient10": docResult.get("strIngredient10"),
+        "strIngredient11": docResult.get("strIngredient11"),
+        "strIngredient12": docResult.get("strIngredient12"),
+        "strIngredient13": docResult.get("strIngredient13"),
+        "strIngredient14": docResult.get("strIngredient14"),
+        "strIngredient15": docResult.get("strIngredient15"),
+        "strMeasure1": docResult.get("strMeasure1"),
+        "strMeasure2": docResult.get("strMeasure2"),
+        "strMeasure3": docResult.get("strMeasure3"),
+        "strMeasure4": docResult.get("strMeasure4"),
+        "strMeasure5": docResult.get("strMeasure5"),
+        "strMeasure6": docResult.get("strMeasure6"),
+        "strMeasure7": docResult.get("strMeasure7"),
+        "strMeasure8": docResult.get("strMeasure8"),
+        "strMeasure9": docResult.get("strMeasure9"),
+        "strMeasure10": docResult.get("strMeasure10"),
+        "strMeasure11": docResult.get("strMeasure11"),
+        "strMeasure12": docResult.get("strMeasure12"),
+        "strMeasure13": docResult.get("strMeasure13"),
+        "strMeasure14": docResult.get("strMeasure14"),
+        "strMeasure15": docResult.get("strMeasure15"),
+        "strImageSource": docResult.get("strImageSource"),
+        "strImageAttribution": docResult.get("strImageAttribution"),
+        "strCreativeCommonsConfirmed": docResult.get("strCreativeCommonsConfirmed"),
+        "dateModified": docResult.get("dateModified")
     }
-    // const queryResult = query(usersRef, where(USER_USERNAME_LOWER_DB, "==", username.toLowerCase()));
-    // const usersRef = collection(db, `${DRINKS_DB}`);
-    //
-    // return await getDocs(usersRef,).then((result) => {
-    //     if (!result.empty) {
-    //         let returnArray: Cocktail[] = []
-    //         result.docs.map((item) => {
-    //             let cocktail: Cocktail = {
-    //                 "idDrink": item.get("idDrink"),
-    //                 "strDrink": item.get("strDrink"),
-    //                 "strDrinkAlternate": item.get("strDrinkAlternate"),
-    //                 "strTags": item.get("strTags"),
-    //                 "strVideo": item.get("strVideo"),
-    //                 "strCategory": item.get("strCategory"),
-    //                 "strIBA": item.get("strIBA"),
-    //                 "strAlcoholic": item.get("strAlcoholic"),
-    //                 "strGlass": item.get("strGlass"),
-    //                 "strInstructions": item.get("strInstructions"),
-    //                 "strInstructionsES": item.get("strInstructionsES"),
-    //                 "strInstructionsDE": item.get("strInstructionsDE"),
-    //                 "strInstructionsFR": item.get("strInstructionsFR"),
-    //                 "strInstructionsIT": item.get("strInstructionsIT"),
-    //                 "strInstructionsZH-HANS": item.get("strInstructionsZH-HANS"),
-    //                 "strInstructionsZH-HANT": item.get("strInstructionsZH-HANT"),
-    //                 "strDrinkThumb": item.get("strDrinkThumb"),
-    //                 "strIngredient1": item.get("strIngredient1"),
-    //                 "strIngredient2": item.get("strIngredient2"),
-    //                 "strIngredient3": item.get("strIngredient3"),
-    //                 "strIngredient4": item.get("strIngredient4"),
-    //                 "strIngredient5": item.get("strIngredient5"),
-    //                 "strIngredient6": item.get("strIngredient6"),
-    //                 "strIngredient7": item.get("strIngredient7"),
-    //                 "strIngredient8": item.get("strIngredient8"),
-    //                 "strIngredient9": item.get("strIngredient9"),
-    //                 "strIngredient10": item.get("strIngredient10"),
-    //                 "strIngredient11": item.get("strIngredient11"),
-    //                 "strIngredient12": item.get("strIngredient12"),
-    //                 "strIngredient13": item.get("strIngredient13"),
-    //                 "strIngredient14": item.get("strIngredient14"),
-    //                 "strIngredient15": item.get("strIngredient15"),
-    //                 "strMeasure1": item.get("strMeasure1"),
-    //                 "strMeasure2": item.get("strMeasure2"),
-    //                 "strMeasure3": item.get("strMeasure3"),
-    //                 "strMeasure4": item.get("strMeasure4"),
-    //                 "strMeasure5": item.get("strMeasure5"),
-    //                 "strMeasure6": item.get("strMeasure6"),
-    //                 "strMeasure7": item.get("strMeasure7"),
-    //                 "strMeasure8": item.get("strMeasure8"),
-    //                 "strMeasure9": item.get("strMeasure9"),
-    //                 "strMeasure10": item.get("strMeasure10"),
-    //                 "strMeasure11": item.get("strMeasure11"),
-    //                 "strMeasure12": item.get("strMeasure12"),
-    //                 "strMeasure13": item.get("strMeasure13"),
-    //                 "strMeasure14": item.get("strMeasure14"),
-    //                 "strMeasure15": item.get("strMeasure15"),
-    //                 "strImageSource": item.get("strImageSource"),
-    //                 "strImageAttribution": item.get("strImageAttribution"),
-    //                 "strCreativeCommonsConfirmed": item.get("strCreativeCommonsConfirmed"),
-    //                 "dateModified": item.get("dateModified")
-    //             }
-    //             returnArray.push(cocktail)
-    //         })
-    //         return returnArray
-    //     }
-    // }).catch(error => {
-    //     console.log(error.message)
-    //     return undefined
-    // })
+    return cocktail
 }
