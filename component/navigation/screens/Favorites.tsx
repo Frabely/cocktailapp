@@ -51,7 +51,7 @@ export default function Favorites({navigation}: any) {
                 alert(error.message)
             })
         }
-    },[state.alcoholicFilter, state.categoryFilter, state.ingredientsFilter, state.currentSearchFieldInput])
+    }, [state.alcoholicFilter, state.categoryFilter, state.ingredientsFilter, state.currentSearchFieldInput])
 
     return (
         <AppBackground>

@@ -1,5 +1,4 @@
 import React, {useEffect} from "react";
-import {StyleSheet} from "react-native";
 import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
 import Header from "../../layout/Header";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../../reducers/booleans/isLoadingReducer";
@@ -39,20 +38,13 @@ export default function Home({navigation}: any) {
         <AppBackground>
             <HeaderHome/>
             <CocktailList/>
-            <Header navigation={navigation}/>
             {state.isLoading ? (
                 <LoadingScreen/>
             ) : null}
+            <Header navigation={navigation}/>
             {state.isModal ? (
                 <Modal message={state.modalMessage}/>
             ) : null}
         </AppBackground>
     )
 }
-const styles = StyleSheet.create({
-    // app: {
-    //     height: vh(0.8),
-    //     width: '100%',
-    //     padding: PADDING,
-    // },
-});

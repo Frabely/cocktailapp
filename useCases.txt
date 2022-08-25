@@ -7,9 +7,9 @@ Bugs:
 -labels on android overflowing (german filter buttons)
 -loading symbol behind filter
 -labels to big for change password -> overflowing screen
+-favorites filters load briefly all before showing filtered data
 
 Master branch Goals:
--refactor Cocktail list to be usable in home and favorites screens separate
 -handle screen rotation see docs
 -button/label sizes for tablet
 -(remove) flatlist from filter -> add map to iterate and scrollview to scroll if overflow
