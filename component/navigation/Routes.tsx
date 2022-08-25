@@ -1,5 +1,5 @@
 import {NavigationContainer} from '@react-navigation/native';
-import CocktailList from "./screens/CocktailList";
+import Home from "./screens/Home";
 import LoginScreen from "./screens/LoginScreen";
 import UserProfile from "./screens/UserProfile";
 import {FAVORITES, HOME, LOGIN, PROFILE, PROFILE_DETAILS, SETTINGS} from "../../constants/const_vars";
@@ -10,6 +10,7 @@ import Settings from "./screens/user_profile/Settings";
 import {useEffect} from "react";
 import {useWindowDimensions} from "react-native";
 import {changeScreen} from "../../reducers/general/screenSizeReducer";
+import Favorites from "./screens/Favorites";
 
 export default function Routes() {
     const state = useAppSelector((state) => state)
@@ -30,11 +31,11 @@ export default function Routes() {
                 {state?.user?.email === null ?
                     <Stack.Screen name={LOGIN} component={LoginScreen}/> : (
                         <>
-                            <Stack.Screen name={HOME} component={CocktailList}/>
+                            <Stack.Screen name={HOME} component={Home}/>
                             <Stack.Screen name={PROFILE} component={UserProfile}/>
                             <Stack.Screen name={PROFILE_DETAILS} component={ProfileDetails}/>
                             <Stack.Screen name={SETTINGS} component={Settings}/>
-                            <Stack.Screen name={FAVORITES} component={CocktailList}/>
+                            <Stack.Screen name={FAVORITES} component={Favorites}/>
                         </>
                     )
                 }

@@ -1,4 +1,4 @@
-import {StyleSheet, View} from "react-native";
+import {ScrollView, StyleSheet, View} from "react-native";
 import {vh, vh_reactive} from "../../../../functions/dimentions";
 import CardLayout from "../../../layout/CardLayout";
 import {useAppDispatch, useAppSelector} from "../../../../constants/hooks";
@@ -174,7 +174,7 @@ export default function ProfileDetails({navigation}: any) {
             errorArrayNewPassword.push(OLD_AND_NEW_PASSWORDS_MATCHING.code)
             errorArrayRepeatPassword.push(OLD_AND_NEW_PASSWORDS_MATCHING.code)
         }
-        if  ((errorArrayOldPassword.length > 0) ||
+        if ((errorArrayOldPassword.length > 0) ||
             (errorArrayNewPassword.length > 0) ||
             (errorArrayRepeatPassword.length > 0)) {
             setErrorStateOldPassword(errorArrayOldPassword)
@@ -232,7 +232,7 @@ export default function ProfileDetails({navigation}: any) {
 
     return (
         <AppBackground>
-            <View style={[styles.userData, {height: vh_reactive(0.9, state.dimensions.height)}]}>
+            <ScrollView style={[styles.userData, {height: vh_reactive(0.9, state.dimensions.height)}]}>
                 <CardLayout>
                     <HeadLine label={PROFILE_DETAILS_LABEL[`${language}`]} margin={MARGIN / 2}/>
                     <ProfileDetailsItem
@@ -307,7 +307,7 @@ export default function ProfileDetails({navigation}: any) {
                         ) : null}
                     </View>
                 </CardLayout>
-            </View>
+            </ScrollView>
             <Header navigation={navigation}/>
             {state.isLoading ? (
                 <LoadingScreen/>

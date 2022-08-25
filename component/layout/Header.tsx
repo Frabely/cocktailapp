@@ -15,7 +15,7 @@ import {changeCategory} from "../../reducers/filter/categoryFilterReducer";
 import {changeAlcoholic} from "../../reducers/filter/alcoholicFilterReducer";
 import {changeCurrentSearchFieldInput} from "../../reducers/home/currentSearchFieldInputReducer";
 import {changeIngredients} from "../../reducers/filter/ingredientsFilterReducer";
-import {fetchDataSetAsArray} from "../../functions/firebase";
+import {fetchFullDataSetAsArray} from "../../functions/firebase";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../reducers/booleans/isLoadingReducer";
 
 export default function Header({navigation}: any) {
@@ -46,7 +46,7 @@ export default function Header({navigation}: any) {
         dispatch(changeIngredients([]))
         dispatch(changeCurrentSearchFieldInput(''))
         dispatch(setIsLoadingTrue())
-        fetchDataSetAsArray().then(resultData => {
+        fetchFullDataSetAsArray().then(resultData => {
             if (resultData) {
                 dispatch(changeCurrentDataSet(resultData))
                 dispatch(setIsLoadingFalse())

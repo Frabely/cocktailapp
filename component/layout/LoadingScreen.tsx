@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
         position: "absolute",
         alignItems: "center",
         justifyContent: "center",
+        zIndex: 2,
     },
     loadingScreenInner: {
         height: vh(0.1),

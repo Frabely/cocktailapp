@@ -1,4 +1,4 @@
-import {Platform, StyleSheet, Text, View} from "react-native";
+import {Platform, ScrollView, StyleSheet, Text, View} from "react-native";
 import {vh, vh_reactive} from "../../../../functions/dimentions";
 import AppBackground from "../../../layout/AppBackground";
 import Header from "../../../layout/Header";
@@ -47,7 +47,7 @@ export default function Settings({navigation}: any) {
     }
     return (
         <AppBackground>
-            <View style={[styles.settings, {
+            <ScrollView style={[styles.settings, {
                 height: vh_reactive(0.9, state.dimensions.height)
             }]}>
                 <CardLayout>
@@ -70,7 +70,7 @@ export default function Settings({navigation}: any) {
                         onPress={onSaveSettingsHandler}
                         title={SAVE_SETTINGS_LABEL[`${language}`]}/>
                 </CardLayout>
-            </View>
+            </ScrollView>
             <Header navigation={navigation}/>
             {state.isLoading ? (
                 <LoadingScreen/>

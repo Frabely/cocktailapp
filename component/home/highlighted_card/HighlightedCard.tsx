@@ -100,8 +100,9 @@ export default function HighlightedCard({height}: HighlightedCardProps) {
                         <View style={{flex: 1, alignItems: 'center'}}>
                             <HeaderButton
                                 onPress={onFavoritesCLickHandler}
-                                height={vh_reactive(0.05, state.dimensions.height)}
-                                width={vw_reactive(0.1, state.dimensions.width)}
+                                size={(state.dimensions.height > state.dimensions.width) ?
+                                    vw_reactive(0.1, state.dimensions.width) :
+                                    vh_reactive(0.1, state.dimensions.height )}
                                 icon={favorite ? faStar_solid : faStar_regular}
                                 color={COLOR_HEADER}/>
                         </View>

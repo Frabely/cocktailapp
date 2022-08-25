@@ -1,7 +1,6 @@
-import {StyleSheet, View, Image} from "react-native";
-import {COLOR_BACKGROUND, COLOR_CARD_BACKGROUND} from "../../../constants/color_styles";
+import {StyleSheet, ScrollView} from "react-native";
 import {vh, vh_reactive} from "../../../functions/dimentions";
-import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
+import {MARGIN} from "../../../constants/style_constants";
 import {faGear, faPowerOff, faUserGear} from "@fortawesome/free-solid-svg-icons";
 import {faStar} from "@fortawesome/free-regular-svg-icons";
 import {activeUser} from "../../../reducers/user/userReducer";
@@ -54,11 +53,9 @@ export default function UserProfile({navigation}: any) {
     }
     return (
         <AppBackground>
-            <View style={[styles.userProfile, {
+            <ScrollView style={[styles.userProfile, {
                 height: vh_reactive(0.9, state.dimensions.height)
             }]}>
-                <Image style={{position: 'absolute', height: '100%', width: '100%'}}
-                       source={require('../../../assets/images/adaptive_background.png')}/>
                 <CardLayout>
                     <HeadLine label={USER_PROFILE_LABEL[`${language}`]} margin={MARGIN / 2}/>
                     <UserProfileItem onPress={onProfileDetailsPressHandler} icon={faUserGear}
@@ -67,7 +64,7 @@ export default function UserProfile({navigation}: any) {
                     <UserProfileItem onPress={onFavoritesPressHandler} icon={faStar} label={FAVORITES_LABEL[`${language}`]}/>
                     <UserProfileItem onPress={onLogoutPressHandler} icon={faPowerOff} label={LOGOUT_LABEL[`${language}`]}/>
                 </CardLayout>
-            </View>
+            </ScrollView>
             <Header navigation={navigation}/>
             {state.isLoading ? (
                 <LoadingScreen/>
@@ -78,25 +75,7 @@ export default function UserProfile({navigation}: any) {
 
 const styles = StyleSheet.create({
     userProfile: {
-        backgroundColor: COLOR_BACKGROUND,
         height: vh(0.9),
         width: '100%'
     },
-    cardOuter: {
-        flexDirection: 'column',
-        backgroundColor: COLOR_CARD_BACKGROUND,
-        borderRadius: BORDER_RADIUS / 2,
-        margin: MARGIN,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    cardInner: {
-        backgroundColor: COLOR_BACKGROUND,
-        padding: PADDING,
-        margin: MARGIN / 2,
-        flexDirection: 'row',
-        borderRadius: BORDER_RADIUS / 2,
-        width: '80%'
-        // width: vw_reactive(1)-MARGIN-PADDING
-    }
 })
