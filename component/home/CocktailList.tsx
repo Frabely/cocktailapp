@@ -1,5 +1,5 @@
 import {vh, vh_reactive} from "../../functions/dimentions";
-import {ALL, EMPTY_ITEM, FILTER, SEARCH_FIELD} from "../../constants/const_vars";
+import {ALL, EMPTY_ITEM, FAVORITES, FILTER, SEARCH_FIELD} from "../../constants/const_vars";
 import Filter from "./filter/Filter";
 import SearchField from "./search_field/SearchField";
 import NoHits from "./NoHits";
@@ -15,18 +15,21 @@ import {changeAlcoholic} from "../../reducers/filter/alcoholicFilterReducer";
 import {changeCategory} from "../../reducers/filter/categoryFilterReducer";
 import {changeCurrentSearchFieldInput} from "../../reducers/home/currentSearchFieldInputReducer";
 import {changeIngredients} from "../../reducers/filter/ingredientsFilterReducer";
+import {changeCurrentDataSet} from "../../reducers/home/currentDataSetReducer";
+import {setIsLoadingFalse, setIsLoadingTrue} from "../../reducers/booleans/isLoadingReducer";
+import {getFavoriteDataSet} from "../../functions/filterFunctions";
 
-export default function CocktailList({}: CocktailListProps) {
+export default function CocktailList({route}: CocktailListProps) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
     const [numberCol, setNumberCol] = useState(15);
 
-    useEffect(()=>{
+    useEffect(() => {
         if (state.currentItem.idDrink)
             setNumberCol(5)
         else
             setNumberCol(10)
-    },[state.currentItem.idDrink])
+    }, [state.currentItem.idDrink])
 
     const onImageClickHandler = (
         currentlyClickedItem: Cocktail,
@@ -45,6 +48,20 @@ export default function CocktailList({}: CocktailListProps) {
         dispatch(changeCategory([ALL]))
         dispatch(changeCurrentSearchFieldInput(''))
         dispatch(changeIngredients([]))
+        if (route.name === FAVORITES) {
+            dispatch(setIsLoadingTrue())
+            if (state.user.userID) {
+                getFavoriteDataSet(state.user.userID).then((favoriteDataSet) => {
+                    if (favoriteDataSet) {
+                        dispatch(changeCurrentDataSet(favoriteDataSet))
+                        dispatch(setIsLoadingFalse())
+                    }
+                }).catch(error => {
+                    dispatch(setIsLoadingFalse())
+                    console.log(error.message)
+                })
+            }
+        }
     }
 
     // TODO find out what any is
@@ -75,7 +92,6 @@ export default function CocktailList({}: CocktailListProps) {
                     }
                     <FlatList
                         columnWrapperStyle={{justifyContent: 'space-around'}}
-                        // key={numberCol}
                         numColumns={3}
                         data={state.currentDataSet}
                         renderItem={renderItem}
@@ -111,4 +127,6 @@ const styles = StyleSheet.create({
     },
 });
 
-export type CocktailListProps = {}
+export type CocktailListProps = {
+    route: any
+}

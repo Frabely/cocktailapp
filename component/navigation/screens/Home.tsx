@@ -14,7 +14,7 @@ import Modal from "../../layout/Modal";
 import {fetchFullDataSetAsArray} from "../../../functions/firebase";
 import CocktailList from "../../home/CocktailList";
 
-export default function Home({navigation}: any) {
+export default function Home({route, navigation}: any) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
 
@@ -36,7 +36,7 @@ export default function Home({navigation}: any) {
     return (
         <AppBackground>
             <HeaderHome/>
-            <CocktailList/>
+            <CocktailList route={route}/>
             {state.isLoading ? (
                 <LoadingScreen/>
             ) : null}

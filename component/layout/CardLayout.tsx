@@ -2,12 +2,13 @@ import {FlexAlignType, StyleSheet, View} from "react-native";
 import {COLOR_CARD_BACKGROUND} from "../../constants/color_styles";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
 
-export default function CardLayout({width, height, alignItems, children, marginHorizontal}: CardLayoutProps) {
+export default function CardLayout({width, height, maxHeight, alignItems, children, marginHorizontal}: CardLayoutProps) {
     return (
         <View style={[
             styles.cardOuter, {
                 width: (width || width === 0) ? width : undefined,
                 height: (height || height === 0) ? height : undefined,
+                maxHeight: (maxHeight || maxHeight === 0) ? maxHeight : undefined,
                 alignItems: alignItems ? alignItems : undefined,
                 marginHorizontal: (marginHorizontal || marginHorizontal === 0) ? marginHorizontal : undefined
             }
@@ -28,9 +29,10 @@ const styles = StyleSheet.create({
 })
 
 export type CardLayoutProps = {
-    width?: string | number | null,
-    height?: string | number | null,
-    alignItems?: FlexAlignType | null,
+    width?: string | number | undefined,
+    height?: string | number | undefined,
+    maxHeight?: string | number | undefined,
+    alignItems?: FlexAlignType | undefined,
     children: any,
     marginHorizontal?: number
 }

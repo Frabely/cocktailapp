@@ -1,6 +1,7 @@
 import {ALL, EMPTY_ITEM} from "../constants/const_vars";
 import {changeCurrentItem} from "../reducers/home/currentItemReducer";
-import {getFavoritesList} from "./firebase";
+import {fetchFullDataSetAsArray, getFavoritesList} from "./firebase";
+import {Cocktail} from "../constants/types";
 
 export const filterAlcoholic = (prevDataSet: any[], state: any) => {
     const alcoholFilteredData: any[] = prevDataSet.filter((item) => {
@@ -106,4 +107,26 @@ export const applySyncFilters = (prevDataSet: any[], state: any, dispatch: any) 
     newDataSet = filterSearchField(newDataSet, state, dispatch)
     newDataSet = filterIngredients(newDataSet, state)
     return newDataSet
+}
+
+export const getFavoriteDataSet = async (userID: string) => {
+    return getFavoritesList(userID).then((stringArrayOfIDs: string[] | undefined) => {
+        if (!stringArrayOfIDs) {
+            return undefined
+        }
+        return fetchFullDataSetAsArray({favoriteIDArray: stringArrayOfIDs}).then(
+            (cocktailArrayFavorites: Cocktail[] | undefined) => {
+                if (!cocktailArrayFavorites) {
+                    return undefined
+                }
+                return cocktailArrayFavorites
+            }).catch(error => {
+            console.log(error.message)
+            return undefined
+        })
+    }).catch(error => {
+        console.log(error.message)
+        alert(error.message)
+        return undefined
+    })
 }
