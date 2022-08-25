@@ -20,11 +20,12 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.frabely.cocktailapp"
+      "bundleIdentifier": "com.frabely.cocktailapp",
+      "requireFullScreen": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/splash.png",
         "backgroundColor": "#FFFFFF"
       }
     },

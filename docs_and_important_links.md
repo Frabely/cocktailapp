@@ -25,3 +25,5 @@ chrome extension
 ### useful tools
 https://www.youtube.com/watch?v=U_gANjtv28g
 ### figma and flare to create images and animation
+### screen rotation expo
+https://docs.expo.dev/versions/latest/sdk/screen-orientation/

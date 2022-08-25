@@ -9,8 +9,7 @@ Bugs:
 -labels to big for change password -> overflowing screen
 
 Master branch Goals:
--testing start:
-    -cover as much as possible with error codes and matching messages
+-handle screen rotation see docs
 -button/label sizes for tablet
 -(remove) flatlist from filter -> add map to iterate and scrollview to scroll if overflow
 -setup GooglePlay deploy
@@ -18,9 +17,10 @@ Master branch Goals:
 -disable language -> German not fully supported:
     -check for translation API -> maybe fast, good, free solution to translate
 -set Font consts
+-testing start:
+    -cover as much as possible with error codes and matching messages
 
 TODOs:
--labels to big for change password -> overflowing screen
 -loading too much on search?
 -data state to big -> laggy?
 -load only 10 items and update on scroll?
