@@ -7,11 +7,20 @@ import {ALL} from "../../../constants/const_vars";
 import {ActionCreatorWithPayload} from "@reduxjs/toolkit";
 import {MARGIN, PADDING} from "../../../constants/style_constants";
 import {vh, vh_reactive} from "../../../functions/dimentions";
+import {useEffect, useState} from "react";
 
 export default function FilterPanel({filterState, setFilterState, isMultiSelectable,
                                         options, optionsENG, labelName, numColumns}: FilterPanelProps) {
     const dispatch = useAppDispatch()
     const state = useAppSelector((state) => state)
+    const [numberCol, setNumberCol] = useState(3);
+
+    useEffect(()=>{
+        if (state.dimensions.height>state.dimensions.width)
+            setNumberCol(3)
+        else
+            setNumberCol(8)
+    },[state.dimensions])
 
     const onFilterButtonClickHandler = (filterName: string) => {
         const array = [...filterState]
@@ -64,7 +73,11 @@ export default function FilterPanel({filterState, setFilterState, isMultiSelecta
     return (
         <View style={styles.filterPanel}>
             <Label labelName={labelName}/>
-            <FlatList keyExtractor={(item) => item} data={options} renderItem={renderItem} numColumns={numColumns}/>
+            <FlatList keyExtractor={(item) => item}
+                      data={options}
+                      renderItem={renderItem}
+                      numColumns={numberCol}
+                      key={numberCol}/>
         </View>
 
     )

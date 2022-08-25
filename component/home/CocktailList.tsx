@@ -6,7 +6,7 @@ import NoHits from "./NoHits";
 import {FlatList, StyleSheet, View} from "react-native";
 import HighlightedCard from "./highlighted_card/HighlightedCard";
 import {PADDING} from "../../constants/style_constants";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../constants/hooks";
 import Card from "../layout/Card";
 import {Cocktail} from "../../constants/types";
@@ -19,6 +19,14 @@ import {changeIngredients} from "../../reducers/filter/ingredientsFilterReducer"
 export default function CocktailList({}: CocktailListProps) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
+    const [numberCol, setNumberCol] = useState(15);
+
+    useEffect(()=>{
+        if (state.currentItem.idDrink)
+            setNumberCol(5)
+        else
+            setNumberCol(10)
+    },[state.currentItem.idDrink])
 
     const onImageClickHandler = (
         currentlyClickedItem: Cocktail,
@@ -67,7 +75,7 @@ export default function CocktailList({}: CocktailListProps) {
                     }
                     <FlatList
                         columnWrapperStyle={{justifyContent: 'space-around'}}
-                        key={'#'}
+                        // key={numberCol}
                         numColumns={3}
                         data={state.currentDataSet}
                         renderItem={renderItem}
@@ -77,9 +85,9 @@ export default function CocktailList({}: CocktailListProps) {
                 <View style={{flexDirection: 'row', height: '100%'}}>
                     <FlatList
                         columnWrapperStyle={{justifyContent: 'space-around'}}
-                        key={'_'}
+                        key={numberCol}
                         style={{flex: 1}}
-                        numColumns={6}
+                        numColumns={numberCol}
                         data={state.currentDataSet}
                         renderItem={renderItem}
                         keyExtractor={item => '_' + item.idDrink}

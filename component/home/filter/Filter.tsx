@@ -1,5 +1,5 @@
-import {StyleSheet, View} from "react-native";
-import {vw, vw_reactive} from "../../../functions/dimentions";
+import {ScrollView, StyleSheet, View, Text} from "react-native";
+import {vh, vh_reactive, vw, vw_reactive} from "../../../functions/dimentions";
 import {COLOR_CARD_BACKGROUND} from "../../../constants/color_styles";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
 import FilterPanel from "./FilterPanel";
@@ -18,6 +18,7 @@ import DropDownPickerWrapper from "./drop_down/DropDownPickerWrapper";
 import Label from "./Label";
 import {setActiveFilter} from "../../../reducers/filter/activeFilterReducer";
 import {ALCOHOLIC_LABEL} from "../../../constants/labels";
+import React from "react";
 
 export default function Filter({onClearAllFiltersClickHandler}: FilterProps) {
     const state = useAppSelector((state) => state)
@@ -33,7 +34,10 @@ export default function Filter({onClearAllFiltersClickHandler}: FilterProps) {
     }
 
     return (
-        <View style={[styles.filter, {width: vw_reactive(1, state.dimensions.width)}]}>
+        <ScrollView style={[styles.filter, {
+            width: vw_reactive(1, state.dimensions.width),
+            height: vh_reactive(0.8, state.dimensions.height)
+        }]}>
             <View style={styles.rowStyle}>
                 <FilterPanel options={alcFilterOptions}
                              optionsENG={alcFilterOptionsENG}
@@ -74,12 +78,13 @@ export default function Filter({onClearAllFiltersClickHandler}: FilterProps) {
                     onPress={onHitsClickHandler}
                     title={`${HITS_LABEL[`${language}`]}: ${state.currentDataSet.length}`}/>
             </View>
-        </View>
+        </ScrollView>
     )
 }
 
 const styles = StyleSheet.create({
     filter: {
+        height: vh(0.8),
         width: vw(1),
         position: "absolute",
         left: 0,
