@@ -18,7 +18,6 @@ export default function Home({navigation}: any) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
 
-
     useEffect(() => {
         dispatch(setIsLoadingTrue())
         let dataSet: Cocktail[] = []

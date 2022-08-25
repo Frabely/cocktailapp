@@ -4,19 +4,25 @@ Bugs:
 -on login (with other account) filter might be open -> set all filter closed on logout
 -briefly showing all cocktails on favorites page load
 -if All selected and gets reselected page reloads -> should not reload -> takes time that is not needed
--labels on android overflowing (german filter buttons)
 -loading symbol behind filter
 -labels to big for change password -> overflowing screen
 -favorites filters load briefly all before showing filtered data
+-labels on android overflowing (german filter buttons)
 
-Master branch Goals:
--handle screen rotation see docs
+Master branch Goals - deploy alpha:
+-(remove) flatlist from filter -> add map to iterate and scrollview to scroll if overflow -> open filter section on click like change password etc
 -button/label sizes for tablet
--(remove) flatlist from filter -> add map to iterate and scrollview to scroll if overflow
--setup GooglePlay deploy
+-highlight image (to close) should be height:width 1:1 or 1.5:1
 -disable language -> German not fully supported:
     -check for translation API -> maybe fast, good, free solution to translate
 -set Font consts
+-2€ for all cocktails
+-set email language (https://firebase.google.com/docs/auth/web/manage-users?hl=de&authuser=0)
+-setup GooglePlay deploy
+-add app to stores:
+    -adds
+    -create logo and splash -> already done? https://www.figma.com/file/4TD0sMutRjxBI6zKySFV2n/Expo-App-Icon-%26-Splash-(Community)?node-id=1%3A1357
+-handle screen rotation see docs
 -testing start:
     -cover as much as possible with error codes and matching messages
 
@@ -26,10 +32,7 @@ TODOs:
 -load only 10 items and update on scroll?
 -app icon rework -> add triangle
 -fetch only favorites function -> don't need to fetch all when only favorites are required
--highlight image (to close) should be height:width 1:1 or 1.5:1
--refactor filter to ScrollView -> remove flatlist or open filter section on click like change password etc
 -refactor login screen and settings -> put all error checking into functions -> currently way to many code
--set email language (https://firebase.google.com/docs/auth/web/manage-users?hl=de&authuser=0)
 -user profile:
     -pages:
         -profile details:
@@ -50,9 +53,6 @@ favorites:
 -refactor and optimize highlight card, extract maybe
 -refactor filter file, extract maybe
 -what font and default size used -> make font sizes const's
--add app to stores:
-    -adds
-    -create logo and splash -> already done? https://www.figma.com/file/4TD0sMutRjxBI6zKySFV2n/Expo-App-Icon-%26-Splash-(Community)?node-id=1%3A1357
 -abo
 
 Nice to have features:
