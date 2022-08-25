@@ -27,6 +27,7 @@ Master branch Goals - deploy alpha:
     -cover as much as possible with error codes and matching messages
 
 TODOs:
+-fetch data once -> exceeded read limit -> way to early
 -when mobile is landscape (horizontal) menu on right (left) sides
 -loading too much on search?
 -data state to big -> laggy?
