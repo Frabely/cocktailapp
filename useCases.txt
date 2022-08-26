@@ -8,11 +8,9 @@ Bugs:
 -labels to big for change password -> overflowing screen
 -favorites filters load briefly all before showing filtered data
 -labels on android overflowing (german filter buttons)
--fix updateFavorites
 
 Master branch Goals - deploy alpha:
--fix updateFavorites
--(remove) flatlist from filter -> add map to iterate and scrollview to scroll if overflow -> open filter section on click like change password etc
+-put Cocktail as map in db
 -button/label sizes for tablet
 -highlight image (to close) should be height:width 1:1 or 1.5:1
 -disable language -> German not fully supported:

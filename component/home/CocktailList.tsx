@@ -58,46 +58,61 @@ export default function CocktailList({dataset}: CocktailListProps) {
 
     return (
         <View style={[styles.cocktailList, {height: vh_reactive(0.8, state.dimensions.height)}]}>
-            {(state.activeFilter === FILTER) ? (
+            {state.activeFilter === FILTER ? (
                 <Filter lengthDataSet={dataset.length} onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>
             ) : null}
-            {(state.activeFilter === SEARCH_FIELD) ? (
-                <SearchField/>
-            ) : null}
-            {(dataset.length === 0 && !state.isLoading) ? (
-                <NoHits onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>
-            ) : null}
-            {(state.dimensions.height > state.dimensions.width) ? (
-                <View style={{flexDirection: 'column', height: '100%'}}>
-                    {(state.currentItem.idDrink) ? (
-                        <HighlightedCard/>
-                    ) : null
-                    }
-                    <FlatList
-                        columnWrapperStyle={{justifyContent: 'space-around'}}
-                        numColumns={3}
-                        data={dataset}
-                        renderItem={renderItem}
-                        keyExtractor={item => '#' + item.idDrink}
-                    />
-                </View>) : (
-                <View style={{flexDirection: 'row', height: '100%'}}>
-                    <FlatList
-                        columnWrapperStyle={{justifyContent: 'space-around'}}
-                        key={numberCol}
-                        style={{flex: 1}}
-                        numColumns={numberCol}
-                        data={dataset}
-                        renderItem={renderItem}
-                        keyExtractor={item => '_' + item.idDrink}
-                        extraData={state.currentItem.idDrink}/>
-                    {(state.currentItem.idDrink) ? (
-                        <View style={{flex: 1}}>
-                            <HighlightedCard height={vh_reactive(0.8, state.dimensions.height) - PADDING * 2}/>
-                        </View>
-                    ) : null}
-                </View>
-            )}
+            {dataset.length === 0 && !state.isLoading ? (
+                    <>
+                        {state.activeFilter === SEARCH_FIELD ? (
+                            <SearchField/>
+                        ) : null}
+                        <NoHits onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>
+                    </>
+                ) :
+                (
+                    <>
+                        {state.dimensions.height > state.dimensions.width ? (
+                            <View style={{flexDirection: 'column', height: '100%'}}>
+                                {state.activeFilter === SEARCH_FIELD ? (
+                                    <SearchField/>
+                                ) : null}
+                                {(state.currentItem.idDrink) ? (
+                                    <HighlightedCard/>
+                                ) : null
+                                }
+                                <FlatList
+                                    columnWrapperStyle={{justifyContent: 'space-around'}}
+                                    numColumns={3}
+                                    data={dataset}
+                                    renderItem={renderItem}
+                                    keyExtractor={item => '#' + item.idDrink}
+                                />
+                            </View>) : (
+                            <View style={{flexDirection: 'row', height: '100%'}}>
+                                <View style={{flex: 1}}>
+                                    {state.activeFilter === SEARCH_FIELD ? (
+                                        <SearchField/>
+                                    ) : null}
+                                    <FlatList
+                                        columnWrapperStyle={{justifyContent: 'space-around'}}
+                                        key={numberCol}
+                                        numColumns={numberCol}
+                                        data={dataset}
+                                        renderItem={renderItem}
+                                        keyExtractor={item => '_' + item.idDrink}
+                                        extraData={state.currentItem.idDrink}/>
+                                </View>
+                                {(state.currentItem.idDrink) ? (
+                                    <View style={{flex: 1}}>
+                                        <HighlightedCard
+                                            height={vh_reactive(0.8, state.dimensions.height) - PADDING * 2}/>
+                                    </View>
+                                ) : null}
+                            </View>
+                        )}
+                    </>
+                )
+            }
         </View>
     )
 }

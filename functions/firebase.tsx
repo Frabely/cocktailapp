@@ -70,37 +70,6 @@ export const getUser = async (userID: string) => {
     }
 }
 
-// export const isFavoriteOfUser = async (userID: string, drinkID: string) => {
-//     let isFavorite: boolean = false
-//     await getDoc(doc(db, `${USERS_DB}/${userID}/${USER_FAVORITES_DB}/${drinkID}`)).then(result => {
-//         isFavorite = result.exists()
-//     }).catch(error => {
-//         console.log(error.message)
-//         alert(error.message)
-//     });
-//     return isFavorite
-// }
-//
-// export const AddOrDeleteFavoriteOfUser = async (userID: string, drinkID: string) => {
-//     const userFavoritesDrinkRef = doc(db, `${USERS_DB}/${userID}/${USER_FAVORITES_DB}/${drinkID}`);
-//     isFavoriteOfUser(userID, drinkID).then(async result => {
-//         if (result) {
-//             await deleteDoc(userFavoritesDrinkRef).then().catch(error => {
-//                 console.log(error.message)
-//                 alert(error.message)
-//             })
-//             return
-//         } else {
-//             await setDoc(userFavoritesDrinkRef, {}).then().catch(error => {
-//                 console.log(error.message)
-//                 alert(error.message)
-//             })
-//             return
-//         }
-//     })
-//     return
-// }
-
 export const getFavoritesList = async (userID: string) => {
     const userFavoritesRef = doc(db, `${USERS_DB}/${userID}`);
     return await getDoc(userFavoritesRef).then((docSnapshot) => {
@@ -110,16 +79,6 @@ export const getFavoritesList = async (userID: string) => {
         }else {
             return favArray
         }
-        // console.log(favArray2)
-        // if (result.empty) {
-        //     return undefined
-        // } else if (result?.docs) {
-        //     let favoriteArray: string[] = []
-        //     result.docs.map((item) => {
-        //         favoriteArray.push(item.id)
-        //     })
-        //     return favoriteArray
-        // }
     }).catch(error => {
         console.log(error.message)
         alert(error.message)
