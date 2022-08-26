@@ -9,34 +9,24 @@ import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
 import HeaderButton from "../../layout/HeaderButton";
 import {faStar as faStar_solid} from "@fortawesome/free-solid-svg-icons";
 import {faStar as faStar_regular} from "@fortawesome/free-regular-svg-icons";
-import {AddOrDeleteFavoriteOfUser, isFavoriteOfUser} from "../../../functions/firebase";
-import {setIsLoadingFalse, setIsLoadingTrue} from "../../../reducers/booleans/isLoadingReducer";
-import {invertIsModalState} from "../../../reducers/booleans/isModalReducer";
-import {changeModalMessage} from "../../../reducers/general/modalMessageReducer";
 import {Cocktail} from "../../../constants/types";
+import {changeFavorites} from "../../../reducers/user/userReducer";
 
 export default function HighlightedCard({height}: HighlightedCardProps) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
     const [arrayIngredients, setArrayIngredients] = useState([])
-    const [favorite, setFavorite] = useState(false);
 
-    useEffect(()  => {
-        dispatch(setIsLoadingTrue())
-        const checkIsFavorite = async () => {
-            if (state.user.userID && state.currentItem.idDrink) {
-                await isFavoriteOfUser(state.user.userID, state.currentItem.idDrink).then(result => {
-                    setFavorite(result)
-                }).catch(error => {
-                    console.log(error.message)
-                    alert(error.message)
-                })
-                dispatch(setIsLoadingFalse())
+    const setDefaultFavorite = () => {
+        if (state.user.favorites && state.currentItem.idDrink) {
+            if (state.user.favorites.includes(state.currentItem)) {
+                return true
             }
         }
-        checkIsFavorite().then()
+        return false
+    }
 
-    }, [])
+    const [favorite, setFavorite] = useState(setDefaultFavorite());
 
     generate_box_shadow_style(
         styles,
@@ -50,8 +40,8 @@ export default function HighlightedCard({height}: HighlightedCardProps) {
     )
 
     useEffect(() => {
-        const arrayIngredients: any = [];
-        const arrayMeasures: any = [];
+        const arrayIngredients: string[] = [];
+        const arrayMeasures: string[] = [];
         for (const [key, value] of Object.entries(state.currentItem)) {
             if (key !== null) {
                 if (key.startsWith('strIngredient'))
@@ -72,34 +62,32 @@ export default function HighlightedCard({height}: HighlightedCardProps) {
         setArrayIngredients(arrayCombined)
     }, [state.currentItem])
 
-    const onFavoritesCLickHandler = async () => {
-        dispatch(setIsLoadingTrue())
-        if (state.user.userID && state.currentItem.idDrink) {
-            await AddOrDeleteFavoriteOfUser(state.user.userID, state.currentItem.idDrink).then(() => {
-                // updateFavorites()
-                setFavorite(!favorite)
-                dispatch(setIsLoadingFalse())
-            }).catch(error => {
-                dispatch(changeModalMessage(error.message))
-                dispatch(invertIsModalState())
-                dispatch(setIsLoadingFalse())
-            })
+    const onFavoritesCLickHandler = () => {
+        if (favorite) {
+            deleteFavorite()
+            setFavorite(false)
+        } else {
+            addFavorite()
+            setFavorite(true)
         }
-        dispatch(setIsLoadingFalse())
     }
 
-    // const updateFavorites = () => {
-    //     if (state.user.favorites && state.currentItem.idDrink) {
-    //         const currentFavorites = state.user.favorites.filter((cocktail: Cocktail) => {
-    //             if (cocktail.idDrink !== state.currentItem.idDrink)
-    //                 return cocktail
-    //         })
-    //         if (currentFavorites === state.user.favorites) {
-    //             currentFavorites.push(state.currentItem)
-    //         }
-    //         console.log(currentFavorites)
-    //     }
-    // }
+    const deleteFavorite = () => {
+        if (state.user.favorites && state.currentItem.idDrink) {
+            const currentFavorites = state.user.favorites.filter((cocktail: Cocktail) => {
+                if (cocktail.idDrink !== state.currentItem.idDrink)
+                    return cocktail
+            })
+            dispatch(changeFavorites(currentFavorites))
+        }
+    }
+
+    const addFavorite = () => {
+        if (state.user.favorites && state.currentItem.idDrink) {
+            const newFavorites = [...state.user.favorites, state.currentItem]
+            dispatch(changeFavorites(newFavorites))
+        }
+    }
 
     return (
         <View style={[styles.highlightView, {
@@ -117,7 +105,7 @@ export default function HighlightedCard({height}: HighlightedCardProps) {
                                 onPress={onFavoritesCLickHandler}
                                 size={(state.dimensions.height > state.dimensions.width) ?
                                     vw_reactive(0.1, state.dimensions.width) :
-                                    vh_reactive(0.1, state.dimensions.height )}
+                                    vh_reactive(0.1, state.dimensions.height)}
                                 icon={favorite ? faStar_solid : faStar_regular}
                                 color={COLOR_HEADER}/>
                         </View>
