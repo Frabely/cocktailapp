@@ -27,7 +27,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/splash.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.frabely.yourcocktail"
     },
     "web": {
       "favicon": "./assets/images/icon.png"

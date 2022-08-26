@@ -12,7 +12,6 @@ Bugs:
 Master branch Goals - deploy alpha:
 -put Cocktail as map in db
 -button/label sizes for tablet
--highlight image (to close) should be height:width 1:1 or 1.5:1
 -disable language -> German not fully supported:
     -check for translation API -> maybe fast, good, free solution to translate
 -set Font consts
