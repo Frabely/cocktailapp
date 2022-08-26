@@ -10,10 +10,9 @@ import {
     where,
     updateDoc,
     getDoc,
-    deleteDoc,
     DocumentSnapshot,
 } from "firebase/firestore";
-import {DRINKS_DB, USER_FAVORITES_DB, USER_USERNAME_LOWER_DB, USERS_DB} from "../constants/const_vars";
+import {DRINKS_DB, USER_USERNAME_LOWER_DB, USERS_DB} from "../constants/const_vars";
 import {Cocktail} from "../constants/types";
 
 const firebaseConfig = {
@@ -71,49 +70,56 @@ export const getUser = async (userID: string) => {
     }
 }
 
-export const isFavoriteOfUser = async (userID: string, drinkID: string) => {
-    let isFavorite: boolean = false
-    await getDoc(doc(db, `${USERS_DB}/${userID}/${USER_FAVORITES_DB}/${drinkID}`)).then(result => {
-        isFavorite = result.exists()
-    }).catch(error => {
-        console.log(error.message)
-        alert(error.message)
-    });
-    return isFavorite
-}
-
-export const AddOrDeleteFavoriteOfUser = async (userID: string, drinkID: string) => {
-    const userFavoritesDrinkRef = doc(db, `${USERS_DB}/${userID}/${USER_FAVORITES_DB}/${drinkID}`);
-    isFavoriteOfUser(userID, drinkID).then(async result => {
-        if (result) {
-            await deleteDoc(userFavoritesDrinkRef).then().catch(error => {
-                console.log(error.message)
-                alert(error.message)
-            })
-            return
-        } else {
-            await setDoc(userFavoritesDrinkRef, {}).then().catch(error => {
-                console.log(error.message)
-                alert(error.message)
-            })
-            return
-        }
-    })
-    return
-}
+// export const isFavoriteOfUser = async (userID: string, drinkID: string) => {
+//     let isFavorite: boolean = false
+//     await getDoc(doc(db, `${USERS_DB}/${userID}/${USER_FAVORITES_DB}/${drinkID}`)).then(result => {
+//         isFavorite = result.exists()
+//     }).catch(error => {
+//         console.log(error.message)
+//         alert(error.message)
+//     });
+//     return isFavorite
+// }
+//
+// export const AddOrDeleteFavoriteOfUser = async (userID: string, drinkID: string) => {
+//     const userFavoritesDrinkRef = doc(db, `${USERS_DB}/${userID}/${USER_FAVORITES_DB}/${drinkID}`);
+//     isFavoriteOfUser(userID, drinkID).then(async result => {
+//         if (result) {
+//             await deleteDoc(userFavoritesDrinkRef).then().catch(error => {
+//                 console.log(error.message)
+//                 alert(error.message)
+//             })
+//             return
+//         } else {
+//             await setDoc(userFavoritesDrinkRef, {}).then().catch(error => {
+//                 console.log(error.message)
+//                 alert(error.message)
+//             })
+//             return
+//         }
+//     })
+//     return
+// }
 
 export const getFavoritesList = async (userID: string) => {
-    const userFavoritesRef = collection(db, `${USERS_DB}/${userID}/${USER_FAVORITES_DB}`);
-    return await getDocs(userFavoritesRef).then(result => {
-        if (result.empty) {
-            return undefined
-        } else if (result?.docs) {
-            let favoriteArray: string[] = []
-            result.docs.map((item) => {
-                favoriteArray.push(item.id)
-            })
-            return favoriteArray
+    const userFavoritesRef = doc(db, `${USERS_DB}/${userID}`);
+    return await getDoc(userFavoritesRef).then((docSnapshot) => {
+        const favArray: string[] = docSnapshot.get("favorites")
+        if (!favArray || favArray.length === 0) {
+            return []
+        }else {
+            return favArray
         }
+        // console.log(favArray2)
+        // if (result.empty) {
+        //     return undefined
+        // } else if (result?.docs) {
+        //     let favoriteArray: string[] = []
+        //     result.docs.map((item) => {
+        //         favoriteArray.push(item.id)
+        //     })
+        //     return favoriteArray
+        // }
     }).catch(error => {
         console.log(error.message)
         alert(error.message)

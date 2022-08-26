@@ -1,6 +1,5 @@
 import {ALL, EMPTY_ITEM} from "../constants/const_vars";
 import {changeCurrentItem} from "../reducers/home/currentItemReducer";
-import {getFavoritesList} from "./firebase";
 import {Cocktail} from "../constants/types";
 import {FULL_DATA_SET_PROMISE} from "../constants/dataSets";
 
@@ -73,38 +72,6 @@ export const filterIngredients = (prevDataSet: any[], state: any) => {
     return ingredientsFilteredData
 }
 
-export const filterFavorites = async (prevDataSet: Cocktail[], state: any) => {
-    let favArray: string[] = []
-    let favoritesFilteredData: Cocktail[] = []
-    if (!state.user.userID)
-        return
-    await getFavoritesList(state.user.userID).then(result => {
-        if (result) {
-            favArray = result
-        }
-    }).catch(error => {
-        console.log(error.message)
-        alert(error.message)
-    })
-    if (favArray && favArray.length !== 0) {
-        favoritesFilteredData = prevDataSet.filter((item) => {
-            let isFavoriteFiltered = false
-            favArray.forEach((itemFilter: any) => {
-                if (item['idDrink'] !== null) {
-                    if (item['idDrink'] === itemFilter.id) {
-                        isFavoriteFiltered = true
-                    }
-                }
-            })
-            if (isFavoriteFiltered) {
-                isFavoriteFiltered = false
-                return item
-            }
-        })
-    }
-    return favoritesFilteredData
-}
-
 export const applySyncFilters = (prevDataSet: any[], state: any, dispatch: any) => {
     let newDataSet: any []
     newDataSet = filterAlcoholic(prevDataSet, state)
@@ -132,25 +99,3 @@ export const fetchFavoriteDataSetAsArray = (favoriteIDArray: string[]) => {
         return undefined
     })
 }
-
-// export const getFavoriteDataSet = async (userID: string) => {
-//     return getFavoritesList(userID).then((stringArrayOfIDs: string[] | undefined) => {
-//         if (!stringArrayOfIDs) {
-//             return undefined
-//         }
-//         return fetchFavoriteDataSetAsArray((stringArrayOfIDs).then(
-//             (cocktailArrayFavorites: Cocktail[] | undefined) => {
-//                 if (!cocktailArrayFavorites) {
-//                     return undefined
-//                 }
-//                 return cocktailArrayFavorites
-//             }).catch(error => {
-//             console.log(error.message)
-//             return undefined
-//         })
-//     }).catch(error => {
-//         console.log(error.message)
-//         alert(error.message)
-//         return undefined
-//     })
-// }

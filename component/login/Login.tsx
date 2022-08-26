@@ -78,9 +78,9 @@ export default function Login({}: LoginProps) {
             let userDb: User
             await getUser(user.user.uid).then(resultUser => {
                 if (resultUser) {
-                    getFavoritesList(user.user.uid).then((stringArray: string[] |undefined) => {
-                        if (stringArray) {
-                            fetchFavoriteDataSetAsArray(stringArray).then((favoriteArray: Cocktail[] | undefined) => {
+                    getFavoritesList(user.user.uid).then((favoritesArray: string[] | undefined) => {
+                        if (favoritesArray) {
+                            fetchFavoriteDataSetAsArray(favoritesArray).then((favoriteArray: Cocktail[] | undefined) => {
                                 if (favoriteArray) {
                                     userDb = {
                                         userID: user.user.uid,
