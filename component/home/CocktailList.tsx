@@ -16,8 +16,6 @@ import {changeCategory} from "../../reducers/filter/categoryFilterReducer";
 import {changeCurrentSearchFieldInput} from "../../reducers/home/currentSearchFieldInputReducer";
 import {changeIngredients} from "../../reducers/filter/ingredientsFilterReducer";
 import {changeCurrentDataSet} from "../../reducers/home/currentDataSetReducer";
-import {setIsLoadingFalse, setIsLoadingTrue} from "../../reducers/booleans/isLoadingReducer";
-import {getFavoriteDataSet} from "../../functions/filterFunctions";
 
 export default function CocktailList({route}: CocktailListProps) {
     const state = useAppSelector((state) => state)
@@ -49,17 +47,8 @@ export default function CocktailList({route}: CocktailListProps) {
         dispatch(changeCurrentSearchFieldInput(''))
         dispatch(changeIngredients([]))
         if (route.name === FAVORITES) {
-            dispatch(setIsLoadingTrue())
-            if (state.user.userID) {
-                getFavoriteDataSet(state.user.userID).then((favoriteDataSet) => {
-                    if (favoriteDataSet) {
-                        dispatch(changeCurrentDataSet(favoriteDataSet))
-                        dispatch(setIsLoadingFalse())
-                    }
-                }).catch(error => {
-                    dispatch(setIsLoadingFalse())
-                    console.log(error.message)
-                })
+            if (state.user.favorites) {
+                dispatch(changeCurrentDataSet(state.user.favorites))
             }
         }
     }

@@ -18,7 +18,7 @@ import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
 import {changeModalMessage} from "../../reducers/general/modalMessageReducer";
 import {invertIsModalState} from "../../reducers/booleans/isModalReducer";
 import {activeUser, User} from "../../reducers/user/userReducer";
-import {app, getUser} from "../../functions/firebase";
+import {app, getFavoritesList, getUser} from "../../functions/firebase";
 import {changeLanguage} from "../../reducers/user/languageReducer";
 import {
     INVALID_EMAIL,
@@ -31,6 +31,8 @@ import {getEmailError, getPasswordError} from "../../functions/getErrorFunctions
 import {createAccount} from "../../reducers/login/loginStateReducer";
 import ForgotPasswordButton from "./ForgotPasswordButton";
 import {invertIsCreatingAccount} from "../../reducers/login/isCreatingAccountReducer";
+import {fetchFavoriteDataSetAsArray} from "../../functions/filterFunctions";
+import {Cocktail} from "../../constants/types";
 
 export default function Login({}: LoginProps) {
     const state = useAppSelector((state) => state)
@@ -76,14 +78,31 @@ export default function Login({}: LoginProps) {
             let userDb: User
             await getUser(user.user.uid).then(resultUser => {
                 if (resultUser) {
-                    userDb = {
-                        userID: user.user.uid,
-                        email: resultUser.email,
-                        username: resultUser.username,
-                        languageSetting: resultUser.languageSetting,
-                    }
-                    dispatch(activeUser(userDb))
-                    dispatch(changeLanguage(resultUser.languageSetting))
+                    getFavoritesList(user.user.uid).then((stringArray: string[] |undefined) => {
+                        if (stringArray) {
+                            fetchFavoriteDataSetAsArray(stringArray).then((favoriteArray: Cocktail[] | undefined) => {
+                                if (favoriteArray) {
+                                    userDb = {
+                                        userID: user.user.uid,
+                                        email: resultUser.email,
+                                        username: resultUser.username,
+                                        languageSetting: resultUser.languageSetting,
+                                        favorites: favoriteArray
+                                    }
+                                    dispatch(activeUser(userDb))
+                                    dispatch(changeLanguage(resultUser.languageSetting))
+                                }
+                            }).catch(error => {
+                                console.log(error.message)
+                                dispatch(changeModalMessage(error.message))
+                                dispatch(invertIsModalState())
+                            })
+                        }
+                    }).catch(error => {
+                        console.log(error.message)
+                        dispatch(changeModalMessage(error.message))
+                        dispatch(invertIsModalState())
+                    })
                 } else {
                     dispatch(changeModalMessage(USER_NOT_FOUND.message[`${language}`]))
                     dispatch(invertIsModalState())
@@ -119,7 +138,6 @@ export default function Login({}: LoginProps) {
         dispatch(invertIsCreatingAccount())
         dispatch(createAccount())
     }
-
 
     return (
         <>

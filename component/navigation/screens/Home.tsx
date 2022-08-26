@@ -11,8 +11,8 @@ import {
 } from "../../../functions/filterFunctions";
 import {Cocktail} from "../../../constants/types";
 import Modal from "../../layout/Modal";
-import {fetchFullDataSetAsArray} from "../../../functions/firebase";
 import CocktailList from "../../home/CocktailList";
+import {FULL_DATA_SET_PROMISE} from "../../../constants/dataSets";
 
 export default function Home({route, navigation}: any) {
     const state = useAppSelector((state) => state)
@@ -21,7 +21,7 @@ export default function Home({route, navigation}: any) {
     useEffect(() => {
         dispatch(setIsLoadingTrue())
         let dataSet: Cocktail[] = []
-        fetchFullDataSetAsArray().then(resultData => {
+        FULL_DATA_SET_PROMISE.then(resultData => {
             if (resultData) {
                 dispatch(setIsLoadingFalse())
                 dataSet = applySyncFilters(resultData, state, dispatch)

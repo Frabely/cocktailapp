@@ -116,9 +116,9 @@ export default function CreateAccount({}: CreateAccountProps) {
                         userID: user.user.uid,
                         username: user.user.displayName,
                         email: user.user.email,
-                        languageSetting: state.language
+                        languageSetting: state.language,
+                        favorites: []
                     }
-                    // dispatch(activeUser(userDb))
                     await createUserInDb(userDb)
                     dispatch(setIsLoadingFalse())
                     auth.signOut().then(() => {

@@ -31,6 +31,7 @@ export type CreationData = {
     username: string,
     email: string,
     languageSetting: string
+    favorites: string[]
 }
 
 // Initialize Firebase
@@ -42,7 +43,8 @@ export const createUserInDb = async (creationData: CreationData) => {
         username: creationData.username,
         usernameLower: creationData.username.toLowerCase(),
         email: creationData.email,
-        languageSetting: creationData.languageSetting
+        languageSetting: creationData.languageSetting,
+        favorites: creationData.favorites
     })
 }
 
@@ -119,18 +121,13 @@ export const getFavoritesList = async (userID: string) => {
     })
 }
 
-export const fetchFullDataSetAsArray = async (getOnlyFavorites?: {favoriteIDArray: string[]}) => {
+export const fetchFullDataSetAsArray = async () => {
     const usersRef = collection(db, `${DRINKS_DB}`);
     return await getDocs(usersRef).then((result) => {
         if (!result.empty) {
             let returnArray: Cocktail[] = []
             result.docs.map((item) => {
-                if (getOnlyFavorites) {
-                    if (getOnlyFavorites.favoriteIDArray.includes(item.id)){
-                        returnArray.push(setCocktailFromDoc(item))
-                    }
-                } else
-                    returnArray.push(setCocktailFromDoc(item))
+                returnArray.push(setCocktailFromDoc(item))
             })
             return returnArray
         }

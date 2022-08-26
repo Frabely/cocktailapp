@@ -1,5 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {EMPTY_USER} from "../../constants/const_vars";
+import {Cocktail} from "../../constants/types";
 
 const UserSlice = createSlice({
     name: 'user',
@@ -15,7 +16,8 @@ export type User = {
     username: string | null,
     email: string | null,
     userID: string | null,
-    languageSetting: string | null
+    languageSetting: string | null,
+    favorites: Cocktail[] | null
 }
 
 export default UserSlice.reducer;

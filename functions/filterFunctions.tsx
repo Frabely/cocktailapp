@@ -1,23 +1,24 @@
 import {ALL, EMPTY_ITEM} from "../constants/const_vars";
 import {changeCurrentItem} from "../reducers/home/currentItemReducer";
-import {fetchFullDataSetAsArray, getFavoritesList} from "./firebase";
+import {getFavoritesList} from "./firebase";
 import {Cocktail} from "../constants/types";
+import {FULL_DATA_SET_PROMISE} from "../constants/dataSets";
 
-export const filterAlcoholic = (prevDataSet: any[], state: any) => {
-    const alcoholFilteredData: any[] = prevDataSet.filter((item) => {
+export const filterAlcoholic = (prevDataSet: Cocktail[], state: any) => {
+    const alcoholFilteredData: Cocktail[] = prevDataSet.filter((item) => {
         if (state.alcoholicFilter[0] === ALL || item.strAlcoholic === state.alcoholicFilter[0])
             return item
     })
     return alcoholFilteredData
 }
 
-export const filterCategory = (prevDataSet: any[], state: any) => {
-    const categoryFilteredData: any[] = prevDataSet.filter((item) => {
+export const filterCategory = (prevDataSet: Cocktail[], state: any) => {
+    const categoryFilteredData: Cocktail[] = prevDataSet.filter((item) => {
         if (state.categoryFilter.includes(ALL))
             return item
         else {
             let isFiltered = false
-            state.categoryFilter.forEach((itemFilter: any) => {
+            state.categoryFilter.forEach((itemFilter: string) => {
                 if (itemFilter === item.strCategory) {
                     isFiltered = true
                 }
@@ -31,12 +32,14 @@ export const filterCategory = (prevDataSet: any[], state: any) => {
     return categoryFilteredData
 }
 
-export const filterSearchField = (prevDataSet: any[], state: any, dispatch: any) => {
-    const searchFieldFilteredData: any[] = prevDataSet.filter((item) => {
-        const inputLowerNoSpace = state.currentSearchFieldInput.toLowerCase().replace(" ", "")
-        const itemNameLowerNoSpace = item.strDrink.toLowerCase().replace(" ", "")
-        if (itemNameLowerNoSpace.includes(inputLowerNoSpace)) {
-            return item
+export const filterSearchField = (prevDataSet: Cocktail[], state: any, dispatch: any) => {
+    const searchFieldFilteredData: Cocktail[] = prevDataSet.filter((item) => {
+        if (item.strDrink) {
+            const inputLowerNoSpace = state.currentSearchFieldInput.toLowerCase().replace(" ", "")
+            const itemNameLowerNoSpace = item.strDrink.toLowerCase().replace(" ", "")
+            if (itemNameLowerNoSpace.includes(inputLowerNoSpace)) {
+                return item
+            }
         }
     })
     if (searchFieldFilteredData.length === 0 || !searchFieldFilteredData.includes(state.currentItem)) {
@@ -70,18 +73,20 @@ export const filterIngredients = (prevDataSet: any[], state: any) => {
     return ingredientsFilteredData
 }
 
-export const filterFavorites = async (prevDataSet: any[], state: any) => {
-    let favArray: any = []
-    let favoritesFilteredData: any = []
+export const filterFavorites = async (prevDataSet: Cocktail[], state: any) => {
+    let favArray: string[] = []
+    let favoritesFilteredData: Cocktail[] = []
     if (!state.user.userID)
         return
     await getFavoritesList(state.user.userID).then(result => {
-        favArray = result
+        if (result) {
+            favArray = result
+        }
     }).catch(error => {
         console.log(error.message)
         alert(error.message)
     })
-    if (favArray && favArray !== []) {
+    if (favArray && favArray.length !== 0) {
         favoritesFilteredData = prevDataSet.filter((item) => {
             let isFavoriteFiltered = false
             favArray.forEach((itemFilter: any) => {
@@ -109,24 +114,43 @@ export const applySyncFilters = (prevDataSet: any[], state: any, dispatch: any) 
     return newDataSet
 }
 
-export const getFavoriteDataSet = async (userID: string) => {
-    return getFavoritesList(userID).then((stringArrayOfIDs: string[] | undefined) => {
-        if (!stringArrayOfIDs) {
-            return undefined
-        }
-        return fetchFullDataSetAsArray({favoriteIDArray: stringArrayOfIDs}).then(
-            (cocktailArrayFavorites: Cocktail[] | undefined) => {
-                if (!cocktailArrayFavorites) {
-                    return undefined
+export const fetchFavoriteDataSetAsArray = (favoriteIDArray: string[]) => {
+    let returnArray: Cocktail[] = []
+    return FULL_DATA_SET_PROMISE.then((fullDataArray: Cocktail[] | undefined) => {
+        if (fullDataArray) {
+            fullDataArray.map((item: Cocktail) => {
+                if (item.idDrink) {
+                    if (favoriteIDArray.includes(item.idDrink)) {
+                        returnArray.push(item)
+                    }
                 }
-                return cocktailArrayFavorites
-            }).catch(error => {
-            console.log(error.message)
-            return undefined
-        })
+            })
+        }
+        return returnArray
     }).catch(error => {
         console.log(error.message)
-        alert(error.message)
         return undefined
     })
 }
+
+// export const getFavoriteDataSet = async (userID: string) => {
+//     return getFavoritesList(userID).then((stringArrayOfIDs: string[] | undefined) => {
+//         if (!stringArrayOfIDs) {
+//             return undefined
+//         }
+//         return fetchFavoriteDataSetAsArray((stringArrayOfIDs).then(
+//             (cocktailArrayFavorites: Cocktail[] | undefined) => {
+//                 if (!cocktailArrayFavorites) {
+//                     return undefined
+//                 }
+//                 return cocktailArrayFavorites
+//             }).catch(error => {
+//             console.log(error.message)
+//             return undefined
+//         })
+//     }).catch(error => {
+//         console.log(error.message)
+//         alert(error.message)
+//         return undefined
+//     })
+// }
