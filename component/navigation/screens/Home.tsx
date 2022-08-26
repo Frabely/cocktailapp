@@ -23,8 +23,8 @@ export default function Home({navigation}: any) {
         let dataSet: Cocktail[] = []
         FULL_DATA_SET_PROMISE.then(resultData => {
             if (resultData) {
-                dispatch(setIsLoadingFalse())
                 dataSet = applySyncFilters(resultData, state, dispatch)
+                dispatch(setIsLoadingFalse())
                 setDataSet(dataSet)
             }
         }).catch(error => {

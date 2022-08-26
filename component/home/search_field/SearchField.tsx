@@ -13,9 +13,13 @@ export default function searchField() {
     return (
         <View style={styles.searchField}>
             <TextInput value={state.currentSearchFieldInput}
-                       onChangeText={input => {dispatch(changeCurrentSearchFieldInput(input))}}
+                       onChangeText={input => {
+                           dispatch(changeCurrentSearchFieldInput(input))
+                       }}
                        style={styles.testInput} placeholder={ENTER_SEARCH_TERM_LABEL[`${language}`]}
-                       selectTextOnFocus={true}/>
+                       autoFocus={true}
+                       selectTextOnFocus={true}
+            />
         </View>
     )
 }
@@ -23,7 +27,7 @@ export default function searchField() {
 const styles = StyleSheet.create({
     searchField: {
         width: '100%',
-        marginBottom: MARGIN/2
+        marginBottom: MARGIN / 2
     },
     testInput: {
         padding: PADDING,
