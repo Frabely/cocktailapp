@@ -22,7 +22,6 @@ export default function Favorites({navigation}: any) {
     useEffect(() => {
         if (state.user.favorites) {
             let dataSet: Cocktail[] = state.user.favorites
-            setFavDataSet(dataSet)
             dataSet = applySyncFilters(dataSet, state, dispatch)
             setFavDataSet(dataSet)
             if (!isFavoritesModalShown) {

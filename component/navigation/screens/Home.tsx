@@ -24,7 +24,6 @@ export default function Home({navigation}: any) {
         FULL_DATA_SET_PROMISE.then(resultData => {
             if (resultData) {
                 dispatch(setIsLoadingFalse())
-                setDataSet(dataSet)
                 dataSet = applySyncFilters(resultData, state, dispatch)
                 setDataSet(dataSet)
             }

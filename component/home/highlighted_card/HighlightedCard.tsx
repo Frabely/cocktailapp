@@ -13,6 +13,7 @@ import {AddOrDeleteFavoriteOfUser, isFavoriteOfUser} from "../../../functions/fi
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../../reducers/booleans/isLoadingReducer";
 import {invertIsModalState} from "../../../reducers/booleans/isModalReducer";
 import {changeModalMessage} from "../../../reducers/general/modalMessageReducer";
+import {Cocktail} from "../../../constants/types";
 
 export default function HighlightedCard({height}: HighlightedCardProps) {
     const state = useAppSelector((state) => state)
@@ -75,6 +76,7 @@ export default function HighlightedCard({height}: HighlightedCardProps) {
         dispatch(setIsLoadingTrue())
         if (state.user.userID && state.currentItem.idDrink) {
             await AddOrDeleteFavoriteOfUser(state.user.userID, state.currentItem.idDrink).then(() => {
+                // updateFavorites()
                 setFavorite(!favorite)
                 dispatch(setIsLoadingFalse())
             }).catch(error => {
@@ -85,6 +87,19 @@ export default function HighlightedCard({height}: HighlightedCardProps) {
         }
         dispatch(setIsLoadingFalse())
     }
+
+    // const updateFavorites = () => {
+    //     if (state.user.favorites && state.currentItem.idDrink) {
+    //         const currentFavorites = state.user.favorites.filter((cocktail: Cocktail) => {
+    //             if (cocktail.idDrink !== state.currentItem.idDrink)
+    //                 return cocktail
+    //         })
+    //         if (currentFavorites === state.user.favorites) {
+    //             currentFavorites.push(state.currentItem)
+    //         }
+    //         console.log(currentFavorites)
+    //     }
+    // }
 
     return (
         <View style={[styles.highlightView, {

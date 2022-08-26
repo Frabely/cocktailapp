@@ -8,10 +8,13 @@ const UserSlice = createSlice({
     reducers: {
         activeUser: (state, action: PayloadAction<User>) => {
             return action.payload
+        },
+        changeFavorites: (state, action: PayloadAction<Cocktail[]>) => {
+            return {...state, favorites: action.payload}
         }
     },
 })
-export const { activeUser } = UserSlice.actions
+export const { activeUser, changeFavorites } = UserSlice.actions
 export type User = {
     username: string | null,
     email: string | null,
