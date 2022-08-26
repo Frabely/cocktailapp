@@ -10,7 +10,6 @@ import {ALL, EMPTY_ITEM, HOME, PROFILE} from "../../constants/const_vars";
 import {useAppDispatch, useAppSelector} from "../../constants/hooks";
 import {setActiveFilter} from "../../reducers/filter/activeFilterReducer";
 import {changeCurrentItem} from "../../reducers/home/currentItemReducer";
-import {changeCurrentDataSet} from "../../reducers/home/currentDataSetReducer";
 import {changeCategory} from "../../reducers/filter/categoryFilterReducer";
 import {changeAlcoholic} from "../../reducers/filter/alcoholicFilterReducer";
 import {changeCurrentSearchFieldInput} from "../../reducers/home/currentSearchFieldInputReducer";
@@ -34,7 +33,6 @@ export default function Header({navigation}: any) {
     }
 
     const onProfilePressHandler = () => {
-        dispatch(changeCurrentDataSet([]))
         navigation.navigate(PROFILE)
     }
 
@@ -48,10 +46,8 @@ export default function Header({navigation}: any) {
         dispatch(setIsLoadingTrue())
         fetchFullDataSetAsArray().then(resultData => {
             if (resultData) {
-                dispatch(changeCurrentDataSet(resultData))
                 dispatch(setIsLoadingFalse())
             } else {
-                dispatch(changeCurrentDataSet([]))
                 dispatch(setIsLoadingFalse())
             }
         }).catch(error => {

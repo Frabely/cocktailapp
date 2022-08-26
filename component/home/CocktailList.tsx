@@ -1,5 +1,5 @@
 import {vh, vh_reactive} from "../../functions/dimentions";
-import {ALL, EMPTY_ITEM, FAVORITES, FILTER, SEARCH_FIELD} from "../../constants/const_vars";
+import {ALL, EMPTY_ITEM, FILTER, SEARCH_FIELD} from "../../constants/const_vars";
 import Filter from "./filter/Filter";
 import SearchField from "./search_field/SearchField";
 import NoHits from "./NoHits";
@@ -15,9 +15,8 @@ import {changeAlcoholic} from "../../reducers/filter/alcoholicFilterReducer";
 import {changeCategory} from "../../reducers/filter/categoryFilterReducer";
 import {changeCurrentSearchFieldInput} from "../../reducers/home/currentSearchFieldInputReducer";
 import {changeIngredients} from "../../reducers/filter/ingredientsFilterReducer";
-import {changeCurrentDataSet} from "../../reducers/home/currentDataSetReducer";
 
-export default function CocktailList({route}: CocktailListProps) {
+export default function CocktailList({dataset}: CocktailListProps) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
     const [numberCol, setNumberCol] = useState(15);
@@ -46,11 +45,6 @@ export default function CocktailList({route}: CocktailListProps) {
         dispatch(changeCategory([ALL]))
         dispatch(changeCurrentSearchFieldInput(''))
         dispatch(changeIngredients([]))
-        if (route.name === FAVORITES) {
-            if (state.user.favorites) {
-                dispatch(changeCurrentDataSet(state.user.favorites))
-            }
-        }
     }
 
     // TODO find out what any is
@@ -65,12 +59,12 @@ export default function CocktailList({route}: CocktailListProps) {
     return (
         <View style={[styles.cocktailList, {height: vh_reactive(0.8, state.dimensions.height)}]}>
             {(state.activeFilter === FILTER) ? (
-                <Filter onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>
+                <Filter lengthDataSet={dataset.length} onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>
             ) : null}
             {(state.activeFilter === SEARCH_FIELD) ? (
                 <SearchField/>
             ) : null}
-            {(state.currentDataSet.length === 0 && !state.isLoading) ? (
+            {(dataset.length === 0 && !state.isLoading) ? (
                 <NoHits onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>
             ) : null}
             {(state.dimensions.height > state.dimensions.width) ? (
@@ -82,7 +76,7 @@ export default function CocktailList({route}: CocktailListProps) {
                     <FlatList
                         columnWrapperStyle={{justifyContent: 'space-around'}}
                         numColumns={3}
-                        data={state.currentDataSet}
+                        data={dataset}
                         renderItem={renderItem}
                         keyExtractor={item => '#' + item.idDrink}
                     />
@@ -93,7 +87,7 @@ export default function CocktailList({route}: CocktailListProps) {
                         key={numberCol}
                         style={{flex: 1}}
                         numColumns={numberCol}
-                        data={state.currentDataSet}
+                        data={dataset}
                         renderItem={renderItem}
                         keyExtractor={item => '_' + item.idDrink}
                         extraData={state.currentItem.idDrink}/>
@@ -117,5 +111,5 @@ const styles = StyleSheet.create({
 });
 
 export type CocktailListProps = {
-    route: any
+    dataset: Cocktail[]
 }

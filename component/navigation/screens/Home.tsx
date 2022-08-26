@@ -1,10 +1,9 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
 import Header from "../../layout/Header";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../../reducers/booleans/isLoadingReducer";
 import HeaderHome from "../../home/HeaderHome";
 import AppBackground from "../../layout/AppBackground";
-import {changeCurrentDataSet} from "../../../reducers/home/currentDataSetReducer";
 import LoadingScreen from "../../layout/LoadingScreen";
 import {
     applySyncFilters
@@ -14,9 +13,10 @@ import Modal from "../../layout/Modal";
 import CocktailList from "../../home/CocktailList";
 import {FULL_DATA_SET_PROMISE} from "../../../constants/dataSets";
 
-export default function Home({route, navigation}: any) {
+export default function Home({navigation}: any) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
+    const [dataSet, setDataSet] = useState<Cocktail[] | null >(null);
 
     useEffect(() => {
         dispatch(setIsLoadingTrue())
@@ -24,8 +24,9 @@ export default function Home({route, navigation}: any) {
         FULL_DATA_SET_PROMISE.then(resultData => {
             if (resultData) {
                 dispatch(setIsLoadingFalse())
+                setDataSet(dataSet)
                 dataSet = applySyncFilters(resultData, state, dispatch)
-                dispatch(changeCurrentDataSet(dataSet))
+                setDataSet(dataSet)
             }
         }).catch(error => {
             dispatch(setIsLoadingFalse())
@@ -36,7 +37,7 @@ export default function Home({route, navigation}: any) {
     return (
         <AppBackground>
             <HeaderHome/>
-            <CocktailList route={route}/>
+            <CocktailList dataset={dataSet ? dataSet : []}/>
             {state.isLoading ? (
                 <LoadingScreen/>
             ) : null}

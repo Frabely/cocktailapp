@@ -1,4 +1,4 @@
-import {ScrollView, StyleSheet, View, Text} from "react-native";
+import {ScrollView, StyleSheet, View} from "react-native";
 import {vh, vh_reactive, vw, vw_reactive} from "../../../functions/dimentions";
 import {COLOR_CARD_BACKGROUND} from "../../../constants/color_styles";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
@@ -20,7 +20,7 @@ import {setActiveFilter} from "../../../reducers/filter/activeFilterReducer";
 import {ALCOHOLIC_LABEL} from "../../../constants/labels";
 import React from "react";
 
-export default function Filter({onClearAllFiltersClickHandler}: FilterProps) {
+export default function Filter({onClearAllFiltersClickHandler, lengthDataSet}: FilterProps) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
     const language: string = state.language
@@ -76,7 +76,7 @@ export default function Filter({onClearAllFiltersClickHandler}: FilterProps) {
                     margin={MARGIN / 2}
                     padding={PADDING}
                     onPress={onHitsClickHandler}
-                    title={`${HITS_LABEL[`${language}`]}: ${state.currentDataSet.length}`}/>
+                    title={`${HITS_LABEL[`${language}`]}: ${lengthDataSet}`}/>
             </View>
         </ScrollView>
     )
@@ -108,5 +108,6 @@ const styles = StyleSheet.create({
 })
 
 export type FilterProps = {
-    onClearAllFiltersClickHandler: (() => void)
+    onClearAllFiltersClickHandler: (() => void),
+    lengthDataSet: number
 }

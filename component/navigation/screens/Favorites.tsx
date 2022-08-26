@@ -7,28 +7,24 @@ import AppBackground from "../../layout/AppBackground";
 import React, {useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
 import {Cocktail} from "../../../constants/types";
-import {changeCurrentDataSet} from "../../../reducers/home/currentDataSetReducer";
 import {applySyncFilters} from "../../../functions/filterFunctions";
 import {changeModalMessage} from "../../../reducers/general/modalMessageReducer";
 import {YOUR_FAVORITES} from "../../../constants/labels";
 import {invertIsModalState} from "../../../reducers/booleans/isModalReducer";
 
-export default function Favorites({route, navigation}: any) {
+export default function Favorites({navigation}: any) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
     const [isFavoritesModalShown, setIsFavoritesModalShown] = useState(false);
     const language: string = state.language
+    const [favDataSet, setFavDataSet] = useState<Cocktail[] | null>(null);
 
     useEffect(() => {
-        console.log(state.user.favorites)
         if (state.user.favorites) {
             let dataSet: Cocktail[] = state.user.favorites
-            console.log(dataSet)
-            dispatch(changeCurrentDataSet(dataSet))
-            console.log(dataSet)
+            setFavDataSet(dataSet)
             dataSet = applySyncFilters(dataSet, state, dispatch)
-            console.log(dataSet)
-            dispatch(changeCurrentDataSet(dataSet))
+            setFavDataSet(dataSet)
             if (!isFavoritesModalShown) {
                 dispatch(changeModalMessage(YOUR_FAVORITES[`${language}`]))
                 dispatch(invertIsModalState())
@@ -40,7 +36,7 @@ export default function Favorites({route, navigation}: any) {
     return (
         <AppBackground>
             <HeaderHome/>
-            <CocktailList route={route}/>
+            <CocktailList dataset={favDataSet ? favDataSet : []}/>
             <Header navigation={navigation}/>
             {state.isLoading ? (
                 <LoadingScreen/>
