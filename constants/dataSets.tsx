@@ -1,3 +1,10 @@
 import {fetchFullDataSetAsArray} from "../functions/firebase";
+import data from "../functions/dummyData3";
+import {Cocktail} from "./types";
 
-export const FULL_DATA_SET_PROMISE = fetchFullDataSetAsArray()
+const getDataFromFile = async () => {
+    return data['drinks']
+}
+
+// export const FULL_DATA_SET_PROMISE: Promise<Cocktail[] | undefined> = fetchFullDataSetAsArray()
+export const FULL_DATA_SET_PROMISE: Promise<Cocktail[] | undefined> = getDataFromFile()

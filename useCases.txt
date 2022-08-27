@@ -11,7 +11,7 @@ Bugs:
 -labels on android overflowing (german filter buttons)
 
 Master branch Goals - deploy alpha:
--put Cocktail as map in db
+-add dev dataset to read from
 -button/label sizes for tablet
 -disable language -> German not fully supported:
     -check for translation API -> maybe fast, good, free solution to translate

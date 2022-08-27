@@ -8,7 +8,7 @@ import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {useAppDispatch, useAppSelector} from "../../constants/hooks";
 import Settings from "./screens/user_profile/Settings";
 import {useEffect} from "react";
-import {useWindowDimensions} from "react-native";
+import {Platform, useWindowDimensions} from "react-native";
 import {changeScreen} from "../../reducers/general/screenSizeReducer";
 import Favorites from "./screens/Favorites";
 import {getOrientationAsync, unlockAsync} from 'expo-screen-orientation';
@@ -21,7 +21,8 @@ export default function Routes() {
     const SCREEN_HEIGHT = useWindowDimensions().height;
 
     // enable turning screen (mobile)
-    unlockAsync().then()
+    if (Platform.OS !== 'web')
+        unlockAsync().then()
 
     useEffect(() => {
         getOrientationAsync().then(orientationInfo => {

@@ -11,10 +11,10 @@ import {
     updateDoc,
     getDoc,
     DocumentSnapshot,
+    DocumentData
 } from "firebase/firestore";
 import {DRINKS_DB, USER_USERNAME_LOWER_DB, USERS_DB} from "../constants/const_vars";
 import {Cocktail} from "../constants/types";
-
 const firebaseConfig = {
     apiKey: "AIzaSyBhRWfGBxpeqp4G-Zy4grwmoXUal1ZwoM0",
     authDomain: "cocktailapp-7c353.firebaseapp.com",
@@ -37,7 +37,7 @@ export type CreationData = {
 export const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export const createUserInDb = async (creationData: CreationData) => {
+export const createUserInDb: (creationData: CreationData) => Promise<void> = async (creationData: CreationData) => {
     await setDoc(doc(db, `${USERS_DB}/${creationData.userID}`), {
         username: creationData.username,
         usernameLower: creationData.username.toLowerCase(),
@@ -47,19 +47,20 @@ export const createUserInDb = async (creationData: CreationData) => {
     })
 }
 
-export const isUsernameUsed = async (username: string) => {
+export const isUsernameUsed: (username: string) => Promise<boolean> = async (username: string) => {
     const usersRef = collection(db, USERS_DB);
     const queryResult = query(usersRef, where(USER_USERNAME_LOWER_DB, "==", username.toLowerCase()));
     const querySnapshot = await getDocs(queryResult);
     return !querySnapshot.empty;
 }
 
-export const updateUser = async (userID: string, creationData: UpdateData<any>) => {
-    const userRef = doc(db, `${USERS_DB}/${userID}`);
-    await updateDoc(userRef, creationData).then()
-}
+export const updateUser: (userID: string, creationData: UpdateData<any>) => void =
+    async (userID: string, creationData: UpdateData<any>) => {
+        const userRef = doc(db, `${USERS_DB}/${userID}`);
+        await updateDoc(userRef, creationData).then()
+    }
 
-export const getUser = async (userID: string) => {
+export const getUser: (userID: string) => Promise<DocumentData | null>  = async (userID: string) => {
     const userRef = doc(db, `${USERS_DB}/${userID}`);
     const docSnap = await getDoc(userRef);
     if (docSnap.exists()) {
@@ -70,13 +71,13 @@ export const getUser = async (userID: string) => {
     }
 }
 
-export const getFavoritesList = async (userID: string) => {
+export const getFavoritesList: (userID: string) => Promise< string[] | undefined> = async (userID: string) => {
     const userFavoritesRef = doc(db, `${USERS_DB}/${userID}`);
     return await getDoc(userFavoritesRef).then((docSnapshot) => {
         const favArray: string[] = docSnapshot.get("favorites")
         if (!favArray || favArray.length === 0) {
             return []
-        }else {
+        } else {
             return favArray
         }
     }).catch(error => {
@@ -86,13 +87,14 @@ export const getFavoritesList = async (userID: string) => {
     })
 }
 
-export const fetchFullDataSetAsArray = async () => {
+export const fetchFullDataSetAsArray: () => Promise<Cocktail[] | undefined> = async () => {
     const usersRef = collection(db, `${DRINKS_DB}`);
     return await getDocs(usersRef).then((result) => {
         if (!result.empty) {
             let returnArray: Cocktail[] = []
             result.docs.map((item) => {
-                returnArray.push(setCocktailFromDoc(item))
+                console.log(item)
+                returnArray.push(item.get("cocktail"))
             })
             return returnArray
         }
@@ -102,7 +104,7 @@ export const fetchFullDataSetAsArray = async () => {
     })
 }
 
-const setCocktailFromDoc = (docResult: DocumentSnapshot) => {
+const setCocktailFromDoc: (docResult: DocumentSnapshot) => Cocktail = (docResult: DocumentSnapshot) => {
     let cocktail: Cocktail = {
         "idDrink": docResult.get("idDrink"),
         "strDrink": docResult.get("strDrink"),
