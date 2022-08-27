@@ -1,9 +1,15 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {Dimensions} from "react-native";
+import {Orientation} from "expo-screen-orientation";
 
-export type DimensionsType = {width: number, height: number}
+export type DimensionsType = {
+    orientationInfo: Orientation
+    width: number,
+    height: number
+}
 
 const initialState: DimensionsType = {
+    orientationInfo: Orientation.PORTRAIT_UP,
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height
 }
@@ -22,6 +28,9 @@ const DimensionsSlice = createSlice({
         },
         changeScreen: (state, action: PayloadAction<DimensionsType>) => {
             return action.payload
+        },
+        changeOrientationInfo: (state, action: PayloadAction<Orientation>) => {
+            return {...state, orientationInfo: action.payload}
         }
     },
 })

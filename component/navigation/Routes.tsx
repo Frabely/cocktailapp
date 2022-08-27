@@ -11,6 +11,7 @@ import {useEffect} from "react";
 import {useWindowDimensions} from "react-native";
 import {changeScreen} from "../../reducers/general/screenSizeReducer";
 import Favorites from "./screens/Favorites";
+import {getOrientationAsync, unlockAsync} from 'expo-screen-orientation';
 
 export default function Routes() {
     const state = useAppSelector((state) => state)
@@ -19,8 +20,20 @@ export default function Routes() {
     const SCREEN_WIDTH = useWindowDimensions().width;
     const SCREEN_HEIGHT = useWindowDimensions().height;
 
+    // enable turning screen (mobile)
+    unlockAsync().then()
+
     useEffect(() => {
-        dispatch(changeScreen({height: SCREEN_HEIGHT, width: SCREEN_WIDTH}))
+        getOrientationAsync().then(orientationInfo => {
+                if (orientationInfo) {
+                    dispatch(changeScreen({
+                        height: SCREEN_HEIGHT,
+                        width: SCREEN_WIDTH,
+                        orientationInfo: orientationInfo
+                    }))
+                }
+            }
+        )
     }, [SCREEN_WIDTH, SCREEN_HEIGHT])
 
     return (
