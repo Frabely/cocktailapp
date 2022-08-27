@@ -1,5 +1,5 @@
 import {fetchFullDataSetAsArray} from "../functions/firebase";
-import data from "../functions/dummyData3";
+import data from "../constants/dummyData3";
 import {Cocktail} from "./types";
 
 const getDataFromFile = async () => {

@@ -30,7 +30,7 @@ export default function Favorites({navigation}: any) {
                 setIsFavoritesModalShown(true)
             }
         }
-    }, [state.alcoholicFilter, state.categoryFilter, state.ingredientsFilter, state.currentSearchFieldInput])
+    }, [state.alcoholicFilter, state.categoryFilter, state.ingredientsFilter, state.currentSearchFieldInput, state.user.favorites])
 
     return (
         <AppBackground>

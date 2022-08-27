@@ -19,16 +19,18 @@ export default function LoginScreen() {
     return (
         <AppBackground>
             <View style={styles.login}>
-                <View style={{maxHeight: vh_reactive(0.9, state.dimensions.height)}}>
-                    <ScrollView>
-                        <CardLayout
-                            width={vw_reactive(0.7, state.dimensions.width)}>
-                            {state.loginState === LOGIN_LABEL.ENG ? <Login/> : null}
-                            {state.loginState === CREATE_ACCOUNT_LABEL.ENG ? <CreateAccount/> : null}
-                            {state.loginState === FORGOT_PASSWORD_LABEL.ENG ? <ForgotPassword/> : null}
-                        </CardLayout>
-                    </ScrollView>
-                </View>
+                    <View style={{
+                        maxHeight: vh_reactive(0.9, state.dimensions.height),
+                    }}>
+                        <ScrollView style={{ flexGrow:0 }}>
+                            <CardLayout
+                                width={vw_reactive(0.7, state.dimensions.width)}>
+                                {state.loginState === LOGIN_LABEL.ENG ? <Login/> : null}
+                                {state.loginState === CREATE_ACCOUNT_LABEL.ENG ? <CreateAccount/> : null}
+                                {state.loginState === FORGOT_PASSWORD_LABEL.ENG ? <ForgotPassword/> : null}
+                            </CardLayout>
+                        </ScrollView>
+                    </View>
             </View>
             {
                 state.isLoading ? (
@@ -47,7 +49,7 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
     login: {
         alignItems: "center",
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         height: '100%'
     },
 })

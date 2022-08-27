@@ -12,11 +12,15 @@ import {faStar as faStar_regular} from "@fortawesome/free-regular-svg-icons";
 import {Cocktail} from "../../../constants/types";
 import {changeFavorites} from "../../../reducers/user/userReducer";
 import {Orientation} from "expo-screen-orientation";
+import {changeModalMessage} from "../../../reducers/general/modalMessageReducer";
+import {invertIsModalState} from "../../../reducers/booleans/isModalReducer";
+import {FAVORITE_DELETED_LABEL} from "../../../constants/labels";
 
 export default function HighlightedCard({height}: HighlightedCardProps) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
     const [arrayIngredients, setArrayIngredients] = useState([])
+    const language: string = state.language
 
     const setDefaultFavorite = () => {
         if (state.user.favorites && state.currentItem.idDrink) {
@@ -80,6 +84,8 @@ export default function HighlightedCard({height}: HighlightedCardProps) {
                     return cocktail
             })
             dispatch(changeFavorites(currentFavorites))
+            dispatch(changeModalMessage(FAVORITE_DELETED_LABEL[`${language}`]))
+            dispatch(invertIsModalState())
         }
     }
 

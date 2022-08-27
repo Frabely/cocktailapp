@@ -6,7 +6,7 @@ import {NO_HITS_LABEL, RESET_FILTER_LABEL} from "../../constants/labels";
 import {useAppSelector} from "../../constants/hooks";
 import {MARGIN, PADDING} from "../../constants/style_constants";
 
-export default function NoHits({onClearAllFiltersClickHandler}: NoHitsProps) {
+export default function NoHits({onPress}: NoHitsProps) {
     const state = useAppSelector((state) => state)
     const language: string = state.language
 
@@ -16,7 +16,7 @@ export default function NoHits({onClearAllFiltersClickHandler}: NoHitsProps) {
                     <Text style={styles.text}>{`${NO_HITS_LABEL[`${language}`]} 😕`}</Text>
                     <StyledButton
                         title={RESET_FILTER_LABEL[`${language}`]}
-                        onPress={onClearAllFiltersClickHandler}
+                        onPress={onPress}
                         padding={PADDING}
                         margin={MARGIN / 2}/>
             </CardLayout>
@@ -36,6 +36,6 @@ const styles = StyleSheet.create({
 })
 
 export type NoHitsProps = {
-    onClearAllFiltersClickHandler: (() => void)
+    onPress: (({...args}: any) => any)
 }
 

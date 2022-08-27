@@ -10,16 +10,22 @@ import {ALL, EMPTY_ITEM, HOME, PROFILE} from "../../constants/const_vars";
 import {useAppDispatch, useAppSelector} from "../../constants/hooks";
 import {setActiveFilter} from "../../reducers/filter/activeFilterReducer";
 import {changeCurrentItem} from "../../reducers/home/currentItemReducer";
-import {changeCategory} from "../../reducers/filter/categoryFilterReducer";
+import {setIsLoadingTrue} from "../../reducers/booleans/isLoadingReducer";
 import {changeAlcoholic} from "../../reducers/filter/alcoholicFilterReducer";
+import {changeCategory} from "../../reducers/filter/categoryFilterReducer";
 import {changeCurrentSearchFieldInput} from "../../reducers/home/currentSearchFieldInputReducer";
 import {changeIngredients} from "../../reducers/filter/ingredientsFilterReducer";
-import {fetchFullDataSetAsArray} from "../../functions/firebase";
-import {setIsLoadingFalse, setIsLoadingTrue} from "../../reducers/booleans/isLoadingReducer";
 
 export default function Header({navigation}: any) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
+
+    const onClearAllFiltersClickHandler = () => {
+        dispatch(changeAlcoholic([ALL]))
+        dispatch(changeCategory([ALL]))
+        dispatch(changeCurrentSearchFieldInput(''))
+        dispatch(changeIngredients([]))
+    }
 
     const onBackArrowPressHandler = () => {
         if (navigation.canGoBack())
@@ -34,27 +40,15 @@ export default function Header({navigation}: any) {
 
     const onProfilePressHandler = () => {
         navigation.navigate(PROFILE)
+        dispatch(setActiveFilter(''))
+        onClearAllFiltersClickHandler()
     }
 
     const onHomePressHandler = () => {
         navigation.navigate(HOME)
         dispatch(setActiveFilter(''))
-        dispatch(changeAlcoholic([ALL]))
-        dispatch(changeCategory([ALL]))
-        dispatch(changeIngredients([]))
-        dispatch(changeCurrentSearchFieldInput(''))
+        onClearAllFiltersClickHandler()
         dispatch(setIsLoadingTrue())
-        fetchFullDataSetAsArray().then(resultData => {
-            if (resultData) {
-                dispatch(setIsLoadingFalse())
-            } else {
-                dispatch(setIsLoadingFalse())
-            }
-        }).catch(error => {
-            console.log(error.message)
-            dispatch(setIsLoadingFalse())
-        })
-
     }
 
     return (
@@ -65,7 +59,6 @@ export default function Header({navigation}: any) {
             <HeaderButton onPress={onBackArrowPressHandler} icon={faArrowLeft}/>
             <HeaderButton onPress={onProfilePressHandler} icon={faUser}/>
             <HeaderButton onPress={onHomePressHandler} icon={faHouse}/>
-            {/*<View style={{flex: 2, alignItems: 'center', justifyContent: 'center',}}/>*/}
         </View>
     )
 }

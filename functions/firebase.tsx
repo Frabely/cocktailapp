@@ -54,7 +54,7 @@ export const isUsernameUsed: (username: string) => Promise<boolean> = async (use
     return !querySnapshot.empty;
 }
 
-export const updateUser: (userID: string, creationData: UpdateData<any>) => void =
+export const updateUser: (userID: string, creationData: UpdateData<any>) => Promise<void> =
     async (userID: string, creationData: UpdateData<any>) => {
         const userRef = doc(db, `${USERS_DB}/${userID}`);
         await updateDoc(userRef, creationData).then()

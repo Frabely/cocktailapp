@@ -11,11 +11,11 @@ import {useAppDispatch, useAppSelector} from "../../constants/hooks";
 import Card from "../layout/Card";
 import {Cocktail} from "../../constants/types";
 import {changeCurrentItem} from "../../reducers/home/currentItemReducer";
+import {Orientation} from 'expo-screen-orientation';
 import {changeAlcoholic} from "../../reducers/filter/alcoholicFilterReducer";
 import {changeCategory} from "../../reducers/filter/categoryFilterReducer";
 import {changeCurrentSearchFieldInput} from "../../reducers/home/currentSearchFieldInputReducer";
 import {changeIngredients} from "../../reducers/filter/ingredientsFilterReducer";
-import {Orientation} from 'expo-screen-orientation';
 
 export default function CocktailList({dataset}: CocktailListProps) {
     const state = useAppSelector((state) => state)
@@ -60,14 +60,14 @@ export default function CocktailList({dataset}: CocktailListProps) {
     return (
         <View style={[styles.cocktailList, {height: vh_reactive(0.8, state.dimensions.height)}]}>
             {state.activeFilter === FILTER ? (
-                <Filter lengthDataSet={dataset.length} onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>
+                <Filter lengthDataSet={dataset.length} onPress={onClearAllFiltersClickHandler}/>
             ) : null}
             {dataset.length === 0 && !state.isLoading ? (
                     <>
                         {state.activeFilter === SEARCH_FIELD ? (
                             <SearchField/>
                         ) : null}
-                        <NoHits onClearAllFiltersClickHandler={onClearAllFiltersClickHandler}/>
+                        <NoHits onPress={onClearAllFiltersClickHandler}/>
                     </>
                 ) :
                 (

@@ -1,7 +1,5 @@
 Bugs:
--login not centered
 -if no favorites -> Favorites page shows "No Hits -- Reset Filters" -> should display something like no favorites found
--reload after star in favorites is removed -> removed card from dataSet
 -on login (with other account) filter might be open -> set all filter closed on logout
 -briefly showing all cocktails on favorites page load
 -if All selected and gets reselected page reloads -> should not reload -> takes time that is not needed

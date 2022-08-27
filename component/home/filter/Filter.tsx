@@ -20,7 +20,7 @@ import {setActiveFilter} from "../../../reducers/filter/activeFilterReducer";
 import {ALCOHOLIC_LABEL} from "../../../constants/labels";
 import React from "react";
 
-export default function Filter({onClearAllFiltersClickHandler, lengthDataSet}: FilterProps) {
+export default function Filter({onPress, lengthDataSet}: FilterProps) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
     const language: string = state.language
@@ -69,7 +69,7 @@ export default function Filter({onClearAllFiltersClickHandler, lengthDataSet}: F
                     flex={1}
                     margin={MARGIN / 2}
                     padding={PADDING}
-                    onPress={onClearAllFiltersClickHandler}
+                    onPress={onPress}
                     title={CLEAR_ALL_FILTERS_LABEL[`${language}`]}/>
                 <StyledButton
                     flex={1}
@@ -108,6 +108,6 @@ const styles = StyleSheet.create({
 })
 
 export type FilterProps = {
-    onClearAllFiltersClickHandler: (() => void),
+    onPress: (({...args}: any) => any),
     lengthDataSet: number
 }
