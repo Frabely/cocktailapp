@@ -10,23 +10,24 @@ Master branch Goals - deploy alpha:
 -setup GooglePlay deploy:
     (x)-setup testing for playstore
     (started)-data protection
--add app to stores:
     -adds
-    -create logo and splash -> already done? https://www.figma.com/file/4TD0sMutRjxBI6zKySFV2n/Expo-App-Icon-%26-Splash-(Community)?node-id=1%3A1357
+    -recreate logo and splash ->  https://www.figma.com/file/4TD0sMutRjxBI6zKySFV2n/Expo-App-Icon-%26-Splash-(Community)?node-id=1%3A1357
+        -app icon rework -> add triangle
 (x)-handle screen rotation see docs
 -testing start:
     -cover as much as possible with error codes and matching messages
+-fetch data once -> exceeded read limit -> way to early
 
 TODOs:
--button/label sizes for tablet landscape
--fetch data once -> exceeded read limit -> way to early
--when mobile is landscape (horizontal) menu on right (left) sides
--loading too much on search?
--data state to big -> laggy?
+-refactor:
+    -refactor login screen and settings -> put all error checking into functions -> currently way to many code
+    -change padding and margin const's to rem
+    -button/label sizes for tablet landscape
+    -when mobile is landscape (horizontal) menu on right (left) sides?
+    -refactor reducer -> change hardcode strings to const's
+    -refactor and optimize highlight card, extract maybe
+    -refactor filter file, extract maybe
 -load only 10 items and update on scroll?
--app icon rework -> add triangle
--fetch only favorites function -> don't need to fetch all when only favorites are required
--refactor login screen and settings -> put all error checking into functions -> currently way to many code
 -user profile:
     -pages:
         -profile details:
@@ -34,25 +35,20 @@ TODOs:
             -delete account
 -rating:
     -filter
--change padding and margin const's to rem
 favorites:
     -share cocktails
     -create cocktails
--refactor reducer -> change hardcode strings to const's
 -user profile:
     -pages:
         -settings:
             -font size?
             -color themes?
--refactor and optimize highlight card, extract maybe
--refactor filter file, extract maybe
 -what font and default size used -> make font sizes const's
 -abo
 
 Nice to have features:
 -highlight card full screen:
     -swipe down to get next cocktail
--use mobile turn 90deg function
 -make colors changeable
 -change label for password placeholder or text to show it should be at least 6 chars long
 -shadow on android 'not' working -> see Card component
