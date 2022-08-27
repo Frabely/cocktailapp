@@ -9,7 +9,7 @@ import {getAuth} from "firebase/auth";
 import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
 import CardLayout from "../../layout/CardLayout";
 import UserProfileItem from "../../user_profile/UserProfileItem";
-import {EMPTY_ITEM, EMPTY_USER, FAVORITES, PROFILE_DETAILS, SETTINGS} from "../../../constants/const_vars";
+import {ALL, EMPTY_ITEM, EMPTY_USER, FAVORITES, PROFILE_DETAILS, SETTINGS} from "../../../constants/const_vars";
 import Header from "../../layout/Header";
 import AppBackground from "../../layout/AppBackground";
 import {
@@ -23,12 +23,23 @@ import {changeCurrentItem} from "../../../reducers/home/currentItemReducer";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../../reducers/booleans/isLoadingReducer";
 import HeadLine from "../../layout/HeadLine";
 import {Cocktail} from "../../../constants/types";
+import {changeAlcoholic} from "../../../reducers/filter/alcoholicFilterReducer";
+import {changeCategory} from "../../../reducers/filter/categoryFilterReducer";
+import {changeCurrentSearchFieldInput} from "../../../reducers/home/currentSearchFieldInputReducer";
+import {changeIngredients} from "../../../reducers/filter/ingredientsFilterReducer";
 
 export default function UserProfile({navigation}: any) {
     const state = useAppSelector((state) => state)
     const auth = getAuth(app)
     const dispatch = useAppDispatch()
     const language: string = state.language
+
+    const onClearAllFiltersClickHandler = () => {
+        dispatch(changeAlcoholic([ALL]))
+        dispatch(changeCategory([ALL]))
+        dispatch(changeCurrentSearchFieldInput(''))
+        dispatch(changeIngredients([]))
+    }
 
     const onProfileDetailsPressHandler = () => {
         navigation.navigate(PROFILE_DETAILS)
@@ -44,6 +55,7 @@ export default function UserProfile({navigation}: any) {
 
     const onLogoutPressHandler = () => {
         dispatch(setIsLoadingTrue())
+        onClearAllFiltersClickHandler()
         if (state.user.userID && state.user.favorites) {
             let favoriteIDArray: string[] = []
             state.user.favorites.map((cocktail: Cocktail) => {

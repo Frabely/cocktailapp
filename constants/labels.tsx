@@ -9,7 +9,7 @@ export const REPEAT_PASSWORD_LABEL: LabelType = {ENG: 'Repeat Password', GER: 'P
 export const FINISH_ACCOUNT_CREATION_LABEL: LabelType = {ENG: 'Finish Account Creation', GER: 'Account Erstellung abschließen'}
 export const LOGIN_LABEL: LabelType  = {ENG: 'Login', GER: 'Einloggen'}
 export const LOGIN_PAGE_LABEL: LabelType  = {ENG: 'Login page', GER: 'Einlogseite'}
-export const SEND_RESET_PASSWORD_EMAIL_LABEL: LabelType  = {ENG: 'Send reset password email', GER: 'Verifizierungsemail senden'}
+export const SEND_RESET_PASSWORD_EMAIL_LABEL: LabelType  = {ENG: 'Send reset password email', GER: 'Verifizierungs-Email senden'}
 export const RESET_PASSWORD_EMAIL_SENT_LABEL: LabelType  = {ENG: 'Reset password email sent', GER: 'Email zum Zurücksetzen des Passwortes gesendet'}
 export const FORGOT_PASSWORD_LABEL: LabelType = {ENG: 'Forgot Password?', GER: 'Passwort vergessen?'}
 export const CREATE_ACCOUNT_LABEL: LabelType = {ENG: 'Create Account', GER: 'Account erstellen'}
@@ -48,7 +48,7 @@ export const PASSWORD_SUCCESSFUL_CHANGED: LabelType = {
 
 //pages
 export const USER_PROFILE_LABEL: LabelType = {ENG: 'User Profile', GER: 'Nutzerprofil'}
-export const PROFILE_DETAILS_LABEL: LabelType = {ENG: 'Profile Details', GER: 'Accountinformation'}
+export const PROFILE_DETAILS_LABEL: LabelType = {ENG: 'Profile Details', GER: 'Accountdaten'}
 export const SETTINGS_LABEL: LabelType = {ENG: 'Settings', GER: 'Einstellungen'}
 export const FAVORITES_LABEL: LabelType = {ENG: 'Favorites', GER: 'Favoriten'}
 export const YOUR_FAVORITES: LabelType = {ENG: 'Your Favorites', GER: 'Deine Favoriten'}
