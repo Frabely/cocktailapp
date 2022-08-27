@@ -1,4 +1,5 @@
 Bugs:
+-login not centered
 -if no favorites -> Favorites page shows "No Hits -- Reset Filters" -> should display something like no favorites found
 -reload after star in favorites is removed -> removed card from dataSet
 -on login (with other account) filter might be open -> set all filter closed on logout
@@ -17,7 +18,9 @@ Master branch Goals - deploy alpha:
 -set Font consts
 -2€ for all cocktails
 -set email language (https://firebase.google.com/docs/auth/web/manage-users?hl=de&authuser=0)
--setup GooglePlay deploy
+-setup GooglePlay deploy:
+    (x)-setup testing for playstore
+    (started)-data protection
 -add app to stores:
     -adds
     -create logo and splash -> already done? https://www.figma.com/file/4TD0sMutRjxBI6zKySFV2n/Expo-App-Icon-%26-Splash-(Community)?node-id=1%3A1357
