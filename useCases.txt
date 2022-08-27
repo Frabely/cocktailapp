@@ -2,7 +2,6 @@ Bugs:
 -if no favorites -> Favorites page shows "No Hits -- Reset Filters" -> should display something like no favorites found
 
 Master branch Goals - deploy alpha:
--button/label sizes for tablet
 -disable language -> German not fully supported:
     -check for translation API -> maybe fast, good, free solution to translate
 -set Font consts
@@ -14,11 +13,12 @@ Master branch Goals - deploy alpha:
 -add app to stores:
     -adds
     -create logo and splash -> already done? https://www.figma.com/file/4TD0sMutRjxBI6zKySFV2n/Expo-App-Icon-%26-Splash-(Community)?node-id=1%3A1357
--handle screen rotation see docs
+(x)-handle screen rotation see docs
 -testing start:
     -cover as much as possible with error codes and matching messages
 
 TODOs:
+-button/label sizes for tablet landscape
 -fetch data once -> exceeded read limit -> way to early
 -when mobile is landscape (horizontal) menu on right (left) sides
 -loading too much on search?
