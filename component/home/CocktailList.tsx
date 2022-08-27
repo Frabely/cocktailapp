@@ -15,6 +15,7 @@ import {changeAlcoholic} from "../../reducers/filter/alcoholicFilterReducer";
 import {changeCategory} from "../../reducers/filter/categoryFilterReducer";
 import {changeCurrentSearchFieldInput} from "../../reducers/home/currentSearchFieldInputReducer";
 import {changeIngredients} from "../../reducers/filter/ingredientsFilterReducer";
+import {Orientation} from 'expo-screen-orientation';
 
 export default function CocktailList({dataset}: CocktailListProps) {
     const state = useAppSelector((state) => state)
@@ -71,7 +72,7 @@ export default function CocktailList({dataset}: CocktailListProps) {
                 ) :
                 (
                     <>
-                        {state.dimensions.height > state.dimensions.width ? (
+                        {state.dimensions.orientationInfo === Orientation.PORTRAIT_UP ? (
                             <View style={{flexDirection: 'column', height: '100%'}}>
                                 {state.activeFilter === SEARCH_FIELD ? (
                                     <SearchField/>

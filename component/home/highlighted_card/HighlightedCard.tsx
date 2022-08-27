@@ -11,6 +11,7 @@ import {faStar as faStar_solid} from "@fortawesome/free-solid-svg-icons";
 import {faStar as faStar_regular} from "@fortawesome/free-regular-svg-icons";
 import {Cocktail} from "../../../constants/types";
 import {changeFavorites} from "../../../reducers/user/userReducer";
+import {Orientation} from "expo-screen-orientation";
 
 export default function HighlightedCard({height}: HighlightedCardProps) {
     const state = useAppSelector((state) => state)
@@ -103,7 +104,7 @@ export default function HighlightedCard({height}: HighlightedCardProps) {
                         <View style={{flex: 1, alignItems: 'center'}}>
                             <HeaderButton
                                 onPress={onFavoritesCLickHandler}
-                                size={(state.dimensions.height > state.dimensions.width) ?
+                                size={(state.dimensions.orientationInfo === Orientation.PORTRAIT_UP) ?
                                     vw_reactive(0.1, state.dimensions.width) :
                                     vh_reactive(0.1, state.dimensions.height)}
                                 icon={favorite ? faStar_solid : faStar_regular}

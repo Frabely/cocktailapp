@@ -16,6 +16,7 @@ import {
     INGREDIENTS_FILTER_SELECTION_NUMBER_MIN
 } from "../../../../constants/const_vars";
 import {SEARCH_INGREDIENTS_LABEL} from "../../../../constants/labels";
+import { Orientation } from "expo-screen-orientation";
 
 export default function DropDownPickerWrapper() {
     const dispatch = useAppDispatch()
@@ -137,7 +138,7 @@ export default function DropDownPickerWrapper() {
             //     width: vw_reactive(0.1),
             //     height: vh_reactive(0.03),
             // }}
-            arrowIconStyle={(state.dimensions.height > state.dimensions.width) ? {
+            arrowIconStyle={(state.dimensions.orientationInfo === Orientation.PORTRAIT_UP) ? {
                 margin: MARGIN,
                 height: vh_reactive(0.03, state.dimensions.height),
                 width: vw_reactive(0.1, state.dimensions.width),
