@@ -1,7 +1,7 @@
 import {ALL, EMPTY_ITEM} from "../constants/const_vars";
 import {changeCurrentItem} from "../reducers/home/currentItemReducer";
 import {Cocktail} from "../constants/types";
-import {FULL_DATA_SET_PROMISE} from "../constants/dataSets";
+import {FULL_DATA_SET} from "../constants/dataSets";
 
 export const filterAlcoholic = (prevDataSet: Cocktail[], state: any) => {
     const alcoholFilteredData: Cocktail[] = prevDataSet.filter((item) => {
@@ -83,19 +83,13 @@ export const applySyncFilters = (prevDataSet: any[], state: any, dispatch: any) 
 
 export const fetchFavoriteDataSetAsArray = (favoriteIDArray: string[]) => {
     let returnArray: Cocktail[] = []
-    return FULL_DATA_SET_PROMISE.then((fullDataArray: Cocktail[] | undefined) => {
-        if (fullDataArray) {
-            fullDataArray.map((item: Cocktail) => {
-                if (item.idDrink) {
-                    if (favoriteIDArray.includes(item.idDrink)) {
-                        returnArray.push(item)
-                    }
-                }
-            })
+    FULL_DATA_SET.map((item: Cocktail) => {
+        if (item.idDrink) {
+            if (favoriteIDArray.includes(item.idDrink)) {
+                returnArray.push(item)
+            }
         }
-        return returnArray
-    }).catch(error => {
-        console.log(error.message)
-        return undefined
     })
+    return returnArray
+
 }

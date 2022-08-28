@@ -11,26 +11,20 @@ import {
 import {Cocktail} from "../../../constants/types";
 import Modal from "../../layout/Modal";
 import CocktailList from "../../home/CocktailList";
-import {FULL_DATA_SET_PROMISE} from "../../../constants/dataSets";
+import {FULL_DATA_SET} from "../../../constants/dataSets";
 
 export default function Home({navigation}: any) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
-    const [dataSet, setDataSet] = useState<Cocktail[] | null >(null);
+    const [dataSet, setDataSet] = useState<Cocktail[] | null>(null);
 
     useEffect(() => {
         dispatch(setIsLoadingTrue())
-        let dataSet: Cocktail[] = []
-        FULL_DATA_SET_PROMISE.then(resultData => {
-            if (resultData) {
-                dataSet = applySyncFilters(resultData, state, dispatch)
-                dispatch(setIsLoadingFalse())
-                setDataSet(dataSet)
-            }
-        }).catch(error => {
-            dispatch(setIsLoadingFalse())
-            console.log(error.message)
-        })
+        let dataSet: Cocktail[]
+        dataSet = applySyncFilters(FULL_DATA_SET, state, dispatch)
+        dispatch(setIsLoadingFalse())
+        setDataSet(dataSet)
+
     }, [state.alcoholicFilter, state.categoryFilter, state.ingredientsFilter, state.currentSearchFieldInput])
 
     return (

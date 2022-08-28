@@ -7,7 +7,6 @@ export type NewCocktail = {
     cocktailRatingArray: string[]
 }
 
-
 const getDataFromFileWithRatingArray = async () => {
     const newFullDataSetWithRatingArray: Cocktail[] = []
     data.drinks.map((item: any) => {
@@ -17,17 +16,15 @@ const getDataFromFileWithRatingArray = async () => {
     return newFullDataSetWithRatingArray
 }
 
-const getDataFromFile = async () => {
-    return data['drinks']
-}
-
-// export const FULL_DATA_SET_PROMISE: Promise<Cocktail[] | undefined> = fetchFullDataSetAsArray()
-export const FULL_DATA_SET_PROMISE: Promise<Cocktail[] | undefined> = getDataFromFileWithRatingArray()
-
 getDataFromFileWithRatingArray().then((dataSet: Cocktail[] | undefined) => {
     if (dataSet)
         FULL_DATA_SET = dataSet
 })
+// fetchFullDataSetAsArray().then((dataSet: Cocktail[] | undefined) => {
+//     console.log(dataSet)
+//     if (dataSet)
+//         FULL_DATA_SET = dataSet
+// })
 
 export let FULL_DATA_SET: Cocktail[] = []
 

@@ -75,6 +75,7 @@ export const getFavoritesList: (userID: string) => Promise< string[] | undefined
     const userFavoritesRef = doc(db, `${USERS_DB}/${userID}`);
     return await getDoc(userFavoritesRef).then((docSnapshot) => {
         const favArray: string[] = docSnapshot.get("favorites")
+        console.log(favArray)
         if (!favArray || favArray.length === 0) {
             return []
         } else {
@@ -93,7 +94,7 @@ export const fetchFullDataSetAsArray: () => Promise<Cocktail[] | undefined> = as
         if (!result.empty) {
             let returnArray: Cocktail[] = []
             result.docs.map((item) => {
-                const cocktail: Cocktail = item.get("cocktail")
+                const cocktail: Cocktail = setCocktailFromDoc(item)
                 console.log(cocktail)
                 returnArray.push(cocktail)
             })

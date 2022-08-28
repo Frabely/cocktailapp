@@ -80,23 +80,17 @@ export default function Login({}: LoginProps) {
                 if (resultUser) {
                     getFavoritesList(user.user.uid).then((favoritesArray: string[] | undefined) => {
                         if (favoritesArray) {
-                            fetchFavoriteDataSetAsArray(favoritesArray).then((favoriteArray: Cocktail[] | undefined) => {
-                                if (favoriteArray) {
-                                    userDb = {
-                                        userID: user.user.uid,
-                                        email: resultUser.email,
-                                        username: resultUser.username,
-                                        languageSetting: resultUser.languageSetting,
-                                        favorites: favoriteArray
-                                    }
-                                    dispatch(activeUser(userDb))
-                                    dispatch(changeLanguage(resultUser.languageSetting))
-                                }
-                            }).catch(error => {
-                                console.log(error.message)
-                                dispatch(changeModalMessage(error.message))
-                                dispatch(invertIsModalState())
-                            })
+                            const favoriteCocktails: Cocktail[] = fetchFavoriteDataSetAsArray(favoritesArray)
+                            console.log(favoriteCocktails)
+                            userDb = {
+                                userID: user.user.uid,
+                                email: resultUser.email,
+                                username: resultUser.username,
+                                languageSetting: resultUser.languageSetting,
+                                favorites: favoriteCocktails
+                            }
+                            dispatch(activeUser(userDb))
+                            dispatch(changeLanguage(resultUser.languageSetting))
                         }
                     }).catch(error => {
                         console.log(error.message)
