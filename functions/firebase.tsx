@@ -93,8 +93,9 @@ export const fetchFullDataSetAsArray: () => Promise<Cocktail[] | undefined> = as
         if (!result.empty) {
             let returnArray: Cocktail[] = []
             result.docs.map((item) => {
-                console.log(item)
-                returnArray.push(item.get("cocktail"))
+                const cocktail: Cocktail = item.get("cocktail")
+                console.log(cocktail)
+                returnArray.push(cocktail)
             })
             return returnArray
         }
@@ -156,7 +157,8 @@ const setCocktailFromDoc: (docResult: DocumentSnapshot) => Cocktail = (docResult
         "strImageSource": docResult.get("strImageSource"),
         "strImageAttribution": docResult.get("strImageAttribution"),
         "strCreativeCommonsConfirmed": docResult.get("strCreativeCommonsConfirmed"),
-        "dateModified": docResult.get("dateModified")
+        "dateModified": docResult.get("dateModified"),
+        "ratingUserIDList": docResult.get("ratingUserIDList")
     }
     return cocktail
 }

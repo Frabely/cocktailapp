@@ -12,11 +12,11 @@ import {
 } from "../../constants/labels";
 import React, {useState} from "react";
 import StyledButton from "../layout/StyledButton";
-import {setIsLoadingFalse, setIsLoadingTrue} from "../../reducers/booleans/isLoadingReducer";
+import {setIsLoadingFalse, setIsLoadingTrue} from "../../reducers/general/booleans/isLoadingReducer";
 import {EMAIL_MISSING, EMAIL_NOT_VERIFIED, PASSWORD_MISSING} from "../../constants/error_codes";
 import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
 import {changeModalMessage} from "../../reducers/general/modalMessageReducer";
-import {invertIsModalState} from "../../reducers/booleans/isModalReducer";
+import {invertIsModalState} from "../../reducers/general/booleans/isModalReducer";
 import {activeUser, User} from "../../reducers/user/userReducer";
 import {app, getFavoritesList, getUser} from "../../functions/firebase";
 import {changeLanguage} from "../../reducers/user/languageReducer";

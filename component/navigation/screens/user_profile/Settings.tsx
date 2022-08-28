@@ -17,7 +17,7 @@ import {changeLanguage} from "../../../../reducers/user/languageReducer";
 import {ENGLISH, GERMAN} from "../../../../constants/const_vars";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../../../constants/style_constants";
 import {updateUser} from "../../../../functions/firebase";
-import {setIsLoadingFalse, setIsLoadingTrue} from "../../../../reducers/booleans/isLoadingReducer";
+import {setIsLoadingFalse, setIsLoadingTrue} from "../../../../reducers/general/booleans/isLoadingReducer";
 import LoadingScreen from "../../../layout/LoadingScreen";
 import HeadLine from "../../../layout/HeadLine";
 

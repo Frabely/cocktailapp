@@ -20,7 +20,7 @@ import {
 } from "../../../constants/labels";
 import LoadingScreen from "../../layout/LoadingScreen";
 import {changeCurrentItem} from "../../../reducers/home/currentItemReducer";
-import {setIsLoadingFalse, setIsLoadingTrue} from "../../../reducers/booleans/isLoadingReducer";
+import {setIsLoadingFalse, setIsLoadingTrue} from "../../../reducers/general/booleans/isLoadingReducer";
 import HeadLine from "../../layout/HeadLine";
 import {Cocktail} from "../../../constants/types";
 import {changeAlcoholic} from "../../../reducers/filter/alcoholicFilterReducer";

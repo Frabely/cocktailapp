@@ -9,7 +9,7 @@ import {
 import React, {useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../constants/hooks";
 import {changeModalMessage} from "../../reducers/general/modalMessageReducer";
-import {invertIsModalState} from "../../reducers/booleans/isModalReducer";
+import {invertIsModalState} from "../../reducers/general/booleans/isModalReducer";
 import {getAuth, sendPasswordResetEmail} from "firebase/auth";
 import {app} from "../../functions/firebase";
 import TextInputWithErrorMessage from "../layout/TextInputWithErrorMessage";
@@ -18,7 +18,7 @@ import {login} from "../../reducers/login/loginStateReducer";
 import {getEmailError} from "../../functions/getErrorFunctionsInputs";
 import ForgotPasswordButton from "./ForgotPasswordButton";
 import {EMAIL_MISSING} from "../../constants/error_codes";
-import {setIsLoadingFalse, setIsLoadingTrue} from "../../reducers/booleans/isLoadingReducer";
+import {setIsLoadingFalse, setIsLoadingTrue} from "../../reducers/general/booleans/isLoadingReducer";
 import {
     INVALID_EMAIL,
     NETWORK_REQUEST_FAILED,

@@ -10,7 +10,7 @@ import {Cocktail} from "../../../constants/types";
 import {applySyncFilters} from "../../../functions/filterFunctions";
 import {changeModalMessage} from "../../../reducers/general/modalMessageReducer";
 import {YOUR_FAVORITES} from "../../../constants/labels";
-import {invertIsModalState} from "../../../reducers/booleans/isModalReducer";
+import {invertIsModalState} from "../../../reducers/general/booleans/isModalReducer";
 
 export default function Favorites({navigation}: any) {
     const state = useAppSelector((state) => state)

@@ -7,20 +7,36 @@ import {COLOR_HEADER, COLOR_OPACITY_BACKGROUND} from "../../../constants/color_s
 import HighlightedCardInnerImage from "./HighlightedCardInnerImage";
 import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
 import HeaderButton from "../../layout/HeaderButton";
-import {faStar as faStar_solid} from "@fortawesome/free-solid-svg-icons";
-import {faStar as faStar_regular} from "@fortawesome/free-regular-svg-icons";
-import {Cocktail} from "../../../constants/types";
+import {faHeart as faStar_solid} from "@fortawesome/free-solid-svg-icons";
+import {faHeart as faStar_regular} from "@fortawesome/free-regular-svg-icons";
+import {Cocktail, RatedCocktail, UserIDCocktailIDType} from "../../../constants/types";
 import {changeFavorites} from "../../../reducers/user/userReducer";
 import {Orientation} from "expo-screen-orientation";
-import {changeModalMessage} from "../../../reducers/general/modalMessageReducer";
-import {invertIsModalState} from "../../../reducers/booleans/isModalReducer";
-import {FAVORITE_DELETED_LABEL} from "../../../constants/labels";
+import {
+    addUserForCurrentCocktail,
+    removeUserForCurrentCocktail
+} from "../../../reducers/cocktail/cocktailRatingReducer";
 
 export default function HighlightedCard({height}: HighlightedCardProps) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
     const [arrayIngredients, setArrayIngredients] = useState([])
-    const language: string = state.language
+    const getLikes = () => {
+        let likes = 0
+        state.cocktailRating.map((ratedCocktail: RatedCocktail) => {
+            if (state.currentItem.idDrink)
+                if (ratedCocktail.cocktailID === state.currentItem.idDrink) {
+                    likes = ratedCocktail.userIDList.length
+                }
+        })
+        return likes
+    }
+    const [likes, setLikes] = useState(getLikes());
+
+    useEffect(() => {
+        setLikes(getLikes())
+    }, [state.cocktailRating])
+
 
     const setDefaultFavorite = () => {
         if (state.user.favorites && state.currentItem.idDrink) {
@@ -50,11 +66,11 @@ export default function HighlightedCard({height}: HighlightedCardProps) {
         for (const [key, value] of Object.entries(state.currentItem)) {
             if (key !== null) {
                 if (key.startsWith('strIngredient'))
-                    if (value !== null)
+                    if (value !== null && typeof value === "string")
                         arrayIngredients.push(value)
 
                 if (key.startsWith('strMeasure'))
-                    if (value !== null)
+                    if (value !== null && typeof value === "string")
                         arrayMeasures.push(value)
                     else
                         arrayMeasures.push('')
@@ -68,12 +84,20 @@ export default function HighlightedCard({height}: HighlightedCardProps) {
     }, [state.currentItem])
 
     const onFavoritesCLickHandler = () => {
-        if (favorite) {
-            deleteFavorite()
-            setFavorite(false)
-        } else {
-            addFavorite()
-            setFavorite(true)
+        if (state.user.userID && state.currentItem.idDrink) {
+            const userIDCockTailID: UserIDCocktailIDType = {
+                userID: state.user.userID,
+                cocktailID: state.currentItem.idDrink
+            }
+            if (favorite) {
+                deleteFavorite()
+                setFavorite(false)
+                dispatch(removeUserForCurrentCocktail(userIDCockTailID))
+            } else {
+                addFavorite()
+                setFavorite(true)
+                dispatch(addUserForCurrentCocktail(userIDCockTailID))
+            }
         }
     }
 
@@ -84,8 +108,6 @@ export default function HighlightedCard({height}: HighlightedCardProps) {
                     return cocktail
             })
             dispatch(changeFavorites(currentFavorites))
-            dispatch(changeModalMessage(FAVORITE_DELETED_LABEL[`${language}`]))
-            dispatch(invertIsModalState())
         }
     }
 
@@ -108,6 +130,7 @@ export default function HighlightedCard({height}: HighlightedCardProps) {
                     <View style={{flex: 3, flexDirection: 'row'}}>
                         <View style={{flex: 1}}></View>
                         <View style={{flex: 1, alignItems: 'center'}}>
+                            <Text>{likes}</Text>
                             <HeaderButton
                                 onPress={onFavoritesCLickHandler}
                                 size={(state.dimensions.orientationInfo === Orientation.PORTRAIT_UP) ?

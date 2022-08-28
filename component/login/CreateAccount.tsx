@@ -22,7 +22,7 @@ import {COLOR_BACKGROUND, COLOR_HEADER} from "../../constants/color_styles";
 import React, {useState} from "react";
 import {createUserWithEmailAndPassword, getAuth, updateProfile} from "firebase/auth";
 import {app, createUserInDb, CreationData, isUsernameUsed} from "../../functions/firebase";
-import {setIsLoadingFalse, setIsLoadingTrue} from "../../reducers/booleans/isLoadingReducer";
+import {setIsLoadingFalse, setIsLoadingTrue} from "../../reducers/general/booleans/isLoadingReducer";
 import {
     EMAIL_MISSING,
     PASSWORD_MISSING, PASSWORDS_NOT_MATCHING,
@@ -32,7 +32,7 @@ import {
 } from "../../constants/error_codes";
 import {sendEmailVerification} from "@firebase/auth";
 import {changeModalMessage} from "../../reducers/general/modalMessageReducer";
-import {invertIsModalState} from "../../reducers/booleans/isModalReducer";
+import {invertIsModalState} from "../../reducers/general/booleans/isModalReducer";
 import {
     EMAIL_ALREADY_IN_USE,
     INVALID_EMAIL, NETWORK_REQUEST_FAILED,

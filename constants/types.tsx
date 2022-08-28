@@ -21,6 +21,18 @@ export type CocktailListType = {
     drinks: Cocktail[]
 }
 
+export type RatedCocktail = {
+    [index: string]: string[] | string,
+    cocktailID: string,
+    userIDList: string[]
+}
+
+export type UserIDCocktailIDType = {
+    [index: string]: string,
+    userID: string
+    cocktailID: string,
+}
+
 export type Cocktail = {
     "idDrink": string | null,
     "strDrink": string | null,
@@ -72,5 +84,6 @@ export type Cocktail = {
     "strImageSource": string | null,
     "strImageAttribution": string | null,
     "strCreativeCommonsConfirmed": string | null,
-    "dateModified": string | null
+    "dateModified": string | null,
+    "ratingUserIDList": string[] | null
 }

@@ -60,7 +60,8 @@ export const EMPTY_ITEM: Cocktail = {
     "strImageSource": null,
     "strImageAttribution": null,
     "strCreativeCommonsConfirmed": null,
-    "dateModified": null
+    "dateModified": null,
+    ratingUserIDList: null
 }
 
 //database paths

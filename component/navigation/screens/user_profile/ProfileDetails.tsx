@@ -39,7 +39,7 @@ import {
     getUsernameError
 } from "../../../../functions/getErrorFunctionsInputs";
 import StyledButton from "../../../layout/StyledButton";
-import {setIsLoadingFalse, setIsLoadingTrue} from "../../../../reducers/booleans/isLoadingReducer";
+import {setIsLoadingFalse, setIsLoadingTrue} from "../../../../reducers/general/booleans/isLoadingReducer";
 import {
     getAuth,
     updateProfile,
@@ -48,7 +48,7 @@ import {
 } from "firebase/auth";
 import {activeUser} from "../../../../reducers/user/userReducer";
 import Modal from "../../../layout/Modal";
-import {invertIsModalState} from "../../../../reducers/booleans/isModalReducer";
+import {invertIsModalState} from "../../../../reducers/general/booleans/isModalReducer";
 import {changeModalMessage} from "../../../../reducers/general/modalMessageReducer";
 import TextInputWithErrorMessage from "../../../layout/TextInputWithErrorMessage";
 import {
@@ -117,7 +117,8 @@ export default function ProfileDetails({navigation}: any) {
                             username: username,
                             email: currentUser.email,
                             userID: currentUser.userID,
-                            languageSetting: currentUser.languageSetting
+                            languageSetting: currentUser.languageSetting,
+                            favorites: currentUser.favorites
                         }))
                         dispatch(changeModalMessage(USERNAME_SUCCESSFUL_CHANGED[`${language}`]))
                         dispatch(setIsLoadingFalse())

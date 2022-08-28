@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
 import Header from "../../layout/Header";
-import {setIsLoadingFalse, setIsLoadingTrue} from "../../../reducers/booleans/isLoadingReducer";
+import {setIsLoadingFalse, setIsLoadingTrue} from "../../../reducers/general/booleans/isLoadingReducer";
 import HeaderHome from "../../home/HeaderHome";
 import AppBackground from "../../layout/AppBackground";
 import LoadingScreen from "../../layout/LoadingScreen";

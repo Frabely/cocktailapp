@@ -1,5 +1,7 @@
 Bugs:
 -if no favorites -> Favorites page shows "No Hits -- Reset Filters" -> should display something like no favorites found
+-favorites only save on logout -> what if app crashes uses is not logging out?
+-keep user signed in -> how to do that -> save data on phone or something until user explicit logs out
 
 Master branch Goals - deploy alpha:
 -disable language -> German not fully supported:
@@ -34,6 +36,12 @@ TODOs:
             -change email
             -delete account
 -rating:
+    -change favorite to heart
+    -number next to heart
+    -if click heart number is -- / ++
+    -update on login
+    (-use stars to rate 1-5)
+    (-user-cocktail-relation -> id: <userID>-<ccoktailID> {userID: userID, ccoktailID: <ccoktailID>, isLiked: boolean})
     -filter
 favorites:
     -share cocktails

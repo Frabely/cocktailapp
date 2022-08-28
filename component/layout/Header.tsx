@@ -10,7 +10,7 @@ import {ALL, EMPTY_ITEM, HOME, PROFILE} from "../../constants/const_vars";
 import {useAppDispatch, useAppSelector} from "../../constants/hooks";
 import {setActiveFilter} from "../../reducers/filter/activeFilterReducer";
 import {changeCurrentItem} from "../../reducers/home/currentItemReducer";
-import {setIsLoadingTrue} from "../../reducers/booleans/isLoadingReducer";
+import {setIsLoadingTrue} from "../../reducers/general/booleans/isLoadingReducer";
 import {changeAlcoholic} from "../../reducers/filter/alcoholicFilterReducer";
 import {changeCategory} from "../../reducers/filter/categoryFilterReducer";
 import {changeCurrentSearchFieldInput} from "../../reducers/home/currentSearchFieldInputReducer";

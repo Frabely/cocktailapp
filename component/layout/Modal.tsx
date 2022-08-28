@@ -5,7 +5,7 @@ import CardLayout from "./CardLayout";
 import StyledButton from "./StyledButton";
 import {useAppDispatch, useAppSelector} from "../../constants/hooks";
 import {CLOSE} from "../../constants/labels";
-import {invertIsModalState} from "../../reducers/booleans/isModalReducer";
+import {invertIsModalState} from "../../reducers/general/booleans/isModalReducer";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
 import {changeModalMessage} from "../../reducers/general/modalMessageReducer";
 

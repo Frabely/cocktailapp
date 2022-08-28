@@ -3,19 +3,21 @@ import {configureStore} from "@reduxjs/toolkit";
 import alcoholicFilterSlice from "../reducers/filter/alcoholicFilterReducer";
 import glassTypeFilterSlice from "../reducers/filter/glassTypeFilterReducer";
 import categoryFilterSlice from "../reducers/filter/categoryFilterReducer";
-import applyFilterSlice from "../reducers/booleans/isApplyFiltersReducer";
+import applyFilterSlice from "../reducers/general/booleans/isApplyFiltersReducer";
 import ingredientsFilterSlice from "../reducers/filter/ingredientsFilterReducer";
 import UserSlice from "../reducers/user/userReducer"
-import isLoadingSlice from "../reducers/booleans/isLoadingReducer"
+import isLoadingSlice from "../reducers/general/booleans/isLoadingReducer"
 import activeFilterSlice from "../reducers/filter/activeFilterReducer"
 import currentItemSlice from "../reducers/home/currentItemReducer";
 import CurrentSearchFieldInputSlice from "../reducers/home/currentSearchFieldInputReducer";
 import LanguageSlice from "../reducers/user/languageReducer";
-import isModalSlice from "../reducers/booleans/isModalReducer";
+import isModalSlice from "../reducers/general/booleans/isModalReducer";
 import modalMessageSlice from "../reducers/general/modalMessageReducer"
 import loginStateSlice from "../reducers/login/loginStateReducer"
 import isCreatingAccountSlice from "../reducers/login/isCreatingAccountReducer"
 import DimensionsSlice from "../reducers/general/screenSizeReducer"
+import CocktailRatingSlice from "../reducers/cocktail/cocktailRatingReducer"
+
 
 const rootReducer = combineReducers({
     alcoholicFilter: alcoholicFilterSlice,
@@ -33,7 +35,8 @@ const rootReducer = combineReducers({
     modalMessage: modalMessageSlice,
     loginState: loginStateSlice,
     isCreatingAccount: isCreatingAccountSlice,
-    dimensions: DimensionsSlice
+    dimensions: DimensionsSlice,
+    cocktailRating: CocktailRatingSlice
 })
 
 const store = configureStore({
