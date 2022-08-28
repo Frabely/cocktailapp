@@ -4,7 +4,7 @@ import {MARGIN} from "../../../constants/style_constants";
 import {faGear, faPowerOff, faUserGear} from "@fortawesome/free-solid-svg-icons";
 import {faStar} from "@fortawesome/free-regular-svg-icons";
 import {activeUser} from "../../../reducers/user/userReducer";
-import {app, updateUser} from "../../../functions/firebase";
+import {app, updateRatingLists, updateUser} from "../../../functions/firebase";
 import {getAuth} from "firebase/auth";
 import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
 import CardLayout from "../../layout/CardLayout";
@@ -57,24 +57,30 @@ export default function UserProfile({navigation}: any) {
         dispatch(setIsLoadingTrue())
         onClearAllFiltersClickHandler()
         if (state.user.userID && state.user.favorites) {
-            let favoriteIDArray: string[] = []
-            state.user.favorites.map((cocktail: Cocktail) => {
-                if (cocktail.idDrink)
-                    favoriteIDArray.push(cocktail.idDrink)
-            })
-            updateUser(state.user.userID, {favorites: favoriteIDArray})
-                .then(() => {
-                    auth.signOut().then(() => {
-                        dispatch(activeUser(EMPTY_USER))
-                        dispatch(changeCurrentItem(EMPTY_ITEM))
-                        dispatch(setIsLoadingFalse())
-                    }).catch(error => {
-                        alert(error.message)
+            updateRatingLists(state.cocktailRating, state.user.userID).then(() => {
+                let favoriteIDArray: string[] = []
+                if (state.user.userID && state.user.favorites) {
+                    state.user.favorites.map((cocktail: Cocktail) => {
+                        if (cocktail.idDrink)
+                            favoriteIDArray.push(cocktail.idDrink)
+                    })
+                    updateUser(state.user.userID, {favorites: favoriteIDArray})
+                        .then(() => {
+                            auth.signOut().then(() => {
+                                dispatch(activeUser(EMPTY_USER))
+                                dispatch(changeCurrentItem(EMPTY_ITEM))
+                                dispatch(setIsLoadingFalse())
+                            }).catch(error => {
+                                alert(error.message)
+                                dispatch(setIsLoadingFalse())
+                            })
+                        }).catch(error => {
+                        console.log(error.message)
                         dispatch(setIsLoadingFalse())
                     })
-                }).catch(error => {
+                }
+            }).catch(error => {
                 console.log(error.message)
-                dispatch(setIsLoadingFalse())
             })
 
         }

@@ -14,7 +14,8 @@ import {
     DocumentData
 } from "firebase/firestore";
 import {DRINKS_DB, USER_USERNAME_LOWER_DB, USERS_DB} from "../constants/const_vars";
-import {Cocktail} from "../constants/types";
+import {Cocktail, RatedCocktail} from "../constants/types";
+
 const firebaseConfig = {
     apiKey: "AIzaSyBhRWfGBxpeqp4G-Zy4grwmoXUal1ZwoM0",
     authDomain: "cocktailapp-7c353.firebaseapp.com",
@@ -60,7 +61,7 @@ export const updateUser: (userID: string, creationData: UpdateData<any>) => Prom
         await updateDoc(userRef, creationData).then()
     }
 
-export const getUser: (userID: string) => Promise<DocumentData | null>  = async (userID: string) => {
+export const getUser: (userID: string) => Promise<DocumentData | null> = async (userID: string) => {
     const userRef = doc(db, `${USERS_DB}/${userID}`);
     const docSnap = await getDoc(userRef);
     if (docSnap.exists()) {
@@ -71,7 +72,7 @@ export const getUser: (userID: string) => Promise<DocumentData | null>  = async 
     }
 }
 
-export const getFavoritesList: (userID: string) => Promise< string[] | undefined> = async (userID: string) => {
+export const getFavoritesList: (userID: string) => Promise<string[] | undefined> = async (userID: string) => {
     const userFavoritesRef = doc(db, `${USERS_DB}/${userID}`);
     return await getDoc(userFavoritesRef).then((docSnapshot) => {
         const favArray: string[] = docSnapshot.get("favorites")
@@ -89,8 +90,8 @@ export const getFavoritesList: (userID: string) => Promise< string[] | undefined
 }
 
 export const fetchFullDataSetAsArray: () => Promise<Cocktail[] | undefined> = async () => {
-    const usersRef = collection(db, `${DRINKS_DB}`);
-    return await getDocs(usersRef).then((result) => {
+    const drinksRef = collection(db, `${DRINKS_DB}`);
+    return await getDocs(drinksRef).then((result) => {
         if (!result.empty) {
             let returnArray: Cocktail[] = []
             result.docs.map((item) => {
@@ -103,6 +104,28 @@ export const fetchFullDataSetAsArray: () => Promise<Cocktail[] | undefined> = as
     }).catch(error => {
         console.log(error.message)
         return undefined
+    })
+}
+
+export const updateRatingLists: (ratedCocktailList: RatedCocktail[], userID: string) => Promise<void>
+    = async (ratedCocktailList: RatedCocktail[], userID: string) => {
+    ratedCocktailList.map(async (ratedCocktail: RatedCocktail) => {
+        if (ratedCocktail.userIDList.includes(userID)) {
+            const drinkRef = doc(db, `${DRINKS_DB}/${ratedCocktail.cocktailID}`);
+            const ratingUserIDList: string[] = await getDoc(drinkRef).then((cocktail) => {
+                if (cocktail) {
+                    return cocktail.get("ratingUserIDList")
+                }
+            }).catch(error => {
+                console.log(error.message)
+            })
+            const updateList = [...ratingUserIDList]
+            updateList.push(userID)
+            await updateDoc(drinkRef, {ratingUserIDList: ratingUserIDList}).then().
+            catch(error => {
+                console.log(error.message)
+            })
+        }
     })
 }
 

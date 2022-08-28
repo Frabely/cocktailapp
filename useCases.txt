@@ -4,6 +4,7 @@ Bugs:
 -keep user signed in -> how to do that -> save data on phone or something until user explicit logs out
 
 Master branch Goals - deploy alpha:
+-add Rating list to firestore (db) on logout
 -disable language -> German not fully supported:
     -check for translation API -> maybe fast, good, free solution to translate
 -set Font consts
