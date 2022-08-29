@@ -16,15 +16,14 @@ const getDataFromFileWithRatingArray = async () => {
     return newFullDataSetWithRatingArray
 }
 
-getDataFromFileWithRatingArray().then((dataSet: Cocktail[] | undefined) => {
-    if (dataSet)
-        FULL_DATA_SET = dataSet
-})
-// fetchFullDataSetAsArray().then((dataSet: Cocktail[] | undefined) => {
-//     console.log(dataSet)
+// getDataFromFileWithRatingArray().then((dataSet: Cocktail[] | undefined) => {
 //     if (dataSet)
 //         FULL_DATA_SET = dataSet
 // })
+fetchFullDataSetAsArray().then((dataSet: Cocktail[] | undefined) => {
+    if (dataSet)
+        FULL_DATA_SET = dataSet
+})
 
 export let FULL_DATA_SET: Cocktail[] = []
 

@@ -21,21 +21,8 @@ export default function HighlightedCard({height}: HighlightedCardProps) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
     const [arrayIngredients, setArrayIngredients] = useState([])
-    const getLikes = () => {
-        let likes = 0
-        state.cocktailRating.map((ratedCocktail: RatedCocktail) => {
-            if (state.currentItem.idDrink)
-                if (ratedCocktail.cocktailID === state.currentItem.idDrink) {
-                    likes = ratedCocktail.userIDList.length
-                }
-        })
-        return likes
-    }
-    const [likes, setLikes] = useState(getLikes());
 
-    useEffect(() => {
-        setLikes(getLikes())
-    }, [state.cocktailRating])
+    const [likes, setLikes] = useState(0);
 
 
     const setDefaultFavorite = () => {
@@ -48,6 +35,30 @@ export default function HighlightedCard({height}: HighlightedCardProps) {
     }
 
     const [favorite, setFavorite] = useState(setDefaultFavorite());
+
+    useEffect(() => {
+        let likes = 0
+        state.cocktailRating.map((ratedCocktail: RatedCocktail) => {
+            if (state.currentItem.idDrink)
+                if (ratedCocktail.cocktailID === state.currentItem.idDrink) {
+                    console.log(ratedCocktail)
+                    likes = ratedCocktail.userIDList.length
+                }
+        })
+        setLikes(likes)
+    }, [favorite])
+
+    // const getLikes = () => {
+    //     let likes = 0
+    //     state.cocktailRating.map((ratedCocktail: RatedCocktail) => {
+    //         if (state.currentItem.idDrink)
+    //             if (ratedCocktail.cocktailID === state.currentItem.idDrink) {
+    //                 console.log(ratedCocktail)
+    //                 likes = ratedCocktail.userIDList.length
+    //             }
+    //     })
+    //     return likes
+    // }
 
     generate_box_shadow_style(
         styles,

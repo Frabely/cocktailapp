@@ -1,7 +1,7 @@
 import {ALL, EMPTY_ITEM} from "../constants/const_vars";
 import {changeCurrentItem} from "../reducers/home/currentItemReducer";
 import {Cocktail} from "../constants/types";
-import {FULL_DATA_SET} from "../constants/dataSets";
+import {FULL_DATA_SET} from "../constants/dataSets"
 
 export const filterAlcoholic = (prevDataSet: Cocktail[], state: any) => {
     const alcoholFilteredData: Cocktail[] = prevDataSet.filter((item) => {

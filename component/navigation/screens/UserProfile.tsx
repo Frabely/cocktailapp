@@ -57,31 +57,29 @@ export default function UserProfile({navigation}: any) {
         dispatch(setIsLoadingTrue())
         onClearAllFiltersClickHandler()
         if (state.user.userID && state.user.favorites) {
-            updateRatingLists(state.cocktailRating, state.user.userID).then(() => {
-                let favoriteIDArray: string[] = []
-                if (state.user.userID && state.user.favorites) {
-                    state.user.favorites.map((cocktail: Cocktail) => {
-                        if (cocktail.idDrink)
-                            favoriteIDArray.push(cocktail.idDrink)
-                    })
-                    updateUser(state.user.userID, {favorites: favoriteIDArray})
-                        .then(() => {
-                            auth.signOut().then(() => {
-                                dispatch(activeUser(EMPTY_USER))
-                                dispatch(changeCurrentItem(EMPTY_ITEM))
-                                dispatch(setIsLoadingFalse())
-                            }).catch(error => {
-                                alert(error.message)
-                                dispatch(setIsLoadingFalse())
-                            })
+            updateRatingLists(state.cocktailRating, state.user.userID)
+            let favoriteIDArray: string[] = []
+            if (state.user.userID && state.user.favorites) {
+                state.user.favorites.map((cocktail: Cocktail) => {
+                    if (cocktail.idDrink)
+                        favoriteIDArray.push(cocktail.idDrink)
+                })
+                updateUser(state.user.userID, {favorites: favoriteIDArray})
+                    .then(() => {
+                        auth.signOut().then(() => {
+                            dispatch(activeUser(EMPTY_USER))
+                            dispatch(changeCurrentItem(EMPTY_ITEM))
+                            dispatch(setIsLoadingFalse())
                         }).catch(error => {
-                        console.log(error.message)
-                        dispatch(setIsLoadingFalse())
-                    })
-                }
-            }).catch(error => {
-                console.log(error.message)
-            })
+                            alert(error.message)
+                            dispatch(setIsLoadingFalse())
+                        })
+                    }).catch(error => {
+                    console.log(error.message)
+                    dispatch(setIsLoadingFalse())
+                })
+            }
+
 
         }
     }

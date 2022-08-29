@@ -10,7 +10,7 @@ import {
     LOGIN_LABEL,
     PASSWORD_LABEL
 } from "../../constants/labels";
-import React, {useState} from "react";
+import {useState} from "react";
 import StyledButton from "../layout/StyledButton";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../reducers/general/booleans/isLoadingReducer";
 import {EMAIL_MISSING, EMAIL_NOT_VERIFIED, PASSWORD_MISSING} from "../../constants/error_codes";
@@ -33,6 +33,7 @@ import ForgotPasswordButton from "./ForgotPasswordButton";
 import {invertIsCreatingAccount} from "../../reducers/login/isCreatingAccountReducer";
 import {fetchFavoriteDataSetAsArray} from "../../functions/filterFunctions";
 import {Cocktail} from "../../constants/types";
+import {initRatedCocktailArray} from "../../reducers/cocktail/cocktailRatingReducer";
 
 export default function Login({}: LoginProps) {
     const state = useAppSelector((state) => state)
@@ -91,6 +92,8 @@ export default function Login({}: LoginProps) {
                             }
                             dispatch(activeUser(userDb))
                             dispatch(changeLanguage(resultUser.languageSetting))
+                            dispatch(initRatedCocktailArray())
+
                         }
                     }).catch(error => {
                         console.log(error.message)

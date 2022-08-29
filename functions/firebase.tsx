@@ -76,7 +76,6 @@ export const getFavoritesList: (userID: string) => Promise<string[] | undefined>
     const userFavoritesRef = doc(db, `${USERS_DB}/${userID}`);
     return await getDoc(userFavoritesRef).then((docSnapshot) => {
         const favArray: string[] = docSnapshot.get("favorites")
-        console.log(favArray)
         if (!favArray || favArray.length === 0) {
             return []
         } else {
@@ -96,7 +95,6 @@ export const fetchFullDataSetAsArray: () => Promise<Cocktail[] | undefined> = as
             let returnArray: Cocktail[] = []
             result.docs.map((item) => {
                 const cocktail: Cocktail = setCocktailFromDoc(item)
-                console.log(cocktail)
                 returnArray.push(cocktail)
             })
             return returnArray
@@ -107,8 +105,8 @@ export const fetchFullDataSetAsArray: () => Promise<Cocktail[] | undefined> = as
     })
 }
 
-export const updateRatingLists: (ratedCocktailList: RatedCocktail[], userID: string) => Promise<void>
-    = async (ratedCocktailList: RatedCocktail[], userID: string) => {
+export const updateRatingLists: (ratedCocktailList: RatedCocktail[], userID: string) => void
+    = (ratedCocktailList: RatedCocktail[], userID: string) => {
     ratedCocktailList.map(async (ratedCocktail: RatedCocktail) => {
         if (ratedCocktail.userIDList.includes(userID)) {
             const drinkRef = doc(db, `${DRINKS_DB}/${ratedCocktail.cocktailID}`);
@@ -120,8 +118,12 @@ export const updateRatingLists: (ratedCocktailList: RatedCocktail[], userID: str
                 console.log(error.message)
             })
             const updateList = [...ratingUserIDList]
+            if (updateList.includes(userID))
+                return
             updateList.push(userID)
-            await updateDoc(drinkRef, {ratingUserIDList: ratingUserIDList}).then().
+            await updateDoc(drinkRef, {ratingUserIDList: updateList}).then(() => {
+                return
+            }).
             catch(error => {
                 console.log(error.message)
             })

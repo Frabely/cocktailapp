@@ -11,7 +11,7 @@ import {
 import {Cocktail} from "../../../constants/types";
 import Modal from "../../layout/Modal";
 import CocktailList from "../../home/CocktailList";
-import {FULL_DATA_SET} from "../../../constants/dataSets";
+import {FULL_DATA_SET} from "../../../constants/dataSets"
 
 export default function Home({navigation}: any) {
     const state = useAppSelector((state) => state)
