@@ -1,6 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {Cocktail, RatedCocktail, UserIDCocktailIDType} from "../../constants/types";
-import {FULL_DATA_SET} from "../../constants/dataSets"
+import {RatedCocktail, UserIDCocktailIDType} from "../../constants/types";
 
 const initialState: RatedCocktail[] = []
 
@@ -8,21 +7,8 @@ const CocktailRatingSlice = createSlice({
     name: 'cocktailRating',
     initialState: initialState,
     reducers: {
-        initRatedCocktailArray: () => {
-            // const getRatingLists = () => {
-            let ratingList: RatedCocktail[] = []
-            FULL_DATA_SET.map((cocktail: Cocktail) => {
-                if (cocktail.idDrink && cocktail.ratingUserIDList) {
-                    const ratedCocktailItem: RatedCocktail = {
-                        cocktailID: cocktail.idDrink,
-                        userIDList: cocktail.ratingUserIDList
-                    }
-                    ratingList.push(ratedCocktailItem)
-                }
-            })
-            return ratingList
-            // }
-
+        changeRatedCocktailArray: (state, action: PayloadAction<RatedCocktail[]>) => {
+            return action.payload
         },
         addUserForCurrentCocktail: (state, action: PayloadAction<UserIDCocktailIDType>) => {
             let isStateSet = false
@@ -63,7 +49,7 @@ const CocktailRatingSlice = createSlice({
     },
 })
 export const {
-    initRatedCocktailArray,
+    changeRatedCocktailArray,
     addUserForCurrentCocktail,
     removeUserForCurrentCocktail
 } = CocktailRatingSlice.actions

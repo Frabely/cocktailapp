@@ -17,6 +17,7 @@ import loginStateSlice from "../reducers/login/loginStateReducer"
 import isCreatingAccountSlice from "../reducers/login/isCreatingAccountReducer"
 import DimensionsSlice from "../reducers/general/screenSizeReducer"
 import CocktailRatingSlice from "../reducers/cocktail/cocktailRatingReducer"
+import DataSetSlice from "../reducers/general/dataSetReducer"
 
 
 const rootReducer = combineReducers({
@@ -36,7 +37,8 @@ const rootReducer = combineReducers({
     loginState: loginStateSlice,
     isCreatingAccount: isCreatingAccountSlice,
     dimensions: DimensionsSlice,
-    cocktailRating: CocktailRatingSlice
+    cocktailRating: CocktailRatingSlice,
+    dataSet: DataSetSlice
 })
 
 const store = configureStore({

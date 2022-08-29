@@ -14,11 +14,11 @@ import {useState} from "react";
 import StyledButton from "../layout/StyledButton";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../reducers/general/booleans/isLoadingReducer";
 import {EMAIL_MISSING, EMAIL_NOT_VERIFIED, PASSWORD_MISSING} from "../../constants/error_codes";
-import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
+import {getAuth, signInWithEmailAndPassword, UserCredential} from "firebase/auth";
 import {changeModalMessage} from "../../reducers/general/modalMessageReducer";
 import {invertIsModalState} from "../../reducers/general/booleans/isModalReducer";
 import {activeUser, User} from "../../reducers/user/userReducer";
-import {app, getFavoritesList, getUser} from "../../functions/firebase";
+import {app, fetchFullDataSetAsArray, getFavoritesList, getUser} from "../../functions/firebase";
 import {changeLanguage} from "../../reducers/user/languageReducer";
 import {
     INVALID_EMAIL,
@@ -32,8 +32,10 @@ import {createAccount} from "../../reducers/login/loginStateReducer";
 import ForgotPasswordButton from "./ForgotPasswordButton";
 import {invertIsCreatingAccount} from "../../reducers/login/isCreatingAccountReducer";
 import {fetchFavoriteDataSetAsArray} from "../../functions/filterFunctions";
-import {Cocktail} from "../../constants/types";
-import {initRatedCocktailArray} from "../../reducers/cocktail/cocktailRatingReducer";
+import {Cocktail, RatedCocktail} from "../../constants/types";
+import {changeRatedCocktailArray} from "../../reducers/cocktail/cocktailRatingReducer";
+import {DocumentData} from "firebase/firestore";
+import {changeDataSet} from "../../reducers/general/dataSetReducer";
 
 export default function Login({}: LoginProps) {
     const state = useAppSelector((state) => state)
@@ -64,49 +66,7 @@ export default function Login({}: LoginProps) {
             dispatch(setIsLoadingFalse())
             return
         }
-        signInWithEmailAndPassword(auth, email, password).then(async user => {
-            if (!user.user.emailVerified) {
-                errorArrayEmail.push(EMAIL_NOT_VERIFIED.code)
-                dispatch(changeModalMessage(EMAIL_NOT_VERIFIED.message[`${language}`]))
-                dispatch(invertIsModalState())
-                auth.signOut().then(() => {
-                    dispatch(setIsLoadingFalse())
-                }).catch(error => {
-                    alert(error.message)
-                })
-                return
-            }
-            let userDb: User
-            await getUser(user.user.uid).then(resultUser => {
-                if (resultUser) {
-                    getFavoritesList(user.user.uid).then((favoritesArray: string[] | undefined) => {
-                        if (favoritesArray) {
-                            const favoriteCocktails: Cocktail[] = fetchFavoriteDataSetAsArray(favoritesArray)
-                            console.log(favoriteCocktails)
-                            userDb = {
-                                userID: user.user.uid,
-                                email: resultUser.email,
-                                username: resultUser.username,
-                                languageSetting: resultUser.languageSetting,
-                                favorites: favoriteCocktails
-                            }
-                            dispatch(activeUser(userDb))
-                            dispatch(changeLanguage(resultUser.languageSetting))
-                            dispatch(initRatedCocktailArray())
-
-                        }
-                    }).catch(error => {
-                        console.log(error.message)
-                        dispatch(changeModalMessage(error.message))
-                        dispatch(invertIsModalState())
-                    })
-                } else {
-                    dispatch(changeModalMessage(USER_NOT_FOUND.message[`${language}`]))
-                    dispatch(invertIsModalState())
-                }
-                dispatch(setIsLoadingFalse())
-            })
-        }).catch(error => {
+        const user: UserCredential | void = await signInWithEmailAndPassword(auth, email, password).catch(error => {
             if (error.code === WRONG_PASSWORD.code)
                 errorArrayPassword.push(WRONG_PASSWORD.code)
             else if (error.code === USER_NOT_FOUND.code)
@@ -127,7 +87,70 @@ export default function Login({}: LoginProps) {
             setErrorStatePassword(errorArrayPassword)
             dispatch(setIsLoadingFalse())
         })
+        if (user) {
+            if (!user.user.emailVerified) {
+                errorArrayEmail.push(EMAIL_NOT_VERIFIED.code)
+                dispatch(changeModalMessage(EMAIL_NOT_VERIFIED.message[`${language}`]))
+                dispatch(invertIsModalState())
+                auth.signOut().then(() => {
+                    dispatch(setIsLoadingFalse())
+                }).catch(error => {
+                    alert(error.message)
+                })
+                return
+            }
+            let userDb: User
+            const resultUser: DocumentData | null | void = await getUser(user.user.uid).catch(error => {
+                console.log(error.message)
+            })
+            if (resultUser) {
+                const dataSet: Cocktail[] | undefined | void = await fetchFullDataSetAsArray().catch(error => {
+                    console.log(error.message)
+                })
+                if (dataSet) {
+                    console.log(dataSet)
+                    dispatch(changeDataSet(dataSet))
+                    dispatch(changeRatedCocktailArray(getRatingCocktailList(dataSet)))
+                    const favoritesArray: void | string[] | undefined = await getFavoritesList(user.user.uid).catch(error => {
+                        console.log(error.message)
+                        dispatch(changeModalMessage(error.message))
+                        dispatch(invertIsModalState())
+                    })
+                    if (favoritesArray) {
+                        const favoriteCocktails: Cocktail[] = fetchFavoriteDataSetAsArray(favoritesArray, dataSet)
+                        userDb = {
+                            userID: user.user.uid,
+                            email: resultUser.email,
+                            username: resultUser.username,
+                            languageSetting: resultUser.languageSetting,
+                            favorites: favoriteCocktails
+                        }
+                        dispatch(activeUser(userDb))
+                        dispatch(changeLanguage(resultUser.languageSetting))
+                    }
+                } else {
+                    dispatch(changeModalMessage(USER_NOT_FOUND.message[`${language}`]))
+                    dispatch(invertIsModalState())
+                }
+                dispatch(setIsLoadingFalse())
+            }
+        }
     }
+
+    const getRatingCocktailList = (dataSet: Cocktail[]) => {
+        let ratingList: RatedCocktail[] = []
+        dataSet.map((cocktail: Cocktail) => {
+            if (cocktail.idDrink && cocktail.ratingUserIDList) {
+                const ratedCocktailItem: RatedCocktail = {
+                    cocktailID: cocktail.idDrink,
+                    userIDList: cocktail.ratingUserIDList
+                }
+                ratingList.push(ratedCocktailItem)
+            }
+        })
+        return ratingList
+    }
+
 
     const onCreateAccountButtonClickHandler = () => {
         setErrorStateEmail(undefined)

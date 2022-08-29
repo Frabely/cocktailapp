@@ -41,12 +41,11 @@ export default function HighlightedCard({height}: HighlightedCardProps) {
         state.cocktailRating.map((ratedCocktail: RatedCocktail) => {
             if (state.currentItem.idDrink)
                 if (ratedCocktail.cocktailID === state.currentItem.idDrink) {
-                    console.log(ratedCocktail)
                     likes = ratedCocktail.userIDList.length
                 }
         })
         setLikes(likes)
-    }, [favorite])
+    }, [favorite, state.dataSet, state.cocktailRating])
 
     // const getLikes = () => {
     //     let likes = 0

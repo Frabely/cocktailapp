@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
 import Header from "../../layout/Header";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../../reducers/general/booleans/isLoadingReducer";
@@ -11,20 +11,20 @@ import {
 import {Cocktail} from "../../../constants/types";
 import Modal from "../../layout/Modal";
 import CocktailList from "../../home/CocktailList";
-import {FULL_DATA_SET} from "../../../constants/dataSets"
 
 export default function Home({navigation}: any) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
-    const [dataSet, setDataSet] = useState<Cocktail[] | null>(null);
+    let dataSet = state.dataSet
 
     useEffect(() => {
         dispatch(setIsLoadingTrue())
-        let dataSet: Cocktail[]
-        dataSet = applySyncFilters(FULL_DATA_SET, state, dispatch)
-        dispatch(setIsLoadingFalse())
-        setDataSet(dataSet)
-
+        let newDataSet: Cocktail[]
+        if (dataSet) {
+            newDataSet = applySyncFilters(dataSet, state, dispatch)
+            dispatch(setIsLoadingFalse())
+            dataSet = newDataSet
+        }
     }, [state.alcoholicFilter, state.categoryFilter, state.ingredientsFilter, state.currentSearchFieldInput])
 
     return (

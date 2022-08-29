@@ -20,10 +20,10 @@ const getDataFromFileWithRatingArray = async () => {
 //     if (dataSet)
 //         FULL_DATA_SET = dataSet
 // })
-fetchFullDataSetAsArray().then((dataSet: Cocktail[] | undefined) => {
-    if (dataSet)
-        FULL_DATA_SET = dataSet
-})
-
-export let FULL_DATA_SET: Cocktail[] = []
+// fetchFullDataSetAsArray().then((dataSet: Cocktail[] | undefined) => {
+//     if (dataSet)
+//         FULL_DATA_SET = dataSet
+// })
+//
+// export let FULL_DATA_SET: Cocktail[] = []
 
