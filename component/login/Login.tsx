@@ -108,7 +108,6 @@ export default function Login({}: LoginProps) {
                     console.log(error.message)
                 })
                 if (dataSet) {
-                    console.log(dataSet)
                     dispatch(changeDataSet(dataSet))
                     dispatch(changeRatedCocktailArray(getRatingCocktailList(dataSet)))
                     const favoritesArray: void | string[] | undefined = await getFavoritesList(user.user.uid).catch(error => {

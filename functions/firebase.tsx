@@ -16,14 +16,36 @@ import {
 import {DRINKS_DB, USER_USERNAME_LOWER_DB, USERS_DB} from "../constants/const_vars";
 import {Cocktail, RatedCocktail} from "../constants/types";
 
+//RELEASE DB KEYS
+// const firebaseConfig = {
+//     apiKey: "AIzaSyBhRWfGBxpeqp4G-Zy4grwmoXUal1ZwoM0",
+//     authDomain: "cocktailapp-7c353.firebaseapp.com",
+//     projectId: "cocktailapp-7c353",
+//     storageBucket: "cocktailapp-7c353.appspot.com",
+//     messagingSenderId: "715123707440",
+//     appId: "1:715123707440:web:8860549792e79e27a567f5",
+//     measurementId: "G-RP00C84K0C"
+// };
+
+//release DB KEYS
+// const firebaseConfig = {
+//     apiKey: "AIzaSyBhRWfGBxpeqp4G-Zy4grwmoXUal1ZwoM0",
+//     authDomain: "cocktailapp-7c353.firebaseapp.com",
+//     projectId: "cocktailapp-7c353",
+//     storageBucket: "cocktailapp-7c353.appspot.com",
+//     messagingSenderId: "715123707440",
+//     appId: "1:715123707440:web:8490e408c197cc08a567f5",
+//     measurementId: "G-HTJKSPDYH7"
+// };
+
+//dev DB KEYS
 const firebaseConfig = {
-    apiKey: "AIzaSyBhRWfGBxpeqp4G-Zy4grwmoXUal1ZwoM0",
-    authDomain: "cocktailapp-7c353.firebaseapp.com",
-    projectId: "cocktailapp-7c353",
-    storageBucket: "cocktailapp-7c353.appspot.com",
-    messagingSenderId: "715123707440",
-    appId: "1:715123707440:web:8860549792e79e27a567f5",
-    measurementId: "G-RP00C84K0C"
+    apiKey: "AIzaSyDhb6XbFW96Ev915Z7T4rfhVD3JUMuh04g",
+    authDomain: "cocktailapp-dev.firebaseapp.com",
+    projectId: "cocktailapp-dev",
+    storageBucket: "cocktailapp-dev.appspot.com",
+    messagingSenderId: "616842015944",
+    appId: "1:616842015944:web:b45fefcab2c925a0f961fd"
 };
 
 export type CreationData = {
