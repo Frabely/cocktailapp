@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         borderRadius: BORDER_RADIUS / 2,
         margin: MARGIN,
         padding: PADDING,
-        alignItems: 'center',
+        // alignItems: 'center',
         justifyContent: 'center'
     },
 })
