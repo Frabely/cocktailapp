@@ -5,6 +5,7 @@ Bugs:
 -save rating right on click with minimal db usage
 
 Master branch Goals - deploy alpha:
+remove flatlists from Filters
 (started)-rating:
     (x)-change favorite to heart
     (x)-number next to heart:

@@ -9,18 +9,20 @@ import {MARGIN, PADDING} from "../../../constants/style_constants";
 import {vh, vh_reactive} from "../../../functions/dimentions";
 import {useEffect, useState} from "react";
 
-export default function FilterPanel({filterState, setFilterState, isMultiSelectable,
-                                        options, optionsENG, labelName, numColumns}: FilterPanelProps) {
+export default function FilterPanel({
+                                        filterState, setFilterState, isMultiSelectable,
+                                        options, optionsENG, labelName
+                                    }: FilterPanelProps) {
     const dispatch = useAppDispatch()
     const state = useAppSelector((state) => state)
     const [numberCol, setNumberCol] = useState(3);
 
-    useEffect(()=>{
-        if (state.dimensions.height>state.dimensions.width)
+    useEffect(() => {
+        if (state.dimensions.height > state.dimensions.width)
             setNumberCol(3)
         else
             setNumberCol(8)
-    },[state.dimensions])
+    }, [state.dimensions])
 
     const onFilterButtonClickHandler = (filterName: string) => {
         const array = [...filterState]
@@ -96,9 +98,8 @@ const styles = StyleSheet.create({
 export type FilterPanelProps = {
     isMultiSelectable: boolean,
     filterState: any[],
-    setFilterState:  ActionCreatorWithPayload<any[]>,
-    options:  readonly string[] | null | undefined,
+    setFilterState: ActionCreatorWithPayload<any[]>,
+    options: readonly string[] | null | undefined,
     optionsENG: readonly string[],
     labelName: string,
-    numColumns: number
 }

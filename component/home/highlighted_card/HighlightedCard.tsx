@@ -1,63 +1,16 @@
 import {ImageBackground, ScrollView, StyleSheet, Text, View} from "react-native";
-import {vh, vh_reactive, vw_reactive} from "../../../functions/dimentions";
+import {vh, vh_reactive} from "../../../functions/dimentions";
 import {useEffect, useState} from "react";
 import generate_box_shadow_style from "../../../functions/generate_box_shadow_style";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
-import {COLOR_HEADER, COLOR_OPACITY_BACKGROUND} from "../../../constants/color_styles";
+import {COLOR_OPACITY_BACKGROUND} from "../../../constants/color_styles";
 import HighlightedCardInnerImage from "./HighlightedCardInnerImage";
-import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
-import HeaderButton from "../../layout/HeaderButton";
-import {faHeart as faStar_solid} from "@fortawesome/free-solid-svg-icons";
-import {faHeart as faStar_regular} from "@fortawesome/free-regular-svg-icons";
-import {Cocktail, RatedCocktail, UserIDCocktailIDType} from "../../../constants/types";
-import {changeFavorites} from "../../../reducers/user/userReducer";
-import {Orientation} from "expo-screen-orientation";
-import {
-    addUserForCurrentCocktail,
-    removeUserForCurrentCocktail
-} from "../../../reducers/cocktail/cocktailRatingReducer";
+import {useAppSelector} from "../../../constants/hooks";
+import LikeButton from "./LikeButton";
 
 export default function HighlightedCard({height}: HighlightedCardProps) {
     const state = useAppSelector((state) => state)
-    const dispatch = useAppDispatch()
     const [arrayIngredients, setArrayIngredients] = useState([])
-
-    const [likes, setLikes] = useState(0);
-
-
-    const setDefaultFavorite = () => {
-        if (state.user.favorites && state.currentItem.idDrink) {
-            if (state.user.favorites.includes(state.currentItem)) {
-                return true
-            }
-        }
-        return false
-    }
-
-    const [favorite, setFavorite] = useState(setDefaultFavorite());
-
-    useEffect(() => {
-        let likes = 0
-        state.cocktailRating.map((ratedCocktail: RatedCocktail) => {
-            if (state.currentItem.idDrink)
-                if (ratedCocktail.cocktailID === state.currentItem.idDrink) {
-                    likes = ratedCocktail.userIDList.length
-                }
-        })
-        setLikes(likes)
-    }, [favorite, state.dataSet, state.cocktailRating])
-
-    // const getLikes = () => {
-    //     let likes = 0
-    //     state.cocktailRating.map((ratedCocktail: RatedCocktail) => {
-    //         if (state.currentItem.idDrink)
-    //             if (ratedCocktail.cocktailID === state.currentItem.idDrink) {
-    //                 console.log(ratedCocktail)
-    //                 likes = ratedCocktail.userIDList.length
-    //             }
-    //     })
-    //     return likes
-    // }
 
     generate_box_shadow_style(
         styles,
@@ -93,41 +46,6 @@ export default function HighlightedCard({height}: HighlightedCardProps) {
         setArrayIngredients(arrayCombined)
     }, [state.currentItem])
 
-    const onFavoritesCLickHandler = () => {
-        if (state.user.userID && state.currentItem.idDrink) {
-            const userIDCockTailID: UserIDCocktailIDType = {
-                userID: state.user.userID,
-                cocktailID: state.currentItem.idDrink
-            }
-            if (favorite) {
-                deleteFavorite()
-                setFavorite(false)
-                dispatch(removeUserForCurrentCocktail(userIDCockTailID))
-            } else {
-                addFavorite()
-                setFavorite(true)
-                dispatch(addUserForCurrentCocktail(userIDCockTailID))
-            }
-        }
-    }
-
-    const deleteFavorite = () => {
-        if (state.user.favorites && state.currentItem.idDrink) {
-            const currentFavorites = state.user.favorites.filter((cocktail: Cocktail) => {
-                if (cocktail.idDrink !== state.currentItem.idDrink)
-                    return cocktail
-            })
-            dispatch(changeFavorites(currentFavorites))
-        }
-    }
-
-    const addFavorite = () => {
-        if (state.user.favorites && state.currentItem.idDrink) {
-            const newFavorites = [...state.user.favorites, state.currentItem]
-            dispatch(changeFavorites(newFavorites))
-        }
-    }
-
     return (
         <View style={[styles.highlightView, {
             height: (height || height == 0) ? height : vh_reactive(0.6, state.dimensions.height) - PADDING * 2
@@ -140,14 +58,7 @@ export default function HighlightedCard({height}: HighlightedCardProps) {
                     <View style={{flex: 3, flexDirection: 'row'}}>
                         <View style={{flex: 1}}></View>
                         <View style={{flex: 1, alignItems: 'center'}}>
-                            <Text>{likes}</Text>
-                            <HeaderButton
-                                onPress={onFavoritesCLickHandler}
-                                size={(state.dimensions.orientationInfo === Orientation.PORTRAIT_UP) ?
-                                    vw_reactive(0.1, state.dimensions.width) :
-                                    vh_reactive(0.1, state.dimensions.height)}
-                                icon={favorite ? faStar_solid : faStar_regular}
-                                color={COLOR_HEADER}/>
+                            <LikeButton/>
                         </View>
 
                     </View>
