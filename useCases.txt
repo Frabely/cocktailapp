@@ -9,11 +9,10 @@ remove flatlists from Filters
 (started)-rating:
     (x)-change favorite to heart
     (x)-number next to heart:
-        -style number and field
+        (x)-style number and field
     (x)-if click heart number is -- / ++
     (x)-update on login
     -filter -> https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value
--add Rating list to firestore (db) on logout
 -disable language -> German not fully supported:
     -check for translation API -> maybe fast, good, free solution to translate
 -set Font consts
@@ -23,21 +22,24 @@ remove flatlists from Filters
     (x)-setup testing for playstore
     (started)-data protection
     -adds
-    -recreate logo and splash ->  https://www.figma.com/file/4TD0sMutRjxBI6zKySFV2n/Expo-App-Icon-%26-Splash-(Community)?node-id=1%3A1357
-        -app icon rework -> add triangle
+    (x)-recreate logo and splash ->  https://www.figma.com/file/4TD0sMutRjxBI6zKySFV2n/Expo-App-Icon-%26-Splash-(Community)?node-id=1%3A1357
+        (x)-app icon rework -> add triangle
 (x)-handle screen rotation see docs
 -testing start:
     -cover as much as possible with error codes and matching messages
 -fetch data once -> exceeded read limit -> way to early
 
 TODOs:
+-setup own website on GitHub:
+    -link data protection
+    -make sign up to test app
 -refactor:
+    -refactor and optimize highlight card, extract maybe
     -refactor login screen and settings -> put all error checking into functions -> currently way to many code
     -change padding and margin const's to rem
     -button/label sizes for tablet landscape
     -when mobile is landscape (horizontal) menu on right (left) sides?
     -refactor reducer -> change hardcode strings to const's
-    -refactor and optimize highlight card, extract maybe
     -refactor filter file, extract maybe
 -load only 10 items and update on scroll?
 -user profile:

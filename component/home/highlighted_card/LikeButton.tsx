@@ -13,7 +13,6 @@ import {
 } from "../../../reducers/cocktail/cocktailRatingReducer";
 import {changeFavorites} from "../../../reducers/user/userReducer";
 import {useEffect, useState} from "react";
-import {PADDING} from "../../../constants/style_constants";
 
 export default function LikeButton({}: LikeButtonProps) {
     const state = useAppSelector((state) => state)
@@ -89,7 +88,7 @@ export default function LikeButton({}: LikeButtonProps) {
                         vh_reactive(0.1, state.dimensions.height)}
                     icon={favorite ? faStar_solid : faStar_regular}
                     color={COLOR_HEADER}
-                    flex={0}/>
+                    flex={1}/>
                 <Text style={styles.text}>{likes}</Text>
             </View>
         </>
@@ -99,9 +98,10 @@ export default function LikeButton({}: LikeButtonProps) {
 
 const styles = StyleSheet.create({
     text: {
-        padding: PADDING,
-        paddingTop: PADDING*2,
-        color: COLOR_HEADER
+        // padding: PADDING,
+        // paddingTop: PADDING*2,
+        color: COLOR_HEADER,
+        flex: 1
     },
     textContainer: {
         height: '100%',

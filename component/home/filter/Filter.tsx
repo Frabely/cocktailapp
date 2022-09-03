@@ -44,8 +44,7 @@ export default function Filter({onPress, lengthDataSet}: FilterProps) {
                              labelName={ALCOHOLIC_LABEL[`${language}`]}
                              isMultiSelectable={false}
                              filterState={state.alcoholicFilter}
-                             setFilterState={changeAlcoholic}
-                             numColumns={3}/>
+                             setFilterState={changeAlcoholic}/>
             </View>
             <View style={styles.rowStyle}>
                 <FilterPanel options={categoryFilterOptions}
@@ -53,8 +52,7 @@ export default function Filter({onPress, lengthDataSet}: FilterProps) {
                              labelName={CATEGORY_LABEL[`${language}`]}
                              isMultiSelectable={true}
                              filterState={state.categoryFilter}
-                             setFilterState={changeCategory}
-                             numColumns={3}/>
+                             setFilterState={changeCategory}/>
             </View>
             <View style={[styles.rowStyle, {
                 flexDirection: 'row',
