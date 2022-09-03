@@ -2,8 +2,8 @@ import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
 import {StyleSheet, View} from "react-native";
 import {COLOR_BACKGROUND} from "../../constants/color_styles";
 import {
-    EMAIL_LABEL,
-    LOGIN_PAGE_LABEL, RESET_PASSWORD_EMAIL_SENT_LABEL,
+    EMAIL_LABEL, LOGIN_LABEL,
+    RESET_PASSWORD_EMAIL_SENT_LABEL,
     SEND_RESET_PASSWORD_EMAIL_LABEL
 } from "../../constants/labels";
 import React, {useState} from "react";
@@ -97,7 +97,7 @@ export default function ForgotPassword({}: ForgotPasswordProps) {
                 <StyledButton
                     padding={PADDING}
                     onPress={changeToLoginScreenPressHandler}
-                    title={LOGIN_PAGE_LABEL[`${language}`]}
+                    title={LOGIN_LABEL[`${language}`]}
                 />
             </View>
             <ForgotPasswordButton/>

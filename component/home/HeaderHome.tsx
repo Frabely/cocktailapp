@@ -3,14 +3,20 @@ import {vh, vh_reactive, vw, vw_reactive} from "../../functions/dimentions";
 import {BORDER_RADIUS, MARGIN} from "../../constants/style_constants";
 import {COLOR_HEADER} from "../../constants/color_styles";
 import HeaderButton from "../layout/HeaderButton";
-import {faFilter, faSearch,} from "@fortawesome/free-solid-svg-icons";
+import {
+    faFilter,
+    faSort,
+    faSearch
+} from "@fortawesome/free-solid-svg-icons";
 import {FILTER, SEARCH_FIELD} from "../../constants/const_vars";
 import {setActiveFilter} from "../../reducers/filter/activeFilterReducer";
 import {useAppDispatch, useAppSelector} from "../../constants/hooks";
+import {IN_DEVELOPMENT_LABEL} from "../../constants/labels";
 
 export default function HeaderHome() {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
+    const language: string = state.language
 
     const onSearchPressHandler = () => {
         if (state.activeFilter === SEARCH_FIELD) {
@@ -18,6 +24,10 @@ export default function HeaderHome() {
             return
         }
         dispatch(setActiveFilter(SEARCH_FIELD))
+    }
+
+    const onSortPressHandler = () => {
+      alert(IN_DEVELOPMENT_LABEL[`${language}`])
     }
 
     const onFilterPressHandler = () => {
@@ -34,6 +44,7 @@ export default function HeaderHome() {
             height: vh_reactive(0.10, state.dimensions.height)-MARGIN
         }]}>
             <HeaderButton onPress={onSearchPressHandler} icon={faSearch}/>
+            <HeaderButton onPress={onSortPressHandler} icon={faSort}/>
             <HeaderButton onPress={onFilterPressHandler} icon={faFilter}/>
         </View>
     )
