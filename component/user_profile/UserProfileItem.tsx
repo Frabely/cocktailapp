@@ -1,4 +1,4 @@
-import {Platform, Pressable, StyleSheet, Text, View} from "react-native";
+import {Pressable, StyleSheet, Text, View} from "react-native";
 import {COLOR_BACKGROUND, COLOR_HEADER} from "../../constants/color_styles";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
@@ -10,8 +10,7 @@ export default function UserProfileItem({onPress, icon, label}: UserProfileItemP
 
     return (
         <Pressable style={[styles.userProfileItem,
-            {backgroundColor: isTouched ? COLOR_HEADER : COLOR_BACKGROUND},
-            {flex: (Platform.OS === "android") ? undefined : 1}]}
+            {backgroundColor: isTouched ? COLOR_HEADER : COLOR_BACKGROUND},]}
                    onPress={onPress}
                    onTouchStart={() => setIsTouched(true)}
                    onTouchEnd={() => setIsTouched(false)}>
