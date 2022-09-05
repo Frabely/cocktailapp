@@ -22,7 +22,7 @@ export default function FilterPanel({
         if (state.dimensions.height > state.dimensions.width)
             setNumberCol(3)
         else
-            setNumberCol(8)
+            setNumberCol(6)
     }, [state.dimensions])
 
     const onFilterButtonClickHandler = (filterName: string) => {
