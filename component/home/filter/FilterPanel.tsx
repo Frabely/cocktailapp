@@ -6,8 +6,9 @@ import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
 import {ALL} from "../../../constants/const_vars";
 import {ActionCreatorWithPayload} from "@reduxjs/toolkit";
 import {MARGIN, PADDING} from "../../../constants/style_constants";
-import {vh, vh_reactive} from "../../../functions/dimentions";
+import {vh_reactive} from "../../../functions/dimentions";
 import {useEffect, useState} from "react";
+import {getDefaultButtonHeight} from "../../../functions/viewport_calculations";
 
 export default function FilterPanel({
                                         filterState, setFilterState, isMultiSelectable,
@@ -57,7 +58,8 @@ export default function FilterPanel({
 
     const renderItem = ({item, index}: any) => {
         return (
-            <View style={[styles.flatListItem, {minHeight: vh_reactive(0.08, state.dimensions.height)}]}>
+            <View style={[styles.flatListItem, {minHeight: vh_reactive(getDefaultButtonHeight(state.dimensions.orientationInfo), state.dimensions.height)}]}>
+            {/*<View style={{flex: 1}}>*/}
                 <FilterButton
                     title={item}
                     titleENG={optionsENG[index]}
@@ -88,7 +90,7 @@ export default function FilterPanel({
 const styles = StyleSheet.create({
     flatListItem: {
         flex: 1,
-        minHeight: vh(0.08)
+        // minHeight: vh(0.08)
     },
     filterPanel: {
         width: '100%'

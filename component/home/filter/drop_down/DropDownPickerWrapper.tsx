@@ -17,6 +17,7 @@ import {
 } from "../../../../constants/const_vars";
 import {SEARCH_INGREDIENTS_LABEL} from "../../../../constants/labels";
 import { Orientation } from "expo-screen-orientation";
+import {getDefaultButtonHeight} from "../../../../functions/viewport_calculations";
 
 export default function DropDownPickerWrapper() {
     const dispatch = useAppDispatch()
@@ -37,8 +38,6 @@ export default function DropDownPickerWrapper() {
     DropDownPicker.setMode("BADGE");
     DropDownPicker.setListMode("SCROLLVIEW");
 
-    // @ts-ignore
-    // @ts-ignore
     return (
         <DropDownPicker
             // TODO add category to list (parent key) see docs
@@ -148,10 +147,11 @@ export default function DropDownPickerWrapper() {
                 width: vw_reactive(0.03, state.dimensions.width),
             }}
             badgeStyle={{
-                height: vh_reactive(0.04, state.dimensions.height),
-                width: vw_reactive(0.9, state.dimensions.width) - 4 * PADDING - 2 * MARGIN,
+                height: vh_reactive(getDefaultButtonHeight(state.dimensions.orientationInfo), state.dimensions.height),
                 borderRadius: BORDER_RADIUS / 2,
-                justifyContent: 'center'
+                justifyContent: 'center',
+                paddingVertical: 0,
+                paddingHorizontal: PADDING / 2
             }}
             badgeColors={COLOR_HEADER}
             badgeTextStyle={{

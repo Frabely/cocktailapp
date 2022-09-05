@@ -3,21 +3,22 @@ Bugs:
 -favorites only save on logout -> what if app crashes uses is not logging out?
 -keep user signed in -> how to do that -> save data on phone or something until user explicit logs out
 -save rating right on click with minimal db usage
+-if landscape likes not updating -> probably current is not rendered again
 
 Master branch Goals - deploy alpha:
 remove flatlists from Filters
+-set email language (https://firebase.google.com/docs/auth/web/manage-users?hl=de&authuser=0)
 (started)-rating:
     (x)-change favorite to heart
     (x)-number next to heart:
         (x)-style number and field
     (x)-if click heart number is -- / ++
     (x)-update on login
-    -filter -> https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value
+    (started)-filter -> https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value
 -disable language -> German not fully supported:
     -check for translation API -> maybe fast, good, free solution to translate
 -set Font consts
 -2€ for all cocktails
--set email language (https://firebase.google.com/docs/auth/web/manage-users?hl=de&authuser=0)
 -setup GooglePlay deploy:
     (x)-setup testing for playstore
     (started)-data protection
@@ -30,6 +31,7 @@ remove flatlists from Filters
 -fetch data once -> exceeded read limit -> way to early
 
 TODOs:
+-translate dummydata
 -setup own website on GitHub:
     -link data protection
     -make sign up to test app

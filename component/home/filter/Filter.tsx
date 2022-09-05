@@ -1,5 +1,5 @@
 import {ScrollView, StyleSheet, View} from "react-native";
-import {vh, vh_reactive, vw, vw_reactive} from "../../../functions/dimentions";
+import {vh_reactive, vw, vw_reactive} from "../../../functions/dimentions";
 import {COLOR_CARD_BACKGROUND} from "../../../constants/color_styles";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
 import FilterPanel from "./FilterPanel";
@@ -82,7 +82,6 @@ export default function Filter({onPress, lengthDataSet}: FilterProps) {
 
 const styles = StyleSheet.create({
     filter: {
-        height: vh(0.8),
         width: vw(1),
         position: "absolute",
         left: 0,

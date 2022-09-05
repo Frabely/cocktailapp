@@ -3,7 +3,7 @@
     "name": "cocktailapp",
     "slug": "cocktailapp",
     "owner": "frabely",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "privacy": "unlisted",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -24,6 +24,7 @@
       "requireFullScreen": true
     },
     "android": {
+      "versionCode": 2,
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/splash.png",
         "backgroundColor": "#FFFFFF"
