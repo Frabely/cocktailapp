@@ -27,3 +27,6 @@ https://www.youtube.com/watch?v=U_gANjtv28g
 ### figma and flare to create images and animation
 ### screen rotation expo
 https://docs.expo.dev/versions/latest/sdk/screen-orientation/
+### grid without flatlist
+https://stackoverflow.com/questions/68589846/grid-view-without-using-flatlist-in-react-native
+see FilterPanel

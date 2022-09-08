@@ -6,7 +6,6 @@ Bugs:
 -if landscape likes not updating -> probably current is not rendered again
 
 Master branch Goals - deploy alpha:
-remove flatlists from Filters
 -set email language (https://firebase.google.com/docs/auth/web/manage-users?hl=de&authuser=0)
 (started)-rating:
     (x)-change favorite to heart

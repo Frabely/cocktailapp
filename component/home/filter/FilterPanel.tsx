@@ -1,4 +1,4 @@
-import {FlatList, StyleSheet, View} from "react-native";
+import {StyleSheet, View, ScrollView} from "react-native";
 import Label from "./Label";
 import FilterButton from "./FilterButton";
 import {COLOR_BACKGROUND, COLOR_HEADER} from "../../../constants/color_styles";
@@ -7,23 +7,18 @@ import {ALL} from "../../../constants/const_vars";
 import {ActionCreatorWithPayload} from "@reduxjs/toolkit";
 import {MARGIN, PADDING} from "../../../constants/style_constants";
 import {vh_reactive} from "../../../functions/dimentions";
-import {useEffect, useState} from "react";
 import {getDefaultButtonHeight} from "../../../functions/viewport_calculations";
 
 export default function FilterPanel({
-                                        filterState, setFilterState, isMultiSelectable,
-                                        options, optionsENG, labelName
+                                        filterState,
+                                        setFilterState,
+                                        isMultiSelectable,
+                                        options,
+                                        optionsENG,
+                                        labelName
                                     }: FilterPanelProps) {
     const dispatch = useAppDispatch()
     const state = useAppSelector((state) => state)
-    const [numberCol, setNumberCol] = useState(3);
-
-    useEffect(() => {
-        if (state.dimensions.height > state.dimensions.width)
-            setNumberCol(3)
-        else
-            setNumberCol(6)
-    }, [state.dimensions])
 
     const onFilterButtonClickHandler = (filterName: string) => {
         const array = [...filterState]
@@ -56,45 +51,45 @@ export default function FilterPanel({
         dispatch(setFilterState(resultArray))
     }
 
-    const renderItem = ({item, index}: any) => {
-        return (
-            <View style={[styles.flatListItem, {minHeight: vh_reactive(getDefaultButtonHeight(state.dimensions.orientationInfo), state.dimensions.height)}]}>
-            {/*<View style={{flex: 1}}>*/}
-                <FilterButton
-                    title={item}
-                    titleENG={optionsENG[index]}
-                    colorActive={COLOR_HEADER}
-                    colorInactive={COLOR_BACKGROUND}
-                    onClick={onFilterButtonClickHandler}
-                    state={filterState}
-                    padding={PADDING / 2}
-                    margin={MARGIN / 2}
-                />
-            </View>
-        )
-    }
-
     return (
         <View style={styles.filterPanel}>
             <Label labelName={labelName}/>
-            <FlatList keyExtractor={(item) => item}
-                      data={options}
-                      renderItem={renderItem}
-                      numColumns={numberCol}
-                      key={numberCol}/>
-        </View>
+            <ScrollView>
 
+                <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+                    {options ? options.map((item: any, index: number) => {
+                        if (item) {
+                            return <View key={index}
+                                         style={[styles.flatListItem,
+                                             {minHeight: vh_reactive(getDefaultButtonHeight(state.dimensions.orientationInfo), state.dimensions.height)}
+                                         ]}>
+                                <FilterButton
+                                    title={item}
+                                    titleENG={optionsENG[index]}
+                                    colorActive={COLOR_HEADER}
+                                    colorInactive={COLOR_BACKGROUND}
+                                    onClick={onFilterButtonClickHandler}
+                                    state={filterState}
+                                    padding={PADDING / 2}
+                                    margin={MARGIN / 2}
+                                />
+                            </View>
+                        }
+                    }) : null}
+                </View>
+            </ScrollView>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
     flatListItem: {
-        flex: 1,
-        // minHeight: vh(0.08)
+        width: '33.33333%'
     },
     filterPanel: {
-        width: '100%'
-    }
+        width: '100%',
+        flexDirection: 'column'
+    },
 })
 
 export type FilterPanelProps = {
