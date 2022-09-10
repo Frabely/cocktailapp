@@ -30,6 +30,7 @@ Master branch Goals - deploy alpha:
 -fetch data once -> exceeded read limit -> way to early
 
 TODOs:
+-add on password bottom label it should be 6 letters +
 -translate dummydata
 -setup own website on GitHub:
     -link data protection

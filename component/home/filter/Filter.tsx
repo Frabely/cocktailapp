@@ -7,7 +7,7 @@ import {
     CATEGORY_LABEL,
     CLEAR_ALL_FILTERS_LABEL,
     HITS_LABEL,
-    INGREDIENTS_LABEL
+    INGREDIENTS_LABEL, SORT_LABEL
 } from "../../../constants/labels";
 import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
 import {changeAlcoholic} from "../../../reducers/filter/alcoholicFilterReducer";
@@ -19,6 +19,8 @@ import Label from "./Label";
 import {setActiveFilter} from "../../../reducers/filter/activeFilterReducer";
 import {ALCOHOLIC_LABEL} from "../../../constants/labels";
 import React from "react";
+import CardLayout from "../../layout/CardLayout";
+import Sorting from "./sorting/Sorting";
 
 export default function Filter({onPress, lengthDataSet}: FilterProps) {
     const state = useAppSelector((state) => state)
@@ -34,10 +36,12 @@ export default function Filter({onPress, lengthDataSet}: FilterProps) {
     }
 
     return (
-        <ScrollView style={[styles.filter, {
-            width: vw_reactive(1, state.dimensions.width),
-            height: vh_reactive(0.8, state.dimensions.height)
-        }]}>
+        <ScrollView
+
+            style={[styles.filter, {
+                width: vw_reactive(1, state.dimensions.width),
+                height: vh_reactive(0.8, state.dimensions.height)
+            }]}>
             <View style={styles.rowStyle}>
                 <FilterPanel options={alcFilterOptions}
                              optionsENG={alcFilterOptionsENG}
@@ -62,6 +66,12 @@ export default function Filter({onPress, lengthDataSet}: FilterProps) {
                 <Label labelName={INGREDIENTS_LABEL[`${language}`]}/>
             </View>
             <DropDownPickerWrapper/>
+            <CardLayout flexDirection={'column'} padding={0}>
+                <Label labelName={SORT_LABEL[`${language}`]}/>
+                <View style={{flexDirection: 'row'}}>
+                    <Sorting/>
+                </View>
+            </CardLayout>
             <View style={styles.buttonBackgroundStyle}>
                 <StyledButton
                     flex={1}

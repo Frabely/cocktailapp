@@ -2,7 +2,7 @@ import {FlexAlignType, StyleSheet, View} from "react-native";
 import {COLOR_CARD_BACKGROUND} from "../../constants/color_styles";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
 
-export default function CardLayout({width, height, maxHeight, alignItems, children, marginHorizontal}: CardLayoutProps) {
+export default function CardLayout({width, height, maxHeight, alignItems, children, flexDirection, marginHorizontal, padding, margin}: CardLayoutProps) {
     return (
         <View style={[
             styles.cardOuter, {
@@ -10,7 +10,11 @@ export default function CardLayout({width, height, maxHeight, alignItems, childr
                 height: (height || height === 0) ? height : undefined,
                 maxHeight: (maxHeight || maxHeight === 0) ? maxHeight : undefined,
                 alignItems: alignItems ? alignItems : undefined,
-                marginHorizontal: (marginHorizontal || marginHorizontal === 0) ? marginHorizontal : undefined
+                marginHorizontal: (marginHorizontal || marginHorizontal === 0) ? marginHorizontal : undefined,
+                flexDirection: flexDirection ? flexDirection : 'column',
+                padding: padding || padding === 0 ? padding : PADDING,
+                margin: margin || margin === 0 ? margin : MARGIN
+
             }
         ]}>{children}</View>
     )
@@ -18,11 +22,8 @@ export default function CardLayout({width, height, maxHeight, alignItems, childr
 
 const styles = StyleSheet.create({
     cardOuter: {
-        flexDirection: 'column',
         backgroundColor: COLOR_CARD_BACKGROUND,
         borderRadius: BORDER_RADIUS / 2,
-        margin: MARGIN,
-        padding: PADDING,
         // alignItems: 'center',
         justifyContent: 'center'
     },
@@ -34,6 +35,9 @@ export type CardLayoutProps = {
     maxHeight?: string | number | undefined,
     alignItems?: FlexAlignType | undefined,
     children: any,
-    marginHorizontal?: number
+    flexDirection?: "column" | "row" | "row-reverse" | "column-reverse" ,
+    marginHorizontal?: number,
+    padding?: number,
+    margin?: number
 }
 
