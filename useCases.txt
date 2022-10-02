@@ -13,7 +13,8 @@ Master branch Goals - deploy alpha:
         (x)-style number and field
     (x)-if click heart number is -- / ++
     (x)-update on login
-    (started)-filter -> https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value
+    (x)-filter -> https://stackoverflow.com/questions/1129216/sort-array-of-objects-by-string-property-value
+        (started)-own liked sorted before others liked with same length
 -disable language -> German not fully supported:
     -check for translation API -> maybe fast, good, free solution to translate
 -set Font consts
