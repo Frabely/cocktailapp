@@ -13,14 +13,13 @@ import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
 import {changeAlcoholic} from "../../../reducers/filter/alcoholicFilterReducer";
 import {changeCategory} from "../../../reducers/filter/categoryFilterReducer";
 import StyledButton from "../../layout/StyledButton";
-import {ALCOHOLIC_LIST, CATEGORY_LIST} from "../../../constants/filter_lists";
+import {ALCOHOLIC_LIST, CATEGORY_LIST, SORT_LIST} from "../../../constants/filter_lists";
 import DropDownPickerWrapper from "./drop_down/DropDownPickerWrapper";
 import Label from "./Label";
 import {setActiveFilter} from "../../../reducers/filter/activeFilterReducer";
 import {ALCOHOLIC_LABEL} from "../../../constants/labels";
 import React from "react";
-import CardLayout from "../../layout/CardLayout";
-import Sorting from "./sorting/Sorting";
+import {changeSort} from "../../../reducers/filter/sortFilterReducer";
 
 export default function Filter({onPress, lengthDataSet}: FilterProps) {
     const state = useAppSelector((state) => state)
@@ -30,6 +29,8 @@ export default function Filter({onPress, lengthDataSet}: FilterProps) {
     const alcFilterOptionsENG: readonly string[] = ALCOHOLIC_LIST.ENG
     const categoryFilterOptions: readonly string[] = CATEGORY_LIST[`${language}`]
     const categoryFilterOptionsENG: readonly string[] = CATEGORY_LIST.ENG
+    const sortFilterOptions: readonly string[] = SORT_LIST[`${language}`]
+    const sortFilterOptionsENG: readonly string[] = SORT_LIST.ENG
 
     const onHitsClickHandler = () => {
         dispatch(setActiveFilter(''))
@@ -37,13 +38,13 @@ export default function Filter({onPress, lengthDataSet}: FilterProps) {
 
     return (
         <ScrollView
-
             style={[styles.filter, {
                 width: vw_reactive(1, state.dimensions.width),
                 height: vh_reactive(0.8, state.dimensions.height)
             }]}>
             <View style={styles.rowStyle}>
-                <FilterPanel options={alcFilterOptions}
+                <FilterPanel optionsTitle={alcFilterOptions}
+                             isIcon={false}
                              optionsENG={alcFilterOptionsENG}
                              labelName={ALCOHOLIC_LABEL[`${language}`]}
                              isMultiSelectable={false}
@@ -51,7 +52,8 @@ export default function Filter({onPress, lengthDataSet}: FilterProps) {
                              setFilterState={changeAlcoholic}/>
             </View>
             <View style={styles.rowStyle}>
-                <FilterPanel options={categoryFilterOptions}
+                <FilterPanel optionsTitle={categoryFilterOptions}
+                             isIcon={false}
                              optionsENG={categoryFilterOptionsENG}
                              labelName={CATEGORY_LABEL[`${language}`]}
                              isMultiSelectable={true}
@@ -66,12 +68,15 @@ export default function Filter({onPress, lengthDataSet}: FilterProps) {
                 <Label labelName={INGREDIENTS_LABEL[`${language}`]}/>
             </View>
             <DropDownPickerWrapper/>
-            <CardLayout flexDirection={'column'} padding={0}>
-                <Label labelName={SORT_LABEL[`${language}`]}/>
-                <View style={{flexDirection: 'row'}}>
-                    <Sorting/>
-                </View>
-            </CardLayout>
+            <View style={styles.rowStyle}>
+                <FilterPanel optionsTitle={sortFilterOptions}
+                             isIcon={true}
+                             optionsENG={sortFilterOptionsENG}
+                             labelName={SORT_LABEL[`${language}`]}
+                             isMultiSelectable={false}
+                             filterState={state.sortFilter}
+                             setFilterState={changeSort}/>
+            </View>
             <View style={styles.buttonBackgroundStyle}>
                 <StyledButton
                     flex={1}

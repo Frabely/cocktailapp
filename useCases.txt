@@ -31,7 +31,8 @@ Master branch Goals - deploy alpha:
 
 TODOs:
 -add on password bottom label it should be 6 letters +
--translate dummydata
+-translate dummydata:
+    -current id 178318
 -setup own website on GitHub:
     -link data protection
     -make sign up to test app

@@ -13,9 +13,10 @@ export default function FilterPanel({
                                         filterState,
                                         setFilterState,
                                         isMultiSelectable,
-                                        options,
+                                        optionsTitle,
                                         optionsENG,
-                                        labelName
+                                        labelName,
+                                        isIcon
                                     }: FilterPanelProps) {
     const dispatch = useAppDispatch()
     const state = useAppSelector((state) => state)
@@ -35,7 +36,7 @@ export default function FilterPanel({
         if (isMultiSelectable) {
             if (!array.includes(filterName)) {
                 array.push(filterName)
-                if (options && array.length === options.length - 1)
+                if (optionsTitle && array.length === optionsTitle.length - 1)
                     resultArray = [ALL]
                 else
                     resultArray = array
@@ -55,15 +56,15 @@ export default function FilterPanel({
         <View style={styles.filterPanel}>
             <Label labelName={labelName}/>
             <ScrollView>
-
                 <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-                    {options ? options.map((item: any, index: number) => {
+                    {optionsTitle ? optionsTitle.map((item: string, index: number) => {
                         if (item) {
                             return <View key={index}
                                          style={[styles.flatListItem,
                                              {minHeight: vh_reactive(getDefaultButtonHeight(state.dimensions.orientationInfo), state.dimensions.height)}
                                          ]}>
                                 <FilterButton
+                                    isIcon={isIcon}
                                     title={item}
                                     titleENG={optionsENG[index]}
                                     colorActive={COLOR_HEADER}
@@ -95,8 +96,9 @@ const styles = StyleSheet.create({
 export type FilterPanelProps = {
     isMultiSelectable: boolean,
     filterState: any[],
+    isIcon: boolean,
     setFilterState: ActionCreatorWithPayload<any[]>,
-    options: readonly string[] | null | undefined,
+    optionsTitle: readonly string[],
     optionsENG: readonly string[],
     labelName: string,
 }

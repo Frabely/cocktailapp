@@ -3,6 +3,7 @@ import {configureStore} from "@reduxjs/toolkit";
 import alcoholicFilterSlice from "../reducers/filter/alcoholicFilterReducer";
 import glassTypeFilterSlice from "../reducers/filter/glassTypeFilterReducer";
 import categoryFilterSlice from "../reducers/filter/categoryFilterReducer";
+import sortFilterSlice from "../reducers/filter/sortFilterReducer";
 import applyFilterSlice from "../reducers/general/booleans/isApplyFiltersReducer";
 import ingredientsFilterSlice from "../reducers/filter/ingredientsFilterReducer";
 import UserSlice from "../reducers/user/userReducer"
@@ -38,7 +39,8 @@ const rootReducer = combineReducers({
     isCreatingAccount: isCreatingAccountSlice,
     dimensions: DimensionsSlice,
     cocktailRating: CocktailRatingSlice,
-    dataSet: DataSetSlice
+    dataSet: DataSetSlice,
+    sortFilter: sortFilterSlice,
 })
 
 const store = configureStore({

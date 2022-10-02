@@ -1,5 +1,6 @@
 import {ALL_LABEL} from "./labels";
-import {LabelListType} from "./types";
+import {IconTitleObject, LabelListType} from "./types";
+import {faSortAlphaUp, faSortAlphaDown, faHeart} from "@fortawesome/free-solid-svg-icons";
 
 export const CATEGORY_LIST: LabelListType = {
     ENG: [ALL_LABEL.ENG, 'Shot', 'Beer', 'Shake', 'Cocktail', 'Ordinary Drink', 'Homemade Liqueur',
@@ -7,6 +8,17 @@ export const CATEGORY_LIST: LabelListType = {
     GER: [ALL_LABEL.GER, 'Shot', 'Bier', 'Shake', 'Cocktail', 'Gewöhnliches Getränk', 'Hausgemachter Likör',
         'Punsch / Partygetränk', 'Kaffee / Tee', 'Kakao', 'Erfrischungs-Getränk', 'Andere / Unbekannt']
 }
+
+export const SORT_LIST: LabelListType = {
+    ENG: ['AlphabeticalAZ', 'AlphabeticalZA', 'Favorites'],
+    GER: ['AlphabetischAZ', 'AlphabetischZA', 'Favoriten']
+}
+
+export const ICON_NAME_LIST: IconTitleObject[] = [
+    {icon: faSortAlphaDown, titleENG: 'AlphabeticalAZ'},
+    {icon: faSortAlphaUp, titleENG: 'AlphabeticalZA'},
+    {icon: faHeart, titleENG: 'Favorites'}
+]
 
 export const ALCOHOLIC_LIST: LabelListType = {
     ENG: [ALL_LABEL.ENG, 'Alcoholic', 'Non alcoholic'],

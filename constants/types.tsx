@@ -1,3 +1,5 @@
+import {IconProp} from "@fortawesome/fontawesome-svg-core";
+
 export type LabelType = {
     [index: string]: string
     ENG: string,
@@ -25,6 +27,11 @@ export type RatedCocktail = {
     [index: string]: string[] | string,
     cocktailID: string,
     userIDList: string[]
+}
+
+export type IconTitleObject = {
+    icon: IconProp,
+    titleENG: string
 }
 
 export type UserIDCocktailIDType = {

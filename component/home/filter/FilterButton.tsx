@@ -4,17 +4,27 @@ import {
 } from "../../../constants/style_constants";
 import {COLOR_BACKGROUND} from "../../../constants/color_styles";
 import {useState} from "react";
+import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
+import {IconTitleObject} from "../../../constants/types";
+import {ICON_NAME_LIST} from "../../../constants/filter_lists";
+import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
 export default function FilterButton({
-                                         state, titleENG, onClick, title, colorActive, colorInactive,
+                                         state, titleENG, onClick, title, isIcon, colorActive, colorInactive,
                                          padding, width, margin, height, flex
                                      }: FilterButtonProps) {
-    const [isTouched, setIsTouched] = useState(false);
-    const isClicked = state.includes(titleENG)
+    const [isTouched, setIsTouched] = useState(false)
+    let isClicked = state.includes(titleENG)
     const onClickHandler = () => {
         onClick(titleENG)
     }
-
+    let icon: string | IconProp = title
+    if (isIcon) {
+        ICON_NAME_LIST.forEach((stateItem: IconTitleObject) => {
+            if (stateItem.titleENG === titleENG)
+                icon = stateItem.icon
+        })
+    }
 
     return (
         <Pressable onPress={onClickHandler}
@@ -35,7 +45,10 @@ export default function FilterButton({
                            flex: (flex || flex === 0) ? flex : 1,
                        },
                    ]}>
-            <Text style={{textAlign: "center"}}>{title}</Text>
+            {typeof icon === "string" ?
+                <Text style={{textAlign: "center"}}>{title}</Text> :
+                <FontAwesomeIcon icon={icon}/>
+            }
         </Pressable>
     )
 }
@@ -54,8 +67,9 @@ export type FilterButtonProps = {
     titleENG: string,
     onClick: ((...args: any) => any),
     title: string,
-    colorActive: ColorValue | undefined,
-    colorInactive: ColorValue | undefined,
+    colorActive: ColorValue,
+    colorInactive: ColorValue,
+    isIcon: boolean,
     padding?: number | undefined,
     margin?: number | undefined,
     width?: string | number | null,
