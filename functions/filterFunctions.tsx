@@ -1,7 +1,53 @@
 import {ALL, EMPTY_ITEM} from "../constants/const_vars";
 import {changeCurrentItem} from "../reducers/home/currentItemReducer";
 import {Cocktail} from "../constants/types";
+import {SORT_LIST} from "../constants/filter_lists";
 
+
+const sortAZ = (cocktailOne: Cocktail, cocktailTwo: Cocktail) => {
+    if (cocktailOne.strDrink && cocktailTwo.strDrink) {
+        const strDrinkA = cocktailOne.strDrink.toUpperCase(); // ignore upper and lowercase
+        const strDrinkB = cocktailTwo.strDrink.toUpperCase(); // ignore upper and lowercase
+        if (strDrinkA < strDrinkB) {
+            return -1; //strDrinkA comes first
+        }
+        if (strDrinkA > strDrinkB) {
+            return 1; // strDrinkB comes first
+        }
+    }
+    return 0;  // names must be equal
+}
+
+const sortZA = (cocktailOne: Cocktail, cocktailTwo: Cocktail) => {
+    if (cocktailOne.strDrink && cocktailTwo.strDrink) {
+        const strDrinkA = cocktailOne.strDrink.toUpperCase(); // ignore upper and lowercase
+        const strDrinkB = cocktailTwo.strDrink.toUpperCase(); // ignore upper and lowercase
+        if (strDrinkA > strDrinkB) {
+            return -1; //strDrinkA comes first
+        }
+        if (strDrinkA < strDrinkB) {
+            return 1; // strDrinkB comes first
+        }
+    }
+    return 0;  // names must be equal
+}
+
+export const filterSort = (prevDataSet: Cocktail[], state: any) => {
+    let newArray: Cocktail[] = []
+    console.log(state.sortFilter[0])
+    console.log(SORT_LIST.ENG[0])
+    if (state.sortFilter[0] === SORT_LIST.ENG[0]) {
+        newArray = prevDataSet.slice().sort(sortAZ)
+        console.log(SORT_LIST.ENG[0])
+    }
+    if (state.sortFilter[0] === SORT_LIST.ENG[1]) {
+        newArray = prevDataSet.slice().sort(sortZA)
+    }
+    if (state.sortFilter[0] === SORT_LIST.ENG[2]) {
+        console.log(SORT_LIST.ENG[2])
+    }
+    return newArray
+}
 
 export const filterAlcoholic = (prevDataSet: Cocktail[], state: any) => {
     const alcoholFilteredData: Cocktail[] = prevDataSet.filter((item) => {
@@ -74,7 +120,8 @@ export const filterIngredients = (prevDataSet: any[], state: any) => {
 
 export const applySyncFilters = (prevDataSet: any[], state: any, dispatch: any) => {
     let newDataSet: any []
-    newDataSet = filterAlcoholic(prevDataSet, state)
+    newDataSet = filterSort(prevDataSet, state)
+    newDataSet = filterAlcoholic(newDataSet, state)
     newDataSet = filterCategory(newDataSet, state)
     newDataSet = filterSearchField(newDataSet, state, dispatch)
     newDataSet = filterIngredients(newDataSet, state)

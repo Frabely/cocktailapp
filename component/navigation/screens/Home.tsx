@@ -25,7 +25,7 @@ export default function Home({navigation}: any) {
             dispatch(setIsLoadingFalse())
             setDataSet(newDataSet)
         }
-    }, [state.alcoholicFilter, state.categoryFilter, state.ingredientsFilter, state.currentSearchFieldInput])
+    }, [state.alcoholicFilter, state.sortFilter, state.categoryFilter, state.ingredientsFilter, state.currentSearchFieldInput])
 
     return (
         <AppBackground>

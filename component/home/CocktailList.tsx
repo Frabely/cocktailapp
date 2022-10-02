@@ -34,7 +34,6 @@ export default function CocktailList({dataset}: CocktailListProps) {
         item: Cocktail) => {
         if (currentlyClickedItem) {
             if (currentlyClickedItem.idDrink === item.idDrink) {
-                // dispatch()
                 dispatch(changeCurrentItem(EMPTY_ITEM))
                 return
             }

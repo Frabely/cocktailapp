@@ -43,6 +43,15 @@ export default function Filter({onPress, lengthDataSet}: FilterProps) {
                 height: vh_reactive(0.8, state.dimensions.height)
             }]}>
             <View style={styles.rowStyle}>
+                <FilterPanel optionsTitle={sortFilterOptions}
+                             isIcon={true}
+                             optionsENG={sortFilterOptionsENG}
+                             labelName={SORT_LABEL[`${language}`]}
+                             isMultiSelectable={false}
+                             filterState={state.sortFilter}
+                             setFilterState={changeSort}/>
+            </View>
+            <View style={styles.rowStyle}>
                 <FilterPanel optionsTitle={alcFilterOptions}
                              isIcon={false}
                              optionsENG={alcFilterOptionsENG}
@@ -68,15 +77,6 @@ export default function Filter({onPress, lengthDataSet}: FilterProps) {
                 <Label labelName={INGREDIENTS_LABEL[`${language}`]}/>
             </View>
             <DropDownPickerWrapper/>
-            <View style={styles.rowStyle}>
-                <FilterPanel optionsTitle={sortFilterOptions}
-                             isIcon={true}
-                             optionsENG={sortFilterOptionsENG}
-                             labelName={SORT_LABEL[`${language}`]}
-                             isMultiSelectable={false}
-                             filterState={state.sortFilter}
-                             setFilterState={changeSort}/>
-            </View>
             <View style={styles.buttonBackgroundStyle}>
                 <StyledButton
                     flex={1}
