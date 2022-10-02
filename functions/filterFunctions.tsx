@@ -32,6 +32,21 @@ const sortZA = (cocktailOne: Cocktail, cocktailTwo: Cocktail) => {
     return 0;  // names must be equal
 }
 
+const sortFavorites = (cocktailOne: Cocktail, cocktailTwo: Cocktail) => {
+    //TODO sort own liked before other liked with same lenth
+    if (cocktailOne.ratingUserIDList && cocktailTwo.ratingUserIDList) {
+        const favLengthDrinkA = cocktailOne.ratingUserIDList.length; // length favorites
+        const favLengthDrinkB = cocktailTwo.ratingUserIDList.length; // length favorites
+        if (favLengthDrinkA > favLengthDrinkB) {
+            return -1; //favLengthDrinkA comes first
+        }
+        if (favLengthDrinkA < favLengthDrinkB) {
+            return 1; // favLengthDrinkB comes first
+        }
+    }
+    return 0;  // names must be equal
+}
+
 export const filterSort = (prevDataSet: Cocktail[], state: any) => {
     let newArray: Cocktail[] = []
     console.log(state.sortFilter[0])
@@ -44,7 +59,7 @@ export const filterSort = (prevDataSet: Cocktail[], state: any) => {
         newArray = prevDataSet.slice().sort(sortZA)
     }
     if (state.sortFilter[0] === SORT_LIST.ENG[2]) {
-        console.log(SORT_LIST.ENG[2])
+        newArray = prevDataSet.slice().sort(sortFavorites)
     }
     return newArray
 }
