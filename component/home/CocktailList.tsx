@@ -1,5 +1,5 @@
 import {vh, vh_reactive} from "../../functions/dimentions";
-import {ALL, EMPTY_ITEM, FILTER, SEARCH_FIELD} from "../../constants/const_vars";
+import {ALL, DEFAULT_SORT, EMPTY_ITEM, FILTER, SEARCH_FIELD} from "../../constants/const_vars";
 import Filter from "./filter/Filter";
 import SearchField from "./search_field/SearchField";
 import NoHits from "./NoHits";
@@ -16,6 +16,7 @@ import {changeAlcoholic} from "../../reducers/filter/alcoholicFilterReducer";
 import {changeCategory} from "../../reducers/filter/categoryFilterReducer";
 import {changeCurrentSearchFieldInput} from "../../reducers/home/currentSearchFieldInputReducer";
 import {changeIngredients} from "../../reducers/filter/ingredientsFilterReducer";
+import {changeSort} from "../../reducers/filter/sortFilterReducer";
 
 export default function CocktailList({dataset}: CocktailListProps) {
     const state = useAppSelector((state) => state)
@@ -46,6 +47,7 @@ export default function CocktailList({dataset}: CocktailListProps) {
         dispatch(changeCategory([ALL]))
         dispatch(changeCurrentSearchFieldInput(''))
         dispatch(changeIngredients([]))
+        dispatch(changeSort([DEFAULT_SORT]))
     }
 
     // TODO find out what any is

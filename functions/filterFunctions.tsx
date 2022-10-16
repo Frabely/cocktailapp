@@ -53,7 +53,6 @@ export const filterSort = (prevDataSet: Cocktail[], state: any) => {
     console.log(SORT_LIST.ENG[0])
     if (state.sortFilter[0] === SORT_LIST.ENG[0]) {
         newArray = prevDataSet.slice().sort(sortAZ)
-        console.log(SORT_LIST.ENG[0])
     }
     if (state.sortFilter[0] === SORT_LIST.ENG[1]) {
         newArray = prevDataSet.slice().sort(sortZA)

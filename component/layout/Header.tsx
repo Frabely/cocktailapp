@@ -6,7 +6,7 @@ import {} from "@fortawesome/free-brands-svg-icons";
 import {COLOR_HEADER} from "../../constants/color_styles";
 import {BORDER_RADIUS, MARGIN} from "../../constants/style_constants";
 import HeaderButton from "./HeaderButton";
-import {ALL, EMPTY_ITEM, HOME, PROFILE} from "../../constants/const_vars";
+import {ALL, DEFAULT_SORT, EMPTY_ITEM, HOME, PROFILE} from "../../constants/const_vars";
 import {useAppDispatch, useAppSelector} from "../../constants/hooks";
 import {setActiveFilter} from "../../reducers/filter/activeFilterReducer";
 import {changeCurrentItem} from "../../reducers/home/currentItemReducer";
@@ -15,6 +15,7 @@ import {changeAlcoholic} from "../../reducers/filter/alcoholicFilterReducer";
 import {changeCategory} from "../../reducers/filter/categoryFilterReducer";
 import {changeCurrentSearchFieldInput} from "../../reducers/home/currentSearchFieldInputReducer";
 import {changeIngredients} from "../../reducers/filter/ingredientsFilterReducer";
+import {changeSort} from "../../reducers/filter/sortFilterReducer";
 
 export default function Header({navigation}: any) {
     const state = useAppSelector((state) => state)
@@ -25,6 +26,7 @@ export default function Header({navigation}: any) {
         dispatch(changeCategory([ALL]))
         dispatch(changeCurrentSearchFieldInput(''))
         dispatch(changeIngredients([]))
+        dispatch(changeSort([DEFAULT_SORT]))
     }
 
     const onBackArrowPressHandler = () => {

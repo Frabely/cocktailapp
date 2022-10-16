@@ -2,6 +2,7 @@ import {User} from "../reducers/user/userReducer";
 import {Cocktail} from "./types";
 
 export const ALL = 'All'
+export const DEFAULT_SORT = 'AlphabeticalAZ'
 export const FILTER = 'filter'
 export const SEARCH_FIELD = 'searchField'
 export const INGREDIENTS_FILTER_SELECTION_NUMBER_MAX = 3
