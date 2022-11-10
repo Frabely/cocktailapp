@@ -1,6 +1,6 @@
 Bugs:
 -if no favorites -> Favorites page shows "No Hits -- Reset Filters" -> should display something like no favorites found
--favorites only save on logout -> what if app crashes uses is not logging out?
+-favorites only save on logout -> what if app crashes/user is not logging out?
 -keep user signed in -> how to do that -> save data on phone or something until user explicit logs out
 -save rating right on click with minimal db usage
 -if landscape likes not updating -> probably current is not rendered again
@@ -33,7 +33,7 @@ Master branch Goals - deploy alpha:
 TODOs:
 -add on password bottom label it should be 6 letters +
 -translate dummydata:
-    -current id 16943
+    -current id 17833
 -setup own website on GitHub:
     -link data protection
     -make sign up to test app

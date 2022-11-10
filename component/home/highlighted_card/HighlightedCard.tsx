@@ -1,16 +1,19 @@
-import {ImageBackground, ScrollView, StyleSheet, Text, View} from "react-native";
+import {ImageBackground, ScrollView, StyleSheet, View} from "react-native";
 import {vh, vh_reactive} from "../../../functions/dimentions";
-import {useEffect, useState} from "react";
 import generate_box_shadow_style from "../../../functions/generate_box_shadow_style";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
 import {COLOR_OPACITY_BACKGROUND} from "../../../constants/color_styles";
 import HighlightedCardInnerImage from "./HighlightedCardInnerImage";
 import {useAppSelector} from "../../../constants/hooks";
 import LikeButton from "./LikeButton";
+import HeadlineText from "./highlight_card_content/HeadlineText";
+import IngredientsText from "./highlight_card_content/IngredientsText";
+import PreparationText from "./highlight_card_content/PreparationText";
+import AdditionalCocktailInformation from "./highlight_card_content/AdditionalCocktailInformation";
+import GlassTypeText from "./highlight_card_content/GlassTypeText";
 
 export default function HighlightedCard({height}: HighlightedCardProps) {
     const state = useAppSelector((state) => state)
-    const [arrayIngredients, setArrayIngredients] = useState([])
 
     generate_box_shadow_style(
         styles,
@@ -22,29 +25,6 @@ export default function HighlightedCard({height}: HighlightedCardProps) {
         4,
         '#171717'
     )
-
-    useEffect(() => {
-        const arrayIngredients: string[] = [];
-        const arrayMeasures: string[] = [];
-        for (const [key, value] of Object.entries(state.currentItem)) {
-            if (key !== null) {
-                if (key.startsWith('strIngredient'))
-                    if (value !== null && typeof value === "string")
-                        arrayIngredients.push(value)
-
-                if (key.startsWith('strMeasure'))
-                    if (value !== null && typeof value === "string")
-                        arrayMeasures.push(value)
-                    else
-                        arrayMeasures.push('')
-            }
-        }
-        let arrayCombined: any = []
-        for (let i = 0; i < arrayIngredients.length && i < arrayMeasures.length; i++) {
-            arrayCombined.push({[`${arrayIngredients[i]}`]: arrayMeasures[i]})
-        }
-        setArrayIngredients(arrayCombined)
-    }, [state.currentItem])
 
     return (
         <View style={[styles.highlightView, {
@@ -60,45 +40,14 @@ export default function HighlightedCard({height}: HighlightedCardProps) {
                         <View style={{flex: 1, alignItems: 'center'}}>
                             <LikeButton/>
                         </View>
-
                     </View>
                     <View style={{flex: 5}}>
                         <ScrollView nestedScrollEnabled={true}>
-                            <Text style={{fontSize: 40}}>
-                                {state.currentItem.strDrink}
-                            </Text>
-                            {state.currentItem.strAlcoholic !== null ? (
-                                <Text style={{fontSize: 20}}>
-                                    {state.currentItem.strAlcoholic}
-                                </Text>
-                            ) : null
-                            }
-                            {state.currentItem.strCategory !== null && state.currentItem.strCategory !== "Other/Unknown" ? (
-                                <Text style={{fontSize: 20}}>
-                                    {state.currentItem.strCategory}
-                                </Text>
-                            ) : null
-                            }
-                            <Text style={{fontWeight: 'bold'}}>
-                                {state.currentItem.strInstructions}
-                            </Text>
-                            {state.currentItem.strGlass !== null && state.currentItem.strGlass !== "Other/Unknown" ? (
-                                <Text style={{
-                                    fontStyle: 'italic',
-                                    fontSize: 15
-                                }}>
-                                    {`Recommended glass type:\n${state.currentItem.strGlass}`}
-                                </Text>
-                            ) : null
-                            }
-                            {/*TODO Make better*/}
-                            {arrayIngredients.map((item, index) => {
-                                return (
-                                    <Text key={index}>
-                                        - {Object.keys(item)[0]} {item[Object.keys(item)[0]]}
-                                    </Text>
-                                )
-                            })}
+                            <HeadlineText/>
+                            <AdditionalCocktailInformation/>
+                            <IngredientsText/>
+                            <PreparationText/>
+                            <GlassTypeText/>
                         </ScrollView>
                     </View>
                     <View style={{flex: 1}}></View>

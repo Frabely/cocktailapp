@@ -32,6 +32,8 @@ export const SAVE_SETTINGS_LABEL: LabelType = {ENG: 'Save Settings', GER: 'Einst
 export const CLOSE: LabelType = {ENG: 'Close', GER: 'Schließen'}
 export const FAVORITE_DELETED_LABEL: LabelType = {ENG: 'Favorite removed', GER: 'Favorit entfernt'}
 export const SORT_LABEL: LabelType = {ENG: 'Sort', GER: 'Sortieren'}
+export const PREPARATION_LABEL: LabelType = {ENG: 'Preparation', GER: 'Zubereitung'}
+export const GLASS_LABEL: LabelType = {ENG: 'Glass', GER: 'Glas'}
 export const ACCOUNT_CREATED_VERIFY_EMAIL: LabelType = {
     ENG: 'Account created. We sent a verification email. Check your mailbox and click the link to verify.',
     GER: 'Account wurde erstellt. Bestätigen Sie Ihre Emailadresse mit dem, an ihre Emailadresse gesendeten, Verifizierungslink.'
