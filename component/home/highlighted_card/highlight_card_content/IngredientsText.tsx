@@ -2,7 +2,8 @@ import {useAppSelector} from "../../../../constants/hooks";
 import {StyleSheet, Text, View} from "react-native";
 import {INGREDIENTS_LABEL} from "../../../../constants/labels";
 import {useEffect, useState} from "react";
-import {PADDING} from "../../../../constants/style_constants";
+import {BORDER_RADIUS, PADDING} from "../../../../constants/style_constants";
+import {COLOR_BACKGROUND, COLOR_OPACITY_VALUE_50} from "../../../../constants/color_styles";
 
 export default function IngredientsText({}: IngredientsTextProps) {
     const state = useAppSelector((state) => state)
@@ -41,11 +42,18 @@ export default function IngredientsText({}: IngredientsTextProps) {
             </Text>
             {/*TODO Make better*/}
             {arrayIngredients.map((item, index) => {
-                return (
-                    <Text style={styles.ingredientsText} key={index}>
-                        - {Object.keys(item)[0]} {item[Object.keys(item)[0]]}
-                    </Text>
-                )
+                if (index % 2)
+                    return (
+                        <Text style={styles.ingredientsText} key={index}>
+                            {Object.keys(item)[0]} {item[Object.keys(item)[0]]}
+                        </Text>
+                    )
+                else
+                    return (
+                        <Text style={styles.ingredientsTextBackground} key={index}>
+                            {Object.keys(item)[0]} {item[Object.keys(item)[0]]}
+                        </Text>
+                    )
             })}
         </View>
     )
@@ -59,7 +67,14 @@ const styles = StyleSheet.create({
         fontSize: 20
     },
     ingredientsText: {
-        fontSize: 13
+        fontSize: 13,
+        padding: PADDING / 2
+    },
+    ingredientsTextBackground: {
+        fontSize: 13,
+        padding: PADDING / 2,
+        borderRadius: BORDER_RADIUS / 4,
+        backgroundColor: COLOR_BACKGROUND + COLOR_OPACITY_VALUE_50,
     }
 })
 

@@ -33,7 +33,7 @@ Master branch Goals - deploy alpha:
 TODOs:
 -add on password bottom label it should be 6 letters +
 -translate dummydata:
-    -current id 17833
+    -current id 17227
 -setup own website on GitHub:
     -link data protection
     -make sign up to test app
@@ -111,4 +111,4 @@ Cocktail App
 	•	Sterne Bewertung für Benutzer
 
 	•	App Name Idee:
-	⁃	Cocktaillicious
+	⁃	Cocktaillicious - C0ckta1llicous
