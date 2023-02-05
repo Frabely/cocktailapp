@@ -49,8 +49,6 @@ const sortFavorites = (cocktailOne: Cocktail, cocktailTwo: Cocktail) => {
 
 export const filterSort = (prevDataSet: Cocktail[], state: any) => {
     let newArray: Cocktail[] = []
-    console.log(state.sortFilter[0])
-    console.log(SORT_LIST.ENG[0])
     if (state.sortFilter[0] === SORT_LIST.ENG[0]) {
         newArray = prevDataSet.slice().sort(sortAZ)
     }

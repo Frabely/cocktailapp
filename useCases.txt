@@ -7,6 +7,9 @@ Bugs:
 
 Master branch Goals - deploy alpha:
 -set email language (https://firebase.google.com/docs/auth/web/manage-users?hl=de&authuser=0)
+    -setup domain
+    -change domain for all emails
+    -clarify name (CocktailApp-Team)
 (started)-rating:
     (x)-change favorite to heart
     (x)-number next to heart:
@@ -31,9 +34,12 @@ Master branch Goals - deploy alpha:
 -fetch data once -> exceeded read limit -> way to early
 
 TODOs:
+-rework data -> start from zero (10-20 receipts) -> structure like expected
+-translation in .json accessed with key = language
+    -refactor how language is gathered
 -add on password bottom label it should be 6 letters +
 -translate dummydata:
-    -current id 17227
+    -current id 11010
 -setup own website on GitHub:
     -link data protection
     -make sign up to test app
@@ -53,7 +59,7 @@ TODOs:
             -delete account
 favorites:
     -share cocktails
-    -create cocktails
+    -create cocktails/submit cocktail receipts to be added to the card
 -user profile:
     -pages:
         -settings:
