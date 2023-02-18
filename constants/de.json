@@ -1,0 +1,23 @@
+{
+  "drinks": {
+    "AGilligansIsland": {
+      "name": "A Gilligan's Island",
+      "glass": "Collinsglas",
+      "instruction": "Alle Zutaten in ein Shaker füllen, schütteln und servieren"
+    }
+  },
+  "ingredients": {
+    "vodka": {
+      "name": "Wodka"
+    },
+    "peachLiqueur": {
+      "name": "Pfirsichlikör"
+    },
+    "orangeJuice": {
+      "name": "Orangensaft"
+    },
+    "cranberryJuice": {
+      "name": "Cranberrysaft"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "drinks": {
+    "AGilligansIsland": {
+      "name": "A Gilligan's Island",
+      "glass": "Collins glass",
+      "instruction": "Put all ingredients in a blender, shake and serve"
+    }
+  },
+  "ingredients": {
+    "vodka": {
+      "name": "Vodka"
+    },
+    "peachLiqueur": {
+      "name": "Peach liqueur"
+    },
+    "orangeJuice": {
+      "name": "Orange juice"
+    },
+    "cranberryJuice": {
+      "name": "Cranberry juice"
+    }
+  }
+}

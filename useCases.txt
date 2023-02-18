@@ -66,7 +66,14 @@ favorites:
             -font size?
             -color themes?
 -what font and default size used -> make font sizes const's
--abo
+
+monetization:
+-abo für:
+    -filter
+    -limitierte anzahl cocktails
+    -nur zufällig auswählbar
+-werbung:
+    -edeka, rewe, ..
 
 Nice to have features:
 -highlight card full screen:
