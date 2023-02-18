@@ -243,6 +243,7 @@ export default function ProfileDetails({navigation}: any) {
                         label={EMAIL_LABEL[`${language}`]}
                         value={(state?.user?.email) ? state?.user?.email : ''}/>
                     <FilterButton
+                        isIcon={false}
                         title={CHANGE_USERNAME_LABEL[`${language}`]}
                         titleENG={CHANGE_USERNAME_LABEL.ENG}
                         colorActive={COLOR_HEADER}
@@ -269,6 +270,7 @@ export default function ProfileDetails({navigation}: any) {
                         ) : null}
                     </View>
                     <FilterButton
+                        isIcon={false}
                         title={CHANGE_PASSWORD_LABEL[`${language}`]}
                         titleENG={CHANGE_PASSWORD_LABEL.ENG}
                         colorActive={COLOR_HEADER}

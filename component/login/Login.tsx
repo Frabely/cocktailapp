@@ -182,6 +182,7 @@ export default function Login({}: LoginProps) {
             </View>
             <View style={{marginVertical: MARGIN / 2}}>
                 <FilterButton
+                    isIcon={false}
                     padding={PADDING}
                     title={CREATE_ACCOUNT_LABEL[`${language}`]}
                     titleENG={CREATE_ACCOUNT_LABEL.ENG}
