@@ -11,10 +11,11 @@ import {
     updateDoc,
     getDoc,
     DocumentSnapshot,
-    DocumentData
+    DocumentData,
+    DocumentReference
 } from "firebase/firestore";
 import {DRINKS_DB, USER_USERNAME_LOWER_DB, USERS_DB} from "../constants/const_vars";
-import {Cocktail, RatedCocktail} from "../constants/types";
+import {Cocktail, Ingredient, RatedCocktail} from "../constants/types";
 
 //RELEASE DB KEYS
 // const firebaseConfig = {
@@ -28,25 +29,25 @@ import {Cocktail, RatedCocktail} from "../constants/types";
 // };
 
 // release DB KEYS
-const firebaseConfig = {
-    apiKey: "AIzaSyBhRWfGBxpeqp4G-Zy4grwmoXUal1ZwoM0",
-    authDomain: "cocktailapp-7c353.firebaseapp.com",
-    projectId: "cocktailapp-7c353",
-    storageBucket: "cocktailapp-7c353.appspot.com",
-    messagingSenderId: "715123707440",
-    appId: "1:715123707440:web:8490e408c197cc08a567f5",
-    measurementId: "G-HTJKSPDYH7"
-};
+// const firebaseConfig = {
+//     apiKey: "AIzaSyBhRWfGBxpeqp4G-Zy4grwmoXUal1ZwoM0",
+//     authDomain: "cocktailapp-7c353.firebaseapp.com",
+//     projectId: "cocktailapp-7c353",
+//     storageBucket: "cocktailapp-7c353.appspot.com",
+//     messagingSenderId: "715123707440",
+//     appId: "1:715123707440:web:8490e408c197cc08a567f5",
+//     measurementId: "G-HTJKSPDYH7"
+// };
 
 //dev DB KEYS
-// const firebaseConfig = {
-//     apiKey: "AIzaSyDhb6XbFW96Ev915Z7T4rfhVD3JUMuh04g",
-//     authDomain: "cocktailapp-dev.firebaseapp.com",
-//     projectId: "cocktailapp-dev",
-//     storageBucket: "cocktailapp-dev.appspot.com",
-//     messagingSenderId: "616842015944",
-//     appId: "1:616842015944:web:b45fefcab2c925a0f961fd"
-// };
+const firebaseConfig = {
+    apiKey: "AIzaSyDhb6XbFW96Ev915Z7T4rfhVD3JUMuh04g",
+    authDomain: "cocktailapp-dev.firebaseapp.com",
+    projectId: "cocktailapp-dev",
+    storageBucket: "cocktailapp-dev.appspot.com",
+    messagingSenderId: "616842015944",
+    appId: "1:616842015944:web:b45fefcab2c925a0f961fd"
+};
 
 export type CreationData = {
     userID: string,
@@ -127,6 +128,25 @@ export const fetchFullDataSetAsArray: () => Promise<Cocktail[] | undefined> = as
     })
 }
 
+export const fetchNewDataSetAsArray: () => Promise<object[] | undefined> = async () => {
+    const drinksRef = collection(db, `ownDrinks`);
+    let returnArray: object[] = []
+    return await getDocs(drinksRef).then((result) => {
+        if (!result.empty) {
+            return result.docs.map((item) => {
+                return setNewCocktailFromDoc(item).then((cocktailReturn: object) => {
+                    returnArray.push(cocktailReturn)
+                    console.log(returnArray)
+                    return returnArray
+                })
+            })
+        }
+    }).catch(error => {
+        console.log(error.message)
+        return undefined
+    })
+}
+
 export const updateRatingLists: (ratedCocktailList: RatedCocktail[], userID: string) => void
     = (ratedCocktailList: RatedCocktail[], userID: string) => {
     ratedCocktailList.map(async (ratedCocktail: RatedCocktail) => {
@@ -145,8 +165,7 @@ export const updateRatingLists: (ratedCocktailList: RatedCocktail[], userID: str
             updateList.push(userID)
             await updateDoc(drinkRef, {ratingUserIDList: updateList}).then(() => {
                 return
-            }).
-            catch(error => {
+            }).catch(error => {
                 console.log(error.message)
             })
         }
@@ -209,4 +228,42 @@ const setCocktailFromDoc: (docResult: DocumentSnapshot) => Cocktail = (docResult
         "ratingUserIDList": docResult.get("ratingUserIDList")
     }
     return cocktail
+}
+
+const setNewCocktailFromDoc: (docResult: DocumentSnapshot) => Promise<object> = async (docResult: DocumentSnapshot): Promise<object> => {
+    let categoryResultPromise: DocumentSnapshot = await readReference(docResult.get("category"))
+    let category: string = ""
+    category = categoryResultPromise.get("name")
+
+    let ingredients: DocumentSnapshot[] = await readReferenceList(docResult.get("ingredientsLiquid"))
+    let ingredientsList: object[] = []
+        ingredients.map((ingredient: DocumentSnapshot) => {
+            let ingredientItem: Ingredient = {
+                idIngredient: ingredient.id,
+                alcoholVolume: ingredient.get("alcoholVolume")
+            }
+            ingredientsList.push(ingredientItem)
+        })
+
+    // TODO add type
+    let cocktail: object = {
+        "idDrink": docResult.id,
+        "alcoholic": docResult.get("alcoholic"),
+        "category": category,
+        "ingredientsList": ingredientsList,
+        "liquidMeasuresML": docResult.get("liquidMeasuresML"),
+        "ingredientsOptionalList": docResult.get("ingredientsOptional"),
+        "dateModified": docResult.get("dateModified"),
+        "ratingUserIDList": docResult.get("ratingUserIDList")
+    }
+    return cocktail
+}
+
+const readReference= async (reference: DocumentReference) => {
+    return await getDoc(reference)
+}
+const readReferenceList = async (referenceList: DocumentReference[]) => {
+    const reads: Promise<DocumentSnapshot>[] = referenceList.map((reference: DocumentReference) => getDoc(reference))
+    const result: DocumentSnapshot[] = await Promise.all(reads)
+    return result.map((doc: DocumentSnapshot) => doc)
 }

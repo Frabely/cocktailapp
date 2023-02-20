@@ -40,6 +40,11 @@ export type UserIDCocktailIDType = {
     cocktailID: string,
 }
 
+export type Ingredient = {
+    "idIngredient": string | null,
+    "alcoholVolume": number | null
+}
+
 export type Cocktail = {
     "idDrink": string | null,
     "strDrink": string | null,
