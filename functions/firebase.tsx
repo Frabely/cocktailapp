@@ -136,7 +136,6 @@ export const fetchNewDataSetAsArray: () => Promise<object[] | undefined> = async
             return result.docs.map((item) => {
                 return setNewCocktailFromDoc(item).then((cocktailReturn: object) => {
                     returnArray.push(cocktailReturn)
-                    console.log(returnArray)
                     return returnArray
                 })
             })
@@ -240,6 +239,7 @@ const setNewCocktailFromDoc: (docResult: DocumentSnapshot) => Promise<object> = 
         ingredients.map((ingredient: DocumentSnapshot) => {
             let ingredientItem: Ingredient = {
                 idIngredient: ingredient.id,
+                name: null,
                 alcoholVolume: ingredient.get("alcoholVolume")
             }
             ingredientsList.push(ingredientItem)
@@ -248,6 +248,9 @@ const setNewCocktailFromDoc: (docResult: DocumentSnapshot) => Promise<object> = 
     // TODO add type
     let cocktail: object = {
         "idDrink": docResult.id,
+        "name": null,
+        "glass": null,
+        "instruction": null,
         "alcoholic": docResult.get("alcoholic"),
         "category": category,
         "ingredientsList": ingredientsList,
