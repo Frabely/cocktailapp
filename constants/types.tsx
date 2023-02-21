@@ -36,6 +36,14 @@ export type IconTitleObject = {
     titleENG: string
 }
 
+export type User = {
+    username: string | null,
+    email: string | null,
+    userID: string | null,
+    languageSetting: string | null,
+    favorites: Cocktail[] | null
+}
+
 export type UserIDCocktailIDType = {
     [index: string]: string,
     userID: string

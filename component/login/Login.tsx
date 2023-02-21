@@ -17,7 +17,7 @@ import {EMAIL_MISSING, EMAIL_NOT_VERIFIED, PASSWORD_MISSING} from "../../constan
 import {getAuth, signInWithEmailAndPassword, UserCredential} from "firebase/auth";
 import {changeModalMessage} from "../../reducers/general/modalMessageReducer";
 import {invertIsModalState} from "../../reducers/general/booleans/isModalReducer";
-import {activeUser, User} from "../../reducers/user/userReducer";
+import {activeUser} from "../../reducers/user/userReducer";
 import {
     app,
     fetchFullDataSetAsArray,
@@ -38,7 +38,7 @@ import {createAccount} from "../../reducers/login/loginStateReducer";
 import ForgotPasswordButton from "./ForgotPasswordButton";
 import {invertIsCreatingAccount} from "../../reducers/login/isCreatingAccountReducer";
 import {fetchFavoriteDataSetAsArray} from "../../functions/filterFunctions";
-import {Cocktail, RatedCocktail} from "../../constants/types";
+import {Cocktail, RatedCocktail, User} from "../../constants/types";
 import {changeRatedCocktailArray} from "../../reducers/cocktail/cocktailRatingReducer";
 import {DocumentData} from "firebase/firestore";
 import {changeDataSet} from "../../reducers/general/dataSetReducer";

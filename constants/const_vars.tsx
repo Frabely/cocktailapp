@@ -1,5 +1,4 @@
-import {User} from "../reducers/user/userReducer";
-import {Cocktail} from "./types";
+import {Cocktail, User} from "./types";
 
 export const ALL = 'All'
 export const DEFAULT_SORT = 'AlphabeticalAZ'
