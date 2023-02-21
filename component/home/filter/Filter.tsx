@@ -26,11 +26,11 @@ export default function Filter({onPress, lengthDataSet}: FilterProps) {
     const dispatch = useAppDispatch()
     const language: string = state.language
     const alcFilterOptions: readonly string[] = ALCOHOLIC_LIST[`${language}`]
-    const alcFilterOptionsENG: readonly string[] = ALCOHOLIC_LIST.ENG
+    const alcFilterOptionsENG: readonly string[] = ALCOHOLIC_LIST.en
     const categoryFilterOptions: readonly string[] = CATEGORY_LIST[`${language}`]
-    const categoryFilterOptionsENG: readonly string[] = CATEGORY_LIST.ENG
+    const categoryFilterOptionsENG: readonly string[] = CATEGORY_LIST.en
     const sortFilterOptions: readonly string[] = SORT_LIST[`${language}`]
-    const sortFilterOptionsENG: readonly string[] = SORT_LIST.ENG
+    const sortFilterOptionsENG: readonly string[] = SORT_LIST.en
 
     const onHitsClickHandler = () => {
         dispatch(setActiveFilter(''))

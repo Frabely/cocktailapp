@@ -212,7 +212,7 @@ export default function CreateAccount({}: CreateAccountProps) {
                     isIcon={false}
                     padding={PADDING}
                     title={CREATE_ACCOUNT_LABEL[`${language}`]}
-                    titleENG={CREATE_ACCOUNT_LABEL.ENG}
+                    titleENG={CREATE_ACCOUNT_LABEL.en}
                     colorActive={COLOR_HEADER}
                     colorInactive={COLOR_BACKGROUND}
                     onClick={onCreateAccountButtonClickHandler}

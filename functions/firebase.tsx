@@ -15,7 +15,7 @@ import {
     DocumentReference
 } from "firebase/firestore";
 import {DRINKS_DB, USER_USERNAME_LOWER_DB, USERS_DB} from "../constants/const_vars";
-import {Cocktail, Ingredient, RatedCocktail} from "../constants/types";
+import {Cocktail, Ingredient, NewCocktail, RatedCocktail} from "../constants/types";
 
 //RELEASE DB KEYS
 // const firebaseConfig = {
@@ -235,7 +235,7 @@ const setNewCocktailFromDoc: (docResult: DocumentSnapshot) => Promise<object> = 
     category = categoryResultPromise.get("name")
 
     let ingredients: DocumentSnapshot[] = await readReferenceList(docResult.get("ingredientsLiquid"))
-    let ingredientsList: object[] = []
+    let ingredientsList: Ingredient[] = []
         ingredients.map((ingredient: DocumentSnapshot) => {
             let ingredientItem: Ingredient = {
                 idIngredient: ingredient.id,
@@ -246,7 +246,7 @@ const setNewCocktailFromDoc: (docResult: DocumentSnapshot) => Promise<object> = 
         })
 
     // TODO add type
-    let cocktail: object = {
+    let cocktail: NewCocktail = {
         "idDrink": docResult.id,
         "name": null,
         "glass": null,

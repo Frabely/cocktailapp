@@ -10,7 +10,7 @@ import {
     LOGIN_LABEL,
     PASSWORD_LABEL
 } from "../../constants/labels";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import StyledButton from "../layout/StyledButton";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../reducers/general/booleans/isLoadingReducer";
 import {EMAIL_MISSING, EMAIL_NOT_VERIFIED, PASSWORD_MISSING} from "../../constants/error_codes";
@@ -18,7 +18,13 @@ import {getAuth, signInWithEmailAndPassword, UserCredential} from "firebase/auth
 import {changeModalMessage} from "../../reducers/general/modalMessageReducer";
 import {invertIsModalState} from "../../reducers/general/booleans/isModalReducer";
 import {activeUser, User} from "../../reducers/user/userReducer";
-import {app, fetchFullDataSetAsArray, getFavoritesList, getUser} from "../../functions/firebase";
+import {
+    app,
+    fetchFullDataSetAsArray,
+    fetchNewDataSetAsArray,
+    getFavoritesList,
+    getUser
+} from "../../functions/firebase";
 import {changeLanguage} from "../../reducers/user/languageReducer";
 import {
     INVALID_EMAIL,
@@ -47,6 +53,10 @@ export default function Login({}: LoginProps) {
     const language: string = state.language
 
     const auth = getAuth(app)
+
+    useEffect(()=>{
+        fetchNewDataSetAsArray().then()
+    }, [])
 
     const onLoginHandler = async () => {
         dispatch(setIsLoadingTrue())
@@ -185,7 +195,7 @@ export default function Login({}: LoginProps) {
                     isIcon={false}
                     padding={PADDING}
                     title={CREATE_ACCOUNT_LABEL[`${language}`]}
-                    titleENG={CREATE_ACCOUNT_LABEL.ENG}
+                    titleENG={CREATE_ACCOUNT_LABEL.en}
                     colorActive={COLOR_HEADER}
                     colorInactive={COLOR_BACKGROUND}
                     onClick={onCreateAccountButtonClickHandler}

@@ -3,16 +3,16 @@ import {CREATE_ACCOUNT_LABEL, FORGOT_PASSWORD_LABEL, LOGIN_LABEL} from "../../co
 
 const loginStateSlice = createSlice({
     name: 'loginState',
-    initialState: LOGIN_LABEL.ENG,
+    initialState: LOGIN_LABEL.en,
     reducers: {
         login: () => {
-            return LOGIN_LABEL.ENG
+            return LOGIN_LABEL.en
         },
         createAccount: () => {
-            return CREATE_ACCOUNT_LABEL.ENG
+            return CREATE_ACCOUNT_LABEL.en
         },
         forgotPassword: () => {
-            return FORGOT_PASSWORD_LABEL.ENG
+            return FORGOT_PASSWORD_LABEL.en
         }
     },
 })

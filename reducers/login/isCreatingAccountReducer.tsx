@@ -8,9 +8,9 @@ const isCreatingAccountSlice = createSlice({
     initialState: initialState,
     reducers: {
         invertIsCreatingAccount: (state) => {
-            if (state.includes(CREATE_ACCOUNT_LABEL.ENG))
+            if (state.includes(CREATE_ACCOUNT_LABEL.en))
                 return ['']
-            return [CREATE_ACCOUNT_LABEL.ENG]
+            return [CREATE_ACCOUNT_LABEL.en]
         }
     },
 })

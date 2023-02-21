@@ -1,9 +1,11 @@
 import {IconProp} from "@fortawesome/fontawesome-svg-core";
+import firebase from "firebase/compat";
+import Timestamp = firebase.firestore.Timestamp;
 
 export type LabelType = {
     [index: string]: string
-    ENG: string,
-    GER: string
+    en: string,
+    de: string
 }
 
 export type ErrorCodesType = {
@@ -14,8 +16,8 @@ export type ErrorCodesType = {
 
 export type LabelListType = {
     [index: string]: readonly string[]
-    ENG: string[],
-    GER: string[]
+    en: string[],
+    de: string[]
 }
 
 export type CocktailListType = {
@@ -99,4 +101,18 @@ export type Cocktail = {
     "strCreativeCommonsConfirmed": string | null,
     "dateModified": string | null,
     "ratingUserIDList": string[] | null
+}
+
+export type NewCocktail = {
+    idDrink: string | null,
+    name: string | null,
+    glass: string | null,
+    instruction: string | null,
+    alcoholic: boolean | null,
+    category: string | null,
+    ingredientsList: Ingredient[] | null,
+    liquidMeasuresML: number[] | null,
+    ingredientsOptionalList: string[] | null,
+    dateModified: Timestamp | null,
+    ratingUserIDList: string[] | null
 }

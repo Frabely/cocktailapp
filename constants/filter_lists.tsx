@@ -3,15 +3,15 @@ import {IconTitleObject, LabelListType} from "./types";
 import {faSortAlphaUp, faSortAlphaDown, faHeart} from "@fortawesome/free-solid-svg-icons";
 
 export const CATEGORY_LIST: LabelListType = {
-    ENG: [ALL_LABEL.ENG, 'Shot', 'Beer', 'Shake', 'Cocktail', 'Ordinary Drink', 'Homemade Liqueur',
+    en: [ALL_LABEL.en, 'Shot', 'Beer', 'Shake', 'Cocktail', 'Ordinary Drink', 'Homemade Liqueur',
         'Punch / Party Drink', 'Coffee / Tea', 'Cocoa', 'Soft Drink', 'Other / Unknown'],
-    GER: [ALL_LABEL.GER, 'Shot', 'Bier', 'Shake', 'Cocktail', 'Gewöhnliches Getränk', 'Hausgemachter Likör',
+    de: [ALL_LABEL.de, 'Shot', 'Bier', 'Shake', 'Cocktail', 'Gewöhnliches Getränk', 'Hausgemachter Likör',
         'Punsch / Partygetränk', 'Kaffee / Tee', 'Kakao', 'Erfrischungs-Getränk', 'Andere / Unbekannt']
 }
 
 export const SORT_LIST: LabelListType = {
-    ENG: ['AlphabeticalAZ', 'AlphabeticalZA', 'Favorites'],
-    GER: ['AlphabetischAZ', 'AlphabetischZA', 'Favoriten']
+    en: ['AlphabeticalAZ', 'AlphabeticalZA', 'Favorites'],
+    de: ['AlphabetischAZ', 'AlphabetischZA', 'Favoriten']
 }
 
 export const ICON_NAME_LIST: IconTitleObject[] = [
@@ -21,11 +21,11 @@ export const ICON_NAME_LIST: IconTitleObject[] = [
 ]
 
 export const ALCOHOLIC_LIST: LabelListType = {
-    ENG: [ALL_LABEL.ENG, 'Alcoholic', 'Non alcoholic'],
-    GER: [ALL_LABEL.GER, 'Alkoholisch', 'Nicht Alkoholisch']
+    en: [ALL_LABEL.en, 'Alcoholic', 'Non alcoholic'],
+    de: [ALL_LABEL.de, 'Alkoholisch', 'Nicht Alkoholisch']
 }
 
-export const GLASS_TYPE_LIST: string[] = [ALL_LABEL.ENG, 'Old-fashioned glass', 'Beer Glass', 'Beer mug', 'White wine glass',
+export const GLASS_TYPE_LIST: string[] = [ALL_LABEL.en, 'Old-fashioned glass', 'Beer Glass', 'Beer mug', 'White wine glass',
     'Shot glass', 'Collins glass', 'Collins Glass', 'Highball glass', 'Cocktail glass', 'Irish coffee cup', 'Jar',
     'Champagne flute', 'Martini Glass', 'Margarita/Coupette glass', 'Coffee mug', 'Pousse cafe glass', 'Wine Glass',
     'Punch Bowl', 'Punch bowl', 'Beer pilsner', 'Highball Glass', 'Cocktail Glass', 'Coffee Mug']

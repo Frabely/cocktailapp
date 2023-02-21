@@ -25,9 +25,9 @@ export default function LoginScreen() {
                         <ScrollView style={{ flexGrow:0 }}>
                             <CardLayout
                                 width={vw_reactive(0.7, state.dimensions.width)}>
-                                {state.loginState === LOGIN_LABEL.ENG ? <Login/> : null}
-                                {state.loginState === CREATE_ACCOUNT_LABEL.ENG ? <CreateAccount/> : null}
-                                {state.loginState === FORGOT_PASSWORD_LABEL.ENG ? <ForgotPassword/> : null}
+                                {state.loginState === LOGIN_LABEL.en ? <Login/> : null}
+                                {state.loginState === CREATE_ACCOUNT_LABEL.en ? <CreateAccount/> : null}
+                                {state.loginState === FORGOT_PASSWORD_LABEL.en ? <ForgotPassword/> : null}
                             </CardLayout>
                         </ScrollView>
                     </View>

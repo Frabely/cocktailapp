@@ -1,58 +1,58 @@
 import { LabelType } from "./types"
 
-export const USERNAME_LABEL: LabelType = {ENG: 'Username', GER: 'Nutzername',}
-export const EMAIL_LABEL: LabelType = {ENG: 'Email', GER: 'Email',}
-export const OLD_PASSWORD_LABEL: LabelType = {ENG: 'Old Password', GER: 'Altes Passwort'}
-export const NEW_PASSWORD_LABEL: LabelType = {ENG: 'New Password', GER: 'Neues Passwort'}
-export const PASSWORD_LABEL: LabelType = {ENG: 'Password', GER: 'Passwort'}
-export const REPEAT_PASSWORD_LABEL: LabelType = {ENG: 'Repeat Password', GER: 'Passwort wiederholen'}
-export const FINISH_ACCOUNT_CREATION_LABEL: LabelType = {ENG: 'Finish Account Creation', GER: 'Account Erstellung abschließen'}
-export const LOGIN_LABEL: LabelType  = {ENG: 'Login', GER: 'Einloggen'}
-export const SEND_RESET_PASSWORD_EMAIL_LABEL: LabelType  = {ENG: 'Send reset password email', GER: 'Verifizierungs-Email senden'}
-export const RESET_PASSWORD_EMAIL_SENT_LABEL: LabelType  = {ENG: 'Reset password email sent', GER: 'Email zum Zurücksetzen des Passwortes gesendet'}
-export const FORGOT_PASSWORD_LABEL: LabelType = {ENG: 'Forgot Password?', GER: 'Passwort vergessen?'}
-export const CREATE_ACCOUNT_LABEL: LabelType = {ENG: 'Create Account', GER: 'Account erstellen'}
-export const CHANGE_PASSWORD_LABEL: LabelType = {ENG: 'Change Password', GER: 'Passwort ändern'}
-export const CHANGE_USERNAME_LABEL: LabelType = {ENG: 'Change Username', GER: 'Nutzername ändern'}
-export const SEARCH_INGREDIENTS_LABEL: LabelType = {ENG: 'Search Ingredient', GER: 'Zutat suchen'}
-export const ALL_LABEL: LabelType = {ENG: 'All', GER: 'Alle'}
-export const ALCOHOLIC_LABEL: LabelType = {ENG: 'Alcoholic', GER: 'Alkoholisch'}
-export const CATEGORY_LABEL: LabelType = {ENG: 'Category', GER: 'Kategorie'}
-export const INGREDIENTS_LABEL: LabelType = {ENG: 'Ingredients', GER: 'Zutaten'}
-export const CLEAR_ALL_FILTERS_LABEL: LabelType = {ENG: 'Clear all filters', GER: 'Filter zurücksetzen'}
-export const HITS_LABEL: LabelType = {ENG: 'Hits', GER: 'Treffer'}
-export const ENTER_SEARCH_TERM_LABEL: LabelType = {ENG: 'Enter search term', GER: 'Suchbegriff eintragen'}
-export const RESET_FILTER_LABEL: LabelType = {ENG: 'Reset Filters', GER: 'Filter zurücksetzen'}
-export const NO_HITS_LABEL: LabelType = {ENG: 'No Hits', GER: 'Keine Treffer'}
-export const IN_DEVELOPMENT_LABEL: LabelType = {ENG: 'in development', GER: 'In Entwicklung'}
-export const LANGUAGE_LABEL: LabelType = {ENG: 'Language', GER: 'Sprache'}
-export const ENGLISH_LABEL: LabelType = {ENG: 'English', GER: 'Englisch'}
-export const GERMAN_LABEL: LabelType = {ENG: 'German', GER: 'Deutsch'}
-export const SAVE_SETTINGS_LABEL: LabelType = {ENG: 'Save Settings', GER: 'Einstellungen speichern'}
-export const CLOSE: LabelType = {ENG: 'Close', GER: 'Schließen'}
-export const FAVORITE_DELETED_LABEL: LabelType = {ENG: 'Favorite removed', GER: 'Favorit entfernt'}
-export const SORT_LABEL: LabelType = {ENG: 'Sort', GER: 'Sortieren'}
-export const PREPARATION_LABEL: LabelType = {ENG: 'Preparation', GER: 'Zubereitung'}
-export const GLASS_LABEL: LabelType = {ENG: 'Glass', GER: 'Glas'}
+export const USERNAME_LABEL: LabelType = {en: 'Username', de: 'Nutzername',}
+export const EMAIL_LABEL: LabelType = {en: 'Email', de: 'Email',}
+export const OLD_PASSWORD_LABEL: LabelType = {en: 'Old Password', de: 'Altes Passwort'}
+export const NEW_PASSWORD_LABEL: LabelType = {en: 'New Password', de: 'Neues Passwort'}
+export const PASSWORD_LABEL: LabelType = {en: 'Password', de: 'Passwort'}
+export const REPEAT_PASSWORD_LABEL: LabelType = {en: 'Repeat Password', de: 'Passwort wiederholen'}
+export const FINISH_ACCOUNT_CREATION_LABEL: LabelType = {en: 'Finish Account Creation', de: 'Account Erstellung abschließen'}
+export const LOGIN_LABEL: LabelType  = {en: 'Login', de: 'Einloggen'}
+export const SEND_RESET_PASSWORD_EMAIL_LABEL: LabelType  = {en: 'Send reset password email', de: 'Verifizierungs-Email senden'}
+export const RESET_PASSWORD_EMAIL_SENT_LABEL: LabelType  = {en: 'Reset password email sent', de: 'Email zum Zurücksetzen des Passwortes gesendet'}
+export const FORGOT_PASSWORD_LABEL: LabelType = {en: 'Forgot Password?', de: 'Passwort vergessen?'}
+export const CREATE_ACCOUNT_LABEL: LabelType = {en: 'Create Account', de: 'Account erstellen'}
+export const CHANGE_PASSWORD_LABEL: LabelType = {en: 'Change Password', de: 'Passwort ändern'}
+export const CHANGE_USERNAME_LABEL: LabelType = {en: 'Change Username', de: 'Nutzername ändern'}
+export const SEARCH_INGREDIENTS_LABEL: LabelType = {en: 'Search Ingredient', de: 'Zutat suchen'}
+export const ALL_LABEL: LabelType = {en: 'All', de: 'Alle'}
+export const ALCOHOLIC_LABEL: LabelType = {en: 'Alcoholic', de: 'Alkoholisch'}
+export const CATEGORY_LABEL: LabelType = {en: 'Category', de: 'Kategorie'}
+export const INGREDIENTS_LABEL: LabelType = {en: 'Ingredients', de: 'Zutaten'}
+export const CLEAR_ALL_FILTERS_LABEL: LabelType = {en: 'Clear all filters', de: 'Filter zurücksetzen'}
+export const HITS_LABEL: LabelType = {en: 'Hits', de: 'Treffer'}
+export const ENTER_SEARCH_TERM_LABEL: LabelType = {en: 'Enter search term', de: 'Suchbegriff eintragen'}
+export const RESET_FILTER_LABEL: LabelType = {en: 'Reset Filters', de: 'Filter zurücksetzen'}
+export const NO_HITS_LABEL: LabelType = {en: 'No Hits', de: 'Keine Treffer'}
+export const IN_DEVELOPMENT_LABEL: LabelType = {en: 'in development', de: 'In Entwicklung'}
+export const LANGUAGE_LABEL: LabelType = {en: 'Language', de: 'Sprache'}
+export const ENGLISH_LABEL: LabelType = {en: 'English', de: 'Englisch'}
+export const GERMAN_LABEL: LabelType = {en: 'German', de: 'Deutsch'}
+export const SAVE_SETTINGS_LABEL: LabelType = {en: 'Save Settings', de: 'Einstellungen speichern'}
+export const CLOSE: LabelType = {en: 'Close', de: 'Schließen'}
+export const FAVORITE_DELETED_LABEL: LabelType = {en: 'Favorite removed', de: 'Favorit entfernt'}
+export const SORT_LABEL: LabelType = {en: 'Sort', de: 'Sortieren'}
+export const PREPARATION_LABEL: LabelType = {en: 'Preparation', de: 'Zubereitung'}
+export const GLASS_LABEL: LabelType = {en: 'Glass', de: 'Glas'}
 export const ACCOUNT_CREATED_VERIFY_EMAIL: LabelType = {
-    ENG: 'Account created. We sent a verification email. Check your mailbox and click the link to verify.',
-    GER: 'Account wurde erstellt. Bestätigen Sie Ihre Emailadresse mit dem, an ihre Emailadresse gesendeten, Verifizierungslink.'
+    en: 'Account created. We sent a verification email. Check your mailbox and click the link to verify.',
+    de: 'Account wurde erstellt. Bestätigen Sie Ihre Emailadresse mit dem, an ihre Emailadresse gesendeten, Verifizierungslink.'
 }
 export const USERNAME_SUCCESSFUL_CHANGED: LabelType = {
-    ENG: 'Username successful changed.',
-    GER: 'Nutzername erfolgreich geändert.'
+    en: 'Username successful changed.',
+    de: 'Nutzername erfolgreich geändert.'
 }
 
 export const PASSWORD_SUCCESSFUL_CHANGED: LabelType = {
-    ENG: 'Password successful changed.',
-    GER: 'Passwort erfolgreich geändert.'
+    en: 'Password successful changed.',
+    de: 'Passwort erfolgreich geändert.'
 }
 
 //pages
-export const USER_PROFILE_LABEL: LabelType = {ENG: 'User Profile', GER: 'Nutzerprofil'}
-export const PROFILE_DETAILS_LABEL: LabelType = {ENG: 'Profile Details', GER: 'Accountdaten'}
-export const SETTINGS_LABEL: LabelType = {ENG: 'Settings', GER: 'Einstellungen'}
-export const FAVORITES_LABEL: LabelType = {ENG: 'Favorites', GER: 'Favoriten'}
-export const YOUR_FAVORITES: LabelType = {ENG: 'Your Favorites', GER: 'Deine Favoriten'}
-export const LOGOUT_LABEL: LabelType = {ENG: 'Logout', GER: 'Ausloggen'}
+export const USER_PROFILE_LABEL: LabelType = {en: 'User Profile', de: 'Nutzerprofil'}
+export const PROFILE_DETAILS_LABEL: LabelType = {en: 'Profile Details', de: 'Accountdaten'}
+export const SETTINGS_LABEL: LabelType = {en: 'Settings', de: 'Einstellungen'}
+export const FAVORITES_LABEL: LabelType = {en: 'Favorites', de: 'Favoriten'}
+export const YOUR_FAVORITES: LabelType = {en: 'Your Favorites', de: 'Deine Favoriten'}
+export const LOGOUT_LABEL: LabelType = {en: 'Logout', de: 'Ausloggen'}
 
