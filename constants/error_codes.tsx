@@ -11,5 +11,5 @@ export const PASSWORDS_NOT_MATCHING: ErrorCodesType = {code: 'passwords-not-matc
 export const OLD_AND_NEW_PASSWORDS_MATCHING: ErrorCodesType = {code: 'old-and-new-passwords-matching', message: {en: 'Old and new Passwords are matching', de: 'Altes und neues Passwort stimmen überein'}}
 export const EMAIL_NOT_VERIFIED: ErrorCodesType = {code: 'email-not-verified', message: {
     en: 'Email address not verified. Check your mailbox to verify the account',
-    de: 'Emailadresse nicht bestätigt. Schauen Sie in Ihr Postfach um den Account to aktivieren.'
+    de: 'Emailadresse nicht bestätigt. Schauen Sie in Ihr Postfach um den Account zu aktivieren.'
 }}
