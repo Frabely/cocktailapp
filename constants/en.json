@@ -64,6 +64,7 @@
     "FAVORITES_LABEL": "Favorites",
     "YOUR_FAVORITES": "Your Favorites",
     "LOGOUT_LABEL": "Logout",
+    "SORT_LIST": ["AlphabeticalAZ", "AlphabeticalZA", "Favorites"],
     "ERROR_CODES": {
       "USERNAME_MISSING": "Username missing",
       "USERNAME_ALREADY_USED": "Username already used",
