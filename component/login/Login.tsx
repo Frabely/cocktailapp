@@ -80,10 +80,10 @@ export default function Login({}: LoginProps) {
             else if (error.code === USER_NOT_FOUND.code)
                 errorArrayEmail.push(USER_NOT_FOUND.code)
             else if (error.code === TOO_MANY_REQUESTS.code) {
-                dispatch(changeModalMessage(TOO_MANY_REQUESTS.message[`${language}`]))
+                dispatch(changeModalMessage(language.labels.ERROR_CODES_FIREBASE.TOO_MANY_REQUESTS))
                 dispatch(invertIsModalState())
             } else if (error.code === NETWORK_REQUEST_FAILED.code) {
-                dispatch(changeModalMessage(NETWORK_REQUEST_FAILED.message[`${language}`]))
+                dispatch(changeModalMessage(language.labels.ERROR_CODES_FIREBASE.NETWORK_REQUEST_FAILED))
                 dispatch(invertIsModalState())
             } else if (error.code === INVALID_EMAIL.code)
                 errorArrayEmail.push(INVALID_EMAIL.code)
@@ -98,7 +98,7 @@ export default function Login({}: LoginProps) {
         if (user) {
             if (!user.user.emailVerified) {
                 errorArrayEmail.push(EMAIL_NOT_VERIFIED.code)
-                dispatch(changeModalMessage(EMAIL_NOT_VERIFIED.message[`${language}`]))
+                dispatch(changeModalMessage(language.labels.ERROR_CODES.EMAIL_NOT_VERIFIED))
                 dispatch(invertIsModalState())
                 auth.signOut().then(() => {
                     dispatch(setIsLoadingFalse())
@@ -139,7 +139,7 @@ export default function Login({}: LoginProps) {
                             dispatch(changeLanguage(en))
                     }
                 } else {
-                    dispatch(changeModalMessage(USER_NOT_FOUND.message[`${language}`]))
+                    dispatch(changeModalMessage(language.labels.ERROR_CODES_FIREBASE.USER_NOT_FOUND))
                     dispatch(invertIsModalState())
                 }
                 dispatch(setIsLoadingFalse())

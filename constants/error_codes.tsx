@@ -1,5 +1,7 @@
 import {ErrorCodesType} from "./types";
 
+//TODO rework how error codes are resolved - use them from json
+
 export const USERNAME_MISSING: ErrorCodesType = {code: 'username-missing', message: {en: 'Username missing', de: 'Nutzername fehlt'}}
 export const USERNAME_ALREADY_USED: ErrorCodesType = {code: 'username-already-used', message: {en: 'Username already used', de: 'Nutzername bereits vergeben'}}
 export const EMAIL_MISSING: ErrorCodesType = {code: 'email-missing', message: {en: 'Email missing', de: 'Email fehlt'}}

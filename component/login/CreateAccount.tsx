@@ -97,13 +97,13 @@ export default function CreateAccount({}: CreateAccountProps) {
             await updateProfile(user.user, {displayName: username}).then(async () => {
                 await sendEmailVerification(user.user).then(async () => {
                     if (!user.user.displayName) {
-                        dispatch(changeModalMessage(USERNAME_MISSING.message[`${language}`]))
+                        dispatch(changeModalMessage(language.labels.ERROR_CODES.USERNAME_MISSING))
                         dispatch(invertIsModalState())
                         dispatch(setIsLoadingFalse())
                         return
                     }
                     if (!user.user.email) {
-                        dispatch(changeModalMessage(EMAIL_MISSING.message[`${language}`]))
+                        dispatch(changeModalMessage(language.labels.ERROR_CODES.EMAIL_MISSING))
                         dispatch(invertIsModalState())
                         dispatch(setIsLoadingFalse())
                         return
@@ -144,10 +144,10 @@ export default function CreateAccount({}: CreateAccountProps) {
             else if (error.code === EMAIL_ALREADY_IN_USE.code)
                 errorArrayEmail.push(EMAIL_ALREADY_IN_USE.code)
             else if (error.code === TOO_MANY_REQUESTS.code) {
-                dispatch(changeModalMessage(TOO_MANY_REQUESTS.message[`${language}`]))
+                dispatch(changeModalMessage(language.labels.ERROR_CODES_FIREBASE.TOO_MANY_REQUESTS))
                 dispatch(invertIsModalState())
             } else if (error.code === NETWORK_REQUEST_FAILED.code) {
-                dispatch(changeModalMessage(NETWORK_REQUEST_FAILED.message[`${language}`]))
+                dispatch(changeModalMessage(language.labels.ERROR_CODES_FIREBASE.NETWORK_REQUEST_FAILED))
                 dispatch(invertIsModalState())
             } else {
                 dispatch(changeModalMessage(error.message))

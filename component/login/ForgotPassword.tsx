@@ -56,13 +56,13 @@ export default function ForgotPassword({}: ForgotPasswordProps) {
                 if (error.code === INVALID_EMAIL.code)
                     errorArrayEmail.push(INVALID_EMAIL.code)
                 else if (error.code === TOO_MANY_REQUESTS.code) {
-                    dispatch(changeModalMessage(TOO_MANY_REQUESTS.message[`${language}`]))
+                    dispatch(changeModalMessage(language.labels.ERROR_CODES_FIREBASE.TOO_MANY_REQUESTS))
                     dispatch(invertIsModalState())
                 } else if (error.code === NETWORK_REQUEST_FAILED.code) {
-                    dispatch(changeModalMessage(NETWORK_REQUEST_FAILED.message[`${language}`]))
+                    dispatch(changeModalMessage(language.labels.ERROR_CODES_FIREBASE.NETWORK_REQUEST_FAILED))
                     dispatch(invertIsModalState())
                 } else if (error.code === USER_NOT_FOUND.code) {
-                    dispatch(changeModalMessage(USER_NOT_FOUND.message[`${language}`]))
+                    dispatch(changeModalMessage(language.labels.ERROR_CODES_FIREBASE.USER_NOT_FOUND))
                     dispatch(invertIsModalState())
                 } else {
                     dispatch(changeModalMessage(error.message))

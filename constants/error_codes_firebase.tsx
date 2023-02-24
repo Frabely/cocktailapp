@@ -1,5 +1,7 @@
 import {ErrorCodesType} from "./types";
 
+//TODO rework how error codes are resolved - use them from json
+
 export const WRONG_PASSWORD: ErrorCodesType = {code: 'auth/wrong-password', message: {en: 'Wrong password', de: 'Falsches Passwort'}}
 export const USER_NOT_FOUND: ErrorCodesType = {code: 'auth/user-not-found', message: {en: 'User not found', de: 'Nutzer nicht gefunden'}}
 export const TOO_MANY_REQUESTS: ErrorCodesType = {code: 'auth/too-many-requests', message: {en: 'Too many server requests. Try again.', de: 'Zu viele Serveranfragen. Versuche es nochmal.'}}
