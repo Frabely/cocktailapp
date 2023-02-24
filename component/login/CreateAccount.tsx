@@ -9,7 +9,7 @@ import {
 } from "../../functions/getErrorFunctionsInputs";
 import {
     CREATE_ACCOUNT_LABEL,
-} from "../../constants/labels";
+} from "../../constants/const_vars";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
 import StyledButton from "../layout/StyledButton";
 import FilterButton from "../home/filter/FilterButton";
@@ -209,7 +209,7 @@ export default function CreateAccount({}: CreateAccountProps) {
                     padding={PADDING}
                     title={language.labels.CREATE_ACCOUNT_LABEL}
                     //TODO change dependency from labels in filter button
-                    titleENG={CREATE_ACCOUNT_LABEL.en}
+                    titleENG={CREATE_ACCOUNT_LABEL}
                     colorActive={COLOR_HEADER}
                     colorInactive={COLOR_BACKGROUND}
                     onClick={onCreateAccountButtonClickHandler}

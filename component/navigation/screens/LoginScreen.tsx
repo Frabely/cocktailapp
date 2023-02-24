@@ -6,7 +6,7 @@ import AppBackground from "../../layout/AppBackground";
 import {
     CREATE_ACCOUNT_LABEL, FORGOT_PASSWORD_LABEL,
     LOGIN_LABEL,
-} from "../../../constants/labels";
+} from "../../../constants/const_vars";
 import LoadingScreen from "../../layout/LoadingScreen";
 import Modal from "../../layout/Modal";
 import ForgotPassword from "../../login/ForgotPassword";
@@ -25,9 +25,9 @@ export default function LoginScreen() {
                         <ScrollView style={{ flexGrow:0 }}>
                             <CardLayout
                                 width={vw_reactive(0.7, state.dimensions.width)}>
-                                {state.loginState === LOGIN_LABEL.en ? <Login/> : null}
-                                {state.loginState === CREATE_ACCOUNT_LABEL.en ? <CreateAccount/> : null}
-                                {state.loginState === FORGOT_PASSWORD_LABEL.en ? <ForgotPassword/> : null}
+                                {state.loginState === LOGIN_LABEL ? <Login/> : null}
+                                {state.loginState === CREATE_ACCOUNT_LABEL ? <CreateAccount/> : null}
+                                {state.loginState === FORGOT_PASSWORD_LABEL ? <ForgotPassword/> : null}
                             </CardLayout>
                         </ScrollView>
                     </View>

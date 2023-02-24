@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {CREATE_ACCOUNT_LABEL} from "../../constants/labels";
+import {CREATE_ACCOUNT_LABEL} from "../../constants/const_vars";
 
 const initialState: string[] = ['']
 
@@ -8,9 +8,9 @@ const isCreatingAccountSlice = createSlice({
     initialState: initialState,
     reducers: {
         invertIsCreatingAccount: (state) => {
-            if (state.includes(CREATE_ACCOUNT_LABEL.en))
+            if (state.includes(CREATE_ACCOUNT_LABEL))
                 return ['']
-            return [CREATE_ACCOUNT_LABEL.en]
+            return [CREATE_ACCOUNT_LABEL]
         }
     },
 })

@@ -1,5 +1,7 @@
 import { LabelType } from "./types"
 
+//TODO delete file no use anymore
+
 export const USERNAME_LABEL: LabelType = {en: 'Username', de: 'Nutzername',}
 export const EMAIL_LABEL: LabelType = {en: 'Email', de: 'Email',}
 export const OLD_PASSWORD_LABEL: LabelType = {en: 'Old Password', de: 'Altes Passwort'}

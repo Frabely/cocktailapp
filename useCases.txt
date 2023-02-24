@@ -4,6 +4,7 @@ Bugs:
 -keep user signed in -> how to do that -> save data on phone or something until user explicit logs out
 -save rating right on click with minimal db usage
 -if landscape likes not updating -> probably current is not rendered again
+-fast changing filters result in "Maximum update depth exceeded." error -> constantly rendering
 
 Master branch Goals - deploy alpha:
 -set email language (https://firebase.google.com/docs/auth/web/manage-users?hl=de&authuser=0)

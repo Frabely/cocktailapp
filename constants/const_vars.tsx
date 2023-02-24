@@ -80,6 +80,17 @@ export const FORGOT_PASSWORD = 'forgotPassword'
 export const CREATE_ACCOUNT = 'createAccount'
 export const PROFILE = 'profile'
 
+//TODO rework to use page const above
+
+export const CREATE_ACCOUNT_LABEL = 'Create Account'
+export const CHANGE_USERNAME_LABEL = 'Change Username'
+export const CHANGE_PASSWORD_LABEL = 'Change Password'
+export const LOGIN_LABEL = 'Login'
+export const FORGOT_PASSWORD_LABEL = 'Forgot Password?'
+
+
+
+
 // profile pages
 export const PROFILE_DETAILS = 'profileDetails'
 export const SETTINGS = 'settings'

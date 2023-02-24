@@ -5,7 +5,7 @@ import {useAppDispatch, useAppSelector} from "../../../../constants/hooks";
 import {
     CHANGE_PASSWORD_LABEL,
     CHANGE_USERNAME_LABEL,
-} from "../../../../constants/labels";
+} from "../../../../constants/const_vars";
 import ProfileDetailsItem from "../../../user_profile/ProfileDetailsItem";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../../../constants/style_constants";
 import Header from "../../../layout/Header";
@@ -70,11 +70,11 @@ export default function ProfileDetails({navigation}: any) {
 
     const onChangeUsernamePressHandler = () => {
         setIsChangingPassword([''])
-        if (isChangingUsername.includes(CHANGE_USERNAME_LABEL.en)) {
+        if (isChangingUsername.includes(CHANGE_USERNAME_LABEL)) {
             setIsChangingUsername([''])
             return
         }
-        setIsChangingUsername([CHANGE_USERNAME_LABEL.en])
+        setIsChangingUsername([CHANGE_USERNAME_LABEL])
         setErrorStateUsername([''])
         setUsername('')
     }
@@ -139,11 +139,11 @@ export default function ProfileDetails({navigation}: any) {
         setNewPassword('')
         setRepeatPassword('')
         setIsChangingUsername([''])
-        if (isChangingPassword.includes(CHANGE_PASSWORD_LABEL.en)) {
+        if (isChangingPassword.includes(CHANGE_PASSWORD_LABEL)) {
             setIsChangingPassword([''])
             return
         }
-        setIsChangingPassword([CHANGE_PASSWORD_LABEL.en])
+        setIsChangingPassword([CHANGE_PASSWORD_LABEL])
     }
 
     const changePasswordOnClickHandler = () => {
@@ -239,7 +239,7 @@ export default function ProfileDetails({navigation}: any) {
                     <FilterButton
                         isIcon={false}
                         title={language.labels.CHANGE_USERNAME_LABEL}
-                        titleENG={CHANGE_USERNAME_LABEL.en}
+                        titleENG={CHANGE_USERNAME_LABEL}
                         colorActive={COLOR_HEADER}
                         colorInactive={COLOR_BACKGROUND}
                         onClick={onChangeUsernamePressHandler}
@@ -247,7 +247,7 @@ export default function ProfileDetails({navigation}: any) {
                         padding={PADDING}
                         margin={MARGIN / 2}/>
                     <View style={styles.inputCard}>
-                        {(isChangingUsername.includes(CHANGE_USERNAME_LABEL.en)) ? (
+                        {(isChangingUsername.includes(CHANGE_USERNAME_LABEL)) ? (
                             <>
                                 <TextInputWithErrorMessage
                                     errorState={(getUsernameError(errorStateUsername))}
@@ -266,7 +266,7 @@ export default function ProfileDetails({navigation}: any) {
                     <FilterButton
                         isIcon={false}
                         title={language.labels.CHANGE_PASSWORD_LABEL}
-                        titleENG={CHANGE_PASSWORD_LABEL.en}
+                        titleENG={CHANGE_PASSWORD_LABEL}
                         colorActive={COLOR_HEADER}
                         colorInactive={COLOR_BACKGROUND}
                         onClick={onChangePasswordPressHandler}
@@ -275,7 +275,7 @@ export default function ProfileDetails({navigation}: any) {
                         margin={MARGIN / 2}
                     />
                     <View style={styles.inputCard}>
-                        {(isChangingPassword.includes(CHANGE_PASSWORD_LABEL.en)) ? (
+                        {(isChangingPassword.includes(CHANGE_PASSWORD_LABEL)) ? (
                             <>
                                 <TextInputWithErrorMessage
                                     errorState={(getOldPasswordError(errorStateOldPassword))}

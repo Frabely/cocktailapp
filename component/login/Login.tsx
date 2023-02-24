@@ -4,7 +4,7 @@ import TextInputWithErrorMessage from "../layout/TextInputWithErrorMessage";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
 import {COLOR_BACKGROUND, COLOR_HEADER} from "../../constants/color_styles";
 import FilterButton from "../home/filter/FilterButton";
-import {CREATE_ACCOUNT_LABEL} from "../../constants/labels";
+import {CREATE_ACCOUNT_LABEL} from "../../constants/const_vars";
 import {useEffect, useState} from "react";
 import StyledButton from "../layout/StyledButton";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../reducers/general/booleans/isLoadingReducer";
@@ -196,7 +196,7 @@ export default function Login({}: LoginProps) {
                     isIcon={false}
                     padding={PADDING}
                     title={language.labels.CREATE_ACCOUNT_LABEL}
-                    titleENG={CREATE_ACCOUNT_LABEL.en}
+                    titleENG={CREATE_ACCOUNT_LABEL}
                     colorActive={COLOR_HEADER}
                     colorInactive={COLOR_BACKGROUND}
                     onClick={onCreateAccountButtonClickHandler}
