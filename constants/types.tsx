@@ -127,8 +127,8 @@ export type NewCocktail = {
 
 export type Language = {
     langKey: string,
-    "drinks": object,
-    "ingredients": object
+    "drinks": any,
+    "ingredients": any
     "labels": Labels
 }
 
