@@ -1,13 +1,13 @@
 import {useAppSelector} from "../../../../constants/hooks";
 import {StyleSheet, Text, View} from "react-native";
-import {INGREDIENTS_LABEL} from "../../../../constants/labels";
 import {useEffect, useState} from "react";
 import {BORDER_RADIUS, PADDING} from "../../../../constants/style_constants";
 import {COLOR_BACKGROUND, COLOR_OPACITY_VALUE_50} from "../../../../constants/color_styles";
+import {Language} from "../../../../constants/types";
 
 export default function IngredientsText({}: IngredientsTextProps) {
     const state = useAppSelector((state) => state)
-    const language: string = state.language
+    const language: Language = state.language
 
     const [arrayIngredients, setArrayIngredients] = useState([])
 
@@ -38,7 +38,7 @@ export default function IngredientsText({}: IngredientsTextProps) {
     return (
         <View style={styles.container}>
             <Text style={styles.headlineText}>
-                {INGREDIENTS_LABEL[`${language}`] + "\n"}
+                {language.labels.INGREDIENTS_LABEL + "\n"}
             </Text>
             {/*TODO Make better*/}
             {arrayIngredients.map((item, index) => {

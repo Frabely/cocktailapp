@@ -1,11 +1,12 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {ENGLISH} from "../../constants/const_vars";
+import en from "../../constants/en.json"
 
 const LanguageSlice = createSlice({
-    name: 'user',
-    initialState: ENGLISH,
+    name: 'language',
+    initialState: en,
     reducers: {
-        changeLanguage: (state, action: PayloadAction<string>) => {
+        //TODO add type for json
+        changeLanguage: (state, action: PayloadAction<any>) => {
             return action.payload
         }
     },

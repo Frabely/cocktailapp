@@ -8,12 +8,7 @@ import {
     getUsernameError
 } from "../../functions/getErrorFunctionsInputs";
 import {
-    ACCOUNT_CREATED_VERIFY_EMAIL,
     CREATE_ACCOUNT_LABEL,
-    EMAIL_LABEL, FINISH_ACCOUNT_CREATION_LABEL,
-    PASSWORD_LABEL,
-    REPEAT_PASSWORD_LABEL,
-    USERNAME_LABEL
 } from "../../constants/labels";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
 import StyledButton from "../layout/StyledButton";
@@ -42,6 +37,7 @@ import {
 import {login} from "../../reducers/login/loginStateReducer";
 import ForgotPasswordButton from "./ForgotPasswordButton";
 import {invertIsCreatingAccount} from "../../reducers/login/isCreatingAccountReducer";
+import {Language} from "../../constants/types";
 
 export default function CreateAccount({}: CreateAccountProps) {
     const state = useAppSelector((state) => state)
@@ -54,7 +50,7 @@ export default function CreateAccount({}: CreateAccountProps) {
     const [errorStateEmail, setErrorStateEmail] = useState<string[] | undefined>(undefined);
     const [errorStatePassword, setErrorStatePassword] = useState<string[] | undefined>(undefined);
     const [errorStateRepeatPassword, setErrorStateRepeatPassword] = useState<string[] | undefined>(undefined);
-    const language: string = state.language
+    const language: Language = state.language
 
     const auth = getAuth(app)
 
@@ -116,7 +112,7 @@ export default function CreateAccount({}: CreateAccountProps) {
                         userID: user.user.uid,
                         username: user.user.displayName,
                         email: user.user.email,
-                        languageSetting: state.language,
+                        languageSetting: state.language.langKey,
                         favorites: []
                     }
                     await createUserInDb(userDb)
@@ -126,7 +122,7 @@ export default function CreateAccount({}: CreateAccountProps) {
                     }).catch(error => {
                         alert(error.message)
                     })
-                    dispatch(changeModalMessage(ACCOUNT_CREATED_VERIFY_EMAIL[`${language}`]))
+                    dispatch(changeModalMessage(language.labels.ACCOUNT_CREATED_VERIFY_EMAIL))
                     dispatch(invertIsModalState())
                     onCreateAccountButtonClickHandler()
                 }).catch(error => {
@@ -181,37 +177,38 @@ export default function CreateAccount({}: CreateAccountProps) {
                     errorState={errorStateUsername ? getUsernameError(errorStateUsername) : undefined}
                     setInputState={setUsername}
                     inputState={username}
-                    placeholderLabel={USERNAME_LABEL[`${language}`]}/>
+                    placeholderLabel={language.labels.USERNAME_LABEL}/>
                 <TextInputWithErrorMessage
                     errorState={errorStateEmail ? getEmailError(errorStateEmail) : undefined}
                     setInputState={setEmail}
                     inputState={email}
-                    placeholderLabel={EMAIL_LABEL[`${language}`]}/>
+                    placeholderLabel={language.labels.EMAIL_LABEL}/>
                 <TextInputWithErrorMessage
                     errorState={errorStatePassword ? getPasswordError(errorStatePassword) : undefined}
                     setInputState={setPassword}
                     inputState={password}
-                    placeholderLabel={PASSWORD_LABEL[`${language}`]}
+                    placeholderLabel={language.labels.PASSWORD_LABEL}
                     isPassword={true}                />
                 <TextInputWithErrorMessage
                     errorState={errorStateRepeatPassword ? getRepeatPasswordError(errorStateRepeatPassword) : undefined}
                     setInputState={setRepeatPassword}
                     inputState={repeatPassword}
-                    placeholderLabel={REPEAT_PASSWORD_LABEL[`${language}`]}
+                    placeholderLabel={language.labels.REPEAT_PASSWORD_LABEL}
                     isPassword={true}/>
             </View>
             <View style={{marginVertical: MARGIN / 2}}>
                 <StyledButton
                     padding={PADDING}
                     onPress={onCreatAccountHandler}
-                    title={FINISH_ACCOUNT_CREATION_LABEL[`${language}`]}
+                    title={language.labels.FINISH_ACCOUNT_CREATION_LABEL}
                 />
             </View>
             <View style={{marginVertical: MARGIN / 2}}>
                 <FilterButton
                     isIcon={false}
                     padding={PADDING}
-                    title={CREATE_ACCOUNT_LABEL[`${language}`]}
+                    title={language.labels.CREATE_ACCOUNT_LABEL}
+                    //TODO change dependency from labels in filter button
                     titleENG={CREATE_ACCOUNT_LABEL.en}
                     colorActive={COLOR_HEADER}
                     colorInactive={COLOR_BACKGROUND}

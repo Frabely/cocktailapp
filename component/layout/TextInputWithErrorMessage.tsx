@@ -4,12 +4,12 @@ import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
 import React, {Dispatch, SetStateAction} from "react";
 import {COLOR_CARD_BACKGROUND, COLOR_INCORRECT_FIELD_INPUT} from "../../constants/color_styles";
 import {useAppSelector} from "../../constants/hooks";
-import {ErrorCodesType} from "../../constants/types";
+import {ErrorCodesType, Language} from "../../constants/types";
 
 export default function TextInputWithErrorMessage({errorState, setInputState,
                                                       placeholderLabel, inputState, isPassword}: TextInputWithErrorMessageProps) {
     const state = useAppSelector((state) => state)
-    const language: string = state.language
+    const language: Language = state.language
 
     return (
         <>

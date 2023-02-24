@@ -5,13 +5,6 @@ import {useAppDispatch, useAppSelector} from "../../../../constants/hooks";
 import {
     CHANGE_PASSWORD_LABEL,
     CHANGE_USERNAME_LABEL,
-    EMAIL_LABEL,
-    NEW_PASSWORD_LABEL,
-    OLD_PASSWORD_LABEL,
-    PASSWORD_SUCCESSFUL_CHANGED, PROFILE_DETAILS_LABEL,
-    REPEAT_PASSWORD_LABEL,
-    USERNAME_LABEL,
-    USERNAME_SUCCESSFUL_CHANGED
 } from "../../../../constants/labels";
 import ProfileDetailsItem from "../../../user_profile/ProfileDetailsItem";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../../../constants/style_constants";
@@ -57,11 +50,12 @@ import {
     WRONG_PASSWORD
 } from "../../../../constants/error_codes_firebase";
 import HeadLine from "../../../layout/HeadLine";
+import {Language} from "../../../../constants/types";
 
 export default function ProfileDetails({navigation}: any) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
-    const language: string = state.language
+    const language: Language = state.language
     const [username, setUsername] = useState('');
     const [isChangingUsername, setIsChangingUsername] = useState(['']);
     const [isChangingPassword, setIsChangingPassword] = useState(['']);
@@ -120,7 +114,7 @@ export default function ProfileDetails({navigation}: any) {
                             languageSetting: currentUser.languageSetting,
                             favorites: currentUser.favorites
                         }))
-                        dispatch(changeModalMessage(USERNAME_SUCCESSFUL_CHANGED[`${language}`]))
+                        dispatch(changeModalMessage(language.labels.USERNAME_SUCCESSFUL_CHANGED))
                         dispatch(setIsLoadingFalse())
                         dispatch(invertIsModalState())
                         onChangeUsernamePressHandler()
@@ -187,7 +181,7 @@ export default function ProfileDetails({navigation}: any) {
         if (state.user.email) {
             signInWithEmailAndPassword(auth, state.user.email, oldPassword).then(result => {
                 updatePassword(result.user, newPassword).then(() => {
-                    dispatch(changeModalMessage(PASSWORD_SUCCESSFUL_CHANGED[`${language}`]))
+                    dispatch(changeModalMessage(language.labels.PASSWORD_SUCCESSFUL_CHANGED))
                     dispatch(invertIsModalState())
                     onChangePasswordPressHandler()
                     dispatch(setIsLoadingFalse())
@@ -235,16 +229,16 @@ export default function ProfileDetails({navigation}: any) {
         <AppBackground>
             <ScrollView style={[styles.userData, {height: vh_reactive(0.9, state.dimensions.height)}]}>
                 <CardLayout>
-                    <HeadLine label={PROFILE_DETAILS_LABEL[`${language}`]} margin={MARGIN / 2}/>
+                    <HeadLine label={language.labels.PROFILE_DETAILS_LABEL} margin={MARGIN / 2}/>
                     <ProfileDetailsItem
-                        label={USERNAME_LABEL[`${language}`]}
+                        label={language.labels.USERNAME_LABEL}
                         value={(state?.user?.username) ? state?.user?.username : ''}/>
                     <ProfileDetailsItem
-                        label={EMAIL_LABEL[`${language}`]}
+                        label={language.labels.EMAIL_LABEL}
                         value={(state?.user?.email) ? state?.user?.email : ''}/>
                     <FilterButton
                         isIcon={false}
-                        title={CHANGE_USERNAME_LABEL[`${language}`]}
+                        title={language.labels.CHANGE_USERNAME_LABEL}
                         titleENG={CHANGE_USERNAME_LABEL.en}
                         colorActive={COLOR_HEADER}
                         colorInactive={COLOR_BACKGROUND}
@@ -259,11 +253,11 @@ export default function ProfileDetails({navigation}: any) {
                                     errorState={(getUsernameError(errorStateUsername))}
                                     setInputState={setUsername}
                                     inputState={username}
-                                    placeholderLabel={USERNAME_LABEL[`${language}`]}
+                                    placeholderLabel={language.labels.USERNAME_LABEL}
                                 />
                                 <StyledButton
                                     onPress={changeUserNameOnClickHandler}
-                                    title={CHANGE_USERNAME_LABEL[`${language}`]}
+                                    title={language.labels.CHANGE_USERNAME_LABEL}
                                     padding={PADDING}
                                     margin={MARGIN}/>
                             </>
@@ -271,7 +265,7 @@ export default function ProfileDetails({navigation}: any) {
                     </View>
                     <FilterButton
                         isIcon={false}
-                        title={CHANGE_PASSWORD_LABEL[`${language}`]}
+                        title={language.labels.CHANGE_PASSWORD_LABEL}
                         titleENG={CHANGE_PASSWORD_LABEL.en}
                         colorActive={COLOR_HEADER}
                         colorInactive={COLOR_BACKGROUND}
@@ -287,23 +281,23 @@ export default function ProfileDetails({navigation}: any) {
                                     errorState={(getOldPasswordError(errorStateOldPassword))}
                                     setInputState={setOldPassword}
                                     inputState={oldPassword}
-                                    placeholderLabel={OLD_PASSWORD_LABEL[`${language}`]}
+                                    placeholderLabel={language.labels.OLD_PASSWORD_LABEL}
                                     isPassword={true}/>
                                 <TextInputWithErrorMessage
                                     errorState={(getPasswordError(errorStateNewPassword))}
                                     setInputState={setNewPassword}
                                     inputState={newPassword}
-                                    placeholderLabel={NEW_PASSWORD_LABEL[`${language}`]}
+                                    placeholderLabel={language.labels.NEW_PASSWORD_LABEL}
                                     isPassword={true}/>
                                 <TextInputWithErrorMessage
                                     errorState={(getRepeatPasswordError(errorStateRepeatPassword))}
                                     setInputState={setRepeatPassword}
                                     inputState={repeatPassword}
-                                    placeholderLabel={REPEAT_PASSWORD_LABEL[`${language}`]}
+                                    placeholderLabel={language.labels.REPEAT_PASSWORD_LABEL}
                                     isPassword={true}/>
                                 <StyledButton
                                     onPress={changePasswordOnClickHandler}
-                                    title={CHANGE_PASSWORD_LABEL[`${language}`]}
+                                    title={language.labels.CHANGE_PASSWORD_LABEL}
                                     padding={PADDING}
                                     margin={MARGIN}/>
                             </>

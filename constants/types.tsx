@@ -124,3 +124,80 @@ export type NewCocktail = {
     dateModified: Timestamp | null,
     ratingUserIDList: string[] | null
 }
+
+export type Language = {
+    langKey: string,
+    "drinks": object,
+    "ingredients": object
+    "labels": Labels
+}
+
+export type Labels = {
+    "USERNAME_LABEL": string,
+    "EMAIL_LABEL": string,
+    "OLD_PASSWORD_LABEL": string,
+    "NEW_PASSWORD_LABEL": string,
+    "PASSWORD_LABEL": string,
+    "REPEAT_PASSWORD_LABEL": string,
+    "FINISH_ACCOUNT_CREATION_LABEL": string,
+    "LOGIN_LABEL": string,
+    "SEND_RESET_PASSWORD_EMAIL_LABEL": string,
+    "RESET_PASSWORD_EMAIL_SENT_LABEL": string,
+    "FORGOT_PASSWORD_LABEL": string,
+    "CREATE_ACCOUNT_LABEL": string,
+    "CHANGE_PASSWORD_LABEL": string,
+    "CHANGE_USERNAME_LABEL": string,
+    "SEARCH_INGREDIENTS_LABEL": string,
+    "ALL_LABEL": string,
+    "ALCOHOLIC_LABEL": string,
+    "CATEGORY_LABEL": string,
+    "INGREDIENTS_LABEL": string,
+    "CLEAR_ALL_FILTERS_LABEL": string,
+    "HITS_LABEL": string,
+    "ENTER_SEARCH_TERM_LABEL": string,
+    "RESET_FILTER_LABEL": string,
+    "NO_HITS_LABEL": string,
+    "IN_DEVELOPMENT_LABEL": string,
+    "LANGUAGE_LABEL": string,
+    "ENGLISH_LABEL": string,
+    "GERMAN_LABEL": string,
+    "SAVE_SETTINGS_LABEL": string,
+    "CLOSE": string,
+    "FAVORITE_DELETED_LABEL": string,
+    "SORT_LABEL": string,
+    "PREPARATION_LABEL": string,
+    "GLASS_LABEL": string,
+    "ACCOUNT_CREATED_VERIFY_EMAIL": string,
+    "USERNAME_SUCCESSFUL_CHANGED": string,
+    "PASSWORD_SUCCESSFUL_CHANGED": string,
+    "USER_PROFILE_LABEL": string,
+    "PROFILE_DETAILS_LABEL": string,
+    "SETTINGS_LABEL": string,
+    "FAVORITES_LABEL": string,
+    "YOUR_FAVORITES": string,
+    "LOGOUT_LABEL": string,
+    "SORT_LIST": string[],
+    CATEGORY_LIST: string[],
+    ALCOHOLIC_LIST: string[],
+    "ERROR_CODES": {
+        "USERNAME_MISSING": string,
+        "USERNAME_ALREADY_USED": string,
+        "EMAIL_MISSING": string,
+        "OLD_PASSWORD_MISSING": string,
+        "NEW_PASSWORD_MISSING": string,
+        "PASSWORD_MISSING": string,
+        "REPEAT_PASSWORD_MISSING": string,
+        "PASSWORDS_NOT_MATCHING": string,
+        "OLD_AND_NEW_PASSWORDS_MATCHING": string,
+        "EMAIL_NOT_VERIFIED": string
+    },
+    "ERROR_CODES_FIREBASE": {
+        "WRONG_PASSWORD": string,
+        "USER_NOT_FOUND": string,
+        "TOO_MANY_REQUESTS": string,
+        "WEAK_PASSWORD": string,
+        "INVALID_EMAIL": string,
+        "EMAIL_ALREADY_IN_USE": string,
+        "NETWORK_REQUEST_FAILED": string
+    }
+}

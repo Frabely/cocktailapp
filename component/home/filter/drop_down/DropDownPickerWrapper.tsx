@@ -15,9 +15,9 @@ import {
     INGREDIENTS_FILTER_SELECTION_NUMBER_MAX,
     INGREDIENTS_FILTER_SELECTION_NUMBER_MIN
 } from "../../../../constants/const_vars";
-import {SEARCH_INGREDIENTS_LABEL} from "../../../../constants/labels";
 import { Orientation } from "expo-screen-orientation";
 import {getDefaultButtonHeight} from "../../../../functions/viewport_calculations";
+import {Language} from "../../../../constants/types";
 
 export default function DropDownPickerWrapper() {
     const dispatch = useAppDispatch()
@@ -25,7 +25,7 @@ export default function DropDownPickerWrapper() {
     const [open, setOpen] = useState(false);
     const [items, setItems] = useState(INGREDIENT_LIST);
     const [value, setValue] = useState(state.ingredientsFilter);
-    const language: string = state.language
+    const language: Language = state.language
 
     useEffect(() => {
         dispatch(changeIngredients(value))
@@ -59,7 +59,7 @@ export default function DropDownPickerWrapper() {
                 height: 0
             }}
             searchable={true}
-            searchPlaceholder={SEARCH_INGREDIENTS_LABEL[`${language}`]}
+            searchPlaceholder={language.labels.SEARCH_INGREDIENTS_LABEL}
             searchContainerStyle={{
                 backgroundColor: COLOR_BACKGROUND,
                 borderRadius: BORDER_RADIUS / 2,

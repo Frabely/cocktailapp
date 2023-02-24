@@ -12,17 +12,11 @@ import UserProfileItem from "../../user_profile/UserProfileItem";
 import {ALL, EMPTY_ITEM, EMPTY_USER, FAVORITES, PROFILE_DETAILS, SETTINGS} from "../../../constants/const_vars";
 import Header from "../../layout/Header";
 import AppBackground from "../../layout/AppBackground";
-import {
-    FAVORITES_LABEL,
-    LOGOUT_LABEL,
-    PROFILE_DETAILS_LABEL,
-    SETTINGS_LABEL, USER_PROFILE_LABEL
-} from "../../../constants/labels";
 import LoadingScreen from "../../layout/LoadingScreen";
 import {changeCurrentItem} from "../../../reducers/home/currentItemReducer";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../../reducers/general/booleans/isLoadingReducer";
 import HeadLine from "../../layout/HeadLine";
-import {Cocktail} from "../../../constants/types";
+import {Cocktail, Language} from "../../../constants/types";
 import {changeAlcoholic} from "../../../reducers/filter/alcoholicFilterReducer";
 import {changeCategory} from "../../../reducers/filter/categoryFilterReducer";
 import {changeCurrentSearchFieldInput} from "../../../reducers/home/currentSearchFieldInputReducer";
@@ -32,7 +26,7 @@ export default function UserProfile({navigation}: any) {
     const state = useAppSelector((state) => state)
     const auth = getAuth(app)
     const dispatch = useAppDispatch()
-    const language: string = state.language
+    const language: Language = state.language
 
     const onClearAllFiltersClickHandler = () => {
         dispatch(changeAlcoholic([ALL]))
@@ -91,15 +85,15 @@ export default function UserProfile({navigation}: any) {
                 height: vh_reactive(0.9, state.dimensions.height)
             }]}>
                 <CardLayout>
-                    <HeadLine label={USER_PROFILE_LABEL[`${language}`]} margin={MARGIN / 2}/>
+                    <HeadLine label={language.labels.USER_PROFILE_LABEL} margin={MARGIN / 2}/>
                     <UserProfileItem onPress={onProfileDetailsPressHandler} icon={faUserGear}
-                                     label={PROFILE_DETAILS_LABEL[`${language}`]}/>
+                                     label={language.labels.PROFILE_DETAILS_LABEL}/>
                     <UserProfileItem onPress={onSettingsPressHandler} icon={faGear}
-                                     label={SETTINGS_LABEL[`${language}`]}/>
+                                     label={language.labels.SETTINGS_LABEL}/>
                     <UserProfileItem onPress={onFavoritesPressHandler} icon={faStar}
-                                     label={FAVORITES_LABEL[`${language}`]}/>
+                                     label={language.labels.FAVORITES_LABEL}/>
                     <UserProfileItem onPress={onLogoutPressHandler} icon={faPowerOff}
-                                     label={LOGOUT_LABEL[`${language}`]}/>
+                                     label={language.labels.LOGOUT_LABEL}/>
                 </CardLayout>
             </ScrollView>
             <Header navigation={navigation}/>

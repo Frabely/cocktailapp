@@ -4,15 +4,15 @@ import {COLOR_HEADER, OPACITY_ZERO} from "../../constants/color_styles";
 import CardLayout from "./CardLayout";
 import StyledButton from "./StyledButton";
 import {useAppDispatch, useAppSelector} from "../../constants/hooks";
-import {CLOSE} from "../../constants/labels";
 import {invertIsModalState} from "../../reducers/general/booleans/isModalReducer";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
 import {changeModalMessage} from "../../reducers/general/modalMessageReducer";
+import {Language} from "../../constants/types";
 
 export default function Modal({message}: ModalProps) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
-    const language: string = state.language
+    const language: Language = state.language
 
     const closeModelOnPressHandler = () => {
         dispatch(changeModalMessage(''))
@@ -28,7 +28,7 @@ export default function Modal({message}: ModalProps) {
                     <Text>{message}</Text>
                     <View style={{marginTop: MARGIN}}>
                         <StyledButton
-                            title={CLOSE[`${language}`]}
+                            title={language.labels.CLOSE}
                             onPress={closeModelOnPressHandler}
                             padding={PADDING}/>
                     </View>

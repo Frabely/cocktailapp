@@ -2,20 +2,20 @@ import {StyleSheet, Text, View} from "react-native";
 import StyledButton from "../layout/StyledButton";
 import {vw_reactive} from "../../functions/dimentions";
 import CardLayout from "../layout/CardLayout";
-import {NO_HITS_LABEL, RESET_FILTER_LABEL} from "../../constants/labels";
 import {useAppSelector} from "../../constants/hooks";
 import {MARGIN, PADDING} from "../../constants/style_constants";
+import {Language} from "../../constants/types";
 
 export default function NoHits({onPress}: NoHitsProps) {
     const state = useAppSelector((state) => state)
-    const language: string = state.language
+    const language: Language = state.language
 
     return (
         <View style={styles.noHits}>
             <CardLayout width={vw_reactive(0.5, state.dimensions.width)}>
-                    <Text style={styles.text}>{`${NO_HITS_LABEL[`${language}`]} 😕`}</Text>
+                    <Text style={styles.text}>{`${language.labels.NO_HITS_LABEL} 😕`}</Text>
                     <StyledButton
-                        title={RESET_FILTER_LABEL[`${language}`]}
+                        title={language.labels.RESET_FILTER_LABEL}
                         onPress={onPress}
                         padding={PADDING}
                         margin={MARGIN / 2}/>

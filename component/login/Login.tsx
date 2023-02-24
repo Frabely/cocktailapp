@@ -4,12 +4,7 @@ import TextInputWithErrorMessage from "../layout/TextInputWithErrorMessage";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
 import {COLOR_BACKGROUND, COLOR_HEADER} from "../../constants/color_styles";
 import FilterButton from "../home/filter/FilterButton";
-import {
-    CREATE_ACCOUNT_LABEL,
-    EMAIL_LABEL,
-    LOGIN_LABEL,
-    PASSWORD_LABEL
-} from "../../constants/labels";
+import {CREATE_ACCOUNT_LABEL} from "../../constants/labels";
 import {useEffect, useState} from "react";
 import StyledButton from "../layout/StyledButton";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../reducers/general/booleans/isLoadingReducer";
@@ -38,10 +33,13 @@ import {createAccount} from "../../reducers/login/loginStateReducer";
 import ForgotPasswordButton from "./ForgotPasswordButton";
 import {invertIsCreatingAccount} from "../../reducers/login/isCreatingAccountReducer";
 import {fetchFavoriteDataSetAsArray} from "../../functions/filterFunctions";
-import {Cocktail, RatedCocktail, User} from "../../constants/types";
+import {Cocktail, Language, RatedCocktail, User} from "../../constants/types";
 import {changeRatedCocktailArray} from "../../reducers/cocktail/cocktailRatingReducer";
 import {DocumentData} from "firebase/firestore";
 import {changeDataSet} from "../../reducers/general/dataSetReducer";
+import {GERMAN} from "../../constants/const_vars";
+import en from "../../constants/en.json"
+import de from "../../constants/de.json"
 
 export default function Login({}: LoginProps) {
     const state = useAppSelector((state) => state)
@@ -50,11 +48,11 @@ export default function Login({}: LoginProps) {
     const [password, setPassword] = useState('');
     const [errorStateEmail, setErrorStateEmail] = useState<string[] | undefined>(undefined);
     const [errorStatePassword, setErrorStatePassword] = useState<string[] | undefined>(undefined);
-    const language: string = state.language
+    const language: Language = state.language
 
     const auth = getAuth(app)
 
-    useEffect(()=>{
+    useEffect(() => {
         fetchNewDataSetAsArray().then()
     }, [])
 
@@ -135,7 +133,10 @@ export default function Login({}: LoginProps) {
                             favorites: favoriteCocktails
                         }
                         dispatch(activeUser(userDb))
-                        dispatch(changeLanguage(resultUser.languageSetting))
+                        if (resultUser.languageSetting == GERMAN)
+                            dispatch(changeLanguage(de))
+                        else
+                            dispatch(changeLanguage(en))
                     }
                 } else {
                     dispatch(changeModalMessage(USER_NOT_FOUND.message[`${language}`]))
@@ -175,26 +176,26 @@ export default function Login({}: LoginProps) {
                     errorState={errorStateEmail ? getEmailError(errorStateEmail) : undefined}
                     setInputState={setEmail}
                     inputState={email}
-                    placeholderLabel={EMAIL_LABEL[`${language}`]}/>
+                    placeholderLabel={language.labels.EMAIL_LABEL}/>
                 <TextInputWithErrorMessage
                     errorState={errorStatePassword ? getPasswordError(errorStatePassword) : undefined}
                     setInputState={setPassword}
                     inputState={password}
-                    placeholderLabel={PASSWORD_LABEL[`${language}`]}
+                    placeholderLabel={language.labels.PASSWORD_LABEL}
                     isPassword={true}/>
             </View>
             <View style={{marginVertical: MARGIN / 2}}>
                 <StyledButton
                     padding={PADDING}
                     onPress={onLoginHandler}
-                    title={LOGIN_LABEL[`${language}`]}
+                    title={language.labels.LOGIN_LABEL}
                 />
             </View>
             <View style={{marginVertical: MARGIN / 2}}>
                 <FilterButton
                     isIcon={false}
                     padding={PADDING}
-                    title={CREATE_ACCOUNT_LABEL[`${language}`]}
+                    title={language.labels.CREATE_ACCOUNT_LABEL}
                     titleENG={CREATE_ACCOUNT_LABEL.en}
                     colorActive={COLOR_HEADER}
                     colorInactive={COLOR_BACKGROUND}

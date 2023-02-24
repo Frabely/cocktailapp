@@ -1,20 +1,18 @@
 import {useAppSelector} from "../../../../constants/hooks";
 import {StyleSheet, Text} from "react-native";
-import {
-    GLASS_LABEL
-} from "../../../../constants/labels";
+import {Language} from "../../../../constants/types";
 
 
 export default function GlassTypeText({}: GlassTypeTextProps) {
     const state = useAppSelector((state) => state)
-    const language: string = state.language
+    const language: Language = state.language
 
     return (
         <>
             {state.currentItem.strGlass !== null && state.currentItem.strGlass !== "Other/Unknown" ? (
                 <>
                     <Text style={styles.headlineText}>
-                        {GLASS_LABEL[`${language}`] + "\n"}
+                        {language.labels.GLASS_LABEL + "\n"}
                     </Text>
                     <Text style={styles.contentText}>
                         {state.currentItem.strGlass}

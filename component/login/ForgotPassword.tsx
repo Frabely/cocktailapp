@@ -1,11 +1,6 @@
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
 import {StyleSheet, View} from "react-native";
 import {COLOR_BACKGROUND} from "../../constants/color_styles";
-import {
-    EMAIL_LABEL, LOGIN_LABEL,
-    RESET_PASSWORD_EMAIL_SENT_LABEL,
-    SEND_RESET_PASSWORD_EMAIL_LABEL
-} from "../../constants/labels";
 import React, {useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../constants/hooks";
 import {changeModalMessage} from "../../reducers/general/modalMessageReducer";
@@ -24,13 +19,14 @@ import {
     NETWORK_REQUEST_FAILED,
     TOO_MANY_REQUESTS, USER_NOT_FOUND
 } from "../../constants/error_codes_firebase";
+import {Language} from "../../constants/types";
 
 export default function ForgotPassword({}: ForgotPasswordProps) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
     const [email, setEmail] = useState('');
     const [errorEmailState, setErrorEmailState] = useState<string [] | undefined>(undefined);
-    const language: string = state.language
+    const language: Language = state.language
 
     const changeToLoginScreenPressHandler = () => {
         dispatch(login())
@@ -52,7 +48,7 @@ export default function ForgotPassword({}: ForgotPasswordProps) {
         sendPasswordResetEmail(auth, email)
             .then(() => {
                 dispatch(setIsLoadingFalse())
-                dispatch(changeModalMessage(RESET_PASSWORD_EMAIL_SENT_LABEL[`${language}`]))
+                dispatch(changeModalMessage(language.labels.RESET_PASSWORD_EMAIL_SENT_LABEL))
                 dispatch(invertIsModalState())
                 dispatch(login())
             })
@@ -84,20 +80,20 @@ export default function ForgotPassword({}: ForgotPasswordProps) {
                     errorState={(errorEmailState) ? getEmailError(errorEmailState) : undefined}
                     setInputState={setEmail}
                     inputState={email}
-                    placeholderLabel={EMAIL_LABEL[`${language}`]}/>
+                    placeholderLabel={language.labels.EMAIL_LABEL}/>
             </View>
             <View style={{marginVertical: MARGIN / 2}}>
                 <StyledButton
                     padding={PADDING}
                     onPress={sendVerificationEmailPressHandler}
-                    title={SEND_RESET_PASSWORD_EMAIL_LABEL[`${language}`]}
+                    title={language.labels.SEND_RESET_PASSWORD_EMAIL_LABEL}
                 />
             </View>
             <View style={{marginVertical: MARGIN / 2}}>
                 <StyledButton
                     padding={PADDING}
                     onPress={changeToLoginScreenPressHandler}
-                    title={LOGIN_LABEL[`${language}`]}
+                    title={language.labels.LOGIN_LABEL}
                 />
             </View>
             <ForgotPasswordButton/>
