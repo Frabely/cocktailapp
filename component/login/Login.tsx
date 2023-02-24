@@ -80,10 +80,10 @@ export default function Login({}: LoginProps) {
             else if (error.code === USER_NOT_FOUND.code)
                 errorArrayEmail.push(USER_NOT_FOUND.code)
             else if (error.code === TOO_MANY_REQUESTS.code) {
-                dispatch(changeModalMessage(language.labels.ERROR_CODES_FIREBASE.TOO_MANY_REQUESTS))
+                dispatch(changeModalMessage(language.labels.ERROR_CODES.TOO_MANY_REQUESTS))
                 dispatch(invertIsModalState())
             } else if (error.code === NETWORK_REQUEST_FAILED.code) {
-                dispatch(changeModalMessage(language.labels.ERROR_CODES_FIREBASE.NETWORK_REQUEST_FAILED))
+                dispatch(changeModalMessage(language.labels.ERROR_CODES.NETWORK_REQUEST_FAILED))
                 dispatch(invertIsModalState())
             } else if (error.code === INVALID_EMAIL.code)
                 errorArrayEmail.push(INVALID_EMAIL.code)
@@ -139,7 +139,7 @@ export default function Login({}: LoginProps) {
                             dispatch(changeLanguage(en))
                     }
                 } else {
-                    dispatch(changeModalMessage(language.labels.ERROR_CODES_FIREBASE.USER_NOT_FOUND))
+                    dispatch(changeModalMessage(language.labels.ERROR_CODES.USER_NOT_FOUND))
                     dispatch(invertIsModalState())
                 }
                 dispatch(setIsLoadingFalse())

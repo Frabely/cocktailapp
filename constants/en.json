@@ -79,9 +79,7 @@
       "REPEAT_PASSWORD_MISSING": "Repeated password missing",
       "PASSWORDS_NOT_MATCHING": "Passwords not matching",
       "OLD_AND_NEW_PASSWORDS_MATCHING": "Old and new Passwords are matching",
-      "EMAIL_NOT_VERIFIED": "Email address not verified. Check your mailbox to verify the account."
-    },
-    "ERROR_CODES_FIREBASE": {
+      "EMAIL_NOT_VERIFIED": "Email address not verified. Check your mailbox to verify the account.",
       "WRONG_PASSWORD": "Wrong password",
       "USER_NOT_FOUND": "User not found",
       "TOO_MANY_REQUESTS": "Too many server requests. Try again.",

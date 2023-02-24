@@ -79,9 +79,7 @@
       "REPEAT_PASSWORD_MISSING": "Wiederholtes Passwort fehlt",
       "PASSWORDS_NOT_MATCHING": "Passwörter stimmen nicht überein",
       "OLD_AND_NEW_PASSWORDS_MATCHING": "Altes und neues Passwort stimmen überein",
-      "EMAIL_NOT_VERIFIED": "Emailadresse nicht bestätigt. Schauen Sie in Ihr Postfach um den Account zu aktivieren."
-    },
-    "ERROR_CODES_FIREBASE": {
+      "EMAIL_NOT_VERIFIED": "Emailadresse nicht bestätigt. Schauen Sie in Ihr Postfach um den Account zu aktivieren.",
       "WRONG_PASSWORD": "Falsches Passwort",
       "USER_NOT_FOUND": "Nutzer nicht gefunden",
       "TOO_MANY_REQUESTS": "Zu viele Serveranfragen. Versuche es nochmal.",

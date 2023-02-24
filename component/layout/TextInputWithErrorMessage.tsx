@@ -6,6 +6,10 @@ import {COLOR_CARD_BACKGROUND, COLOR_INCORRECT_FIELD_INPUT} from "../../constant
 import {useAppSelector} from "../../constants/hooks";
 import {ErrorCodesType, Language} from "../../constants/types";
 
+// const getErrorMessageFromJson = (languageJson: Language, errorState: ErrorCodesType): string => {
+//     return languageJson.labels.ERROR_CODES[`${errorState.messageKey}`]
+// }
+
 export default function TextInputWithErrorMessage({errorState, setInputState,
                                                       placeholderLabel, inputState, isPassword}: TextInputWithErrorMessageProps) {
     const state = useAppSelector((state) => state)
@@ -27,7 +31,7 @@ export default function TextInputWithErrorMessage({errorState, setInputState,
                 <Text
                     style={[styles.wrongInputMessage,
                         {maxWidth: vw_reactive(0.7, state.dimensions.width) - MARGIN - PADDING}]}>
-                    {errorState?.message[`${language}`]}</Text>
+                    {language.labels.ERROR_CODES[`${errorState.messageKey}`]}</Text>
             ) : null}
         </>
     )

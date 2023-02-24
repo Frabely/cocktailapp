@@ -144,10 +144,10 @@ export default function CreateAccount({}: CreateAccountProps) {
             else if (error.code === EMAIL_ALREADY_IN_USE.code)
                 errorArrayEmail.push(EMAIL_ALREADY_IN_USE.code)
             else if (error.code === TOO_MANY_REQUESTS.code) {
-                dispatch(changeModalMessage(language.labels.ERROR_CODES_FIREBASE.TOO_MANY_REQUESTS))
+                dispatch(changeModalMessage(language.labels.ERROR_CODES.TOO_MANY_REQUESTS))
                 dispatch(invertIsModalState())
             } else if (error.code === NETWORK_REQUEST_FAILED.code) {
-                dispatch(changeModalMessage(language.labels.ERROR_CODES_FIREBASE.NETWORK_REQUEST_FAILED))
+                dispatch(changeModalMessage(language.labels.ERROR_CODES.NETWORK_REQUEST_FAILED))
                 dispatch(invertIsModalState())
             } else {
                 dispatch(changeModalMessage(error.message))

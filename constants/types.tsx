@@ -11,7 +11,7 @@ export type LabelType = {
 export type ErrorCodesType = {
     [index: string]: string | LabelType
     code: string,
-    message: LabelType
+    messageKey: string
 }
 
 export type LabelListType = {
@@ -126,6 +126,7 @@ export type NewCocktail = {
 }
 
 export type Language = {
+    [index: string]: string | Labels | any,
     langKey: string,
     "drinks": any,
     "ingredients": any
@@ -133,6 +134,7 @@ export type Language = {
 }
 
 export type Labels = {
+    [index: string]: string | string[] | {[index: string]: string},
     "USERNAME_LABEL": string,
     "EMAIL_LABEL": string,
     "OLD_PASSWORD_LABEL": string,
@@ -180,6 +182,7 @@ export type Labels = {
     CATEGORY_LIST: string[],
     ALCOHOLIC_LIST: string[],
     "ERROR_CODES": {
+        [index: string]: string
         "USERNAME_MISSING": string,
         "USERNAME_ALREADY_USED": string,
         "EMAIL_MISSING": string,
@@ -189,9 +192,7 @@ export type Labels = {
         "REPEAT_PASSWORD_MISSING": string,
         "PASSWORDS_NOT_MATCHING": string,
         "OLD_AND_NEW_PASSWORDS_MATCHING": string,
-        "EMAIL_NOT_VERIFIED": string
-    },
-    "ERROR_CODES_FIREBASE": {
+        "EMAIL_NOT_VERIFIED": string,
         "WRONG_PASSWORD": string,
         "USER_NOT_FOUND": string,
         "TOO_MANY_REQUESTS": string,

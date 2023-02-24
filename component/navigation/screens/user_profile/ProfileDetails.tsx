@@ -190,10 +190,10 @@ export default function ProfileDetails({navigation}: any) {
                         errorArrayNewPassword.push(WEAK_PASSWORD.code)
                         errorArrayRepeatPassword.push(WEAK_PASSWORD.code)
                     } else if (error.code === TOO_MANY_REQUESTS.code) {
-                        dispatch(changeModalMessage(language.labels.ERROR_CODES_FIREBASE.TOO_MANY_REQUESTS))
+                        dispatch(changeModalMessage(language.labels.ERROR_CODES.TOO_MANY_REQUESTS))
                         dispatch(invertIsModalState())
                     } else if (error.code === NETWORK_REQUEST_FAILED.code) {
-                        dispatch(changeModalMessage(language.labels.ERROR_CODES_FIREBASE.NETWORK_REQUEST_FAILED))
+                        dispatch(changeModalMessage(language.labels.ERROR_CODES.NETWORK_REQUEST_FAILED))
                         dispatch(invertIsModalState())
                     } else {
                         dispatch(changeModalMessage(error.message))
@@ -208,10 +208,10 @@ export default function ProfileDetails({navigation}: any) {
                 if (error.code === WRONG_PASSWORD.code)
                     errorArrayOldPassword.push(WRONG_PASSWORD.code)
                 else if (error.code === TOO_MANY_REQUESTS.code) {
-                    dispatch(changeModalMessage(language.labels.ERROR_CODES_FIREBASE.TOO_MANY_REQUESTS))
+                    dispatch(changeModalMessage(language.labels.ERROR_CODES.TOO_MANY_REQUESTS))
                     dispatch(invertIsModalState())
                 } else if (error.code === NETWORK_REQUEST_FAILED.code) {
-                    dispatch(changeModalMessage(language.labels.ERROR_CODES_FIREBASE.NETWORK_REQUEST_FAILED))
+                    dispatch(changeModalMessage(language.labels.ERROR_CODES.NETWORK_REQUEST_FAILED))
                     dispatch(invertIsModalState())
                 } else {
                     dispatch(changeModalMessage(error.message))
