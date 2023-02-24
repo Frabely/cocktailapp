@@ -13,7 +13,7 @@ export default function PreparationText({}: PreparationTextProps) {
                 {language.labels.PREPARATION_LABEL + "\n" }
             </Text>
             <Text style={styles.contentText}>
-                {state.currentItem.strInstructions}
+                {state.currentItem.instruction}
             </Text>
         </View>
     )

@@ -9,13 +9,13 @@ export default function GlassTypeText({}: GlassTypeTextProps) {
 
     return (
         <>
-            {state.currentItem.strGlass !== null && state.currentItem.strGlass !== "Other/Unknown" ? (
+            {state.currentItem.glass !== null && state.currentItem.glass !== "Other/Unknown" ? (
                 <>
                     <Text style={styles.headlineText}>
                         {language.labels.GLASS_LABEL + "\n"}
                     </Text>
                     <Text style={styles.contentText}>
-                        {state.currentItem.strGlass}
+                        {state.currentItem.glass}
                     </Text>
                 </>
             ) : null

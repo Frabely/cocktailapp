@@ -1,20 +1,23 @@
 import {useAppSelector} from "../../../../constants/hooks";
 import {StyleSheet, Text, View} from "react-native";
 import {PADDING} from "../../../../constants/style_constants";
+import {Language} from "../../../../constants/types";
 
 export default function AdditionalCocktailInformation({}: AdditionalCocktailInformationProps) {
     const state = useAppSelector((state) => state)
+    const language: Language = state.language
     return (
         <View style={styles.container}>
-            {state.currentItem.strCategory !== null && state.currentItem.strCategory !== "Other/Unknown" ? (
+            {state.currentItem.category !== null && state.currentItem.category !== "Other/Unknown" ? (
                 <Text style={styles.contentText}>
-                    {state.currentItem.strCategory}
+                    {state.currentItem.category}
                 </Text>
             ) : null
             }
-            {state.currentItem.strAlcoholic !== null ? (
+            //TODO check if this works or === true is needed
+            {state.currentItem.alcoholic ? (
                 <Text style={styles.contentText}>
-                    {state.currentItem.strAlcoholic}
+                    {language.labels.ALCOHOLIC_LABEL}
                 </Text>
             ) : null
             }

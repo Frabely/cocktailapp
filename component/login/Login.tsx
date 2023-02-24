@@ -5,7 +5,7 @@ import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
 import {COLOR_BACKGROUND, COLOR_HEADER} from "../../constants/color_styles";
 import FilterButton from "../home/filter/FilterButton";
 import {CREATE_ACCOUNT_LABEL} from "../../constants/const_vars";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import StyledButton from "../layout/StyledButton";
 import {setIsLoadingFalse, setIsLoadingTrue} from "../../reducers/general/booleans/isLoadingReducer";
 import {EMAIL_MISSING, EMAIL_NOT_VERIFIED, PASSWORD_MISSING} from "../../constants/error_codes";
@@ -16,7 +16,6 @@ import {activeUser} from "../../reducers/user/userReducer";
 import {
     app,
     fetchFullDataSetAsArray,
-    fetchNewDataSetAsArray,
     getFavoritesList,
     getUser
 } from "../../functions/firebase";
@@ -51,10 +50,6 @@ export default function Login({}: LoginProps) {
     const language: Language = state.language
 
     const auth = getAuth(app)
-
-    useEffect(() => {
-        fetchNewDataSetAsArray().then()
-    }, [])
 
     const onLoginHandler = async () => {
         dispatch(setIsLoadingTrue())

@@ -45,7 +45,7 @@ export default function Card({onPress, item}: CardProps) {
             }
             ]}>
                 <ImageBackground style={[styles.cardInner, styles.boxShadow]} source={
-                    {uri: (item?.strDrinkThumb) ? item.strDrinkThumb : ''}
+                    {uri: `./assets/images/imagesCocktails/${state.currentItem.idDrink}.jpg` ?? ''}
                 }/>
             </Pressable>
         )

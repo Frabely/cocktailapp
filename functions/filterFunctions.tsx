@@ -1,13 +1,12 @@
-import {ALL, EMPTY_ITEM} from "../constants/const_vars";
+import {ALL, EMPTY_ITEM, SORT_LIST} from "../constants/const_vars";
 import {changeCurrentItem} from "../reducers/home/currentItemReducer";
 import {Cocktail} from "../constants/types";
-import {SORT_LIST} from "../constants/filter_lists";
 
 
 const sortAZ = (cocktailOne: Cocktail, cocktailTwo: Cocktail) => {
-    if (cocktailOne.strDrink && cocktailTwo.strDrink) {
-        const strDrinkA = cocktailOne.strDrink.toUpperCase(); // ignore upper and lowercase
-        const strDrinkB = cocktailTwo.strDrink.toUpperCase(); // ignore upper and lowercase
+    if (cocktailOne.name && cocktailTwo.name) {
+        const strDrinkA = cocktailOne.name.toUpperCase(); // ignore upper and lowercase
+        const strDrinkB = cocktailTwo.name.toUpperCase(); // ignore upper and lowercase
         if (strDrinkA < strDrinkB) {
             return -1; //strDrinkA comes first
         }
@@ -19,9 +18,9 @@ const sortAZ = (cocktailOne: Cocktail, cocktailTwo: Cocktail) => {
 }
 
 const sortZA = (cocktailOne: Cocktail, cocktailTwo: Cocktail) => {
-    if (cocktailOne.strDrink && cocktailTwo.strDrink) {
-        const strDrinkA = cocktailOne.strDrink.toUpperCase(); // ignore upper and lowercase
-        const strDrinkB = cocktailTwo.strDrink.toUpperCase(); // ignore upper and lowercase
+    if (cocktailOne.name && cocktailTwo.name) {
+        const strDrinkA = cocktailOne.name.toUpperCase(); // ignore upper and lowercase
+        const strDrinkB = cocktailTwo.name.toUpperCase(); // ignore upper and lowercase
         if (strDrinkA > strDrinkB) {
             return -1; //strDrinkA comes first
         }
@@ -49,13 +48,13 @@ const sortFavorites = (cocktailOne: Cocktail, cocktailTwo: Cocktail) => {
 
 export const filterSort = (prevDataSet: Cocktail[], state: any) => {
     let newArray: Cocktail[] = []
-    if (state.sortFilter[0] === SORT_LIST.en[0]) {
+    if (state.sortFilter[0] === SORT_LIST[0]) {
         newArray = prevDataSet.slice().sort(sortAZ)
     }
-    if (state.sortFilter[0] === SORT_LIST.en[1]) {
+    if (state.sortFilter[0] === SORT_LIST[1]) {
         newArray = prevDataSet.slice().sort(sortZA)
     }
-    if (state.sortFilter[0] === SORT_LIST.en[2]) {
+    if (state.sortFilter[0] === SORT_LIST[2]) {
         newArray = prevDataSet.slice().sort(sortFavorites)
     }
     return newArray
@@ -63,7 +62,7 @@ export const filterSort = (prevDataSet: Cocktail[], state: any) => {
 
 export const filterAlcoholic = (prevDataSet: Cocktail[], state: any) => {
     const alcoholFilteredData: Cocktail[] = prevDataSet.filter((item) => {
-        if (state.alcoholicFilter[0] === ALL || item.strAlcoholic === state.alcoholicFilter[0])
+        if (state.alcoholicFilter[0] === ALL || item.alcoholic)
             return item
     })
     return alcoholFilteredData
@@ -76,7 +75,7 @@ export const filterCategory = (prevDataSet: Cocktail[], state: any) => {
         else {
             let isFiltered = false
             state.categoryFilter.forEach((itemFilter: string) => {
-                if (itemFilter === item.strCategory) {
+                if (itemFilter === item.category) {
                     isFiltered = true
                 }
             })
@@ -91,9 +90,9 @@ export const filterCategory = (prevDataSet: Cocktail[], state: any) => {
 
 export const filterSearchField = (prevDataSet: Cocktail[], state: any, dispatch: any) => {
     const searchFieldFilteredData: Cocktail[] = prevDataSet.filter((item) => {
-        if (item.strDrink) {
+        if (item.name) {
             const inputLowerNoSpace = state.currentSearchFieldInput.toLowerCase().replace(" ", "")
-            const itemNameLowerNoSpace = item.strDrink.toLowerCase().replace(" ", "")
+            const itemNameLowerNoSpace = item.name.toLowerCase().replace(" ", "")
             if (itemNameLowerNoSpace.includes(inputLowerNoSpace)) {
                 return item
             }

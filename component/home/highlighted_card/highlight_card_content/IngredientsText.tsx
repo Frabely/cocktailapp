@@ -3,36 +3,49 @@ import {StyleSheet, Text, View} from "react-native";
 import {useEffect, useState} from "react";
 import {BORDER_RADIUS, PADDING} from "../../../../constants/style_constants";
 import {COLOR_BACKGROUND, COLOR_OPACITY_VALUE_50} from "../../../../constants/color_styles";
-import {Language} from "../../../../constants/types";
+import {Ingredient, Language} from "../../../../constants/types";
 
 export default function IngredientsText({}: IngredientsTextProps) {
     const state = useAppSelector((state) => state)
     const language: Language = state.language
 
-    const [arrayIngredients, setArrayIngredients] = useState([])
+    // const [arrayIngredients, setArrayIngredients] = useState([])
 
-    useEffect(() => {
-        const arrayIngredients: string[] = [];
-        const arrayMeasures: string[] = [];
-        for (const [key, value] of Object.entries(state.currentItem)) {
-            if (key !== null) {
-                if (key.startsWith('strIngredient'))
-                    if (value !== null && typeof value === "string")
-                        arrayIngredients.push(value)
+    let arrayIngredients: Ingredient[] = []
+    let arrayMeasures: number[] = []
+    if (state.currentItem.ingredientsList)
+        arrayIngredients = state.currentItem.ingredientsList
+    if (state.currentItem.liquidMeasuresML)
+        arrayMeasures = state.currentItem.liquidMeasuresML;
 
-                if (key.startsWith('strMeasure'))
-                    if (value !== null && typeof value === "string")
-                        arrayMeasures.push(value)
-                    else
-                        arrayMeasures.push('')
-            }
-        }
-        let arrayCombined: any = []
-        for (let i = 0; i < arrayIngredients.length && i < arrayMeasures.length; i++) {
-            arrayCombined.push({[`${arrayIngredients[i]}`]: arrayMeasures[i]})
-        }
-        setArrayIngredients(arrayCombined)
-    }, [state.currentItem])
+
+    // useEffect(() => {
+    //     let arrayIngredients: Ingredient[]
+    //     if (state.currentItem.ingredientsList)
+    //         arrayIngredients = state.currentItem.ingredientsList
+    //     let arrayMeasures: number[]
+    //     if (state.currentItem.liquidMeasuresML)
+    //         arrayMeasures = state.currentItem.liquidMeasuresML;
+        // const arrayMeasures: string[] = [];
+        // for (const [key, value] of Object.entries(state.currentItem)) {
+        //     if (key !== null) {
+        //         if (key.startsWith('strIngredient'))
+        //             if (value !== null && typeof value === "string")
+        //                 arrayIngredients.push(value)
+        //
+        //         if (key.startsWith('strMeasure'))
+        //             if (value !== null && typeof value === "string")
+        //                 arrayMeasures.push(value)
+        //             else
+        //                 arrayMeasures.push('')
+        //     }
+        // }
+        // let arrayCombined: any = []
+        // for (let i = 0; i < arrayIngredients.length && i < arrayMeasures.length; i++) {
+        //     arrayCombined.push({[`${arrayIngredients[i]}`]: arrayMeasures[i]})
+        // }
+        // setArrayIngredients(arrayCombined)
+    // }, [state.currentItem])
 
 
     return (
@@ -45,13 +58,13 @@ export default function IngredientsText({}: IngredientsTextProps) {
                 if (index % 2)
                     return (
                         <Text style={styles.ingredientsText} key={index}>
-                            {Object.keys(item)[0]} {item[Object.keys(item)[0]]}
+                            {item.name} {arrayMeasures[index]}
                         </Text>
                     )
                 else
                     return (
                         <Text style={styles.ingredientsTextBackground} key={index}>
-                            {Object.keys(item)[0]} {item[Object.keys(item)[0]]}
+                            {item.name} {arrayMeasures[index]}
                         </Text>
                     )
             })}

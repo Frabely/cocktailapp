@@ -5,7 +5,7 @@ export default function HeadlineText({}: HeadlineProps) {
     const state = useAppSelector((state) => state)
     return (
         <Text style={styles.text}>
-            {state.currentItem.strDrink}
+            {state.currentItem.name}
         </Text>
     )
 }
