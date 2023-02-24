@@ -6,7 +6,6 @@ const LanguageSlice = createSlice({
     name: 'language',
     initialState: en,
     reducers: {
-        //TODO add type for json
         changeLanguage: (state, action: PayloadAction<Language>) => {
             return action.payload
         }
