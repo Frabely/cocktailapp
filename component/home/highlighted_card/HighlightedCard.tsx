@@ -31,9 +31,9 @@ export default function HighlightedCard({height}: HighlightedCardProps) {
             height: (height || height == 0) ? height : vh_reactive(0.6, state.dimensions.height) - PADDING * 2
         }]}>
             <ImageBackground style={styles.highlightViewBackgroundImage}
-                             source={{uri: `./assets/images/imagesCocktails/${state.currentItem.idDrink}.jpg` ?? ''}}>
+                             source={require(`../../../assets/images/imagesCocktails/${state.currentItem.idDrink}.jpg`)}>
                 <HighlightedCardInnerImage
-                    imageSource={`./assets/images/imagesCocktails/${state.currentItem.idDrink}.jpg` ?? ''}/>
+                    imageSource={require(`../../../assets/images/imagesCocktails/${state.currentItem.idDrink}.jpg`)}/>
                 <View style={styles.cardHighlightBackground}>
                     <View style={{flex: 3, flexDirection: 'row'}}>
                         <View style={{flex: 1}}></View>

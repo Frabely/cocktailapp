@@ -14,7 +14,6 @@ export default function AdditionalCocktailInformation({}: AdditionalCocktailInfo
                 </Text>
             ) : null
             }
-            //TODO check if this works or === true is needed
             {state.currentItem.alcoholic ? (
                 <Text style={styles.contentText}>
                     {language.labels.ALCOHOLIC_LABEL}

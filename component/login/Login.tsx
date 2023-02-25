@@ -107,7 +107,7 @@ export default function Login({}: LoginProps) {
                 console.log(error.message)
             })
             if (resultUser) {
-                const dataSet: Cocktail[] | undefined | void = await fetchFullDataSetAsArray().catch(error => {
+                const dataSet: Cocktail[] | void = await fetchFullDataSetAsArray().catch(error => {
                     console.log(error.message)
                 })
                 if (dataSet) {

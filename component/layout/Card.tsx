@@ -45,7 +45,7 @@ export default function Card({onPress, item}: CardProps) {
             }
             ]}>
                 <ImageBackground style={[styles.cardInner, styles.boxShadow]} source={
-                    {uri: `./assets/images/imagesCocktails/${state.currentItem.idDrink}.jpg` ?? ''}
+                    require(`../../assets/images/imagesCocktails/${item.idDrink}.jpg`)
                 }/>
             </Pressable>
         )

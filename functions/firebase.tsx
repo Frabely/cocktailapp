@@ -128,26 +128,35 @@ export const getFavoritesList: (userID: string) => Promise<string[] | undefined>
 //     })
 // }
 
-export const fetchFullDataSetAsArray: () => Promise<(Cocktail| undefined)[]> = async () => {
+export const fetchFullDataSetAsArray: () => Promise<undefined | Cocktail[]> = async () => {
     const drinksRef = collection(db, `ownDrinks`);
     const querySnapshot = await getDocs(drinksRef).catch(error => {
         console.log(error.message)
-        return undefined
     })
     if (querySnapshot && !querySnapshot.empty) {
-        let result: Promise<Cocktail | undefined>[] = querySnapshot.docs.map(async (databaseCocktail) => {
-            const resultMappedCocktail: Cocktail | undefined = await setCocktailFromDoc(databaseCocktail).catch(error => {
+        let result: Promise<(Cocktail | undefined)>[] = querySnapshot.docs.map(async (databaseCocktail) => {
+            const resultMappedCocktail: Cocktail | void = await setCocktailFromDoc(databaseCocktail).catch(error => {
                 console.log(error.message)
-                return undefined
             })
             if (resultMappedCocktail) {
                 return {...resultMappedCocktail, dateModified: null}
             }
         })
         let returnArray: (Cocktail | undefined)[] = await Promise.all(result)
-        return returnArray
+        let isCocktailUndefined: boolean = false
+        let filteredArray: Cocktail[] = []
+            returnArray.map((cocktail) => {
+                if (!cocktail) {
+                    isCocktailUndefined = true
+                }
+                if (cocktail)
+                    filteredArray.push(cocktail)
+
+        })
+        if (isCocktailUndefined)
+            return undefined
+        return filteredArray
     }
-    return []
 }
 
 export const updateRatingLists: (ratedCocktailList: RatedCocktail[], userID: string) => void
