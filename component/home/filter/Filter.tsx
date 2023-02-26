@@ -70,7 +70,7 @@ export default function Filter({onPress, lengthDataSet}: FilterProps) {
             }]}>
                 <Label labelName={language.labels.INGREDIENTS_LABEL}/>
             </View>
-            <DropDownPickerWrapper/>
+            {/*TODO <DropDownPickerWrapper/>*/}
             <View style={styles.buttonBackgroundStyle}>
                 <StyledButton
                     flex={1}

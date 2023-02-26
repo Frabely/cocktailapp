@@ -15,7 +15,7 @@ export default function GlassTypeText({}: GlassTypeTextProps) {
                         {language.labels.GLASS_LABEL + "\n"}
                     </Text>
                     <Text style={styles.contentText}>
-                        {state.currentItem.glass}
+                        {language.drinks[`${state.currentItem.idDrink}`].glass}
                     </Text>
                 </>
             ) : null

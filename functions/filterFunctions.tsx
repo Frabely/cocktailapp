@@ -61,7 +61,7 @@ export const filterSort = (prevDataSet: Cocktail[], state: any) => {
 }
 
 export const filterAlcoholic = (prevDataSet: Cocktail[], state: any) => {
-    const alcoholFilteredData: Cocktail[] = prevDataSet.filter((item) => {
+    const alcoholFilteredData: Cocktail[] = prevDataSet.filter((item: Cocktail) => {
         if (state.alcoholicFilter[0] === ALL || item.alcoholic)
             return item
     })
@@ -69,7 +69,7 @@ export const filterAlcoholic = (prevDataSet: Cocktail[], state: any) => {
 }
 
 export const filterCategory = (prevDataSet: Cocktail[], state: any) => {
-    const categoryFilteredData: Cocktail[] = prevDataSet.filter((item) => {
+    const categoryFilteredData: Cocktail[] = prevDataSet.filter((item: Cocktail) => {
         if (state.categoryFilter.includes(ALL))
             return item
         else {
@@ -89,10 +89,10 @@ export const filterCategory = (prevDataSet: Cocktail[], state: any) => {
 }
 
 export const filterSearchField = (prevDataSet: Cocktail[], state: any, dispatch: any) => {
-    const searchFieldFilteredData: Cocktail[] = prevDataSet.filter((item) => {
-        if (item.name) {
+    const searchFieldFilteredData: Cocktail[] = prevDataSet.filter((item: Cocktail) => {
+        if (state.language.drinks[`${item.idDrink}`].name) {
             const inputLowerNoSpace = state.currentSearchFieldInput.toLowerCase().replace(" ", "")
-            const itemNameLowerNoSpace = item.name.toLowerCase().replace(" ", "")
+            const itemNameLowerNoSpace = state.language.drinks[`${item.idDrink}`].name.toLowerCase().replace(" ", "")
             if (itemNameLowerNoSpace.includes(inputLowerNoSpace)) {
                 return item
             }
@@ -129,13 +129,14 @@ export const filterIngredients = (prevDataSet: any[], state: any) => {
     return ingredientsFilteredData
 }
 
-export const applySyncFilters = (prevDataSet: any[], state: any, dispatch: any) => {
-    let newDataSet: any []
+export const applySyncFilters = (prevDataSet: Cocktail[], state: any, dispatch: any) => {
+    let newDataSet: Cocktail []
     newDataSet = filterSort(prevDataSet, state)
     newDataSet = filterAlcoholic(newDataSet, state)
     newDataSet = filterCategory(newDataSet, state)
     newDataSet = filterSearchField(newDataSet, state, dispatch)
-    newDataSet = filterIngredients(newDataSet, state)
+    //TODO fix ingredients filter
+    //newDataSet = filterIngredients(newDataSet, state)
     return newDataSet
 }
 
