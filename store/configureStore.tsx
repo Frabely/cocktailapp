@@ -19,6 +19,7 @@ import isCreatingAccountSlice from "../reducers/login/isCreatingAccountReducer"
 import DimensionsSlice from "../reducers/general/screenSizeReducer"
 import CocktailRatingSlice from "../reducers/cocktail/cocktailRatingReducer"
 import DataSetSlice from "../reducers/general/dataSetReducer"
+import IngredientsDataSetSlice from "../reducers/general/ingredientsDataSetReducer"
 
 
 const rootReducer = combineReducers({
@@ -40,6 +41,7 @@ const rootReducer = combineReducers({
     dimensions: DimensionsSlice,
     cocktailRating: CocktailRatingSlice,
     dataSet: DataSetSlice,
+    ingredientDataSet: IngredientsDataSetSlice,
     sortFilter: sortFilterSlice,
 })
 

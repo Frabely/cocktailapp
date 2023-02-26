@@ -6,7 +6,6 @@ import {
 } from "../../../../constants/color_styles";
 import DropDownPicker from "react-native-dropdown-picker";
 import {useEffect, useState} from "react";
-import {INGREDIENT_LIST} from "../../../../constants/filter_lists";
 import {vh_reactive, vw_reactive} from "../../../../functions/dimentions";
 import {Platform} from "react-native";
 import {useAppDispatch, useAppSelector} from "../../../../constants/hooks";
@@ -17,16 +16,28 @@ import {
 } from "../../../../constants/const_vars";
 import { Orientation } from "expo-screen-orientation";
 import {getDefaultButtonHeight} from "../../../../functions/viewport_calculations";
-import {Language} from "../../../../constants/types";
+import {DropDownMenuType, Ingredient, Language} from "../../../../constants/types";
 
 export default function DropDownPickerWrapper() {
     const dispatch = useAppDispatch()
     const state = useAppSelector((state) => state)
     const [open, setOpen] = useState(false);
-    const [items, setItems] = useState(INGREDIENT_LIST);
     const [value, setValue] = useState(state.ingredientsFilter);
     const language: Language = state.language
 
+    const createIngredientsArray = () => {
+        let dropdownIngredientsList: DropDownMenuType[] = []
+        state.ingredientDataSet.map((ingredient: Ingredient) => {
+            const dropdownItem: DropDownMenuType = {
+                label: language.ingredients[`${ingredient.idIngredient}`].name,
+                value: language.ingredients[`${ingredient.idIngredient}`]
+            }
+            dropdownIngredientsList.push(dropdownItem)
+        })
+        return dropdownIngredientsList
+    }
+
+    const [items, setItems] = useState(createIngredientsArray());
     useEffect(() => {
         dispatch(changeIngredients(value))
     }, [value])

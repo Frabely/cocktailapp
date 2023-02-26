@@ -1,4 +1,4 @@
-import {IconTitleObject, LabelListType} from "./types";
+import {DropDownMenuType, IconTitleObject, LabelListType} from "./types";
 import {faSortAlphaUp, faSortAlphaDown, faHeart} from "@fortawesome/free-solid-svg-icons";
 
 export const SORT_LIST: LabelListType = {
@@ -12,7 +12,7 @@ export const ICON_NAME_LIST: IconTitleObject[] = [
     {icon: faHeart, titleENG: 'Favorites'}
 ]
 
-export const INGREDIENT_LIST: object[] = [
+export const INGREDIENT_LIST: DropDownMenuType[] = [
     {
         'label': 'Absolut Kurant',
         'value': 'Absolut Kurant',

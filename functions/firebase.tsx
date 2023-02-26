@@ -14,7 +14,7 @@ import {
     DocumentData,
     DocumentReference,
 } from "firebase/firestore";
-import {DRINKS_DB, USER_USERNAME_LOWER_DB, USERS_DB} from "../constants/const_vars";
+import {DRINKS_DB, INGREDIENTS, USER_USERNAME_LOWER_DB, USERS_DB} from "../constants/const_vars";
 import {Cocktail, Ingredient, RatedCocktail} from "../constants/types";
 
 //RELEASE DB KEYS
@@ -129,7 +129,7 @@ export const getFavoritesList: (userID: string) => Promise<string[] | undefined>
 // }
 
 export const fetchFullDataSetAsArray: () => Promise<undefined | Cocktail[]> = async () => {
-    const drinksRef = collection(db, `ownDrinks`);
+    const drinksRef = collection(db, DRINKS_DB);
     const querySnapshot = await getDocs(drinksRef).catch(error => {
         console.log(error.message)
     })
@@ -157,6 +157,26 @@ export const fetchFullDataSetAsArray: () => Promise<undefined | Cocktail[]> = as
             return undefined
         return filteredArray
     }
+}
+
+export const fetchFullIngredientsDataSetAsArray: () => Promise<Ingredient[]> = async () => {
+    const ingredientsRef = collection(db, INGREDIENTS);
+    const querySnapshot = await getDocs(ingredientsRef).catch(error => {
+        console.log(error.message)
+        return undefined
+    })
+    let ingredientArray: Ingredient[] = []
+    if (querySnapshot && !querySnapshot.empty) {
+        // TODO do this in function and use it in cocktail resolve as well
+        ingredientArray = querySnapshot.docs.map((databaseIngredient) => {
+            const ingredient: Ingredient = {
+                idIngredient: databaseIngredient.id,
+                alcoholVolume: databaseIngredient.get("alcoholVolume")
+            }
+            return ingredient
+        })
+    }
+    return ingredientArray
 }
 
 export const updateRatingLists: (ratedCocktailList: RatedCocktail[], userID: string) => void
@@ -251,7 +271,6 @@ const setCocktailFromDoc: (docResult: DocumentSnapshot) => Promise<Cocktail> = a
     ingredients.map((ingredient: DocumentSnapshot) => {
         let ingredientItem: Ingredient = {
             idIngredient: ingredient.id,
-            name: null,
             alcoholVolume: ingredient.get("alcoholVolume")
         }
         ingredientsList.push(ingredientItem)

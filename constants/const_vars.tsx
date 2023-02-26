@@ -26,7 +26,9 @@ export const EMPTY_ITEM: Cocktail = {
 //database paths
 export const USERS_DB = 'users'
 export const USER_FAVORITES_DB = 'favorites'
-export const DRINKS_DB = 'drinks'
+export const DRINKS_DB = 'ownDrinks'
+
+export const INGREDIENTS = 'ingredients'
 
 //database attributes
 export const USER_USERNAME_LOWER_DB = "usernameLower"

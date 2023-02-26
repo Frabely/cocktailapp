@@ -15,7 +15,7 @@ import {invertIsModalState} from "../../reducers/general/booleans/isModalReducer
 import {activeUser} from "../../reducers/user/userReducer";
 import {
     app,
-    fetchFullDataSetAsArray,
+    fetchFullDataSetAsArray, fetchFullIngredientsDataSetAsArray,
     getFavoritesList,
     getUser
 } from "../../functions/firebase";
@@ -32,10 +32,11 @@ import {createAccount} from "../../reducers/login/loginStateReducer";
 import ForgotPasswordButton from "./ForgotPasswordButton";
 import {invertIsCreatingAccount} from "../../reducers/login/isCreatingAccountReducer";
 import {fetchFavoriteDataSetAsArray} from "../../functions/filterFunctions";
-import {Cocktail, Language, RatedCocktail, User} from "../../constants/types";
+import {Cocktail, Ingredient, Language, RatedCocktail, User} from "../../constants/types";
 import {changeRatedCocktailArray} from "../../reducers/cocktail/cocktailRatingReducer";
 import {DocumentData} from "firebase/firestore";
 import {changeDataSet} from "../../reducers/general/dataSetReducer";
+import {changeIngredientsDataSet} from "../../reducers/general/ingredientsDataSetReducer";
 import {GERMAN} from "../../constants/const_vars";
 import en from "../../constants/en.json"
 import de from "../../constants/de.json"
@@ -110,8 +111,12 @@ export default function Login({}: LoginProps) {
                 const dataSet: Cocktail[] | void = await fetchFullDataSetAsArray().catch(error => {
                     console.log(error.message)
                 })
-                if (dataSet) {
+                const ingredientDataSet: Ingredient[] | void = await fetchFullIngredientsDataSetAsArray().catch(error => {
+                    console.log(error.message)
+                })
+                if (dataSet && ingredientDataSet) {
                     dispatch(changeDataSet(dataSet))
+                    dispatch(changeIngredientsDataSet(ingredientDataSet))
                     dispatch(changeRatedCocktailArray(getRatingCocktailList(dataSet)))
                     const favoritesArray: void | string[] | undefined = await getFavoritesList(user.user.uid).catch(error => {
                         console.log(error.message)

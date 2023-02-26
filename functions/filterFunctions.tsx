@@ -1,6 +1,6 @@
 import {ALL, EMPTY_ITEM, SORT_LIST} from "../constants/const_vars";
 import {changeCurrentItem} from "../reducers/home/currentItemReducer";
-import {Cocktail} from "../constants/types";
+import {Cocktail, Ingredient} from "../constants/types";
 
 
 const sortAZ = (cocktailOne: Cocktail, cocktailTwo: Cocktail) => {
@@ -104,20 +104,18 @@ export const filterSearchField = (prevDataSet: Cocktail[], state: any, dispatch:
     return searchFieldFilteredData
 }
 
-export const filterIngredients = (prevDataSet: any[], state: any) => {
-    let ingredientsFilteredData: any[] = prevDataSet
+export const filterIngredients = (prevDataSet: Cocktail[], state: any) => {
+    let ingredientsFilteredData: Cocktail[] = prevDataSet
     if (state.ingredientsFilter.length !== 0) {
-        ingredientsFilteredData = prevDataSet.filter((item) => {
-            let isFiltered = false
+        ingredientsFilteredData = prevDataSet.filter((item: Cocktail) => {
+            let isFiltered: boolean = false
             state.ingredientsFilter.forEach((itemFilter: string) => {
-                for (let index: number = 1; index < 16; index++) {
-                    if (item[`strIngredient${index}`] !== null) {
-                        const itemFilterLowerNoSpace = itemFilter.toLowerCase().replace(" ", "")
-                        const itemNameLowerNoSpace = item[`strIngredient${index}`].toLowerCase().replace(" ", "")
-                        if (itemFilterLowerNoSpace === itemNameLowerNoSpace) {
+                if (item.ingredientsList) {
+                    item.ingredientsList.map((ingredient: Ingredient) => {
+                        if (itemFilter === ingredient.idIngredient) {
                             isFiltered = true
                         }
-                    }
+                    })
                 }
             })
             if (isFiltered) {
@@ -136,7 +134,7 @@ export const applySyncFilters = (prevDataSet: Cocktail[], state: any, dispatch: 
     newDataSet = filterCategory(newDataSet, state)
     newDataSet = filterSearchField(newDataSet, state, dispatch)
     //TODO fix ingredients filter
-    //newDataSet = filterIngredients(newDataSet, state)
+    newDataSet = filterIngredients(newDataSet, state)
     return newDataSet
 }
 
