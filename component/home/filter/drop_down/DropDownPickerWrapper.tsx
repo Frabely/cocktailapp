@@ -28,10 +28,12 @@ export default function DropDownPickerWrapper() {
     const createIngredientsArray = () => {
         let dropdownIngredientsList: DropDownMenuType[] = []
         state.ingredientDataSet.map((ingredient: Ingredient) => {
-            const dropdownItem: DropDownMenuType = {
-                label: language.ingredients[`${ingredient.idIngredient}`].name,
-                value: language.ingredients[`${ingredient.idIngredient}`]
-            }
+            let dropdownItem: DropDownMenuType = {value: "", label: ""}
+            if (ingredient.idIngredient)
+                dropdownItem = {
+                    label: language.ingredients[`${ingredient.idIngredient}`].name,
+                    value: ingredient.idIngredient
+                }
             dropdownIngredientsList.push(dropdownItem)
         })
         return dropdownIngredientsList
@@ -42,9 +44,10 @@ export default function DropDownPickerWrapper() {
         dispatch(changeIngredients(value))
     }, [value])
 
-    useEffect(() => {
-        setValue(state.ingredientsFilter)
-    }, [state.ingredientsFilter])
+    // TODO check why needed after more cocktails added - infinite loop like this
+    // useEffect(() => {
+    //     setValue(state.ingredientsFilter)
+    // }, [state.ingredientsFilter])
 
     DropDownPicker.setMode("BADGE");
     DropDownPicker.setListMode("SCROLLVIEW");
