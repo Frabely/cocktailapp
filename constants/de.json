@@ -5,6 +5,11 @@
       "name": "A Gilligan's Island",
       "glass": "Collinsglas",
       "instruction": "Alle Zutaten in ein Shaker füllen, schütteln und servieren."
+    },
+    "Afterglow": {
+      "name": "Afterglow",
+      "glass": "Highballglas",
+      "instruction": "In einem Shaker mischen und auf Eis servieren."
     }
   },
   "ingredients": {
@@ -19,6 +24,12 @@
     },
     "cranberryJuice": {
       "name": "Cranberrysaft"
+    },
+    "grenadine": {
+      "name": "Grenadine"
+    },
+    "pineappleJuice": {
+      "name": "Ananassaft"
     }
   },
   "labels": {
@@ -39,6 +50,7 @@
     "SEARCH_INGREDIENTS_LABEL": "Zutat suchen",
     "ALL_LABEL": "Alle",
     "ALCOHOLIC_LABEL": "Alkoholisch",
+    "NON_ALCOHOLIC_LABEL": "Alkoholfrei",
     "CATEGORY_LABEL": "Kategorie",
     "INGREDIENTS_LABEL": "Zutaten",
     "CLEAR_ALL_FILTERS_LABEL": "Filter zurücksetzen",

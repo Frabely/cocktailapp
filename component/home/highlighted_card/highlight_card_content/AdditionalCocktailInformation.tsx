@@ -14,11 +14,10 @@ export default function AdditionalCocktailInformation({}: AdditionalCocktailInfo
                 </Text>
             ) : null
             }
-            {state.currentItem.alcoholic ? (
+            {state.currentItem.alcoholic === null ? null :
                 <Text style={styles.contentText}>
-                    {language.labels.ALCOHOLIC_LABEL}
+                    {state.currentItem.alcoholic ? language.labels.ALCOHOLIC_LABEL : language.labels.NON_ALCOHOLIC_LABEL}
                 </Text>
-            ) : null
             }
         </View>
     )
