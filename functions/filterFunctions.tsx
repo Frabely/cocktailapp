@@ -1,4 +1,4 @@
-import {ALL, EMPTY_ITEM, SORT_LIST} from "../constants/const_vars";
+import {ALCOHOLIC, ALL, EMPTY_ITEM, NON_ALCOHOLIC, SORT_LIST} from "../constants/const_vars";
 import {changeCurrentItem} from "../reducers/home/currentItemReducer";
 import {Cocktail, Ingredient} from "../constants/types";
 
@@ -62,7 +62,10 @@ export const filterSort = (prevDataSet: Cocktail[], state: any) => {
 
 export const filterAlcoholic = (prevDataSet: Cocktail[], state: any) => {
     const alcoholFilteredData: Cocktail[] = prevDataSet.filter((item: Cocktail) => {
-        if (state.alcoholicFilter[0] === ALL || item.alcoholic)
+        if (state.alcoholicFilter[0] === ALL ||
+            item.alcoholic && state.alcoholicFilter[0] === ALCOHOLIC ||
+            !item.alcoholic && state.alcoholicFilter[0] === NON_ALCOHOLIC
+        )
             return item
     })
     return alcoholFilteredData

@@ -51,6 +51,9 @@ export const FORGOT_PASSWORD_LABEL = 'Forgot Password?'
 
 export const SORT_LIST: string[] = ['AlphabeticalAZ', 'AlphabeticalZA', 'Favorites']
 
+export const ALCOHOLIC = "Alcoholic"
+export const NON_ALCOHOLIC = "Non alcoholic"
+
 
 // profile pages
 export const PROFILE_DETAILS = 'profileDetails'
