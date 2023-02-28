@@ -51,7 +51,7 @@ export default function HighlightedCard({height}: HighlightedCardProps) {
                             <HeadlineText/>
                             <AdditionalCocktailInformation/>
                             <IngredientsText/>
-                            {arrayOptionalIngredients.length > 0 ?
+                            {arrayOptionalIngredients && arrayOptionalIngredients.length > 0 ?
                                 <OptionalIngredientsText arrayOptionalIngredientsList={arrayOptionalIngredients}/>
                                 : null
                             }

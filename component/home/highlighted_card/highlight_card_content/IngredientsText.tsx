@@ -24,13 +24,13 @@ export default function IngredientsText({}: IngredientsTextProps) {
                 if (index % 2)
                     return (
                         <Text style={styles.ingredientsText} key={index}>
-                            {language.ingredients[`${item.idIngredient}`].name} {arrayMeasures[index]}
+                            {arrayMeasures[index]} {language.ingredients[`${item.idIngredient}`].name}
                         </Text>
                     )
                 else
                     return (
                         <Text style={styles.ingredientsTextBackground} key={index}>
-                            {language.ingredients[`${item.idIngredient}`].name} {arrayMeasures[index]}
+                            {arrayMeasures[index]} {language.ingredients[`${item.idIngredient}`].name}
                         </Text>
                     )
             })}

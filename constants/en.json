@@ -3,28 +3,28 @@
   "drinks": {
     "AGilligansIsland": {
       "name": "A Gilligan's Island",
-      "glass": "Collins glass",
+      "glass": "Collins Glass",
       "instruction": "Put all ingredients in a blender, shake and serve.",
       "optionalingredients": []
     },
     "Afterglow": {
       "name": "Afterglow",
-      "glass": "Highball glass",
+      "glass": "Highball Glass",
       "instruction": "Mix in a blender and serve over ice.",
       "optionalingredients": []
     },
     "AppleSlammer": {
       "name": "Apple Slammer",
-      "glass": "Shot glass",
+      "glass": "Shot Glass",
       "instruction": "Add both ingredients in a shot glass and serve.",
       "optionalingredients": []
     },
     "GinTonic": {
       "name": "Gin Tonic",
-      "glass": "Highball glass",
+      "glass": "Highball Glass",
       "instruction": "Fill a highball glass with ice and pour the gin. Top with tonic water and squeeze a lemon wedge. Garnish with another lemon wedge and serve.",
       "optionalingredients": [
-        "One lemon slice"
+        "1 Lemon Slice"
       ]
     }
   },
