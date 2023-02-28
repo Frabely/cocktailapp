@@ -4,9 +4,9 @@ import {Cocktail, Ingredient} from "../constants/types";
 
 
 const sortAZ = (cocktailOne: Cocktail, cocktailTwo: Cocktail) => {
-    if (cocktailOne.name && cocktailTwo.name) {
-        const strDrinkA = cocktailOne.name.toUpperCase(); // ignore upper and lowercase
-        const strDrinkB = cocktailTwo.name.toUpperCase(); // ignore upper and lowercase
+    if (cocktailOne.idDrink && cocktailTwo.idDrink) {
+        const strDrinkA = cocktailOne.idDrink.toUpperCase(); // ignore upper and lowercase
+        const strDrinkB = cocktailTwo.idDrink.toUpperCase(); // ignore upper and lowercase
         if (strDrinkA < strDrinkB) {
             return -1; //strDrinkA comes first
         }
@@ -18,9 +18,9 @@ const sortAZ = (cocktailOne: Cocktail, cocktailTwo: Cocktail) => {
 }
 
 const sortZA = (cocktailOne: Cocktail, cocktailTwo: Cocktail) => {
-    if (cocktailOne.name && cocktailTwo.name) {
-        const strDrinkA = cocktailOne.name.toUpperCase(); // ignore upper and lowercase
-        const strDrinkB = cocktailTwo.name.toUpperCase(); // ignore upper and lowercase
+    if (cocktailOne.idDrink && cocktailTwo.idDrink) {
+        const strDrinkA = cocktailOne.idDrink.toUpperCase(); // ignore upper and lowercase
+        const strDrinkB = cocktailTwo.idDrink.toUpperCase(); // ignore upper and lowercase
         if (strDrinkA > strDrinkB) {
             return -1; //strDrinkA comes first
         }

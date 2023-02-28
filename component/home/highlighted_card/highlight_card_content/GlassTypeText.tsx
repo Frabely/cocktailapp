@@ -9,7 +9,8 @@ export default function GlassTypeText({}: GlassTypeTextProps) {
 
     return (
         <>
-            {state.currentItem.glass !== null && state.currentItem.glass !== "Other/Unknown" ? (
+            {language.drinks[`${state.currentItem.idDrink}`].glass !== null
+            && language.drinks[`${state.currentItem.idDrink}`].glass !== "Other/Unknown" ? (
                 <>
                     <Text style={styles.headlineText}>
                         {language.labels.GLASS_LABEL + "\n"}

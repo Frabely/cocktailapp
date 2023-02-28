@@ -17,8 +17,6 @@ export default function Home({navigation}: any) {
     const dispatch = useAppDispatch()
     const [dataSet, setDataSet] = useState(state.dataSet);
 
-    //TODO fix filters
-
     useEffect(() => {
         dispatch(setIsLoadingTrue())
         let newDataSet: Cocktail[]

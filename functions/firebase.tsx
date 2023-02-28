@@ -111,23 +111,6 @@ export const getFavoritesList: (userID: string) => Promise<string[] | undefined>
     })
 }
 
-// export const fetchFullDataSetAsArray: () => Promise<Cocktail[] | undefined> = async () => {
-//     const drinksRef = collection(db, `${DRINKS_DB}`);
-//     return await getDocs(drinksRef).then((result) => {
-//         if (!result.empty) {
-//             let returnArray: Cocktail[] = []
-//             result.docs.map((item) => {
-//                 const cocktail: Cocktail = setCocktailFromDoc(item)
-//                 returnArray.push(cocktail)
-//             })
-//             return returnArray
-//         }
-//     }).catch(error => {
-//         console.log(error.message)
-//         return undefined
-//     })
-// }
-
 export const fetchFullDataSetAsArray: () => Promise<undefined | Cocktail[]> = async () => {
     const drinksRef = collection(db, DRINKS_DB);
     const querySnapshot = await getDocs(drinksRef).catch(error => {
@@ -204,64 +187,6 @@ export const updateRatingLists: (ratedCocktailList: RatedCocktail[], userID: str
     })
 }
 
-// const setCocktailFromDoc: (docResult: DocumentSnapshot) => Cocktail = (docResult: DocumentSnapshot) => {
-//     let cocktail: Cocktail = {
-//         "idDrink": docResult.get("idDrink"),
-//         "strDrink": docResult.get("strDrink"),
-//         "strDrinkAlternate": docResult.get("strDrinkAlternate"),
-//         "strTags": docResult.get("strTags"),
-//         "strVideo": docResult.get("strVideo"),
-//         "strCategory": docResult.get("strCategory"),
-//         "strIBA": docResult.get("strIBA"),
-//         "strAlcoholic": docResult.get("strAlcoholic"),
-//         "strGlass": docResult.get("strGlass"),
-//         "strInstructions": docResult.get("strInstructions"),
-//         "strInstructionsES": docResult.get("strInstructionsES"),
-//         "strInstructionsDE": docResult.get("strInstructionsDE"),
-//         "strInstructionsFR": docResult.get("strInstructionsFR"),
-//         "strInstructionsIT": docResult.get("strInstructionsIT"),
-//         "strInstructionsZH-HANS": docResult.get("strInstructionsZH-HANS"),
-//         "strInstructionsZH-HANT": docResult.get("strInstructionsZH-HANT"),
-//         "strDrinkThumb": docResult.get("strDrinkThumb"),
-//         "strIngredient1": docResult.get("strIngredient1"),
-//         "strIngredient2": docResult.get("strIngredient2"),
-//         "strIngredient3": docResult.get("strIngredient3"),
-//         "strIngredient4": docResult.get("strIngredient4"),
-//         "strIngredient5": docResult.get("strIngredient5"),
-//         "strIngredient6": docResult.get("strIngredient6"),
-//         "strIngredient7": docResult.get("strIngredient7"),
-//         "strIngredient8": docResult.get("strIngredient8"),
-//         "strIngredient9": docResult.get("strIngredient9"),
-//         "strIngredient10": docResult.get("strIngredient10"),
-//         "strIngredient11": docResult.get("strIngredient11"),
-//         "strIngredient12": docResult.get("strIngredient12"),
-//         "strIngredient13": docResult.get("strIngredient13"),
-//         "strIngredient14": docResult.get("strIngredient14"),
-//         "strIngredient15": docResult.get("strIngredient15"),
-//         "strMeasure1": docResult.get("strMeasure1"),
-//         "strMeasure2": docResult.get("strMeasure2"),
-//         "strMeasure3": docResult.get("strMeasure3"),
-//         "strMeasure4": docResult.get("strMeasure4"),
-//         "strMeasure5": docResult.get("strMeasure5"),
-//         "strMeasure6": docResult.get("strMeasure6"),
-//         "strMeasure7": docResult.get("strMeasure7"),
-//         "strMeasure8": docResult.get("strMeasure8"),
-//         "strMeasure9": docResult.get("strMeasure9"),
-//         "strMeasure10": docResult.get("strMeasure10"),
-//         "strMeasure11": docResult.get("strMeasure11"),
-//         "strMeasure12": docResult.get("strMeasure12"),
-//         "strMeasure13": docResult.get("strMeasure13"),
-//         "strMeasure14": docResult.get("strMeasure14"),
-//         "strMeasure15": docResult.get("strMeasure15"),
-//         "strImageSource": docResult.get("strImageSource"),
-//         "strImageAttribution": docResult.get("strImageAttribution"),
-//         "strCreativeCommonsConfirmed": docResult.get("strCreativeCommonsConfirmed"),
-//         "dateModified": docResult.get("dateModified"),
-//         "ratingUserIDList": docResult.get("ratingUserIDList")
-//     }
-//     return cocktail
-// }
-
 const setCocktailFromDoc: (docResult: DocumentSnapshot) => Promise<Cocktail> = async (docResult: DocumentSnapshot): Promise<Cocktail> => {
     let categoryResultPromise: DocumentSnapshot = await readReference(docResult.get("category"))
     let category: string = categoryResultPromise.get("name")
@@ -276,11 +201,8 @@ const setCocktailFromDoc: (docResult: DocumentSnapshot) => Promise<Cocktail> = a
         ingredientsList.push(ingredientItem)
     })
 
-    let cocktail: Cocktail = {
+    return {
         "idDrink": docResult.id,
-        "name": null,
-        "glass": null,
-        "instruction": null,
         "alcoholic": docResult.get("alcoholic"),
         "category": category,
         "ingredientsList": ingredientsList,
@@ -289,7 +211,6 @@ const setCocktailFromDoc: (docResult: DocumentSnapshot) => Promise<Cocktail> = a
         "dateModified": docResult.get("dateModified"),
         "ratingUserIDList": docResult.get("ratingUserIDList")
     }
-    return cocktail
 }
 
 const readReference = async (reference: DocumentReference) => {

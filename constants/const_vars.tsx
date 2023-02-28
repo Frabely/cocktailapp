@@ -11,9 +11,6 @@ export const ENGLISH: string = 'en'
 export const GERMAN: string = 'de'
 export const EMPTY_ITEM: Cocktail = {
     idDrink: null,
-    name: null,
-    glass: null,
-    instruction: null,
     alcoholic: null,
     category: null,
     ingredientsList: null,
