@@ -4,22 +4,28 @@
     "AGilligansIsland": {
       "name": "A Gilligan's Island",
       "glass": "Collins glass",
-      "instruction": "Put all ingredients in a blender, shake and serve."
+      "instruction": "Put all ingredients in a blender, shake and serve.",
+      "optionalingredients": []
     },
     "Afterglow": {
       "name": "Afterglow",
       "glass": "Highball glass",
-      "instruction": "Mix in a blender and serve over ice."
+      "instruction": "Mix in a blender and serve over ice.",
+      "optionalingredients": []
     },
     "AppleSlammer": {
       "name": "Apple Slammer",
       "glass": "Shot glass",
-      "instruction": "Add both ingredients in a shot glass and serve."
+      "instruction": "Add both ingredients in a shot glass and serve.",
+      "optionalingredients": []
     },
     "GinTonic": {
       "name": "Gin Tonic",
       "glass": "Highball glass",
-      "instruction": "Fill a highball glass with ice and pour the gin. Top with tonic water and squeeze a lemon wedge. Garnish with another lemon wedge and serve."
+      "instruction": "Fill a highball glass with ice and pour the gin. Top with tonic water and squeeze a lemon wedge. Garnish with another lemon wedge and serve.",
+      "optionalingredients": [
+        "One lemon slice"
+      ]
     }
   },
   "ingredients": {
@@ -83,6 +89,7 @@
     "NON_ALCOHOLIC_LABEL": "Non Alcoholic",
     "CATEGORY_LABEL": "Category",
     "INGREDIENTS_LABEL": "Ingredients",
+    "OPTIONAL_INGREDIENTS_LABEL": "Optional Ingredients",
     "CLEAR_ALL_FILTERS_LABEL": "Clear all filters",
     "HITS_LABEL": "Hits",
     "ENTER_SEARCH_TERM_LABEL": "Enter search term",

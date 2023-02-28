@@ -23,7 +23,9 @@
       "name": "Gin Tonic",
       "glass": "Highball glass",
       "instruction": "Füllen Sie ein Highballglas mit Eis und gießen Sie den Gin ein. Danach das Tonic Water hinzufügen und eine Zitronenscheibe ausdrücken. Das Glas mit einer weiteren Zitronenscheibe garnieren und anschließend servieren.",
-      "optionalingredients": []
+      "optionalingredients": [
+        "Eine Zitronenscheibe"
+      ]
     }
   },
   "ingredients": {
@@ -87,6 +89,7 @@
     "NON_ALCOHOLIC_LABEL": "Alkoholfrei",
     "CATEGORY_LABEL": "Kategorie",
     "INGREDIENTS_LABEL": "Zutaten",
+    "OPTIONAL_INGREDIENTS_LABEL": "Optionale Zutaten",
     "CLEAR_ALL_FILTERS_LABEL": "Filter zurücksetzen",
     "HITS_LABEL": "Treffer",
     "ENTER_SEARCH_TERM_LABEL": "Suchbegriff eintragen",

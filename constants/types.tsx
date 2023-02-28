@@ -102,6 +102,7 @@ export type Labels = {
     "NON_ALCOHOLIC_LABEL": string,
     "CATEGORY_LABEL": string,
     "INGREDIENTS_LABEL": string,
+    "OPTIONAL_INGREDIENTS_LABEL": string,
     "CLEAR_ALL_FILTERS_LABEL": string,
     "HITS_LABEL": string,
     "ENTER_SEARCH_TERM_LABEL": string,

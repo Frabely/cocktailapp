@@ -11,9 +11,14 @@ import IngredientsText from "./highlight_card_content/IngredientsText";
 import PreparationText from "./highlight_card_content/PreparationText";
 import AdditionalCocktailInformation from "./highlight_card_content/AdditionalCocktailInformation";
 import GlassTypeText from "./highlight_card_content/GlassTypeText";
+import OptionalIngredientsText from "./highlight_card_content/OptionalIngredientsText";
+import {Language} from "../../../constants/types";
 
 export default function HighlightedCard({height}: HighlightedCardProps) {
     const state = useAppSelector((state) => state)
+    const language: Language = state.language
+    let arrayOptionalIngredients: string[] = language.drinks[`${state.currentItem.idDrink}`].optionalingredients
+
 
     generate_box_shadow_style(
         styles,
@@ -46,6 +51,10 @@ export default function HighlightedCard({height}: HighlightedCardProps) {
                             <HeadlineText/>
                             <AdditionalCocktailInformation/>
                             <IngredientsText/>
+                            {arrayOptionalIngredients.length > 0 ?
+                                <OptionalIngredientsText arrayOptionalIngredientsList={arrayOptionalIngredients}/>
+                                : null
+                            }
                             <PreparationText/>
                             <GlassTypeText/>
                         </ScrollView>
