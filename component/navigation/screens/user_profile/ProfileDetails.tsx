@@ -112,6 +112,7 @@ export default function ProfileDetails({navigation}: any) {
                             email: currentUser.email,
                             userID: currentUser.userID,
                             languageSetting: currentUser.languageSetting,
+                            unitOfMeasureForLiquidsSetting: currentUser.unitOfMeasureForLiquidsSetting,
                             favorites: currentUser.favorites
                         }))
                         dispatch(changeModalMessage(language.labels.USERNAME_SUCCESSFUL_CHANGED))
