@@ -22,7 +22,8 @@ export default function FilterPanel({
     const state = useAppSelector((state) => state)
 
     const onFilterButtonClickHandler = (filterName: string) => {
-        const array = [...filterState]
+        const array: string[] = [...filterState]
+        console.log(filterName)
         if (filterName === ALL) {
             dispatch(setFilterState([ALL]))
             return

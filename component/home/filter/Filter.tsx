@@ -13,18 +13,25 @@ import {setActiveFilter} from "../../../reducers/filter/activeFilterReducer";
 import React from "react";
 import {changeSort} from "../../../reducers/filter/sortFilterReducer";
 import {Language} from "../../../constants/types";
-import en from "../../../constants/en.json"
+import {ALCOHOLIC_KEY_LIST, ALL, SORT_LIST} from "../../../constants/const_vars";
 
 export default function Filter({onPress, lengthDataSet}: FilterProps) {
     const state = useAppSelector((state) => state)
     const dispatch = useAppDispatch()
     const language: Language = state.language
+
     const alcFilterOptions: readonly string[] = language.labels.ALCOHOLIC_LIST
-    const alcFilterOptionsENG: readonly string[] = en.labels.ALCOHOLIC_LIST
-    const categoryFilterOptions: readonly string[] = language.labels.CATEGORY_LIST
-    const categoryFilterOptionsENG: readonly string[] = en.labels.CATEGORY_LIST
+    const alcFilterOptionsENG: readonly string[] = ALCOHOLIC_KEY_LIST
+
+    const categoryFilterOptions: string[] = [language.labels.ALL_LABEL]
+    state.categoryDataSet.map((category: string) => {
+        categoryFilterOptions.push(language.categories[`${category}`])
+    })
+    //added all key to the categories fetched from database
+    const categoryFilterOptionsENG: readonly string[] = [ALL ,...state.categoryDataSet]
+
     const sortFilterOptions: readonly string[] = language.labels.SORT_LIST
-    const sortFilterOptionsENG: readonly string[] = en.labels.SORT_LIST
+    const sortFilterOptionsENG: readonly string[] = SORT_LIST
 
     const onHitsClickHandler = () => {
         dispatch(setActiveFilter(''))

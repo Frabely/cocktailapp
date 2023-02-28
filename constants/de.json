@@ -10,6 +10,11 @@
       "name": "Afterglow",
       "glass": "Highballglas",
       "instruction": "In einem Shaker mischen und auf Eis servieren."
+    },
+    "AppleSlammer": {
+      "name": "Apple Slammer",
+      "glass": "Shotglas",
+      "instruction": "Beide Zutaten in ein Shotglas geben und servieren."
     }
   },
   "ingredients": {
@@ -30,10 +35,17 @@
     },
     "pineappleJuice": {
       "name": "Ananassaft"
+    },
+    "appleSchnapps": {
+      "name": "Apfelschnapps"
+    },
+    "7up": {
+      "name": "7UP"
     }
   },
   "categories": {
-    "cocktail": "Cocktail"
+    "cocktail": "Cocktail",
+    "shot": "Shot"
   },
   "labels": {
     "USERNAME_LABEL": "Nutzername",
@@ -84,10 +96,6 @@
       "AlphabetischAZ",
       "AlphabetischZA",
       "Favoriten"
-    ],
-    "CATEGORY_LIST": [
-      "Alle",
-      "Cocktail"
     ],
     "ALCOHOLIC_LIST": [
       "Alle",

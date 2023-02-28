@@ -4,12 +4,17 @@
     "AGilligansIsland": {
       "name": "A Gilligan's Island",
       "glass": "Collins glass",
-      "instruction": "Put all ingredients in a blender, shake and serve"
+      "instruction": "Put all ingredients in a blender, shake and serve."
     },
     "Afterglow": {
       "name": "Afterglow",
       "glass": "Highball glass",
       "instruction": "Mix in a blender and serve over ice."
+    },
+    "AppleSlammer": {
+      "name": "Apple Slammer",
+      "glass": "Shot glass",
+      "instruction": "Add both ingredients in a shot glass and serve."
     }
   },
   "ingredients": {
@@ -30,10 +35,17 @@
     },
     "pineappleJuice": {
       "name": "Pineapple juice"
+    },
+    "appleSchnapps": {
+      "name": "Apple schnapps"
+    },
+    "7up": {
+      "name": "7UP"
     }
   },
   "categories": {
-    "cocktail": "Cocktail"
+    "cocktail": "Cocktail",
+    "shot": "Shot"
   },
   "labels": {
     "USERNAME_LABEL": "Username",
@@ -84,10 +96,6 @@
       "AlphabeticalAZ",
       "AlphabeticalZA",
       "Favorites"
-    ],
-    "CATEGORY_LIST": [
-      "All",
-      "Cocktail"
     ],
     "ALCOHOLIC_LIST": [
       "All",

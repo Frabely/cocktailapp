@@ -1,7 +1,6 @@
 import {Cocktail, User} from "./types";
-
-export const ALL = 'All'
-export const DEFAULT_SORT = 'AlphabeticalAZ'
+export const ALL = 'all'
+export const DEFAULT_SORT = 'alphabeticalAZ'
 export const FILTER = 'filter'
 export const SEARCH_FIELD = 'searchField'
 export const INGREDIENTS_FILTER_SELECTION_NUMBER_MAX = 3
@@ -27,6 +26,8 @@ export const DRINKS_DB = 'ownDrinks'
 
 export const INGREDIENTS = 'ingredients'
 
+export const CATEGORIES = 'categories'
+
 //database attributes
 export const USER_USERNAME_LOWER_DB = "usernameLower"
 export const USER_FAVORITES_DRINK_ID_DB = "drinkID"
@@ -45,11 +46,10 @@ export const CHANGE_USERNAME_LABEL = 'Change Username'
 export const CHANGE_PASSWORD_LABEL = 'Change Password'
 export const LOGIN_LABEL = 'Login'
 export const FORGOT_PASSWORD_LABEL = 'Forgot Password?'
-
-export const SORT_LIST: string[] = ['AlphabeticalAZ', 'AlphabeticalZA', 'Favorites']
-
-export const ALCOHOLIC = "Alcoholic"
-export const NON_ALCOHOLIC = "Non alcoholic"
+export const ALCOHOLIC = "alcoholic"
+export const NON_ALCOHOLIC = "nonAlcoholic"
+export const ALCOHOLIC_KEY_LIST = [ALL, ALCOHOLIC, NON_ALCOHOLIC]
+export const SORT_LIST: string[] = ['alphabeticalAZ', 'alphabeticalZA', 'favorites']
 
 
 // profile pages

@@ -7,7 +7,7 @@ export const SORT_LIST: LabelListType = {
 }
 
 export const ICON_NAME_LIST: IconTitleObject[] = [
-    {icon: faSortAlphaDown, titleENG: 'AlphabeticalAZ'},
-    {icon: faSortAlphaUp, titleENG: 'AlphabeticalZA'},
-    {icon: faHeart, titleENG: 'Favorites'}
+    {icon: faSortAlphaDown, titleENG: 'alphabeticalAZ'},
+    {icon: faSortAlphaUp, titleENG: 'alphabeticalZA'},
+    {icon: faHeart, titleENG: 'favorites'}
 ]

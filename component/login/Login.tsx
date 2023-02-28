@@ -14,7 +14,7 @@ import {changeModalMessage} from "../../reducers/general/modalMessageReducer";
 import {invertIsModalState} from "../../reducers/general/booleans/isModalReducer";
 import {activeUser} from "../../reducers/user/userReducer";
 import {
-    app,
+    app, fetchCategoriesAsArray,
     fetchFullDataSetAsArray, fetchFullIngredientsDataSetAsArray,
     getFavoritesList,
     getUser
@@ -40,6 +40,7 @@ import {changeIngredientsDataSet} from "../../reducers/general/ingredientsDataSe
 import {GERMAN} from "../../constants/const_vars";
 import en from "../../constants/en.json"
 import de from "../../constants/de.json"
+import {changeCategoryDataSet} from "../../reducers/general/categoriesDataSetReducer";
 
 export default function Login({}: LoginProps) {
     const state = useAppSelector((state) => state)
@@ -114,9 +115,13 @@ export default function Login({}: LoginProps) {
                 const ingredientDataSet: Ingredient[] | void = await fetchFullIngredientsDataSetAsArray().catch(error => {
                     console.log(error.message)
                 })
-                if (dataSet && ingredientDataSet) {
+                const categoriesDataSet: string[] | void = await fetchCategoriesAsArray().catch(error => {
+                    console.log(error.message)
+                })
+                if (dataSet && ingredientDataSet && categoriesDataSet) {
                     dispatch(changeDataSet(dataSet))
                     dispatch(changeIngredientsDataSet(ingredientDataSet))
+                    dispatch(changeCategoryDataSet(categoriesDataSet))
                     dispatch(changeRatedCocktailArray(getRatingCocktailList(dataSet)))
                     const favoritesArray: void | string[] | undefined = await getFavoritesList(user.user.uid).catch(error => {
                         console.log(error.message)

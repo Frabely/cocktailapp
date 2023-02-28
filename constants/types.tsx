@@ -127,7 +127,6 @@ export type Labels = {
     "YOUR_FAVORITES": string,
     "LOGOUT_LABEL": string,
     "SORT_LIST": string[],
-    CATEGORY_LIST: string[],
     ALCOHOLIC_LIST: string[],
     "ERROR_CODES": {
         [index: string]: string

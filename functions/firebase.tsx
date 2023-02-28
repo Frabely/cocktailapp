@@ -14,7 +14,7 @@ import {
     DocumentData,
     DocumentReference,
 } from "firebase/firestore";
-import {DRINKS_DB, INGREDIENTS, USER_USERNAME_LOWER_DB, USERS_DB} from "../constants/const_vars";
+import {CATEGORIES, DRINKS_DB, INGREDIENTS, USER_USERNAME_LOWER_DB, USERS_DB} from "../constants/const_vars";
 import {Cocktail, Ingredient, RatedCocktail} from "../constants/types";
 
 //RELEASE DB KEYS
@@ -160,6 +160,21 @@ export const fetchFullIngredientsDataSetAsArray: () => Promise<Ingredient[]> = a
         })
     }
     return ingredientArray
+}
+
+export const fetchCategoriesAsArray: () => Promise<string[]> = async () => {
+    const categoriesRef = collection(db, CATEGORIES);
+    let categoriesArray: string[] = []
+    const querySnapshot = await getDocs(categoriesRef).catch(error => {
+        console.log(error.message)
+        return undefined
+    })
+    if (querySnapshot && !querySnapshot.empty) {
+        categoriesArray = querySnapshot.docs.map((databaseCategory) => {
+            return databaseCategory.id
+        })
+    }
+    return categoriesArray
 }
 
 export const updateRatingLists: (ratedCocktailList: RatedCocktail[], userID: string) => void
