@@ -8,8 +8,6 @@ const ingredientsFilterSlice = createSlice({
     initialState: initialState,
     reducers: {
         changeIngredients: (state, action: PayloadAction<string[]>) => {
-            if (state.length === 0)
-                return []
             return action.payload
         }
     },
