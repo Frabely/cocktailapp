@@ -8,7 +8,7 @@ import {
     getUsernameError
 } from "../../functions/getErrorFunctionsInputs";
 import {
-    CREATE_ACCOUNT_LABEL,
+    CREATE_ACCOUNT_LABEL, MILLILITERS,
 } from "../../constants/const_vars";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../constants/style_constants";
 import StyledButton from "../layout/StyledButton";
@@ -113,6 +113,7 @@ export default function CreateAccount({}: CreateAccountProps) {
                         username: user.user.displayName,
                         email: user.user.email,
                         languageSetting: state.language.langKey,
+                        unitOfMeasureForLiquidsSetting: MILLILITERS,
                         favorites: []
                     }
                     await createUserInDb(userDb)

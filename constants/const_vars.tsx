@@ -5,9 +5,16 @@ export const FILTER = 'filter'
 export const SEARCH_FIELD = 'searchField'
 export const INGREDIENTS_FILTER_SELECTION_NUMBER_MAX = 3
 export const INGREDIENTS_FILTER_SELECTION_NUMBER_MIN = 0
-export const EMPTY_USER: User = {email: null, username: null, userID: null, languageSetting: null, favorites: null}
+export const EMPTY_USER: User = {
+    email: null,
+    username: null,
+    userID: null,
+    languageSetting: null,
+    unitOfMeasureForLiquidsSetting: null,
+    favorites: null}
 export const ENGLISH: string = 'en'
 export const GERMAN: string = 'de'
+export const MILLILITERS: string = 'ml'
 export const EMPTY_ITEM: Cocktail = {
     idDrink: null,
     alcoholic: null,

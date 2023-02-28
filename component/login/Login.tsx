@@ -135,6 +135,7 @@ export default function Login({}: LoginProps) {
                             email: resultUser.email,
                             username: resultUser.username,
                             languageSetting: resultUser.languageSetting,
+                            unitOfMeasureForLiquidsSetting: resultUser.unitOfMeasureForLiquidsSetting,
                             favorites: favoriteCocktails
                         }
                         dispatch(activeUser(userDb))

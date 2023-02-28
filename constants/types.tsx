@@ -41,6 +41,7 @@ export type User = {
     email: string | null,
     userID: string | null,
     languageSetting: string | null,
+    unitOfMeasureForLiquidsSetting: string | null,
     favorites: Cocktail[] | null
 }
 
