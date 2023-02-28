@@ -15,6 +15,11 @@
       "name": "Apple Slammer",
       "glass": "Shot glass",
       "instruction": "Add both ingredients in a shot glass and serve."
+    },
+    "GinTonic": {
+      "name": "Gin Tonic",
+      "glass": "Highball glass",
+      "instruction": "Fill a highball glass with ice and pour the gin. Top with tonic water and squeeze a lemon wedge. Garnish with another lemon wedge and serve."
     }
   },
   "ingredients": {
@@ -22,30 +27,40 @@
       "name": "Vodka"
     },
     "peachLiqueur": {
-      "name": "Peach liqueur"
+      "name": "Peach Liqueur"
     },
     "orangeJuice": {
-      "name": "Orange juice"
+      "name": "Orange Juice"
     },
     "cranberryJuice": {
-      "name": "Cranberry juice"
+      "name": "Cranberry Juice"
     },
     "grenadine": {
       "name": "Grenadine"
     },
     "pineappleJuice": {
-      "name": "Pineapple juice"
+      "name": "Pineapple Juice"
     },
     "appleSchnapps": {
-      "name": "Apple schnapps"
+      "name": "Apple Schnapps"
     },
     "7up": {
       "name": "7UP"
+    },
+    "gin": {
+      "name": "Gin"
+    },
+    "tonicWater": {
+      "name": "Tonic Water"
+    },
+    "lemonJuice": {
+      "name": "Lemon Juice"
     }
   },
   "categories": {
     "cocktail": "Cocktail",
-    "shot": "Shot"
+    "shot": "Shot",
+    "longDrink": "Long Drink"
   },
   "labels": {
     "USERNAME_LABEL": "Username",

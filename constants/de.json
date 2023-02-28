@@ -4,17 +4,26 @@
     "AGilligansIsland": {
       "name": "A Gilligan's Island",
       "glass": "Collinsglas",
-      "instruction": "Alle Zutaten in ein Shaker füllen, schütteln und servieren."
+      "instruction": "Alle Zutaten in ein Shaker füllen, schütteln und servieren.",
+      "optionalingredients": []
     },
     "Afterglow": {
       "name": "Afterglow",
       "glass": "Highballglas",
-      "instruction": "In einem Shaker mischen und auf Eis servieren."
+      "instruction": "In einem Shaker mischen und auf Eis servieren.",
+      "optionalingredients": []
     },
     "AppleSlammer": {
       "name": "Apple Slammer",
       "glass": "Shotglas",
-      "instruction": "Beide Zutaten in ein Shotglas geben und servieren."
+      "instruction": "Beide Zutaten in ein Shotglas geben und servieren.",
+      "optionalingredients": []
+    },
+    "GinTonic": {
+      "name": "Gin Tonic",
+      "glass": "Highball glass",
+      "instruction": "Füllen Sie ein Highballglas mit Eis und gießen Sie den Gin ein. Danach das Tonic Water hinzufügen und eine Zitronenscheibe ausdrücken. Das Glas mit einer weiteren Zitronenscheibe garnieren und anschließend servieren.",
+      "optionalingredients": []
     }
   },
   "ingredients": {
@@ -41,11 +50,21 @@
     },
     "7up": {
       "name": "7UP"
+    },
+    "gin": {
+      "name": "Gin"
+    },
+    "tonicWater": {
+      "name": "Tonic Water"
+    },
+    "lemonJuice": {
+      "name": "Zitronensaft"
     }
   },
   "categories": {
     "cocktail": "Cocktail",
-    "shot": "Shot"
+    "shot": "Shot",
+    "longDrink": "Long Drink"
   },
   "labels": {
     "USERNAME_LABEL": "Nutzername",
