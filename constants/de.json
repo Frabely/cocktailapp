@@ -32,6 +32,9 @@
       "name": "Ananassaft"
     }
   },
+  "categories": {
+    "cocktail": "Cocktail"
+  },
   "labels": {
     "USERNAME_LABEL": "Nutzername",
     "EMAIL_LABEL": "Email",
@@ -77,10 +80,20 @@
     "FAVORITES_LABEL": "Favoriten",
     "YOUR_FAVORITES": "Deine Favoriten",
     "LOGOUT_LABEL": "Ausloggen",
-    "SORT_LIST": ["AlphabetischAZ", "AlphabetischZA", "Favoriten"],
-    "CATEGORY_LIST": ["Alle", "Shot", "Bier", "Shake", "Cocktail", "Gewöhnliches Getränk", "Hausgemachter Likör",
-      "Punsch / Partygetränk", "Kaffee / Tee", "Kakao", "Erfrischungs-Getränk", "Andere / Unbekannt"],
-    "ALCOHOLIC_LIST": ["Alle", "Alkoholisch", "Nicht Alkoholisch"],
+    "SORT_LIST": [
+      "AlphabetischAZ",
+      "AlphabetischZA",
+      "Favoriten"
+    ],
+    "CATEGORY_LIST": [
+      "Alle",
+      "Cocktail"
+    ],
+    "ALCOHOLIC_LIST": [
+      "Alle",
+      "Alkoholisch",
+      "Alkoholfrei"
+    ],
     "ERROR_CODES": {
       "USERNAME_MISSING": "Nutzername fehlt",
       "USERNAME_ALREADY_USED": "Nutzername bereits vergeben",

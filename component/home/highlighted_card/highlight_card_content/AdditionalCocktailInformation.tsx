@@ -8,9 +8,9 @@ export default function AdditionalCocktailInformation({}: AdditionalCocktailInfo
     const language: Language = state.language
     return (
         <View style={styles.container}>
-            {state.currentItem.category !== null && state.currentItem.category !== "Other/Unknown" ? (
+            {state.currentItem.category !== null ? (
                 <Text style={styles.contentText}>
-                    {state.currentItem.category}
+                    {language.categories[`${state.currentItem.category}`]}
                 </Text>
             ) : null
             }

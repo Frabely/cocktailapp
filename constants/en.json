@@ -32,6 +32,9 @@
       "name": "Pineapple juice"
     }
   },
+  "categories": {
+    "cocktail": "Cocktail"
+  },
   "labels": {
     "USERNAME_LABEL": "Username",
     "EMAIL_LABEL": "Email",
@@ -77,10 +80,20 @@
     "FAVORITES_LABEL": "Favorites",
     "YOUR_FAVORITES": "Your Favorites",
     "LOGOUT_LABEL": "Logout",
-    "SORT_LIST": ["AlphabeticalAZ", "AlphabeticalZA", "Favorites"],
-    "CATEGORY_LIST": ["All", "Shot", "Beer", "Shake", "Cocktail", "Ordinary Drink", "Homemade Liqueur",
-      "Punch / Party Drink", "Coffee / Tea", "Cocoa", "Soft Drink", "Other / Unknown"],
-    "ALCOHOLIC_LIST": ["All", "Alcoholic", "Non alcoholic"],
+    "SORT_LIST": [
+      "AlphabeticalAZ",
+      "AlphabeticalZA",
+      "Favorites"
+    ],
+    "CATEGORY_LIST": [
+      "All",
+      "Cocktail"
+    ],
+    "ALCOHOLIC_LIST": [
+      "All",
+      "Alcoholic",
+      "Non alcoholic"
+    ],
     "ERROR_CODES": {
       "USERNAME_MISSING": "Username missing",
       "USERNAME_ALREADY_USED": "Username already used",

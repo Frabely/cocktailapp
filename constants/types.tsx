@@ -74,8 +74,9 @@ export type Cocktail = {
 export type Language = {
     [index: string]: string | Labels | any,
     langKey: string,
-    "drinks": any,
-    "ingredients": any
+    drinks: any,
+    ingredients: any,
+    categories: any,
     "labels": Labels
 }
 

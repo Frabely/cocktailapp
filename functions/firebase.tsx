@@ -189,8 +189,6 @@ export const updateRatingLists: (ratedCocktailList: RatedCocktail[], userID: str
 
 const setCocktailFromDoc: (docResult: DocumentSnapshot) => Promise<Cocktail> = async (docResult: DocumentSnapshot): Promise<Cocktail> => {
     let categoryResultPromise: DocumentSnapshot = await readReference(docResult.get("category"))
-    let category: string = categoryResultPromise.get("name")
-
     let ingredients: DocumentSnapshot[] = await readReferenceList(docResult.get("ingredientsLiquid"))
     let ingredientsList: Ingredient[] = []
     ingredients.map((ingredient: DocumentSnapshot) => {
@@ -204,7 +202,7 @@ const setCocktailFromDoc: (docResult: DocumentSnapshot) => Promise<Cocktail> = a
     return {
         "idDrink": docResult.id,
         "alcoholic": docResult.get("alcoholic"),
-        "category": category,
+        "category": categoryResultPromise.id,
         "ingredientsList": ingredientsList,
         "liquidMeasuresML": docResult.get("liquidMeasuresML"),
         "ingredientsOptionalList": docResult.get("ingredientsOptional"),
