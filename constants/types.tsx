@@ -110,6 +110,7 @@ export type Labels = {
     "NO_HITS_LABEL": string,
     "IN_DEVELOPMENT_LABEL": string,
     "LANGUAGE_LABEL": string,
+    "UNIT_OF_MEASURE_FOR_LIQUIDS_LABEL": string,
     "ENGLISH_LABEL": string,
     "GERMAN_LABEL": string,
     "SAVE_SETTINGS_LABEL": string,

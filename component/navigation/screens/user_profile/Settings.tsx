@@ -62,6 +62,13 @@ export default function Settings({navigation}: any) {
                                     setIsLeftActive={setIsLeftActive}/>
                         </View>
                     </View>
+                    <View style={[styles.profileDetailsItem,
+                        {flex: (Platform.OS === "android") ? undefined : 1}]}>
+                        <Text style={{fontWeight: 'bold', flex: 1}}>{language.labels.UNIT_OF_MEASURE_FOR_LIQUIDS_LABEL}:</Text>
+                        <View style={{flex: 1, flexDirection: 'row-reverse'}}>
+                            {/*TODO add own dropdown menu*/}
+                        </View>
+                    </View>
                     <StyledButton
                         margin={MARGIN / 2}
                         padding={PADDING}
