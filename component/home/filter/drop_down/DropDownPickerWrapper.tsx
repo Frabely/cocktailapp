@@ -44,10 +44,9 @@ export default function DropDownPickerWrapper() {
         dispatch(changeIngredients(value))
     }, [value])
 
-    // TODO check why needed after more cocktails added - infinite loop like this
-    // useEffect(() => {
-    //     setValue(state.ingredientsFilter)
-    // }, [state.ingredientsFilter])
+    useEffect(() => {
+        setValue(state.ingredientsFilter)
+    }, [state.ingredientsFilter])
 
     DropDownPicker.setMode("BADGE");
     DropDownPicker.setListMode("SCROLLVIEW");
