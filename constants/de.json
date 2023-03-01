@@ -5,25 +5,25 @@
       "name": "A Gilligan's Island",
       "glass": "Collinsglas",
       "instruction": "Alle Zutaten in ein Shaker füllen, schütteln und servieren.",
-      "optionalingredients": []
+      "optionalIngredients": []
     },
     "Afterglow": {
       "name": "Afterglow",
       "glass": "Highballglas",
       "instruction": "In einem Shaker mischen und auf Eis servieren.",
-      "optionalingredients": []
+      "optionalIngredients": []
     },
     "AppleSlammer": {
       "name": "Apple Slammer",
       "glass": "Shotglas",
       "instruction": "Beide Zutaten in ein Shotglas geben und servieren.",
-      "optionalingredients": []
+      "optionalIngredients": []
     },
     "GinTonic": {
       "name": "Gin Tonic",
       "glass": "Highballglas",
       "instruction": "Füllen Sie ein Highballglas mit Eis und gießen Sie den Gin ein. Danach das Tonic Water hinzufügen und eine Zitronenscheibe ausdrücken. Das Glas mit einer weiteren Zitronenscheibe garnieren und anschließend servieren.",
-      "optionalingredients": [
+      "optionalIngredients": [
         "1 Zitronenscheibe"
       ]
     },
@@ -31,9 +31,15 @@
       "name": "Tequila Sunrise",
       "glass": "Highballglas",
       "instruction": "Den Tequila, Zitronensaft und Orangensaft in ein Glas über Eis gießen und rühren. Füge Grenadine, welche auf den Boden sinken sollte, hinzu. Anschließend Garnieren und servieren.",
-      "optionalingredients": [
+      "optionalIngredients": [
         "1 Orangenscheibe"
       ]
+    },
+    "Zenmeister": {
+      "name": "Zenmeister",
+      "glass": "Shotglas",
+      "instruction": "Zutaten zusammenmischen und genießen.",
+      "optionalIngredients": []
     }
   },
   "ingredients": {
@@ -72,6 +78,12 @@
     },
     "tequilaSilver": {
       "name": "Tequila Silver"
+    },
+    "rootBeer": {
+      "name": "Root Beer"
+    },
+    "jaegermeister": {
+      "name": "Jägermeister"
     }
   },
   "categories": {

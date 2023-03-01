@@ -1,5 +1,4 @@
 Bugs:
-
 -if no favorites -> Favorites page shows "No Hits -- Reset Filters" -> should display something like no favorites found
 -favorites only save on logout -> what if app crashes/user is not logging out?
 -keep user signed in -> how to do that -> save data on phone or something until user explicit logs out
@@ -8,6 +7,7 @@ Bugs:
 -fast changing filters result in "Maximum update depth exceeded." error -> constantly rendering
 
 Master branch Goals - deploy alpha:
+-add date to see when cocktails are added -> sort most recently added
 -set email language (https://firebase.google.com/docs/auth/web/manage-users?hl=de&authuser=0)
     -setup domain
     -change domain for all emails

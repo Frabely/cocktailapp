@@ -17,8 +17,7 @@ import {Language} from "../../../constants/types";
 export default function HighlightedCard({height}: HighlightedCardProps) {
     const state = useAppSelector((state) => state)
     const language: Language = state.language
-    let arrayOptionalIngredients: string[] = language.drinks[`${state.currentItem.idDrink}`].optionalingredients
-
+    const arrayOptionalIngredients: string[] = language.drinks[`${state.currentItem.idDrink}`].optionalIngredients
 
     generate_box_shadow_style(
         styles,

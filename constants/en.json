@@ -5,25 +5,25 @@
       "name": "A Gilligan's Island",
       "glass": "Collins Glass",
       "instruction": "Put all ingredients in a blender, shake and serve.",
-      "optionalingredients": []
+      "optionalIngredients": []
     },
     "Afterglow": {
       "name": "Afterglow",
       "glass": "Highball Glass",
       "instruction": "Mix in a blender and serve over ice.",
-      "optionalingredients": []
+      "optionalIngredients": []
     },
     "AppleSlammer": {
       "name": "Apple Slammer",
       "glass": "Shot Glass",
       "instruction": "Add both ingredients in a shot glass and serve.",
-      "optionalingredients": []
+      "optionalIngredients": []
     },
     "GinTonic": {
       "name": "Gin Tonic",
       "glass": "Highball Glass",
       "instruction": "Fill a highball glass with ice and pour the gin. Top with tonic water and squeeze a lemon wedge. Garnish with another lemon wedge and serve.",
-      "optionalingredients": [
+      "optionalIngredients": [
         "1 Lemon Slice"
       ]
     },
@@ -31,9 +31,15 @@
       "name": "Tequila Sunrise",
       "glass": "Highball Glass",
       "instruction": "Pour the tequila, lemon juice and orange juice into glass over ice and stir. Add the grenadine, which should sink to the bottom. After garnish and serve.",
-      "optionalingredients": [
+      "optionalIngredients": [
         "1 Orange Slice"
       ]
+    },
+    "Zenmeister": {
+      "name": "Zenmeister",
+      "glass": "Shot Glass",
+      "instruction": "Mix ingredients together and enjoy.",
+      "optionalIngredients": []
     }
   },
   "ingredients": {
@@ -72,6 +78,12 @@
     },
     "tequilaSilver": {
       "name": "Tequila Silver"
+    },
+    "rootBeer": {
+      "name": "Root Beer"
+    },
+    "jaegermeister": {
+      "name": "Jägermeister"
     }
   },
   "categories": {
