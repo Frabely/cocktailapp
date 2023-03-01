@@ -40,6 +40,15 @@
       "glass": "Shot Glass",
       "instruction": "Mix ingredients together and enjoy.",
       "optionalIngredients": []
+    },
+    "VodkaLemon": {
+      "name": "Vodka Lemon",
+      "glass": "Shot Glass",
+      "instruction": "Put 6-7 ice cubes in the glass, pour the vodka, bitter lemon and mix with a bar spoon. Decorate with a slice of lemon and, if you prefer, add a few mint leaves.",
+      "optionalIngredients": [
+        "1 Orange Slice",
+        "A few Mint Leaves"
+      ]
     }
   },
   "ingredients": {
@@ -84,6 +93,9 @@
     },
     "jaegermeister": {
       "name": "Jägermeister"
+    },
+    "bitterLemon": {
+      "name": "Bitter Lemon"
     }
   },
   "categories": {

@@ -40,6 +40,15 @@
       "glass": "Shotglas",
       "instruction": "Zutaten zusammenmischen und genießen.",
       "optionalIngredients": []
+    },
+    "VodkaLemon": {
+      "name": "Vodka Lemon",
+      "glass": "Shotglas",
+      "instruction": "6-7 Eiswürfel in das Glas geben, Wodka, Bitter Lemon aufgießen und mit einem Barlöffel mixen. Zum Schluss mit einer Zitronenscheibe dekorieren und nach Belieben ein paar Minzeblätter hinzufügen.",
+      "optionalIngredients": [
+        "1 Orangenscheibe",
+        "Ein paar Minzblätter"
+      ]
     }
   },
   "ingredients": {
@@ -84,6 +93,9 @@
     },
     "jaegermeister": {
       "name": "Jägermeister"
+    },
+    "bitterLemon": {
+      "name": "Bitter Lemon"
     }
   },
   "categories": {
