@@ -26,6 +26,14 @@
       "optionalingredients": [
         "1 Lemon Slice"
       ]
+    },
+    "TequilaSunrise": {
+      "name": "Tequila Sunrise",
+      "glass": "Highball Glass",
+      "instruction": "Pour the tequila, lemon juice and orange juice into glass over ice and stir. Add the grenadine, which should sink to the bottom. After garnish and serve.",
+      "optionalingredients": [
+        "1 Orange Slice"
+      ]
     }
   },
   "ingredients": {
@@ -61,6 +69,9 @@
     },
     "lemonJuice": {
       "name": "Lemon Juice"
+    },
+    "tequilaSilver": {
+      "name": "Tequila Silver"
     }
   },
   "categories": {

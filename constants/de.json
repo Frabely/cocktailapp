@@ -21,10 +21,18 @@
     },
     "GinTonic": {
       "name": "Gin Tonic",
-      "glass": "Highball glass",
+      "glass": "Highballglas",
       "instruction": "Füllen Sie ein Highballglas mit Eis und gießen Sie den Gin ein. Danach das Tonic Water hinzufügen und eine Zitronenscheibe ausdrücken. Das Glas mit einer weiteren Zitronenscheibe garnieren und anschließend servieren.",
       "optionalingredients": [
         "1 Zitronenscheibe"
+      ]
+    },
+    "TequilaSunrise": {
+      "name": "Tequila Sunrise",
+      "glass": "Highballglas",
+      "instruction": "Den Tequila, Zitronensaft und Orangensaft in ein Glas über Eis gießen und rühren. Füge Grenadine, welche auf den Boden sinken sollte, hinzu. Anschließend Garnieren und servieren.",
+      "optionalingredients": [
+        "1 Orangenscheibe"
       ]
     }
   },
@@ -61,6 +69,9 @@
     },
     "lemonJuice": {
       "name": "Zitronensaft"
+    },
+    "tequilaSilver": {
+      "name": "Tequila Silver"
     }
   },
   "categories": {
