@@ -43,11 +43,19 @@
     },
     "VodkaLemon": {
       "name": "Vodka Lemon",
-      "glass": "Shot Glass",
+      "glass": "Highball Glass",
       "instruction": "Put 6-7 ice cubes in the glass, pour the vodka, bitter lemon and mix with a bar spoon. Decorate with a slice of lemon and, if you prefer, add a few mint leaves.",
       "optionalIngredients": [
         "1 Orange Slice",
         "A few Mint Leaves"
+      ]
+    },
+    "GinSoda": {
+      "name": "Gin Soda",
+      "glass": "Highball Glass",
+      "instruction": "Pour the Gin and Soda water into a highball glass almost filled with ice cubes. Stir well. Garnish with the lime wedge and serve.",
+      "optionalIngredients": [
+        "1 Lime Slice"
       ]
     }
   },
@@ -96,6 +104,9 @@
     },
     "bitterLemon": {
       "name": "Bitter Lemon"
+    },
+    "sodaWater": {
+      "name": "Soda Water"
     }
   },
   "categories": {

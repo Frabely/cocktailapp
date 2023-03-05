@@ -43,11 +43,19 @@
     },
     "VodkaLemon": {
       "name": "Vodka Lemon",
-      "glass": "Shotglas",
+      "glass": "Highballglas",
       "instruction": "6-7 Eiswürfel in das Glas geben, Wodka, Bitter Lemon aufgießen und mit einem Barlöffel mixen. Zum Schluss mit einer Zitronenscheibe dekorieren und nach Belieben ein paar Minzeblätter hinzufügen.",
       "optionalIngredients": [
         "1 Orangenscheibe",
         "Ein paar Minzblätter"
+      ]
+    },
+    "GinSoda": {
+      "name": "Gin Soda",
+      "glass": "Highballglas",
+      "instruction": "Gin und Soda Wasser in ein Highballglas mit Eiswürfeln gießen und umrühren. Anschließend mit einer Limettenscheibe garnieren und servieren.",
+      "optionalIngredients": [
+        "1 Limettenscheibe"
       ]
     }
   },
@@ -96,6 +104,9 @@
     },
     "bitterLemon": {
       "name": "Bitter Lemon"
+    },
+    "sodaWater": {
+      "name": "Soda Wasser"
     }
   },
   "categories": {
