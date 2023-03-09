@@ -57,6 +57,14 @@
       "optionalIngredients": [
         "1 Lime Slice"
       ]
+    },
+    "YellowBird": {
+      "name": "Yellow Bird",
+      "glass": "Cocktail Glass",
+      "instruction": "Shake ingredients, strain into a chilled cocktail glass and serve with a lemon slice.",
+      "optionalIngredients": [
+        "1 Lemon Slice"
+      ]
     }
   },
   "ingredients": {
@@ -107,6 +115,18 @@
     },
     "sodaWater": {
       "name": "Soda Water"
+    },
+    "galliano": {
+      "name": "Galliano"
+    },
+    "whiteRum": {
+      "name": "White Rum"
+    },
+    "tripleSec": {
+      "name": "Triple Sec"
+    },
+    "limeJuice": {
+      "name": "Lime Juice"
     }
   },
   "categories": {

@@ -57,6 +57,14 @@
       "optionalIngredients": [
         "1 Limettenscheibe"
       ]
+    },
+    "YellowBird": {
+      "name": "Yellow Bird",
+      "glass": "Cocktailglas",
+      "instruction": "Zutaten schütteln, in ein gekühltes Cocktailglas abseihen und mit einer Zitronenscheibe servieren",
+      "optionalIngredients": [
+        "1 Zitronenscheibe"
+      ]
     }
   },
   "ingredients": {
@@ -107,6 +115,18 @@
     },
     "sodaWater": {
       "name": "Soda Wasser"
+    },
+    "galliano": {
+      "name": "Galliano"
+    },
+    "whiteRum": {
+      "name": "Weißer Rum"
+    },
+    "tripleSec": {
+      "name": "Triple Sec"
+    },
+    "limeJuice": {
+      "name": "Limettensaft"
     }
   },
   "categories": {
