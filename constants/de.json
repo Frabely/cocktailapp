@@ -65,6 +65,14 @@
       "optionalIngredients": [
         "1 Zitronenscheibe"
       ]
+    },
+    "CubaLibre": {
+      "name": "Cuba Libre",
+      "glass": "Highballglas",
+      "instruction": "Den Saft von zwei Limettenscheiben in ein, mit Eis gefülltes, Highballglas geben und diese danach hinein legen. Danach den brauenen Rum hinzufügen und mit Cola auffüllen. Mit einer frischen Limettenscheibe garnieren und servieren.",
+      "optionalIngredients": [
+        "1 Limettenscheibe"
+      ]
     }
   },
   "ingredients": {
@@ -127,6 +135,12 @@
     },
     "limeJuice": {
       "name": "Limettensaft"
+    },
+    "darkRum": {
+      "name": "Brauner Rum"
+    },
+    "cocaCola": {
+      "name": "Coca Cola"
     }
   },
   "categories": {

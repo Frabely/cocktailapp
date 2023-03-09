@@ -65,6 +65,14 @@
       "optionalIngredients": [
         "1 Lemon Slice"
       ]
+    },
+    "CubaLibre": {
+      "name": "Cuba Libre",
+      "glass": "Highball Glass",
+      "instruction": "Add the juice of two lime slices into a Highball glass filled with ice and put the limes into the glass as well. Add the dark rum and fill with Coca Cola. Garnish with a fresh lime slice and serve.",
+      "optionalIngredients": [
+        "1 Lime Slice"
+      ]
     }
   },
   "ingredients": {
@@ -127,6 +135,12 @@
     },
     "limeJuice": {
       "name": "Lime Juice"
+    },
+    "darkRum": {
+      "name": "Dark Rum"
+    },
+    "cocaCola": {
+      "name": "Coca Cola"
     }
   },
   "categories": {
