@@ -73,6 +73,23 @@
       "optionalIngredients": [
         "1 Limettenscheibe"
       ]
+    },
+    "ZiziCoinCoin": {
+      "name": "Zizi Coin Coin",
+      "glass": "Margaritaglas",
+      "instruction": "Cointreau auf Eis gießen, frischen Zitronen- (oder Limetten-) Saft hinzufügen, leicht umrühren und schließlich Zitronen-/Limettenscheiben in ein Glas geben.",
+      "optionalIngredients": [
+        "1 Zitronenscheibe"
+      ]
+    },
+    "ADayAtTheBeach": {
+      "name": "A Day at the Beach",
+      "glass": "Highballglas",
+      "instruction": "Rum, Amaretto und Orangensaft in einem mit Eis gefüllten Shaker schütteln. Über Eis in ein Highballglas abseihen. Grenadine hinzufügen und mit einem Ananaskeil und einer Erdbeere garnieren.",
+      "optionalIngredients": [
+        "1 Ananaskeil",
+        "1 Erdbeere"
+      ]
     }
   },
   "ingredients": {
@@ -139,8 +156,17 @@
     "darkRum": {
       "name": "Brauner Rum"
     },
+    "coconutRum": {
+      "name": "Kokusnussrum"
+    },
     "cocaCola": {
       "name": "Coca Cola"
+    },
+    "cointreau": {
+      "name": "Cointreau"
+    },
+    "amaretto": {
+      "name": "Amaretto"
     }
   },
   "categories": {

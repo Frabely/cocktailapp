@@ -73,6 +73,23 @@
       "optionalIngredients": [
         "1 Lime Slice"
       ]
+    },
+    "ZiziCoinCoin": {
+      "name": "Zizi Coin Coin",
+      "glass": "Margarita Glass",
+      "instruction": "Pour Cointreau on ice, add fresh lemon (or lime) juice, stir gently, and finally add slices of lemon/lime in glass.",
+      "optionalIngredients": [
+        "1 Lemon Slice"
+      ]
+    },
+    "ADayAtTheBeach": {
+      "name": "A Day at the Beach",
+      "glass": "Highball Glass",
+      "instruction": "Shake Rum, Amaretto, and Orange Juice in a shaker filled with ice. Strain over ice into a highball glass. Add Grenadine and garnish with a Pineapple Wedge and a Strawberry.",
+      "optionalIngredients": [
+        "1 Pineapple Wedge",
+        "1 Strawberry"
+      ]
     }
   },
   "ingredients": {
@@ -139,8 +156,17 @@
     "darkRum": {
       "name": "Dark Rum"
     },
+    "coconutRum": {
+      "name": "Coconut Rum"
+    },
     "cocaCola": {
       "name": "Coca Cola"
+    },
+    "cointreau": {
+      "name": "Cointreau"
+    },
+    "amaretto": {
+      "name": "Amaretto"
     }
   },
   "categories": {
