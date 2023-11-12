@@ -1,8 +1,6 @@
 import {StyleSheet, View} from "react-native";
 import {vh, vh_reactive, vw, vw_reactive} from "../../functions/dimentions";
 import {faUser, faHouse, faArrowLeft} from "@fortawesome/free-solid-svg-icons";
-import {} from "@fortawesome/free-regular-svg-icons";
-import {} from "@fortawesome/free-brands-svg-icons";
 import {COLOR_HEADER} from "../../constants/color_styles";
 import {BORDER_RADIUS, MARGIN} from "../../constants/style_constants";
 import HeaderButton from "./HeaderButton";
@@ -16,6 +14,7 @@ import {changeCategory} from "../../reducers/filter/categoryFilterReducer";
 import {changeCurrentSearchFieldInput} from "../../reducers/home/currentSearchFieldInputReducer";
 import {changeIngredients} from "../../reducers/filter/ingredientsFilterReducer";
 import {changeSort} from "../../reducers/filter/sortFilterReducer";
+import {updateRatingCocktail} from "../../functions/databaseUpdate";
 
 export default function Header({navigation}: any) {
     const state = useAppSelector((state) => state)
@@ -36,6 +35,7 @@ export default function Header({navigation}: any) {
             dispatch(setActiveFilter(''))
         }
         if (state.currentItem.idDrink) {
+            updateRatingCocktail(state).catch(error => console.log(error.message))
             dispatch(changeCurrentItem(EMPTY_ITEM))
         }
     }

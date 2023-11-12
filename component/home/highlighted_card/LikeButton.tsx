@@ -20,7 +20,6 @@ export default function LikeButton({}: LikeButtonProps) {
 
     const [likes, setLikes] = useState(0);
 
-
     const setDefaultFavorite = () => {
         if (state.user.favorites && state.currentItem.idDrink) {
             if (state.user.favorites.includes(state.currentItem)) {

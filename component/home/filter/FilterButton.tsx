@@ -2,17 +2,17 @@ import {ColorValue, Pressable, StyleSheet, Text} from "react-native";
 import {
     BORDER_RADIUS,
 } from "../../../constants/style_constants";
-import {COLOR_BACKGROUND} from "../../../constants/color_styles";
 import {useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-native-fontawesome";
 import {IconTitleObject} from "../../../constants/types";
 import {ICON_NAME_LIST} from "../../../constants/filter_lists";
 import {IconProp} from "@fortawesome/fontawesome-svg-core";
 
-export default function FilterButton({
-                                         state, titleENG, onClick, title, isIcon, colorActive, colorInactive,
-                                         padding, width, margin, height, flex
-                                     }: FilterButtonProps) {
+export default function FilterButton(
+    {
+        state, titleENG, onClick, title, isIcon, colorActive, colorInactive,
+        padding, width, margin, height, flex
+    }: FilterButtonProps) {
     const [isTouched, setIsTouched] = useState(false)
     let isClicked = state.includes(titleENG)
     const onClickHandler = () => {
@@ -42,7 +42,7 @@ export default function FilterButton({
                            padding: (padding || padding === 0) ? padding : undefined,
                            margin: (margin || margin === 0) ? margin : undefined,
                            width: (width || width === 0) ? width : undefined,
-                           flex: (flex || flex === 0) ? flex : 1,
+                           flex: (flex || flex === 0) ? flex : undefined,
                        },
                    ]}>
             {typeof icon === "string" ?
@@ -55,10 +55,9 @@ export default function FilterButton({
 
 const styles = StyleSheet.create({
     outerButton: {
-        borderRadius: BORDER_RADIUS / 2,
-        backgroundColor: COLOR_BACKGROUND,
+        borderRadius: BORDER_RADIUS,
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
     }
 })
 

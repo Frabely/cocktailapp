@@ -17,6 +17,7 @@ import {changeCategory} from "../../reducers/filter/categoryFilterReducer";
 import {changeCurrentSearchFieldInput} from "../../reducers/home/currentSearchFieldInputReducer";
 import {changeIngredients} from "../../reducers/filter/ingredientsFilterReducer";
 import {changeSort} from "../../reducers/filter/sortFilterReducer";
+import {updateRatingCocktail} from "../../functions/databaseUpdate";
 
 export default function CocktailList({dataset}: CocktailListProps) {
     const state = useAppSelector((state) => state)
@@ -33,6 +34,7 @@ export default function CocktailList({dataset}: CocktailListProps) {
     const onImageClickHandler = (
         currentlyClickedItem: Cocktail,
         item: Cocktail) => {
+        updateRatingCocktail(state).catch(error => console.log(error.message))
         if (currentlyClickedItem) {
             if (currentlyClickedItem.idDrink === item.idDrink) {
                 dispatch(changeCurrentItem(EMPTY_ITEM))

@@ -1,4 +1,5 @@
 Bugs:#
+-firebase config into env.local file (safety)
 -add ae, oe ... to search filters to find ä, ö ...
 -if no favorites -> Favorites page shows "No Hits -- Reset Filters" -> should display something like no favorites found
 -favorites only save on logout -> what if app crashes/user is not logging out?

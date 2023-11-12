@@ -6,20 +6,18 @@ import {useAppDispatch, useAppSelector} from "../../../constants/hooks";
 import {ALL} from "../../../constants/const_vars";
 import {ActionCreatorWithPayload} from "@reduxjs/toolkit";
 import {MARGIN, PADDING} from "../../../constants/style_constants";
-import {vh_reactive} from "../../../functions/dimentions";
-import {getDefaultButtonHeight} from "../../../functions/viewport_calculations";
 
-export default function FilterPanel({
-                                        filterState,
-                                        setFilterState,
-                                        isMultiSelectable,
-                                        optionsTitle,
-                                        optionsENG,
-                                        labelName,
-                                        isIcon
-                                    }: FilterPanelProps) {
+export default function FilterPanel(
+    {
+        filterState,
+        setFilterState,
+        isMultiSelectable,
+        optionsTitle,
+        optionsENG,
+        labelName,
+        isIcon
+    }: FilterPanelProps) {
     const dispatch = useAppDispatch()
-    const state = useAppSelector((state) => state)
 
     const onFilterButtonClickHandler = (filterName: string) => {
         const array: string[] = [...filterState]
@@ -61,7 +59,7 @@ export default function FilterPanel({
                         if (item) {
                             return <View key={index}
                                          style={[styles.flatListItem,
-                                             {minHeight: vh_reactive(getDefaultButtonHeight(state.dimensions.orientationInfo), state.dimensions.height)}
+                                             // {minHeight: vh_reactive(getDefaultButtonHeight(state.dimensions.orientationInfo), state.dimensions.height)}
                                          ]}>
                                 <FilterButton
                                     isIcon={isIcon}
@@ -71,7 +69,7 @@ export default function FilterPanel({
                                     colorInactive={COLOR_BACKGROUND}
                                     onClick={onFilterButtonClickHandler}
                                     state={filterState}
-                                    padding={PADDING / 2}
+                                    padding={PADDING * 1.5}
                                     margin={MARGIN / 2}
                                 />
                             </View>
@@ -85,11 +83,11 @@ export default function FilterPanel({
 
 const styles = StyleSheet.create({
     flatListItem: {
-        width: '33.33333%'
+        // width: '33.33333%'
     },
     filterPanel: {
-        width: '100%',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        justifyContent: "space-between"
     },
 })
 

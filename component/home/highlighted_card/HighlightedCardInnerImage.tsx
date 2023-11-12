@@ -6,12 +6,14 @@ import {changeCurrentItem} from "../../../reducers/home/currentItemReducer";
 import {EMPTY_ITEM} from "../../../constants/const_vars";
 import {vh_reactive, vw_reactive} from "../../../functions/dimentions";
 import {Orientation} from "expo-screen-orientation";
+import {updateRatingCocktail} from "../../../functions/databaseUpdate";
 
 export default function HighlightedCardInnerImage({imageSource}: HighlightedCardInnerImageProps) {
     const dispatch = useAppDispatch()
     const state = useAppSelector((state) => state)
 
     const onCloseHighlightedImage = () => {
+        updateRatingCocktail(state).catch(error => console.log(error.message))
         dispatch(changeCurrentItem(EMPTY_ITEM))
     }
     return (

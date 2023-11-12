@@ -1,5 +1,5 @@
 import {ScrollView, StyleSheet, View} from "react-native";
-import {vh_reactive, vw, vw_reactive} from "../../../functions/dimentions";
+import {vw, vw_reactive} from "../../../functions/dimentions";
 import {COLOR_CARD_BACKGROUND} from "../../../constants/color_styles";
 import {BORDER_RADIUS, MARGIN, PADDING} from "../../../constants/style_constants";
 import FilterPanel from "./FilterPanel";
@@ -28,7 +28,7 @@ export default function Filter({onPress, lengthDataSet}: FilterProps) {
         categoryFilterOptions.push(language.categories[`${category}`])
     })
     //added all key to the categories fetched from database
-    const categoryFilterOptionsENG: readonly string[] = [ALL ,...state.categoryDataSet]
+    const categoryFilterOptionsENG: readonly string[] = [ALL, ...state.categoryDataSet]
 
     const sortFilterOptions: readonly string[] = language.labels.SORT_LIST
     const sortFilterOptionsENG: readonly string[] = SORT_LIST
@@ -41,7 +41,6 @@ export default function Filter({onPress, lengthDataSet}: FilterProps) {
         <ScrollView
             style={[styles.filter, {
                 width: vw_reactive(1, state.dimensions.width),
-                height: vh_reactive(0.8, state.dimensions.height)
             }]}>
             <View style={styles.rowStyle}>
                 <FilterPanel optionsTitle={sortFilterOptions}
@@ -71,13 +70,13 @@ export default function Filter({onPress, lengthDataSet}: FilterProps) {
                              setFilterState={changeCategory}/>
             </View>
             <View style={[styles.rowStyle, {
-                flexDirection: 'row',
-                borderBottomLeftRadius: 0,
-                borderBottomRightRadius: 0
+                flexDirection: 'column',
+                borderBottomLeftRadius: BORDER_RADIUS / 2,
+                borderBottomRightRadius: BORDER_RADIUS / 2,
             }]}>
                 <Label labelName={language.labels.INGREDIENTS_LABEL}/>
+                <DropDownPickerWrapper/>
             </View>
-            <DropDownPickerWrapper/>
             <View style={styles.buttonBackgroundStyle}>
                 <StyledButton
                     flex={1}
@@ -103,14 +102,14 @@ const styles = StyleSheet.create({
         left: 0,
         top: 0,
         zIndex: 1,
+        height: '100%'
     },
     rowStyle: {
-        flexDirection: 'row',
         backgroundColor: COLOR_CARD_BACKGROUND,
         borderRadius: BORDER_RADIUS / 2,
         marginLeft: MARGIN,
         marginRight: MARGIN,
-        marginTop: MARGIN
+        marginTop: MARGIN,
     },
     buttonBackgroundStyle: {
         backgroundColor: COLOR_CARD_BACKGROUND,

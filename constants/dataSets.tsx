@@ -1,4 +1,3 @@
-import {fetchFullDataSetAsArray} from "../functions/firebase";
 import data from "../constants/dummyData3";
 import {Cocktail} from "./types";
 

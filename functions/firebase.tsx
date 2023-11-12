@@ -54,7 +54,8 @@ export type CreationData = {
     username: string,
     email: string,
     languageSetting: string
-    favorites: string[]
+    favorites: string[],
+    unitOfMeasureForLiquidsSetting: string
 }
 
 // Initialize Firebase
@@ -67,6 +68,7 @@ export const createUserInDb: (creationData: CreationData) => Promise<void> = asy
         usernameLower: creationData.username.toLowerCase(),
         email: creationData.email,
         languageSetting: creationData.languageSetting,
+        unitOfMeasureForLiquidsSetting: creationData.unitOfMeasureForLiquidsSetting,
         favorites: creationData.favorites
     })
 }
@@ -128,12 +130,12 @@ export const fetchFullDataSetAsArray: () => Promise<undefined | Cocktail[]> = as
         let returnArray: (Cocktail | undefined)[] = await Promise.all(result)
         let isCocktailUndefined: boolean = false
         let filteredArray: Cocktail[] = []
-            returnArray.map((cocktail) => {
-                if (!cocktail) {
-                    isCocktailUndefined = true
-                }
-                if (cocktail)
-                    filteredArray.push(cocktail)
+        returnArray.map((cocktail) => {
+            if (!cocktail) {
+                isCocktailUndefined = true
+            }
+            if (cocktail)
+                filteredArray.push(cocktail)
 
         })
         if (isCocktailUndefined)
@@ -177,8 +179,8 @@ export const fetchCategoriesAsArray: () => Promise<string[]> = async () => {
     return categoriesArray
 }
 
-export const updateRatingLists: (ratedCocktailList: RatedCocktail[], userID: string) => void
-    = (ratedCocktailList: RatedCocktail[], userID: string) => {
+export const updateRatingLists: (ratedCocktailList: RatedCocktail[], userID: string) => Promise<void>
+    = async (ratedCocktailList: RatedCocktail[], userID: string) => {
     ratedCocktailList.map(async (ratedCocktail: RatedCocktail) => {
         if (ratedCocktail.userIDList.includes(userID)) {
             const drinkRef = doc(db, `${DRINKS_DB}/${ratedCocktail.cocktailID}`);
@@ -189,16 +191,32 @@ export const updateRatingLists: (ratedCocktailList: RatedCocktail[], userID: str
             }).catch(error => {
                 console.log(error.message)
             })
-            const updateList = [...ratingUserIDList]
-            if (updateList.includes(userID))
-                return
-            updateList.push(userID)
-            await updateDoc(drinkRef, {ratingUserIDList: updateList}).then(() => {
-                return
-            }).catch(error => {
-                console.log(error.message)
-            })
+            const updateList: string[] = [...ratingUserIDList]
+            if (updateList.includes(userID)) {
+                const indexToRemove: number = updateList.indexOf(userID)
+                updateList.splice(indexToRemove, 1)
+                updateDoc(drinkRef, {ratingUserIDList: updateList}).then(() => {
+                    return
+                }).catch(error => {
+                    console.log(error.message)
+                })
+            } else {
+                updateList.push(userID)
+                updateDoc(drinkRef, {ratingUserIDList: updateList}).then(() => {
+                    return
+                }).catch(error => {
+                    console.log(error.message)
+                })
+            }
         }
+    })
+}
+
+export const updateCocktailRatingList: (ratedCocktail: RatedCocktail) => Promise<void>
+    = async (ratedCocktail: RatedCocktail) => {
+    const drinkRef = doc(db, `${DRINKS_DB}/${ratedCocktail.cocktailID}`);
+    await updateDoc(drinkRef, {ratingUserIDList: ratedCocktail.userIDList}).catch(error => {
+        console.log(error.message)
     })
 }
 

@@ -139,7 +139,7 @@ export default function Login({}: LoginProps) {
                             favorites: favoriteCocktails
                         }
                         dispatch(activeUser(userDb))
-                        if (resultUser.languageSetting == GERMAN)
+                        if (resultUser.languageSetting === GERMAN)
                             dispatch(changeLanguage(de))
                         else
                             dispatch(changeLanguage(en))

@@ -14,7 +14,7 @@ import {
     INGREDIENTS_FILTER_SELECTION_NUMBER_MAX,
     INGREDIENTS_FILTER_SELECTION_NUMBER_MIN
 } from "../../../../constants/const_vars";
-import { Orientation } from "expo-screen-orientation";
+import {Orientation} from "expo-screen-orientation";
 import {getDefaultButtonHeight} from "../../../../functions/viewport_calculations";
 import {DropDownMenuType, Ingredient, Language} from "../../../../constants/types";
 
@@ -123,14 +123,7 @@ export default function DropDownPickerWrapper() {
             dropDownDirection="TOP"
             disableBorderRadius={false}
             autoScroll={true}
-            containerStyle={{
-                backgroundColor: COLOR_CARD_BACKGROUND,
-                width: vw_reactive(1, state.dimensions.width) - 2 * PADDING,
-                borderBottomRightRadius: BORDER_RADIUS / 2,
-                borderBottomLeftRadius: BORDER_RADIUS / 2,
-                marginLeft: MARGIN,
-                marginRight: MARGIN,
-            }}
+            containerStyle={{}}
             modalContentContainerStyle={{
                 backgroundColor: COLOR_HEADER
             }

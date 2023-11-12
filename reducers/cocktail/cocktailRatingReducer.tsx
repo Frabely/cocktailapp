@@ -32,14 +32,11 @@ const CocktailRatingSlice = createSlice({
             }
         },
         removeUserForCurrentCocktail: (state, action: PayloadAction<UserIDCocktailIDType>) => {
-            state.map((ratedCocktailObject: RatedCocktail, index: number) => {
+            state.map((ratedCocktailObject: RatedCocktail) => {
                 if (ratedCocktailObject.cocktailID === action.payload.cocktailID) {
                     const indexUser = ratedCocktailObject.userIDList.indexOf(action.payload.userID)
                     if (indexUser !== -1) {
                         ratedCocktailObject.userIDList.splice(indexUser, 1)
-                        if (ratedCocktailObject.userIDList.length === 0) {
-                            state.splice(index, 1)
-                        }
                     }
                     return state
                 }
